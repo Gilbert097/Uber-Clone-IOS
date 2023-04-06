@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AC129DF75B000E53951 /* ViewCode.swift */; };
+		D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AC529DF7B7100E53951 /* UIView+.swift */; };
+		D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AC729DF84E100E53951 /* UIColor+.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		D4036AC129DF75B000E53951 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
+		D4036AC529DF7B7100E53951 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		D4036AC729DF84E100E53951 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +57,22 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		D4036AC429DF7B6100E53951 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AC529DF7B7100E53951 /* UIView+.swift */,
+				D4036AC729DF84E100E53951 /* UIColor+.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D4036AC929DF859800E53951 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		D415F98F29DF6D9A000689FF = {
 			isa = PBXGroup;
 			children = (
@@ -72,7 +92,9 @@
 		D415F99A29DF6D9A000689FF /* UberClone */ = {
 			isa = PBXGroup;
 			children = (
+				D4036AC429DF7B6100E53951 /* Helpers */,
 				D4036AC029DF759E00E53951 /* Protocols */,
+				D4036AC929DF859800E53951 /* Components */,
 				D4036AC329DF772900E53951 /* Controllers */,
 				D415F99B29DF6D9A000689FF /* AppDelegate.swift */,
 				D415F99D29DF6D9A000689FF /* SceneDelegate.swift */,
@@ -157,6 +179,8 @@
 				D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
 				D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */,
+				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
+				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
