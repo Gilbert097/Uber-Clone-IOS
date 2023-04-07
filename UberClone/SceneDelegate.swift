@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         self.window?.windowScene = windowScene
-        self.window?.rootViewController = WelcomeViewController()
+        self.window?.rootViewController = LoginViewController()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -75,7 +75,7 @@ class WelcomeViewController: UIViewController {
             var container = AttributeContainer()
             container.font = UIFont.systemFont(ofSize: 16)
             config.attributedTitle = AttributedString("Entrar", attributes: container)
-            config.baseBackgroundColor = UIColor(hex: "#11939A")
+            config.baseBackgroundColor = Color.primary
             config.baseForegroundColor = .white
             view.configuration = config
         }

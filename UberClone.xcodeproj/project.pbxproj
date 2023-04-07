@@ -10,6 +10,9 @@
 		D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AC129DF75B000E53951 /* ViewCode.swift */; };
 		D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AC529DF7B7100E53951 /* UIView+.swift */; };
 		D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AC729DF84E100E53951 /* UIColor+.swift */; };
+		D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036ACC29E0C98E00E53951 /* LoginViewController.swift */; };
+		D4036ACF29E0CB2500E53951 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036ACE29E0CB2500E53951 /* Color.swift */; };
+		D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AD029E0D7AF00E53951 /* HighlightedTextField.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -21,6 +24,9 @@
 		D4036AC129DF75B000E53951 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		D4036AC529DF7B7100E53951 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		D4036AC729DF84E100E53951 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		D4036ACC29E0C98E00E53951 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D4036ACE29E0CB2500E53951 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		D4036AD029E0D7AF00E53951 /* HighlightedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedTextField.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,12 +55,13 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		D4036AC329DF772900E53951 /* Controllers */ = {
+		D4036AC329DF772900E53951 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */,
+				D4036ACB29E0C98000E53951 /* Login */,
+				D4036ACA29E0C97500E53951 /* Welcome */,
 			);
-			path = Controllers;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		D4036AC429DF7B6100E53951 /* Helpers */ = {
@@ -62,6 +69,7 @@
 			children = (
 				D4036AC529DF7B7100E53951 /* UIView+.swift */,
 				D4036AC729DF84E100E53951 /* UIColor+.swift */,
+				D4036ACE29E0CB2500E53951 /* Color.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -69,8 +77,25 @@
 		D4036AC929DF859800E53951 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D4036AD029E0D7AF00E53951 /* HighlightedTextField.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		D4036ACA29E0C97500E53951 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		D4036ACB29E0C98000E53951 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D4036ACC29E0C98E00E53951 /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		D415F98F29DF6D9A000689FF = {
@@ -95,7 +120,7 @@
 				D4036AC429DF7B6100E53951 /* Helpers */,
 				D4036AC029DF759E00E53951 /* Protocols */,
 				D4036AC929DF859800E53951 /* Components */,
-				D4036AC329DF772900E53951 /* Controllers */,
+				D4036AC329DF772900E53951 /* Screens */,
 				D415F99B29DF6D9A000689FF /* AppDelegate.swift */,
 				D415F99D29DF6D9A000689FF /* SceneDelegate.swift */,
 				D415F9A429DF6D9B000689FF /* Assets.xcassets */,
@@ -175,12 +200,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */,
 				D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */,
 				D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
 				D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */,
+				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
 				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
+				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
