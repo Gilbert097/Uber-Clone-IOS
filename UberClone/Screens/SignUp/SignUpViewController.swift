@@ -60,6 +60,14 @@ class SignUpViewController: UIViewController {
         return view
     }()
     
+    private let passwordConfirmationField: PrimaryInputTextField = {
+        let view = PrimaryInputTextField()
+        view.title = "Confirmar Senha:"
+        view.placeholder = "Digite sua senha"
+        view.isSecureTextEntry = true
+        return view
+    }()
+    
     private let signUpButton: UIButton = {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -93,6 +101,7 @@ extension SignUpViewController: ViewCode {
                                nameField,
                                emailField,
                                passwordField,
+                               passwordConfirmationField,
                                signUpButton])
     }
     
@@ -150,10 +159,17 @@ extension SignUpViewController: ViewCode {
             self.passwordField.topAnchor.constraint(equalTo: self.emailField.bottomAnchor, constant: 16)
         ])
         
+        // passwordConfirmationField
+        NSLayoutConstraint.activate([
+            self.passwordConfirmationField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.passwordConfirmationField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.passwordConfirmationField.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: 16)
+        ])
+        
         // loginButton
         NSLayoutConstraint.activate([
             self.signUpButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            self.signUpButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: 32),
+            self.signUpButton.topAnchor.constraint(equalTo: self.passwordConfirmationField.bottomAnchor, constant: 32),
             self.signUpButton.heightAnchor.constraint(equalToConstant: 55),
             self.signUpButton.widthAnchor.constraint(equalToConstant: 130)
         ])
