@@ -10,6 +10,18 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    private let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let mainView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let header: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -92,20 +104,39 @@ extension SignUpViewController: ViewCode {
                                        emailField,
                                        passwordField,
                                        passwordConfirmationField])
-        self.view.addSubviews([header,
-                               titleLabel,
-                               formStack,
-                               signUpButton])
+        mainView.addSubviews([header,
+                              titleLabel,
+                              formStack,
+                              signUpButton])
+        scrollView.addSubview(mainView)
+        self.view.addSubview(scrollView)
     }
     
     func setupConstraints() {
         let safeArea = self.view.safeAreaLayoutGuide
         
+        // scrollView
+        NSLayoutConstraint.activate([
+            self.scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            self.scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        // mainStackView
+        NSLayoutConstraint.activate([
+            self.mainView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            self.mainView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            self.mainView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            self.mainView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            self.mainView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+        
         // header
         NSLayoutConstraint.activate([
-            self.header.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            self.header.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.header.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+            self.header.topAnchor.constraint(equalTo: mainView.topAnchor),
+            self.header.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
+            self.header.trailingAnchor.constraint(equalTo: mainView.trailingAnchor)
         ])
         
         // backgroundImageView
