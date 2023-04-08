@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import UIKit
 
 class SignUpViewController: UIViewController {
@@ -77,23 +76,7 @@ class SignUpViewController: UIViewController {
         return view
     }()
     
-    private let signUpButton: UIButton = {
-        let view = UIButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentHorizontalAlignment = .center
-        
-        if #available(iOS 15.0, *) {
-            var config = UIButton.Configuration.filled()
-            var container = AttributeContainer()
-            container.font = UIFont.systemFont(ofSize: 16)
-            config.attributedTitle = AttributedString("Cadastre-se", attributes: container)
-            config.baseBackgroundColor = .black
-            config.baseForegroundColor = .white
-            view.configuration = config
-        }
-        
-        return view
-    }()
+    private let signUpButton = SecondaryButton(title: "Cadastre-se")
     
     override func viewDidLoad() {
         super.viewDidLoad()

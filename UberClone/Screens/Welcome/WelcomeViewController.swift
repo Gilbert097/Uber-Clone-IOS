@@ -47,41 +47,8 @@ class WelcomeViewController: UIViewController {
         return view
     }()
     
-    private let signUpButton: UIButton = {
-        let view = UIButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentHorizontalAlignment = .center
-        
-        if #available(iOS 15.0, *) {
-            var config = UIButton.Configuration.filled()
-            var container = AttributeContainer()
-            container.font = UIFont.systemFont(ofSize: 16)
-            config.attributedTitle = AttributedString("Cadastre-se", attributes: container)
-            config.baseBackgroundColor = .black
-            config.baseForegroundColor = .white
-            view.configuration = config
-        }
-        
-        return view
-    }()
-    
-    private let loginButton: UIButton = {
-        let view = UIButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentHorizontalAlignment = .center
-        
-        if #available(iOS 15.0, *) {
-            var config = UIButton.Configuration.filled()
-            var container = AttributeContainer()
-            container.font = UIFont.systemFont(ofSize: 16)
-            config.attributedTitle = AttributedString("Entrar", attributes: container)
-            config.baseBackgroundColor = Color.primary
-            config.baseForegroundColor = .white
-            view.configuration = config
-        }
-        
-        return view
-    }()
+    private let signUpButton = SecondaryButton(title: "Cadastre-se")
+    private let loginButton = PrimaryButton(title: "Entrar")
     
     override func viewDidLoad() {
         super.viewDidLoad()
