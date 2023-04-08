@@ -36,49 +36,23 @@ class LoginViewController: UIViewController {
         return view
     }()
     
-    private let emailLabel: LabelField = {
-        let view = LabelField()
-        view.text = "E-mail:"
-        return view
-    }()
-    
-    private let emailTextField: HighlightedTextField = {
-        let view = HighlightedTextField()
+    private let emailField: PrimaryInputTextField = {
+        let view = PrimaryInputTextField()
+        view.title = "E-mail:"
         view.placeholder = "Digite seu e-mail"
         view.keyboardType = .emailAddress
         return view
     }()
     
-    private let passwordLabel: LabelField = {
-        let view = LabelField()
-        view.text = "Senha:"
-        return view
-    }()
-    
-    private let passwordTextField: HighlightedTextField = {
-        let view = HighlightedTextField()
+    private let passwordField: PrimaryInputTextField = {
+        let view = PrimaryInputTextField()
+        view.title = "Senha:"
         view.placeholder = "Digite sua senha"
         view.isSecureTextEntry = true
         return view
     }()
     
-    private let loginButton: UIButton = {
-        let view = UIButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentHorizontalAlignment = .center
-        
-        if #available(iOS 15.0, *) {
-            var config = UIButton.Configuration.filled()
-            var container = AttributeContainer()
-            container.font = UIFont.systemFont(ofSize: 16)
-            config.attributedTitle = AttributedString("Entrar", attributes: container)
-            config.baseBackgroundColor = Color.primary
-            config.baseForegroundColor = .white
-            view.configuration = config
-        }
-        
-        return view
-    }()
+    private let loginButton = PrimaryButton(title: "Entrar")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,10 +66,8 @@ extension LoginViewController: ViewCode {
         header.addSubviews([backgroundImageView, logoImageView])
         self.view.addSubviews([header,
                                titleLabel,
-                               emailLabel,
-                               emailTextField,
-                               passwordLabel,
-                               passwordTextField,
+                               emailField,
+                               passwordField,
                                loginButton])
     }
     
@@ -132,40 +104,24 @@ extension LoginViewController: ViewCode {
             self.titleLabel.topAnchor.constraint(equalTo: self.header.bottomAnchor, constant: 24)
         ])
         
-        // emailLabel
+        // emailField
         NSLayoutConstraint.activate([
-            self.emailLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.emailLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.emailLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
+            self.emailField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.emailField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.emailField.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
         ])
         
-        // emailTextField
+        // passwordField
         NSLayoutConstraint.activate([
-            self.emailTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.emailTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.emailTextField.topAnchor.constraint(equalTo: self.emailLabel.bottomAnchor, constant: 10),
-            self.emailTextField.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        // passwordLabel
-        NSLayoutConstraint.activate([
-            self.passwordLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.passwordLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.passwordLabel.topAnchor.constraint(equalTo: self.emailTextField.bottomAnchor, constant: 16)
-        ])
-        
-        // passwordTextField
-        NSLayoutConstraint.activate([
-            self.passwordTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.passwordTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.passwordTextField.topAnchor.constraint(equalTo: self.passwordLabel.bottomAnchor, constant: 10),
-            self.passwordTextField.heightAnchor.constraint(equalToConstant: 40)
+            self.passwordField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.passwordField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.passwordField.topAnchor.constraint(equalTo: self.emailField.bottomAnchor, constant: 16)
         ])
         
         // loginButton
         NSLayoutConstraint.activate([
             self.loginButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            self.loginButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 32),
+            self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: 32),
             self.loginButton.heightAnchor.constraint(equalToConstant: 55),
             self.loginButton.widthAnchor.constraint(equalToConstant: 130)
         ])
