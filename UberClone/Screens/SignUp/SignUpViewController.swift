@@ -37,39 +37,24 @@ class SignUpViewController: UIViewController {
         return view
     }()
     
-    private let nameLabel: LabelField = {
-        let view = LabelField()
-        view.text = "Nome completo:"
-        return view
-    }()
-    
-    private let nameTextField: HighlightedTextField = {
-        let view = HighlightedTextField()
+    private let nameField: PrimaryInputTextField = {
+        let view = PrimaryInputTextField()
+        view.title = "Nome completo:"
         view.placeholder = "Digite seu nome"
         return view
     }()
     
-    private let emailLabel: LabelField = {
-        let view = LabelField()
-        view.text = "E-mail:"
-        return view
-    }()
-    
-    private let emailTextField: HighlightedTextField = {
-        let view = HighlightedTextField()
+    private let emailField: PrimaryInputTextField = {
+        let view = PrimaryInputTextField()
+        view.title = "E-mail:"
         view.placeholder = "Digite seu e-mail"
         view.keyboardType = .emailAddress
         return view
     }()
     
-    private let passwordLabel: LabelField = {
-        let view = LabelField()
-        view.text = "Senha:"
-        return view
-    }()
-    
-    private let passwordTextField: HighlightedTextField = {
-        let view = HighlightedTextField()
+    private let passwordField: PrimaryInputTextField = {
+        let view = PrimaryInputTextField()
+        view.title = "Senha:"
         view.placeholder = "Digite sua senha"
         view.isSecureTextEntry = true
         return view
@@ -105,12 +90,9 @@ extension SignUpViewController: ViewCode {
         header.addSubviews([backgroundImageView, logoImageView])
         self.view.addSubviews([header,
                                titleLabel,
-                               nameLabel,
-                               nameTextField,
-                               emailLabel,
-                               emailTextField,
-                               passwordLabel,
-                               passwordTextField,
+                               nameField,
+                               emailField,
+                               passwordField,
                                signUpButton])
     }
     
@@ -147,55 +129,31 @@ extension SignUpViewController: ViewCode {
             self.titleLabel.topAnchor.constraint(equalTo: self.header.bottomAnchor, constant: 24)
         ])
         
-        // nameLabel
+        // nameField
         NSLayoutConstraint.activate([
-            self.nameLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.nameLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.nameLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
+            self.nameField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.nameField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.nameField.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
         ])
         
-        // nameTextField
+        // emailField
         NSLayoutConstraint.activate([
-            self.nameTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.nameTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.nameTextField.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: 10),
-            self.nameTextField.heightAnchor.constraint(equalToConstant: 40)
+            self.emailField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.emailField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.emailField.topAnchor.constraint(equalTo: self.nameField.bottomAnchor, constant: 16)
         ])
         
-        // emailLabel
+        // passwordField
         NSLayoutConstraint.activate([
-            self.emailLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.emailLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.emailLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 16)
-        ])
-        
-        // emailTextField
-        NSLayoutConstraint.activate([
-            self.emailTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.emailTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.emailTextField.topAnchor.constraint(equalTo: self.emailLabel.bottomAnchor, constant: 10),
-            self.emailTextField.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        // passwordLabel
-        NSLayoutConstraint.activate([
-            self.passwordLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.passwordLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.passwordLabel.topAnchor.constraint(equalTo: self.emailTextField.bottomAnchor, constant: 16)
-        ])
-        
-        // passwordTextField
-        NSLayoutConstraint.activate([
-            self.passwordTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.passwordTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.passwordTextField.topAnchor.constraint(equalTo: self.passwordLabel.bottomAnchor, constant: 10),
-            self.passwordTextField.heightAnchor.constraint(equalToConstant: 40)
+            self.passwordField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.passwordField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.passwordField.topAnchor.constraint(equalTo: self.emailField.bottomAnchor, constant: 16)
         ])
         
         // loginButton
         NSLayoutConstraint.activate([
             self.signUpButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            self.signUpButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 32),
+            self.signUpButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: 32),
             self.signUpButton.heightAnchor.constraint(equalToConstant: 55),
             self.signUpButton.widthAnchor.constraint(equalToConstant: 130)
         ])
