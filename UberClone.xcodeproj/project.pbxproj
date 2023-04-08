@@ -13,6 +13,9 @@
 		D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036ACC29E0C98E00E53951 /* LoginViewController.swift */; };
 		D4036ACF29E0CB2500E53951 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036ACE29E0CB2500E53951 /* Color.swift */; };
 		D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AD029E0D7AF00E53951 /* HighlightedTextField.swift */; };
+		D4036AD429E1F04800E53951 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AD329E1F04800E53951 /* SignUpViewController.swift */; };
+		D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AD529E1F1C900E53951 /* LabelField.swift */; };
+		D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AD729E1F2E300E53951 /* TitleLabel.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -27,6 +30,9 @@
 		D4036ACC29E0C98E00E53951 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D4036ACE29E0CB2500E53951 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D4036AD029E0D7AF00E53951 /* HighlightedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedTextField.swift; sourceTree = "<group>"; };
+		D4036AD329E1F04800E53951 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D4036AD529E1F1C900E53951 /* LabelField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelField.swift; sourceTree = "<group>"; };
+		D4036AD729E1F2E300E53951 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +64,7 @@
 		D4036AC329DF772900E53951 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D4036AD229E1F03300E53951 /* SignUp */,
 				D4036ACB29E0C98000E53951 /* Login */,
 				D4036ACA29E0C97500E53951 /* Welcome */,
 			);
@@ -78,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				D4036AD029E0D7AF00E53951 /* HighlightedTextField.swift */,
+				D4036AD529E1F1C900E53951 /* LabelField.swift */,
+				D4036AD729E1F2E300E53951 /* TitleLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -96,6 +105,14 @@
 				D4036ACC29E0C98E00E53951 /* LoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		D4036AD229E1F03300E53951 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AD329E1F04800E53951 /* SignUpViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		D415F98F29DF6D9A000689FF = {
@@ -204,9 +221,12 @@
 				D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */,
 				D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
+				D4036AD429E1F04800E53951 /* SignUpViewController.swift in Sources */,
 				D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */,
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
+				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
+				D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */,
 				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 			);

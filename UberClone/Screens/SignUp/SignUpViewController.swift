@@ -1,14 +1,15 @@
 //
-//  LoginViewController.swift
+//  SignUpViewController.swift
 //  UberClone
 //
-//  Created by Gilberto Silva on 07/04/23.
+//  Created by Gilberto Silva on 08/04/23.
 //
 
 import Foundation
+
 import UIKit
 
-class LoginViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
     private let header: UIView = {
         let view = UIView()
@@ -32,7 +33,19 @@ class LoginViewController: UIViewController {
     
     private let titleLabel: TitleLabel = {
         let view = TitleLabel()
-        view.text = "LOGIN"
+        view.text = "CRIAR CONTA"
+        return view
+    }()
+    
+    private let nameLabel: LabelField = {
+        let view = LabelField()
+        view.text = "Nome completo:"
+        return view
+    }()
+    
+    private let nameTextField: HighlightedTextField = {
+        let view = HighlightedTextField()
+        view.placeholder = "Digite seu nome"
         return view
     }()
     
@@ -62,7 +75,7 @@ class LoginViewController: UIViewController {
         return view
     }()
     
-    private let loginButton: UIButton = {
+    private let signUpButton: UIButton = {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentHorizontalAlignment = .center
@@ -71,8 +84,8 @@ class LoginViewController: UIViewController {
             var config = UIButton.Configuration.filled()
             var container = AttributeContainer()
             container.font = UIFont.systemFont(ofSize: 16)
-            config.attributedTitle = AttributedString("Entrar", attributes: container)
-            config.baseBackgroundColor = Color.primary
+            config.attributedTitle = AttributedString("Cadastre-se", attributes: container)
+            config.baseBackgroundColor = .black
             config.baseForegroundColor = .white
             view.configuration = config
         }
@@ -87,16 +100,18 @@ class LoginViewController: UIViewController {
 }
 
 // MARK: ViewCode
-extension LoginViewController: ViewCode {
+extension SignUpViewController: ViewCode {
     func setupViewHierarchy() {
         header.addSubviews([backgroundImageView, logoImageView])
         self.view.addSubviews([header,
                                titleLabel,
+                               nameLabel,
+                               nameTextField,
                                emailLabel,
                                emailTextField,
                                passwordLabel,
                                passwordTextField,
-                               loginButton])
+                               signUpButton])
     }
     
     func setupConstraints() {
@@ -132,11 +147,26 @@ extension LoginViewController: ViewCode {
             self.titleLabel.topAnchor.constraint(equalTo: self.header.bottomAnchor, constant: 24)
         ])
         
+        // nameLabel
+        NSLayoutConstraint.activate([
+            self.nameLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            self.nameLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            self.nameLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
+        ])
+        
+        // nameTextField
+        NSLayoutConstraint.activate([
+            self.nameTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            self.nameTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            self.nameTextField.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: 10),
+            self.nameTextField.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
         // emailLabel
         NSLayoutConstraint.activate([
             self.emailLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
             self.emailLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.emailLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
+            self.emailLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 16)
         ])
         
         // emailTextField
@@ -164,10 +194,10 @@ extension LoginViewController: ViewCode {
         
         // loginButton
         NSLayoutConstraint.activate([
-            self.loginButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            self.loginButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 32),
-            self.loginButton.heightAnchor.constraint(equalToConstant: 55),
-            self.loginButton.widthAnchor.constraint(equalToConstant: 130)
+            self.signUpButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            self.signUpButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 32),
+            self.signUpButton.heightAnchor.constraint(equalToConstant: 55),
+            self.signUpButton.widthAnchor.constraint(equalToConstant: 130)
         ])
     }
     
