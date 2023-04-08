@@ -174,7 +174,8 @@ extension SignUpViewController: ViewCode {
             self.signUpButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             self.signUpButton.topAnchor.constraint(equalTo: self.formStack.bottomAnchor, constant: 32),
             self.signUpButton.heightAnchor.constraint(equalToConstant: 55),
-            self.signUpButton.widthAnchor.constraint(equalToConstant: 130)
+            self.signUpButton.widthAnchor.constraint(equalToConstant: 130),
+            self.signUpButton.bottomAnchor.constraint(equalTo: self.mainView.bottomAnchor)
         ])
     }
     
