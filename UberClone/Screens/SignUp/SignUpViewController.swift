@@ -37,6 +37,15 @@ class SignUpViewController: UIViewController {
         return view
     }()
     
+    private let formStack: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.distribution = .fillEqually
+        view.spacing = 16
+        return view
+    }()
+    
     private let nameField: PrimaryInputTextField = {
         let view = PrimaryInputTextField()
         view.title = "Nome completo:"
@@ -96,12 +105,13 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: ViewCode {
     func setupViewHierarchy() {
         header.addSubviews([backgroundImageView, logoImageView])
+        formStack.addArrangedSubviews([nameField,
+                                       emailField,
+                                       passwordField,
+                                       passwordConfirmationField])
         self.view.addSubviews([header,
                                titleLabel,
-                               nameField,
-                               emailField,
-                               passwordField,
-                               passwordConfirmationField,
+                               formStack,
                                signUpButton])
     }
     
@@ -138,38 +148,17 @@ extension SignUpViewController: ViewCode {
             self.titleLabel.topAnchor.constraint(equalTo: self.header.bottomAnchor, constant: 24)
         ])
         
-        // nameField
+        // formStack
         NSLayoutConstraint.activate([
-            self.nameField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.nameField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            self.nameField.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
-        ])
-        
-        // emailField
-        NSLayoutConstraint.activate([
-            self.emailField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.emailField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            self.emailField.topAnchor.constraint(equalTo: self.nameField.bottomAnchor, constant: 16)
-        ])
-        
-        // passwordField
-        NSLayoutConstraint.activate([
-            self.passwordField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.passwordField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            self.passwordField.topAnchor.constraint(equalTo: self.emailField.bottomAnchor, constant: 16)
-        ])
-        
-        // passwordConfirmationField
-        NSLayoutConstraint.activate([
-            self.passwordConfirmationField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.passwordConfirmationField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            self.passwordConfirmationField.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor, constant: 16)
+            self.formStack.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.formStack.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.formStack.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
         ])
         
         // loginButton
         NSLayoutConstraint.activate([
             self.signUpButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            self.signUpButton.topAnchor.constraint(equalTo: self.passwordConfirmationField.bottomAnchor, constant: 32),
+            self.signUpButton.topAnchor.constraint(equalTo: self.formStack.bottomAnchor, constant: 32),
             self.signUpButton.heightAnchor.constraint(equalToConstant: 55),
             self.signUpButton.widthAnchor.constraint(equalToConstant: 130)
         ])
