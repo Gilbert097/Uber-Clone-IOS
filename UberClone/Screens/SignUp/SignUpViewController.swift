@@ -115,15 +115,30 @@ public class SignUpViewController: UIViewController {
     }()
     
     private let signUpButton = SecondaryButton(title: "Cadastre-se")
+    public var signUp: ((SignUpResquest) -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Uber"
         setupView()
+        configure()
     }
     
     override public func viewWillAppear(_ animated: Bool) {
         self.view.endEditing(true)
+    }
+    
+    private func configure() {
+        self.signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func signUpButtonTapped() {
+        let request = SignUpResquest(
+            name: nameField.valueText!,
+            email: emailField.valueText!,
+            password: passwordField.valueText!,
+            passwordConfirmation: passwordConfirmationField.valueText!)
+        self.signUp?(request)
     }
 }
 

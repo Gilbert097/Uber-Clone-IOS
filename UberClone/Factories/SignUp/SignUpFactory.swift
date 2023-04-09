@@ -10,6 +10,9 @@ import Foundation
 public final class SignUpFactory {
     
     static func build() -> SignUpViewController {
-        SignUpViewController()
+        let presenter = SignUpPresenter()
+        let viewController = SignUpViewController()
+        
+        return viewController
     }
 }

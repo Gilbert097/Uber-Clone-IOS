@@ -24,6 +24,8 @@
 		D4036AEA29E3016800E53951 /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AE929E3016800E53951 /* WelcomeRouter.swift */; };
 		D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AEC29E3019000E53951 /* LoginFactory.swift */; };
 		D4036AF029E301D200E53951 /* SignUpFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AEF29E301D200E53951 /* SignUpFactory.swift */; };
+		D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AF229E35DD000E53951 /* SignUpPresenter.swift */; };
+		D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AF529E35E6600E53951 /* SignUpResquest.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -49,6 +51,8 @@
 		D4036AE929E3016800E53951 /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
 		D4036AEC29E3019000E53951 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		D4036AEF29E301D200E53951 /* SignUpFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFactory.swift; sourceTree = "<group>"; };
+		D4036AF229E35DD000E53951 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		D4036AF529E35E6600E53951 /* SignUpResquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResquest.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +206,23 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		D4036AF129E35DAA00E53951 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AF429E35E5C00E53951 /* SignUp */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D4036AF429E35E5C00E53951 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AF229E35DD000E53951 /* SignUpPresenter.swift */,
+				D4036AF529E35E6600E53951 /* SignUpResquest.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		D415F98F29DF6D9A000689FF = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +246,7 @@
 				D4036AC029DF759E00E53951 /* Protocols */,
 				D4036AC929DF859800E53951 /* Components */,
 				D4036AE529E2FF6100E53951 /* Factories */,
+				D4036AF129E35DAA00E53951 /* Presentation */,
 				D4036AC329DF772900E53951 /* Screens */,
 				D415F99B29DF6D9A000689FF /* AppDelegate.swift */,
 				D415F99D29DF6D9A000689FF /* SceneDelegate.swift */,
@@ -314,6 +336,7 @@
 				D4036AD429E1F04800E53951 /* SignUpViewController.swift in Sources */,
 				D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */,
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
+				D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
 				D4036AEA29E3016800E53951 /* WelcomeRouter.swift in Sources */,
 				D4036AE429E2FEA400E53951 /* NavigationController.swift in Sources */,
@@ -323,6 +346,7 @@
 				D4036AE829E2FF7B00E53951 /* WelcomeFactory.swift in Sources */,
 				D4036ADE29E1FF9400E53951 /* PrimaryButton.swift in Sources */,
 				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
+				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 			);

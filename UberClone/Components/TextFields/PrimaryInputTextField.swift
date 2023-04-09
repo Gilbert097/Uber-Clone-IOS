@@ -34,6 +34,10 @@ public class PrimaryInputTextField: UIView {
         }
     }
     
+    public var valueText: String? {
+        textField.text
+    }
+    
     private let labelField = LabelField()
     private let textField = HighlightedTextField()
     
