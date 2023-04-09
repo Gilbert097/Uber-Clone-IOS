@@ -50,9 +50,31 @@ class WelcomeViewController: UIViewController {
     private let signUpButton = SecondaryButton(title: "Cadastre-se")
     private let loginButton = PrimaryButton(title: "Entrar")
     
+    public var login: (() -> Void)?
+    public var signUp: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    private func configure() {
+        self.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        self.signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func loginButtonTapped() {
+        self.login?()
+    }
+    
+    @objc private func signUpButtonTapped() {
+        self.signUp?()
     }
 }
 

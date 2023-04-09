@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class LoginViewController: UIViewController {
+public class LoginViewController: UIViewController {
     
     private let header: UIView = {
         let view = UIView()
@@ -54,8 +54,9 @@ class LoginViewController: UIViewController {
     
     private let loginButton = PrimaryButton(title: "Entrar")
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Uber"
         setupView()
     }
 }

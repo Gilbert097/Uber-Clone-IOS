@@ -26,18 +26,18 @@ public final class NavigationController: UINavigationController {
     }
     
     private func setup() {
-//        self.navigationBar.backgroundColor = Color.primaryDark
-//        self.navigationBar.tintColor = .white
-//        self.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-//        self.navigationBar.isTranslucent = false
-//        self.navigationBar.overrideUserInterfaceStyle = .dark
-//        
-//        let navBarAppearance = UINavigationBarAppearance()
-//        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-//        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-//        navBarAppearance.backgroundColor = Color.primaryDark
-//        self.navigationBar.standardAppearance = navBarAppearance
-//        self.navigationBar.scrollEdgeAppearance = navBarAppearance
+        self.navigationBar.backgroundColor = Color.primary
+        self.navigationBar.tintColor = .white
+        self.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.overrideUserInterfaceStyle = .dark
+
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.backgroundColor = Color.primary
+        self.navigationBar.standardAppearance = navBarAppearance
+        self.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
     public func setRootViewController(_ viewController: UIViewController) {
@@ -52,21 +52,8 @@ public final class NavigationController: UINavigationController {
     
     public func pushViewController(_ viewController: UIViewController) {
         pushViewController(viewController, animated: true)
+        setNavigationBarHidden(false, animated: false)
         currentViewController = viewController
         hideBackButtonText()
     }
 }
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About

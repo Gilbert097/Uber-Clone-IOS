@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SignUpViewController: UIViewController {
+public class SignUpViewController: UIViewController {
     
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -116,8 +116,9 @@ class SignUpViewController: UIViewController {
     
     private let signUpButton = SecondaryButton(title: "Cadastre-se")
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Uber"
         setupView()
     }
 }
