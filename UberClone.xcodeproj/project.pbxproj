@@ -19,6 +19,7 @@
 		D4036ADA29E1F55100E53951 /* PrimaryInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AD929E1F55100E53951 /* PrimaryInputTextField.swift */; };
 		D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036ADB29E1FEF200E53951 /* SecondaryButton.swift */; };
 		D4036ADE29E1FF9400E53951 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036ADD29E1FF9400E53951 /* PrimaryButton.swift */; };
+		D4036AE429E2FEA400E53951 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AE329E2FEA400E53951 /* NavigationController.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -39,6 +40,7 @@
 		D4036AD929E1F55100E53951 /* PrimaryInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryInputTextField.swift; sourceTree = "<group>"; };
 		D4036ADB29E1FEF200E53951 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		D4036ADD29E1FF9400E53951 /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		D4036AE329E2FEA400E53951 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,12 +92,10 @@
 		D4036AC929DF859800E53951 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D4036AD029E0D7AF00E53951 /* HighlightedTextField.swift */,
-				D4036AD529E1F1C900E53951 /* LabelField.swift */,
-				D4036AD729E1F2E300E53951 /* TitleLabel.swift */,
-				D4036AD929E1F55100E53951 /* PrimaryInputTextField.swift */,
-				D4036ADB29E1FEF200E53951 /* SecondaryButton.swift */,
-				D4036ADD29E1FF9400E53951 /* PrimaryButton.swift */,
+				D4036AE229E2FE9900E53951 /* Navigations */,
+				D4036AE129E2FE9000E53951 /* Buttons */,
+				D4036AE029E2FE8500E53951 /* TextFields */,
+				D4036ADF29E2FE7A00E53951 /* Labels */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -122,6 +122,41 @@
 				D4036AD329E1F04800E53951 /* SignUpViewController.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		D4036ADF29E2FE7A00E53951 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AD529E1F1C900E53951 /* LabelField.swift */,
+				D4036AD729E1F2E300E53951 /* TitleLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		D4036AE029E2FE8500E53951 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AD029E0D7AF00E53951 /* HighlightedTextField.swift */,
+				D4036AD929E1F55100E53951 /* PrimaryInputTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		D4036AE129E2FE9000E53951 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				D4036ADB29E1FEF200E53951 /* SecondaryButton.swift */,
+				D4036ADD29E1FF9400E53951 /* PrimaryButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		D4036AE229E2FE9900E53951 /* Navigations */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AE329E2FEA400E53951 /* NavigationController.swift */,
+			);
+			path = Navigations;
 			sourceTree = "<group>";
 		};
 		D415F98F29DF6D9A000689FF = {
@@ -235,6 +270,7 @@
 				D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */,
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
+				D4036AE429E2FEA400E53951 /* NavigationController.swift in Sources */,
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
 				D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */,
