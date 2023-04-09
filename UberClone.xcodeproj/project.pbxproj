@@ -223,6 +223,18 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		D4036AF729E3613900E53951 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AC429DF7B6100E53951 /* Helpers */,
+				D4036AC029DF759E00E53951 /* Protocols */,
+				D4036AC929DF859800E53951 /* Components */,
+				D4036AE529E2FF6100E53951 /* Factories */,
+				D4036AC329DF772900E53951 /* Screens */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		D415F98F29DF6D9A000689FF = {
 			isa = PBXGroup;
 			children = (
@@ -242,12 +254,8 @@
 		D415F99A29DF6D9A000689FF /* UberClone */ = {
 			isa = PBXGroup;
 			children = (
-				D4036AC429DF7B6100E53951 /* Helpers */,
-				D4036AC029DF759E00E53951 /* Protocols */,
-				D4036AC929DF859800E53951 /* Components */,
-				D4036AE529E2FF6100E53951 /* Factories */,
 				D4036AF129E35DAA00E53951 /* Presentation */,
-				D4036AC329DF772900E53951 /* Screens */,
+				D4036AF729E3613900E53951 /* Main */,
 				D415F99B29DF6D9A000689FF /* AppDelegate.swift */,
 				D415F99D29DF6D9A000689FF /* SceneDelegate.swift */,
 				D415F9A429DF6D9B000689FF /* Assets.xcassets */,

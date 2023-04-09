@@ -12,7 +12,7 @@ public final class SignUpFactory {
     static func build() -> SignUpViewController {
         let presenter = SignUpPresenter()
         let viewController = SignUpViewController()
-        
+        viewController.signUp = presenter.signUp
         return viewController
     }
 }
