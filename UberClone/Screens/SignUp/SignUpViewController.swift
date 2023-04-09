@@ -88,6 +88,32 @@ class SignUpViewController: UIViewController {
         return view
     }()
     
+    private let leftLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textAlignment = .right
+        view.textColor = .black
+        view.text = "Motorista"
+        view.font = UIFont.systemFont(ofSize: 16)
+        return view
+    }()
+    
+    private let toggle: UISwitch = {
+       let view = UISwitch()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let rightLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textAlignment = .left
+        view.textColor = .black
+        view.text = "Passageiro"
+        view.font = UIFont.systemFont(ofSize: 16)
+        return view
+    }()
+    
     private let signUpButton = SecondaryButton(title: "Cadastre-se")
     
     override func viewDidLoad() {
@@ -107,6 +133,9 @@ extension SignUpViewController: ViewCode {
         mainView.addSubviews([header,
                               titleLabel,
                               formStack,
+                              leftLabel,
+                              toggle,
+                              rightLabel,
                               signUpButton])
         scrollView.addSubview(mainView)
         self.view.addSubview(scrollView)
@@ -169,13 +198,33 @@ extension SignUpViewController: ViewCode {
             self.formStack.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 24)
         ])
         
+        // leftLabel
+        NSLayoutConstraint.activate([
+            self.leftLabel.centerYAnchor.constraint(equalTo: self.toggle.centerYAnchor),
+            self.leftLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.leftLabel.trailingAnchor.constraint(equalTo: self.toggle.leadingAnchor, constant: -10)
+        ])
+        
+        // toggle
+        NSLayoutConstraint.activate([
+            self.toggle.topAnchor.constraint(equalTo: self.formStack.bottomAnchor, constant: 16),
+            self.toggle.centerXAnchor.constraint(equalTo: self.mainView.centerXAnchor)
+        ])
+        
+        // rightLabel
+        NSLayoutConstraint.activate([
+            self.rightLabel.centerYAnchor.constraint(equalTo: self.toggle.centerYAnchor),
+            self.rightLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.rightLabel.leadingAnchor.constraint(equalTo: self.toggle.trailingAnchor, constant: 10)
+        ])
+        
         // loginButton
         NSLayoutConstraint.activate([
             self.signUpButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            self.signUpButton.topAnchor.constraint(equalTo: self.formStack.bottomAnchor, constant: 32),
+            self.signUpButton.topAnchor.constraint(equalTo: self.toggle.bottomAnchor, constant: 32),
             self.signUpButton.heightAnchor.constraint(equalToConstant: 55),
             self.signUpButton.widthAnchor.constraint(equalToConstant: 130),
-            self.signUpButton.bottomAnchor.constraint(equalTo: self.mainView.bottomAnchor)
+            self.signUpButton.bottomAnchor.constraint(equalTo: self.mainView.bottomAnchor, constant: -32)
         ])
     }
     
