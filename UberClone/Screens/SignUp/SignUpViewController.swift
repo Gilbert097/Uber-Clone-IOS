@@ -121,6 +121,10 @@ public class SignUpViewController: UIViewController {
         self.title = "Uber"
         setupView()
     }
+    
+    override public func viewWillAppear(_ animated: Bool) {
+        self.view.endEditing(true)
+    }
 }
 
 // MARK: ViewCode
