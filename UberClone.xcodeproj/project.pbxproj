@@ -26,6 +26,9 @@
 		D4036AF029E301D200E53951 /* SignUpFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AEF29E301D200E53951 /* SignUpFactory.swift */; };
 		D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AF229E35DD000E53951 /* SignUpPresenter.swift */; };
 		D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AF529E35E6600E53951 /* SignUpResquest.swift */; };
+		D4036B0029EF2EDC00E53951 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AFF29EF2EDC00E53951 /* Model.swift */; };
+		D4036B0329EF2F4600E53951 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0229EF2F4600E53951 /* Validation.swift */; };
+		D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -53,6 +56,9 @@
 		D4036AEF29E301D200E53951 /* SignUpFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFactory.swift; sourceTree = "<group>"; };
 		D4036AF229E35DD000E53951 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		D4036AF529E35E6600E53951 /* SignUpResquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResquest.swift; sourceTree = "<group>"; };
+		D4036AFF29EF2EDC00E53951 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		D4036B0229EF2F4600E53951 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredFieldValidation.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +215,7 @@
 		D4036AF129E35DAA00E53951 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D4036B0129EF2F3800E53951 /* Validators */,
 				D4036AF429E35E5C00E53951 /* SignUp */,
 			);
 			path = Presentation;
@@ -235,6 +242,44 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		D4036AF829E364C600E53951 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		D4036AFC29E3667400E53951 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D4036AFF29EF2EDC00E53951 /* Model.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D4036AFD29E3679800E53951 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D4036AFE29E367A400E53951 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
+		D4036B0129EF2F3800E53951 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				D4036B0229EF2F4600E53951 /* Validation.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
 		D415F98F29DF6D9A000689FF = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +299,10 @@
 		D415F99A29DF6D9A000689FF /* UberClone */ = {
 			isa = PBXGroup;
 			children = (
+				D4036AFC29E3667400E53951 /* Domain */,
+				D4036AFD29E3679800E53951 /* Data */,
+				D4036AFE29E367A400E53951 /* Infra */,
+				D4036AF829E364C600E53951 /* Validation */,
 				D4036AF129E35DAA00E53951 /* Presentation */,
 				D4036AF729E3613900E53951 /* Main */,
 				D415F99B29DF6D9A000689FF /* AppDelegate.swift */,
@@ -347,8 +396,11 @@
 				D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
 				D4036AEA29E3016800E53951 /* WelcomeRouter.swift in Sources */,
+				D4036B0329EF2F4600E53951 /* Validation.swift in Sources */,
 				D4036AE429E2FEA400E53951 /* NavigationController.swift in Sources */,
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
+				D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */,
+				D4036B0029EF2EDC00E53951 /* Model.swift in Sources */,
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
 				D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */,
 				D4036AE829E2FF7B00E53951 /* WelcomeFactory.swift in Sources */,
