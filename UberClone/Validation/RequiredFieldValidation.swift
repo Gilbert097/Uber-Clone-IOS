@@ -28,6 +28,7 @@ public class RequiredFieldValidation: Validation, Equatable {
     }
     
     public static func == (lhs: RequiredFieldValidation, rhs: RequiredFieldValidation) -> Bool {
-        lhs.fieldName == rhs.fieldName && lhs.fieldLabel == rhs.fieldLabel
+        lhs.fieldName == rhs.fieldName &&
+        lhs.fieldLabel == rhs.fieldLabel
     }
 }

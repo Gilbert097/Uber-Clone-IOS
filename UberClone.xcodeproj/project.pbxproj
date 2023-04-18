@@ -31,6 +31,7 @@
 		D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */; };
 		D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0629EF30E300E53951 /* ValidationComposite.swift */; };
 		D4036B0A29EF31E900E53951 /* AddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0929EF31E900E53951 /* AddAccount.swift */; };
+		D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0C29EF37BA00E53951 /* CompareFieldValidation.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -63,6 +64,7 @@
 		D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredFieldValidation.swift; sourceTree = "<group>"; };
 		D4036B0629EF30E300E53951 /* ValidationComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationComposite.swift; sourceTree = "<group>"; };
 		D4036B0929EF31E900E53951 /* AddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccount.swift; sourceTree = "<group>"; };
+		D4036B0C29EF37BA00E53951 /* CompareFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareFieldValidation.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */,
 				D4036B0629EF30E300E53951 /* ValidationComposite.swift */,
+				D4036B0C29EF37BA00E53951 /* CompareFieldValidation.swift */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				D4036AE429E2FEA400E53951 /* NavigationController.swift in Sources */,
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
 				D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */,
+				D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */,
 				D4036B0029EF2EDC00E53951 /* Model.swift in Sources */,
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
 				D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */,

@@ -21,7 +21,8 @@ public final class SignUpFactory {
         [RequiredFieldValidation(fieldName: "name", fieldLabel: "Nome"),
          RequiredFieldValidation(fieldName: "email", fieldLabel: "Email"),
          RequiredFieldValidation(fieldName: "password", fieldLabel: "Senha"),
-         RequiredFieldValidation(fieldName: "passwordConfirmation", fieldLabel: "Confirmar Senha")]
+         RequiredFieldValidation(fieldName: "passwordConfirmation", fieldLabel: "Confirmar Senha"),
+         CompareFieldValidation(fieldName: "passwordConfirmation", fieldNameToCompare: "password", fieldLabel: "Confirmar Senha")]
     }
 }
 
