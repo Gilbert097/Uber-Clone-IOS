@@ -18,6 +18,10 @@ public final class SignUpFactory {
     }
     
     private static func makeSignUpValidations() -> [Validation] {
-        [RequiredFieldValidation(fieldName: "name", fieldLabel: "Nome")]
+        [RequiredFieldValidation(fieldName: "name", fieldLabel: "Nome"),
+         RequiredFieldValidation(fieldName: "email", fieldLabel: "Email"),
+         RequiredFieldValidation(fieldName: "password", fieldLabel: "Senha"),
+         RequiredFieldValidation(fieldName: "passwordConfirmation", fieldLabel: "Confirmar Senha")]
     }
 }
+
