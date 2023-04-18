@@ -11,8 +11,11 @@ public final class SignUpFactory {
     
     static func build() -> SignUpViewController {
         let validations = makeSignUpValidations()
-        let presenter = SignUpPresenter(validation: ValidationComposite(validations: validations))
         let viewController = SignUpViewController()
+        let presenter = SignUpPresenter(
+            validation: ValidationComposite(validations: validations),
+            loadingView: viewController
+        )
         viewController.signUp = presenter.signUp
         return viewController
     }

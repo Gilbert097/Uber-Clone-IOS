@@ -99,7 +99,7 @@ public class SignUpViewController: UIViewController {
     }()
     
     private let toggle: UISwitch = {
-       let view = UISwitch()
+        let view = UISwitch()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -113,10 +113,12 @@ public class SignUpViewController: UIViewController {
         view.font = UIFont.systemFont(ofSize: 16)
         return view
     }()
-    
+   
     private let signUpButton = SecondaryButton(title: "Cadastre-se")
-    public var signUp: ((SignUpResquest) -> Void)?
+    private let loadingView = ScreenLoadingView()
     
+    public var signUp: ((SignUpResquest) -> Void)?
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Uber"
@@ -157,7 +159,8 @@ extension SignUpViewController: ViewCode {
                               leftLabel,
                               toggle,
                               rightLabel,
-                              signUpButton])
+                              signUpButton,
+                              loadingView])
         scrollView.addSubview(mainView)
         self.view.addSubview(scrollView)
     }
@@ -247,9 +250,27 @@ extension SignUpViewController: ViewCode {
             self.signUpButton.widthAnchor.constraint(equalToConstant: 130),
             self.signUpButton.bottomAnchor.constraint(equalTo: self.mainView.bottomAnchor, constant: -32)
         ])
+        
+        // loadingView
+        NSLayoutConstraint.activate([
+            self.loadingView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            self.loadingView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.loadingView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.loadingView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+        ])
     }
     
     func setupAdditionalConfiguration() {
         self.view.backgroundColor = .white
+        self.loadingView.isHidden = true
+    }
+}
+
+// MARK: - LoadingView
+extension SignUpViewController: LoadingView {
+    
+    public func display(viewModel: LoadingViewModel) {
+        self.loadingView.isHidden = !viewModel.isLoading
+        self.loadingView.display(viewModel: viewModel)
     }
 }
