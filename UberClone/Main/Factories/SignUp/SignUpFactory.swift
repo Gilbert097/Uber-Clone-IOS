@@ -9,13 +9,13 @@ import Foundation
 
 public final class SignUpFactory {
     
-    static func build() -> SignUpViewController {
+    public static func build() -> SignUpViewController {
         let validations = makeSignUpValidations()
         let viewController = SignUpViewController()
         let presenter = SignUpPresenter(
             validation: ValidationComposite(validations: validations),
-            loadingView: viewController,
-            alertView: viewController
+            loadingView: WeakVarProxy(viewController),
+            alertView: WeakVarProxy(viewController)
         )
         viewController.signUp = presenter.signUp
         return viewController
