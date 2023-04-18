@@ -134,10 +134,11 @@ public class SignUpViewController: UIViewController {
     
     @objc private func signUpButtonTapped() {
         let request = SignUpResquest(
-            name: nameField.valueText!,
-            email: emailField.valueText!,
-            password: passwordField.valueText!,
-            passwordConfirmation: passwordConfirmationField.valueText!)
+            name: nameField.valueText,
+            email: emailField.valueText,
+            password: passwordField.valueText,
+            passwordConfirmation: passwordConfirmationField.valueText,
+            isPassenger: toggle.isOn)
         self.signUp?(request)
     }
 }
