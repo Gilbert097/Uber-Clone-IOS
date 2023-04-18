@@ -29,6 +29,7 @@
 		D4036B0029EF2EDC00E53951 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036AFF29EF2EDC00E53951 /* Model.swift */; };
 		D4036B0329EF2F4600E53951 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0229EF2F4600E53951 /* Validation.swift */; };
 		D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */; };
+		D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0629EF30E300E53951 /* ValidationComposite.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -59,6 +60,7 @@
 		D4036AFF29EF2EDC00E53951 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D4036B0229EF2F4600E53951 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredFieldValidation.swift; sourceTree = "<group>"; };
+		D4036B0629EF30E300E53951 /* ValidationComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationComposite.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				D4036B0429EF2FDB00E53951 /* RequiredFieldValidation.swift */,
+				D4036B0629EF30E300E53951 /* ValidationComposite.swift */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
+				D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
