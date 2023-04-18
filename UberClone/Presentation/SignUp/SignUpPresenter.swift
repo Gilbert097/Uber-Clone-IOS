@@ -10,16 +10,18 @@ import Foundation
 public final class SignUpPresenter {
     private let validation: Validation
     private let loadingView: LoadingView
+    private let alertView: AlertView
     
-    public init(validation: Validation, loadingView: LoadingView) {
+    public init(validation: Validation, loadingView: LoadingView, alertView: AlertView) {
         self.validation = validation
         self.loadingView = loadingView
+        self.alertView = alertView
     }
     
     public func signUp(request: SignUpResquest) {
         
         if let messageError = self.validation.validate(data: request.toJson()) {
-            print(messageError)
+            self.alertView.showMessage(viewModel: .init(title: "Erro", message: messageError))
         } else {
             self.loadingView.display(viewModel: .init(isLoading: true))
             DispatchQueue.global().async {

@@ -14,7 +14,8 @@ public final class SignUpFactory {
         let viewController = SignUpViewController()
         let presenter = SignUpPresenter(
             validation: ValidationComposite(validations: validations),
-            loadingView: viewController
+            loadingView: viewController,
+            alertView: viewController
         )
         viewController.signUp = presenter.signUp
         return viewController

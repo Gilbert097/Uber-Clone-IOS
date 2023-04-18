@@ -34,6 +34,7 @@
 		D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0C29EF37BA00E53951 /* CompareFieldValidation.swift */; };
 		D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B0F29EF39CC00E53951 /* LoadingView.swift */; };
 		D4036B1329EF3B5C00E53951 /* ScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B1229EF3B5C00E53951 /* ScreenLoadingView.swift */; };
+		D4036B1529EF463C00E53951 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B1429EF463C00E53951 /* AlertView.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -69,6 +70,7 @@
 		D4036B0C29EF37BA00E53951 /* CompareFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareFieldValidation.swift; sourceTree = "<group>"; };
 		D4036B0F29EF39CC00E53951 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D4036B1229EF3B5C00E53951 /* ScreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenLoadingView.swift; sourceTree = "<group>"; };
+		D4036B1429EF463C00E53951 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				D4036B0F29EF39CC00E53951 /* LoadingView.swift */,
+				D4036B1429EF463C00E53951 /* AlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */,
 				D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */,
 				D4036ADA29E1F55100E53951 /* PrimaryInputTextField.swift in Sources */,
+				D4036B1529EF463C00E53951 /* AlertView.swift in Sources */,
 				D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
 				D4036B0A29EF31E900E53951 /* AddAccount.swift in Sources */,
