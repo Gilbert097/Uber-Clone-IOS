@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 public final class SignUpPresenter {
     private let validation: Validation
