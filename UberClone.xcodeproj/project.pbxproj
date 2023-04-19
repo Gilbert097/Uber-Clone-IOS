@@ -40,8 +40,15 @@
 		D4036B1D29EF48A200E53951 /* SingUpFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B1C29EF48A200E53951 /* SingUpFactoryTests.swift */; };
 		D4036B2529EF54D600E53951 /* XCTestCase+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B2429EF54D600E53951 /* XCTestCase+.swift */; };
 		D4036B2E29EF5BB100E53951 /* WeakVarProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4036B2D29EF5BB100E53951 /* WeakVarProxy.swift */; };
-		D413C56A29F01FFC00869258 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C56929F01FFC00869258 /* AccountModel.swift */; };
+		D413C56A29F01FFC00869258 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C56929F01FFC00869258 /* UserModel.swift */; };
 		D413C56D29F0235300869258 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C56C29F0235300869258 /* DomainError.swift */; };
+		D413C56F29F02AAF00869258 /* FirebaseAuthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C56E29F02AAF00869258 /* FirebaseAuthAdapter.swift */; };
+		D413C57229F02EA700869258 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C57129F02EA700869258 /* AuthenticationError.swift */; };
+		D413C57629F02FDF00869258 /* AuthCreateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C57529F02FDF00869258 /* AuthCreateClient.swift */; };
+		D413C57A29F0334B00869258 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C57929F0334B00869258 /* Data+.swift */; };
+		D413C57C29F094DC00869258 /* AuthSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C57B29F094DC00869258 /* AuthSignInClient.swift */; };
+		D413C57F29F0956300869258 /* RemoteCreateAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C57E29F0956300869258 /* RemoteCreateAuth.swift */; };
+		D413C58329F09A6E00869258 /* CreateAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C58229F09A6E00869258 /* CreateAuth.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -98,8 +105,15 @@
 		D4036B1C29EF48A200E53951 /* SingUpFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpFactoryTests.swift; sourceTree = "<group>"; };
 		D4036B2429EF54D600E53951 /* XCTestCase+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+.swift"; sourceTree = "<group>"; };
 		D4036B2D29EF5BB100E53951 /* WeakVarProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakVarProxy.swift; sourceTree = "<group>"; };
-		D413C56929F01FFC00869258 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
+		D413C56929F01FFC00869258 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D413C56C29F0235300869258 /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
+		D413C56E29F02AAF00869258 /* FirebaseAuthAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthAdapter.swift; sourceTree = "<group>"; };
+		D413C57129F02EA700869258 /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
+		D413C57529F02FDF00869258 /* AuthCreateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCreateClient.swift; sourceTree = "<group>"; };
+		D413C57929F0334B00869258 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
+		D413C57B29F094DC00869258 /* AuthSignInClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthSignInClient.swift; sourceTree = "<group>"; };
+		D413C57E29F0956300869258 /* RemoteCreateAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCreateAuth.swift; sourceTree = "<group>"; };
+		D413C58229F09A6E00869258 /* CreateAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAuth.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -327,6 +341,9 @@
 		D4036AFD29E3679800E53951 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D413C57D29F0955700869258 /* Usercases */,
+				D413C57829F0333E00869258 /* Helpers */,
+				D413C57429F02F9100869258 /* Client */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -334,6 +351,7 @@
 		D4036AFE29E367A400E53951 /* Infra */ = {
 			isa = PBXGroup;
 			children = (
+				D413C57329F02EB400869258 /* Firebase */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -350,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				D4036B0929EF31E900E53951 /* AddAccount.swift */,
+				D413C58229F09A6E00869258 /* CreateAuth.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -428,7 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				D4036AFF29EF2EDC00E53951 /* Model.swift */,
-				D413C56929F01FFC00869258 /* AccountModel.swift */,
+				D413C56929F01FFC00869258 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -439,6 +458,48 @@
 				D413C56C29F0235300869258 /* DomainError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		D413C57329F02EB400869258 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				D413C57729F0330700869258 /* Authentication */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		D413C57429F02F9100869258 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				D413C57129F02EA700869258 /* AuthenticationError.swift */,
+				D413C57529F02FDF00869258 /* AuthCreateClient.swift */,
+				D413C57B29F094DC00869258 /* AuthSignInClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		D413C57729F0330700869258 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D413C56E29F02AAF00869258 /* FirebaseAuthAdapter.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		D413C57829F0333E00869258 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D413C57929F0334B00869258 /* Data+.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D413C57D29F0955700869258 /* Usercases */ = {
+			isa = PBXGroup;
+			children = (
+				D413C57E29F0956300869258 /* RemoteCreateAuth.swift */,
+			);
+			path = Usercases;
 			sourceTree = "<group>";
 		};
 		D415F98F29DF6D9A000689FF = {
@@ -658,6 +719,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D413C57C29F094DC00869258 /* AuthSignInClient.swift in Sources */,
+				D413C57629F02FDF00869258 /* AuthCreateClient.swift in Sources */,
 				D4036B2E29EF5BB100E53951 /* WeakVarProxy.swift in Sources */,
 				D4036AF029E301D200E53951 /* SignUpFactory.swift in Sources */,
 				D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */,
@@ -674,18 +737,23 @@
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
 				D4036AEA29E3016800E53951 /* WelcomeRouter.swift in Sources */,
 				D4036B0329EF2F4600E53951 /* Validation.swift in Sources */,
+				D413C56F29F02AAF00869258 /* FirebaseAuthAdapter.swift in Sources */,
 				D4036AE429E2FEA400E53951 /* NavigationController.swift in Sources */,
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
 				D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */,
-				D413C56A29F01FFC00869258 /* AccountModel.swift in Sources */,
+				D413C56A29F01FFC00869258 /* UserModel.swift in Sources */,
 				D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */,
+				D413C57229F02EA700869258 /* AuthenticationError.swift in Sources */,
 				D4036B0029EF2EDC00E53951 /* Model.swift in Sources */,
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
+				D413C57F29F0956300869258 /* RemoteCreateAuth.swift in Sources */,
 				D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */,
 				D4036AE829E2FF7B00E53951 /* WelcomeFactory.swift in Sources */,
+				D413C58329F09A6E00869258 /* CreateAuth.swift in Sources */,
 				D4036ADE29E1FF9400E53951 /* PrimaryButton.swift in Sources */,
 				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
+				D413C57A29F0334B00869258 /* Data+.swift in Sources */,
 				D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */,
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
 				D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */,

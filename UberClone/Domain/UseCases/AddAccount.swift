@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol AddAccount {
-    typealias Result = Swift.Result<AccountModel, DomainError>
+    typealias Result = Swift.Result<UserModel, DomainError>
     func add(
         addAccountModel: AddAccountModel,
         completion: @escaping (Result) -> Void
