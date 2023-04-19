@@ -37,4 +37,11 @@ public struct SignUpResquest: Model {
             isPassenger: self.isPassenger
         )
     }
+    
+    func toAuthenticationModel() -> AuthenticationModel {
+        return AuthenticationModel(
+            email: self.email!,
+            password: self.password!
+        )
+    }
 }

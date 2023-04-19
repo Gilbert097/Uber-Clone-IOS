@@ -1,5 +1,5 @@
 //
-//  AccountModel.swift
+//  UserModel.swift
 //  UberClone
 //
 //  Created by Gilberto Silva on 19/04/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AccountModel: Model {
+public struct UserModel: Model {
     
     public var uid: String
     
