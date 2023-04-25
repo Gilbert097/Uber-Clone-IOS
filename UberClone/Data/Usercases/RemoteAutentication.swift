@@ -1,13 +1,13 @@
 //
-//  RemoteCreateAuth.swift
+//  RemoteAutentication.swift
 //  UberClone
 //
-//  Created by Gilberto Silva on 19/04/23.
+//  Created by Gilberto Silva on 25/04/23.
 //
 
 import Foundation
 
-public final class RemoteCreateAuth: CreateAuth {
+public final class RemoteAutentication: Autentication {
     
     private let autentication: AutenticationClient
     
@@ -15,8 +15,8 @@ public final class RemoteCreateAuth: CreateAuth {
         self.autentication = autentication
     }
     
-    public func create(authenticationModel: AuthenticationModel, completion: @escaping (CreateAuth.Result) -> Void) {
-        self.autentication.create(authenticationModel: authenticationModel) { [weak self] result in
+    public func auth(authenticationModel: AuthenticationModel, completion: @escaping (Autentication.Result) -> Void) {
+        self.autentication.auth(authenticationModel: authenticationModel) { [weak self] result in
             guard self != nil else { return }
             switch(result){
             case .success(let userModel):

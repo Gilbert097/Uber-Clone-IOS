@@ -52,16 +52,31 @@ public class LoginViewController: UIViewController {
         return view
     }()
     
+    private let loadingView = ScreenLoadingView()
     private let loginButton = PrimaryButton(title: "Entrar")
+    
+    public var login: ((LoginResquest) -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Uber"
         setupView()
+        configure()
     }
     
     override public func viewWillAppear(_ animated: Bool) {
         self.view.endEditing(true)
+    }
+    
+    private func configure() {
+        self.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func loginButtonTapped() {
+        let request = LoginResquest(
+            email: emailField.valueText,
+            password: passwordField.valueText)
+        self.login?(request)
     }
 }
 
@@ -73,7 +88,8 @@ extension LoginViewController: ViewCode {
                                titleLabel,
                                emailField,
                                passwordField,
-                               loginButton])
+                               loginButton,
+                               loadingView])
     }
     
     func setupConstraints() {
@@ -130,9 +146,41 @@ extension LoginViewController: ViewCode {
             self.loginButton.heightAnchor.constraint(equalToConstant: 55),
             self.loginButton.widthAnchor.constraint(equalToConstant: 130)
         ])
+        
+        // loadingView
+        NSLayoutConstraint.activate([
+            self.loadingView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            self.loadingView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.loadingView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.loadingView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+        ])
     }
     
     func setupAdditionalConfiguration() {
         self.view.backgroundColor = .white
+        self.loadingView.isHidden = true
+    }
+}
+
+// MARK: - LoadingView
+extension LoginViewController: LoadingView {
+    
+    public func display(viewModel: LoadingViewModel) {
+        self.loadingView.isHidden = !viewModel.isLoading
+        self.loadingView.display(viewModel: viewModel)
+    }
+}
+
+// MARK: - AlertView
+extension LoginViewController: AlertView {
+    
+    public func showMessage(viewModel: AlertViewModel) {
+        let alert = UIAlertController(
+            title: viewModel.title,
+            message: viewModel.message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
     }
 }
