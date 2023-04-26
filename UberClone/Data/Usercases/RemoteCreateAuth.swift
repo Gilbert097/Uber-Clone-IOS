@@ -9,14 +9,14 @@ import Foundation
 
 public final class RemoteCreateAuth: CreateAuth {
     
-    private let autentication: AutenticationClient
+    private let authCreateClient: AutenticationCreateClient
     
-    public init(autentication: AutenticationClient) {
-        self.autentication = autentication
+    public init(authCreateClient: AutenticationCreateClient) {
+        self.authCreateClient = authCreateClient
     }
     
     public func create(authenticationModel: AuthenticationModel, completion: @escaping (CreateAuth.Result) -> Void) {
-        self.autentication.create(authenticationModel: authenticationModel) { [weak self] result in
+        self.authCreateClient.create(authenticationModel: authenticationModel) { [weak self] result in
             guard self != nil else { return }
             switch(result){
             case .success(let userModel):

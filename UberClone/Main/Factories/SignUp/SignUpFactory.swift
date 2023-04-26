@@ -16,7 +16,7 @@ public final class SignUpFactory {
             validation: ValidationComposite(validations: validations),
             loadingView: WeakVarProxy(viewController),
             alertView: WeakVarProxy(viewController),
-            createAuth: RemoteCreateAuth(autentication: FirebaseAuthAdapter())
+            createAuth: RemoteCreateAuth(authCreateClient: FirebaseAuthAdapter())
         )
         viewController.signUp = presenter.signUp
         return viewController

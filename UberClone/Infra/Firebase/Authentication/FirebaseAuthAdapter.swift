@@ -12,7 +12,7 @@ public final class FirebaseAuthAdapter {
     
     private func handleResultCallBack(_ result: AuthDataResult?,
                                       _ error: Error?,
-                                      _ completion: (AutenticationClient.Result) -> Void) {
+                                      _ completion: (AutenticationResult) -> Void) {
         if let result = result {
             let userModel = UserModel(uid: result.user.uid)
             completion(.success(userModel))
@@ -52,18 +52,21 @@ public final class FirebaseAuthAdapter {
 
 // MARK: - AutenticationClient
 extension FirebaseAuthAdapter: AutenticationClient {
-    
-    public func create(authenticationModel: AuthenticationModel,
-                       completion: @escaping (AutenticationClient.Result) -> Void) {
-        Auth.auth().createUser(withEmail: authenticationModel.email, password: authenticationModel.password) { [weak self] result, error in
+    public func auth(authenticationModel: AuthenticationModel,
+                       completion: @escaping (AutenticationResult) -> Void) {
+        Auth.auth().signIn(withEmail: authenticationModel.email, password: authenticationModel.password) { [weak self] result, error in
             guard let self = self else { return }
             self.handleResultCallBack(result, error, completion)
         }
     }
+}
+
+// MARK: - AutenticationCreateClient
+extension FirebaseAuthAdapter: AutenticationCreateClient {
     
-    public func auth(authenticationModel: AuthenticationModel,
-                       completion: @escaping (AutenticationClient.Result) -> Void) {
-        Auth.auth().signIn(withEmail: authenticationModel.email, password: authenticationModel.password) { [weak self] result, error in
+    public func create(authenticationModel: AuthenticationModel,
+                       completion: @escaping (AutenticationResult) -> Void) {
+        Auth.auth().createUser(withEmail: authenticationModel.email, password: authenticationModel.password) { [weak self] result, error in
             guard let self = self else { return }
             self.handleResultCallBack(result, error, completion)
         }
