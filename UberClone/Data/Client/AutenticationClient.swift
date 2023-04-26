@@ -7,13 +7,9 @@
 
 import Foundation
 
+public typealias AutenticationResult = Swift.Result<UserModel, AuthenticationError>
 public protocol AutenticationClient {
     
-    typealias Result = Swift.Result<UserModel, AuthenticationError>
-     
-    func create(authenticationModel: AuthenticationModel,
-                completion: @escaping (Result) -> Void)
-    
     func auth(authenticationModel: AuthenticationModel,
-                completion: @escaping (Result) -> Void)
+                completion: @escaping (AutenticationResult) -> Void)
 }
