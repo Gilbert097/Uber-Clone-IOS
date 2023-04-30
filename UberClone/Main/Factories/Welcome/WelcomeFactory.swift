@@ -13,9 +13,13 @@ public final class WelcomeFactory {
         let router = WelcomeRouter(
             nav: nav,
             loginFactory: LoginFactory.build,
-            signUpFactory: SignUpFactory.build
+            signUpFactory: SignUpFactory.build,
+            mainFactory: MainFactory.build
         )
+        let presenter = WelcomePresenter(getStateAuth: RemoteGetStateAuth(authGetStateClient: FirebaseAuthAdapter()))
+        presenter.goToMain = router.goToMain
         let viewController = WelcomeViewController()
+        viewController.load = presenter.load
         viewController.login = router.goToLogin
         viewController.signUp = router.goToSignUp
         return viewController
