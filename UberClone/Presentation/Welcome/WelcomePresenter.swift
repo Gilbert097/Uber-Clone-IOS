@@ -10,7 +10,7 @@ import Foundation
 public final class WelcomePresenter {
     
     private let getStateAuth: GetStateAuth
-    public var goToMain: (() -> Void)!
+    public var goToPassenger: (() -> Void)!
     
     public init(getStateAuth: GetStateAuth) {
         self.getStateAuth = getStateAuth
@@ -19,7 +19,7 @@ public final class WelcomePresenter {
     public func load() {
         self.getStateAuth.getState { [weak self] isLogged in
             guard isLogged else { return }
-            self?.goToMain()
+            self?.goToPassenger()
         }
     }
 }
