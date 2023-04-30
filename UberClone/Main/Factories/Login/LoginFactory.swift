@@ -14,8 +14,8 @@ public final class LoginFactory {
         let controller = LoginViewController()
         let presenter = LoginPresenter(
             validation: ValidationComposite(validations: makeLoginValidations()),
-            loadingView: controller,
-            alertView: controller,
+            loadingView: WeakVarProxy(controller),
+            alertView: WeakVarProxy(controller),
             autentication: RemoteAutentication(autentication: FirebaseAuthAdapter()))
         presenter.goToMain = router.goToMain
         controller.login = presenter.login
