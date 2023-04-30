@@ -9,13 +9,15 @@ import Foundation
 
 public final class LoginFactory {
     
-    static func build() -> LoginViewController {
+    static func build(nav: NavigationController) -> LoginViewController {
+        let router = LoginRouter(nav: nav, mainFactory: MainFactory.build)
         let controller = LoginViewController()
         let presenter = LoginPresenter(
             validation: ValidationComposite(validations: makeLoginValidations()),
             loadingView: controller,
             alertView: controller,
             autentication: RemoteAutentication(autentication: FirebaseAuthAdapter()))
+        presenter.goToMain = router.goToMain
         controller.login = presenter.login
         return controller
     }

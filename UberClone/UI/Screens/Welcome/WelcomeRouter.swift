@@ -10,12 +10,12 @@ import Foundation
 public final class WelcomeRouter {
     
     private let nav: NavigationController
-    private let loginFactory: () -> LoginViewController
+    private let loginFactory: (NavigationController) -> LoginViewController
     private let signUpFactory: () -> SignUpViewController
    
     public init(
         nav: NavigationController,
-        loginFactory: @escaping () -> LoginViewController,
+        loginFactory: @escaping (NavigationController) -> LoginViewController,
         signUpFactory: @escaping () -> SignUpViewController
     ) {
         self.nav = nav
@@ -24,7 +24,7 @@ public final class WelcomeRouter {
     }
    
     public func goToLogin() {
-        nav.pushViewController(loginFactory())
+        nav.pushViewController(loginFactory(nav))
     }
     
     public func goToSignUp() {
