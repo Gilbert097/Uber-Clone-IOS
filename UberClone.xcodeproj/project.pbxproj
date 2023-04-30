@@ -59,6 +59,9 @@
 		D413C59829FF155900869258 /* MainFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C59729FF155900869258 /* MainFactory.swift */; };
 		D413C59A29FF179600869258 /* LoginFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C59929FF179600869258 /* LoginFactoryTests.swift */; };
 		D413C59C29FF1A2E00869258 /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C59B29FF1A2E00869258 /* SignUpRouter.swift */; };
+		D413C59E29FF1B4B00869258 /* RemoteGetStateAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C59D29FF1B4B00869258 /* RemoteGetStateAuth.swift */; };
+		D413C5A029FF1BA100869258 /* GetStateAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C59F29FF1BA100869258 /* GetStateAuth.swift */; };
+		D413C5A329FF1D0300869258 /* WelcomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5A229FF1D0300869258 /* WelcomePresenter.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -134,6 +137,9 @@
 		D413C59729FF155900869258 /* MainFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFactory.swift; sourceTree = "<group>"; };
 		D413C59929FF179600869258 /* LoginFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFactoryTests.swift; sourceTree = "<group>"; };
 		D413C59B29FF1A2E00869258 /* SignUpRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
+		D413C59D29FF1B4B00869258 /* RemoteGetStateAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetStateAuth.swift; sourceTree = "<group>"; };
+		D413C59F29FF1BA100869258 /* GetStateAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStateAuth.swift; sourceTree = "<group>"; };
+		D413C5A229FF1D0300869258 /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -321,6 +327,7 @@
 				D4036B0129EF2F3800E53951 /* Validators */,
 				D413C58829F8976900869258 /* Login */,
 				D4036AF429E35E5C00E53951 /* SignUp */,
+				D413C5A129FF1CD600869258 /* Welcome */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -394,6 +401,7 @@
 			children = (
 				D4036B0929EF31E900E53951 /* AddAccount.swift */,
 				D413C58229F09A6E00869258 /* CreateAuth.swift */,
+				D413C59F29FF1BA100869258 /* GetStateAuth.swift */,
 				D413C58429F892CC00869258 /* Autentication.swift */,
 			);
 			path = UseCases;
@@ -527,6 +535,7 @@
 			children = (
 				D413C57E29F0956300869258 /* RemoteCreateAuth.swift */,
 				D413C58629F8931400869258 /* RemoteAutentication.swift */,
+				D413C59D29FF1B4B00869258 /* RemoteGetStateAuth.swift */,
 			);
 			path = Usercases;
 			sourceTree = "<group>";
@@ -554,6 +563,14 @@
 				D413C59729FF155900869258 /* MainFactory.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		D413C5A129FF1CD600869258 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				D413C5A229FF1D0300869258 /* WelcomePresenter.swift */,
+			);
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		D415F98F29DF6D9A000689FF = {
@@ -806,11 +823,14 @@
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
 				D413C59C29FF1A2E00869258 /* SignUpRouter.swift in Sources */,
 				D413C57F29F0956300869258 /* RemoteCreateAuth.swift in Sources */,
+				D413C5A029FF1BA100869258 /* GetStateAuth.swift in Sources */,
 				D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */,
 				D4036AE829E2FF7B00E53951 /* WelcomeFactory.swift in Sources */,
+				D413C5A329FF1D0300869258 /* WelcomePresenter.swift in Sources */,
 				D413C58329F09A6E00869258 /* CreateAuth.swift in Sources */,
 				D4036ADE29E1FF9400E53951 /* PrimaryButton.swift in Sources */,
 				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
+				D413C59E29FF1B4B00869258 /* RemoteGetStateAuth.swift in Sources */,
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
 				D413C59829FF155900869258 /* MainFactory.swift in Sources */,
 				D413C57A29F0334B00869258 /* Data+.swift in Sources */,

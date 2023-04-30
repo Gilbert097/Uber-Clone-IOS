@@ -52,11 +52,13 @@ class WelcomeViewController: UIViewController {
     
     public var login: (() -> Void)?
     public var signUp: (() -> Void)?
+    public var load: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         configure()
+        load?()
     }
     
     override func viewWillAppear(_ animated: Bool) {

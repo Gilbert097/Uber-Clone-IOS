@@ -9,7 +9,7 @@ import Foundation
 
 public final class MainFactory {
     
-    public static func build() -> MainViewController {
+    public static func build(nav: NavigationController) -> MainViewController {
         MainViewController()
     }
 }
