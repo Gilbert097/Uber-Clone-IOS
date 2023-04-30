@@ -10,15 +10,16 @@ import Foundation
 public final class PassengerPresenter {
     
     private let logoutAuth: LogoutAuth
+    var dismiss: (() -> Void)!
     
     public init(logoutAuth: LogoutAuth) {
         self.logoutAuth = logoutAuth
     }
     
     public func logout() {
-        self.logoutAuth.logout { isLogout in
+        self.logoutAuth.logout { [weak self] isLogout in
             if isLogout {
-                print("teste")
+                self?.dismiss?()
             }
         }
     }

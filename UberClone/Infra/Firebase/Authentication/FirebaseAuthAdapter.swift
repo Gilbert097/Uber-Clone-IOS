@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 
 public final class FirebaseAuthAdapter {
+    private var authStateHandle: AuthStateDidChangeListenerHandle?
     
     private func handleResultCallBack(_ result: AuthDataResult?,
                                       _ error: Error?,
@@ -77,8 +78,11 @@ extension FirebaseAuthAdapter: AuthCreateClient {
 extension FirebaseAuthAdapter: AuthGetStateClient {
     
     public func getState(completion: @escaping (Bool) -> Void) {
-        _ = Auth.auth().addStateDidChangeListener({ _, user in
+        self.authStateHandle = Auth.auth().addStateDidChangeListener({ [weak self] _, user in
             completion(user != nil)
+            if let handle = self?.authStateHandle {
+                Auth.auth().removeStateDidChangeListener(handle)
+            }
         })
     }
 }
