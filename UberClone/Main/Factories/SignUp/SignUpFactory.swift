@@ -9,7 +9,8 @@ import Foundation
 
 public final class SignUpFactory {
     
-    public static func build() -> SignUpViewController {
+    public static func build(nav: NavigationController) -> SignUpViewController {
+        let router = SignUpRouter(nav: nav, mainFactory: MainFactory.build)
         let validations = makeSignUpValidations()
         let viewController = SignUpViewController()
         let presenter = SignUpPresenter(
@@ -18,6 +19,7 @@ public final class SignUpFactory {
             alertView: WeakVarProxy(viewController),
             createAuth: RemoteCreateAuth(authCreateClient: FirebaseAuthAdapter())
         )
+        presenter.goToMain = router.goToMain
         viewController.signUp = presenter.signUp
         return viewController
     }

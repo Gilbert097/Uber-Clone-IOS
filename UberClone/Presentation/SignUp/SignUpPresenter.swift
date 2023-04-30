@@ -13,6 +13,7 @@ public final class SignUpPresenter {
     private let loadingView: LoadingView
     private let alertView: AlertView
     private let createAuth: CreateAuth
+    public var goToMain: (() -> Void)!
     
     public init(validation: Validation,
                 loadingView: LoadingView,
@@ -33,8 +34,8 @@ public final class SignUpPresenter {
             self.createAuth.create(authenticationModel: request.toAuthenticationModel()) { [weak self] authResult in
                 self?.loadingView.display(viewModel: .init(isLoading: false))
                 switch authResult {
-                case .success(let userModel):
-                    print(userModel.uid)
+                case .success:
+                    self?.goToMain()
                 case .failure:
                     print("Error")
                 }
