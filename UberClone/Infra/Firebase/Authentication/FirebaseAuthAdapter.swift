@@ -62,7 +62,7 @@ extension FirebaseAuthAdapter: AutenticationClient {
 }
 
 // MARK: - AutenticationCreateClient
-extension FirebaseAuthAdapter: AutenticationCreateClient {
+extension FirebaseAuthAdapter: AuthCreateClient {
     
     public func create(authenticationModel: AuthenticationModel,
                        completion: @escaping (AutenticationResult) -> Void) {
@@ -70,5 +70,15 @@ extension FirebaseAuthAdapter: AutenticationCreateClient {
             guard let self = self else { return }
             self.handleResultCallBack(result, error, completion)
         }
+    }
+}
+
+// MARK: - AuthListenStateClient
+extension FirebaseAuthAdapter: AuthGetStateClient {
+    
+    public func getState(completion: @escaping (Bool) -> Void) {
+        _ = Auth.auth().addStateDidChangeListener({ _, user in
+            completion(user != nil)
+        })
     }
 }

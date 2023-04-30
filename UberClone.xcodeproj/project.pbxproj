@@ -52,7 +52,8 @@
 		D413C58729F8931400869258 /* RemoteAutentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C58629F8931400869258 /* RemoteAutentication.swift */; };
 		D413C58A29F8977900869258 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C58929F8977900869258 /* LoginPresenter.swift */; };
 		D413C58C29F8979E00869258 /* LoginResquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C58B29F8979E00869258 /* LoginResquest.swift */; };
-		D413C58E29F8A4E300869258 /* AutenticationCreateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C58D29F8A4E300869258 /* AutenticationCreateClient.swift */; };
+		D413C58E29F8A4E300869258 /* AuthCreateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C58D29F8A4E300869258 /* AuthCreateClient.swift */; };
+		D413C59029FF12A900869258 /* AuthGetStateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C58F29FF12A900869258 /* AuthGetStateClient.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -121,7 +122,8 @@
 		D413C58629F8931400869258 /* RemoteAutentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAutentication.swift; sourceTree = "<group>"; };
 		D413C58929F8977900869258 /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		D413C58B29F8979E00869258 /* LoginResquest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResquest.swift; sourceTree = "<group>"; };
-		D413C58D29F8A4E300869258 /* AutenticationCreateClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutenticationCreateClient.swift; sourceTree = "<group>"; };
+		D413C58D29F8A4E300869258 /* AuthCreateClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCreateClient.swift; sourceTree = "<group>"; };
+		D413C58F29FF12A900869258 /* AuthGetStateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGetStateClient.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -483,7 +485,8 @@
 			children = (
 				D413C57129F02EA700869258 /* AuthenticationError.swift */,
 				D413C57B29F094DC00869258 /* AutenticationClient.swift */,
-				D413C58D29F8A4E300869258 /* AutenticationCreateClient.swift */,
+				D413C58D29F8A4E300869258 /* AuthCreateClient.swift */,
+				D413C58F29FF12A900869258 /* AuthGetStateClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				D4036AF029E301D200E53951 /* SignUpFactory.swift in Sources */,
 				D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */,
 				D413C58A29F8977900869258 /* LoginPresenter.swift in Sources */,
+				D413C59029FF12A900869258 /* AuthGetStateClient.swift in Sources */,
 				D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */,
 				D4036ADA29E1F55100E53951 /* PrimaryInputTextField.swift in Sources */,
 				D4036B1529EF463C00E53951 /* AlertView.swift in Sources */,
@@ -779,7 +783,7 @@
 				D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */,
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
 				D413C58C29F8979E00869258 /* LoginResquest.swift in Sources */,
-				D413C58E29F8A4E300869258 /* AutenticationCreateClient.swift in Sources */,
+				D413C58E29F8A4E300869258 /* AuthCreateClient.swift in Sources */,
 				D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 				D413C56D29F0235300869258 /* DomainError.swift in Sources */,

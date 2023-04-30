@@ -9,9 +9,9 @@ import Foundation
 
 public final class RemoteCreateAuth: CreateAuth {
     
-    private let authCreateClient: AutenticationCreateClient
+    private let authCreateClient: AuthCreateClient
     
-    public init(authCreateClient: AutenticationCreateClient) {
+    public init(authCreateClient: AuthCreateClient) {
         self.authCreateClient = authCreateClient
     }
     
