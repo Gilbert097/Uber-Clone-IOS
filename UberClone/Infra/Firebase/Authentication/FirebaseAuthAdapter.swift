@@ -82,3 +82,16 @@ extension FirebaseAuthAdapter: AuthGetStateClient {
         })
     }
 }
+
+// MARK: - AuthLogoutClient
+extension FirebaseAuthAdapter: AuthLogoutClient {
+    
+    public func logout(completion: @escaping (Bool) -> Void) {
+        do {
+           try Auth.auth().signOut()
+            completion(true)
+        } catch {
+            completion(false)
+        }
+    }
+}
