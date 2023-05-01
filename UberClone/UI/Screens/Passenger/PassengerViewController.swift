@@ -25,6 +25,8 @@ public final class PassengerViewController: UIViewController {
         return view
     }()
     
+    private let requestButton = PrimaryButton(title: "Chamar Uber", fontSize: 20, weight: .semibold)
+    
     public var logout: (() -> Void)?
     
     public override func viewDidLoad() {
@@ -42,7 +44,7 @@ public final class PassengerViewController: UIViewController {
 extension PassengerViewController: ViewCode {
     
     func setupViewHierarchy() {
-        self.view.addSubview(mapView)
+        self.view.addSubviews([mapView, requestButton])
     }
     
     func setupConstraints() {
@@ -54,6 +56,14 @@ extension PassengerViewController: ViewCode {
             self.mapView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             self.mapView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             self.mapView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+        ])
+        
+        // requestButton
+        NSLayoutConstraint.activate([
+            self.requestButton.heightAnchor.constraint(equalToConstant: 65),
+            self.requestButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            self.requestButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            self.requestButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -16)
         ])
     }
     
