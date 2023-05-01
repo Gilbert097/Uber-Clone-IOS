@@ -25,6 +25,13 @@ public final class PassengerViewController: UIViewController {
         return view
     }()
     
+    private lazy var locationManager: CLLocationManager = {
+        let view = CLLocationManager()
+        view.delegate = self
+        view.desiredAccuracy = kCLLocationAccuracyBest
+        return view
+    }()
+    
     private let requestButton = PrimaryButton(title: "Chamar Uber", fontSize: 20, weight: .semibold)
     
     public var logout: (() -> Void)?
@@ -32,6 +39,12 @@ public final class PassengerViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupLocationManager()
+    }
+    
+    private func setupLocationManager() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     @objc private func logoutButtonTapped() {
@@ -72,5 +85,23 @@ extension PassengerViewController: ViewCode {
         self.view.backgroundColor = .white
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.leftBarButtonItem = self.logoutButtonItem
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension PassengerViewController: CLLocationManagerDelegate {
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let coordinate = manager.location?.coordinate else { return }
+        
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.mapView.setRegion(region, animated: true)
+        
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        
+        let userAnnotation = MKPointAnnotation()
+        userAnnotation.coordinate = coordinate
+        userAnnotation.title = "Seu Local"
+        self.mapView.addAnnotation(userAnnotation)
     }
 }
