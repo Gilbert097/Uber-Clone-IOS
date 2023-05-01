@@ -67,6 +67,7 @@
 		D413C5AA29FF2C4E00869258 /* RemoteLogoutAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5A929FF2C4E00869258 /* RemoteLogoutAuth.swift */; };
 		D413C5AC29FF2C6500869258 /* LogoutAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5AB29FF2C6500869258 /* LogoutAuth.swift */; };
 		D413C5AF29FF2DFF00869258 /* PassengerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5AE29FF2DFF00869258 /* PassengerRouter.swift */; };
+		D413C5B12A00856500869258 /* FirebaseDatabaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5B02A00856500869258 /* FirebaseDatabaseAdapter.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -150,6 +151,7 @@
 		D413C5A929FF2C4E00869258 /* RemoteLogoutAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteLogoutAuth.swift; sourceTree = "<group>"; };
 		D413C5AB29FF2C6500869258 /* LogoutAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutAuth.swift; sourceTree = "<group>"; };
 		D413C5AE29FF2DFF00869258 /* PassengerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerRouter.swift; sourceTree = "<group>"; };
+		D413C5B02A00856500869258 /* FirebaseDatabaseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseAdapter.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C56E29F02AAF00869258 /* FirebaseAuthAdapter.swift */,
+				D413C5B02A00856500869258 /* FirebaseDatabaseAdapter.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 				D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
 				D4036AEA29E3016800E53951 /* WelcomeRouter.swift in Sources */,
+				D413C5B12A00856500869258 /* FirebaseDatabaseAdapter.swift in Sources */,
 				D4036B0329EF2F4600E53951 /* Validation.swift in Sources */,
 				D413C56F29F02AAF00869258 /* FirebaseAuthAdapter.swift in Sources */,
 				D4036AE429E2FEA400E53951 /* NavigationController.swift in Sources */,
