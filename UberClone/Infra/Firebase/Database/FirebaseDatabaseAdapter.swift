@@ -8,9 +8,10 @@
 import Foundation
 import FirebaseDatabase
 
-public final class FirebaseDatabaseAdapter {
-    
-    private func setValue(path: String, data: Data, completion: @escaping ((Swift.Result<Void, Error>) -> Void)) {
+public final class FirebaseDatabaseAdapter { }
+
+extension FirebaseDatabaseAdapter: DatabaseSetValueClient {
+    public func setValue(path: String, data: Data, completion: @escaping (Swift.Result<Void, Error>) -> Void) {
         let database = Database.database().reference()
         let requests = database.child(path)
         requests.childByAutoId().setValue(data.toJson()) { error, _ in
@@ -18,5 +19,6 @@ public final class FirebaseDatabaseAdapter {
             completion(.success(()))
         }
     }
-    
 }
+
+
