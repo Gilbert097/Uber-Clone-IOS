@@ -10,11 +10,16 @@ import Foundation
 public final class PassengerFactory {
     
     public static func build(nav: NavigationController) -> PassengerViewController {
-        let presenter = PassengerPresenter(logoutAuth: RemoteLogoutAuth(authLogoutClient: FirebaseAuthAdapter()))
         let viewController = PassengerViewController()
+        let presenter = PassengerPresenter(alertView: viewController,
+                                           loadingView: viewController,
+                                           requestRace: RemoteRequestRace(databaseSetValueClient: FirebaseDatabaseAdapter()),
+                                           logoutAuth: RemoteLogoutAuth(authLogoutClient: FirebaseAuthAdapter()))
+        
         let router = PassengerRouter(nav: nav)
         presenter.dismiss = router.dismiss
         viewController.logout = presenter.logout
+        viewController.requestRace = presenter.requestRaceAction
         return viewController
     }
 }

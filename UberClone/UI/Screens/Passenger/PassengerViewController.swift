@@ -32,14 +32,21 @@ public final class PassengerViewController: UIViewController {
         return view
     }()
     
+    private let loadingView = ScreenLoadingView()
     private let requestButton = PrimaryButton(title: "Chamar Uber", fontSize: 20, weight: .semibold)
     
     public var logout: (() -> Void)?
+    public var requestRace: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupLocationManager()
+        configure()
+    }
+    
+    private func configure() {
+        self.requestButton.addTarget(self, action: #selector(requestButtonTapped), for: .touchUpInside)
     }
     
     private func setupLocationManager() {
@@ -51,13 +58,16 @@ public final class PassengerViewController: UIViewController {
         self.logout?()
     }
     
+    @objc private func requestButtonTapped() {
+        self.requestRace?()
+    }
 }
 
 // MARK: - ViewCode
 extension PassengerViewController: ViewCode {
     
     func setupViewHierarchy() {
-        self.view.addSubviews([mapView, requestButton])
+        self.view.addSubviews([mapView, requestButton, loadingView])
     }
     
     func setupConstraints() {
@@ -77,6 +87,14 @@ extension PassengerViewController: ViewCode {
             self.requestButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
             self.requestButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
             self.requestButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -16)
+        ])
+        
+        // loadingView
+        NSLayoutConstraint.activate([
+            self.loadingView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            self.loadingView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.loadingView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.loadingView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
     
@@ -103,5 +121,28 @@ extension PassengerViewController: CLLocationManagerDelegate {
         userAnnotation.coordinate = coordinate
         userAnnotation.title = "Seu Local"
         self.mapView.addAnnotation(userAnnotation)
+    }
+}
+
+// MARK: - LoadingView
+extension PassengerViewController: LoadingView {
+    
+    public func display(viewModel: LoadingViewModel) {
+        self.loadingView.isHidden = !viewModel.isLoading
+        self.loadingView.display(viewModel: viewModel)
+    }
+}
+
+// MARK: - AlertView
+extension PassengerViewController: AlertView {
+    
+    public func showMessage(viewModel: AlertViewModel) {
+        let alert = UIAlertController(
+            title: viewModel.title,
+            message: viewModel.message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
     }
 }
