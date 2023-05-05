@@ -48,6 +48,7 @@ extension ScreenLoadingView: ViewCode {
     func setupAdditionalConfiguration() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        self.isHidden = true
     }
 }
 
