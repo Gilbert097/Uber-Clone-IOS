@@ -69,8 +69,8 @@
 		D413C5AF29FF2DFF00869258 /* PassengerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5AE29FF2DFF00869258 /* PassengerRouter.swift */; };
 		D413C5B12A00856500869258 /* FirebaseDatabaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5B02A00856500869258 /* FirebaseDatabaseAdapter.swift */; };
 		D413C5B52A008F0900869258 /* DatabaseSetValueClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5B42A008F0900869258 /* DatabaseSetValueClient.swift */; };
-		D413C5BB2A008F6F00869258 /* RequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5BA2A008F6F00869258 /* RequestRace.swift */; };
-		D413C5BF2A047C8500869258 /* RemoteRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5BE2A047C8500869258 /* RemoteRequestRace.swift */; };
+		D413C5BB2A008F6F00869258 /* CallRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5BA2A008F6F00869258 /* CallRace.swift */; };
+		D413C5BF2A047C8500869258 /* RemoteCallRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5BE2A047C8500869258 /* RemoteCallRace.swift */; };
 		D413C5C22A06FE0F00869258 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
@@ -157,8 +157,8 @@
 		D413C5AE29FF2DFF00869258 /* PassengerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerRouter.swift; sourceTree = "<group>"; };
 		D413C5B02A00856500869258 /* FirebaseDatabaseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseAdapter.swift; sourceTree = "<group>"; };
 		D413C5B42A008F0900869258 /* DatabaseSetValueClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSetValueClient.swift; sourceTree = "<group>"; };
-		D413C5BA2A008F6F00869258 /* RequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRace.swift; sourceTree = "<group>"; };
-		D413C5BE2A047C8500869258 /* RemoteRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRequestRace.swift; sourceTree = "<group>"; };
+		D413C5BA2A008F6F00869258 /* CallRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRace.swift; sourceTree = "<group>"; };
+		D413C5BE2A047C8500869258 /* RemoteCallRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCallRace.swift; sourceTree = "<group>"; };
 		D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -643,7 +643,7 @@
 		D413C5B82A008F4C00869258 /* Passenger */ = {
 			isa = PBXGroup;
 			children = (
-				D413C5BA2A008F6F00869258 /* RequestRace.swift */,
+				D413C5BA2A008F6F00869258 /* CallRace.swift */,
 			);
 			path = Passenger;
 			sourceTree = "<group>";
@@ -662,7 +662,7 @@
 		D413C5BD2A047C6C00869258 /* Passenger */ = {
 			isa = PBXGroup;
 			children = (
-				D413C5BE2A047C8500869258 /* RemoteRequestRace.swift */,
+				D413C5BE2A047C8500869258 /* RemoteCallRace.swift */,
 			);
 			path = Passenger;
 			sourceTree = "<group>";
@@ -922,7 +922,7 @@
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
 				D413C58729F8931400869258 /* RemoteAutentication.swift in Sources */,
 				D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */,
-				D413C5BF2A047C8500869258 /* RemoteRequestRace.swift in Sources */,
+				D413C5BF2A047C8500869258 /* RemoteCallRace.swift in Sources */,
 				D413C56A29F01FFC00869258 /* UserModel.swift in Sources */,
 				D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */,
 				D413C57229F02EA700869258 /* AuthenticationError.swift in Sources */,
@@ -930,7 +930,7 @@
 				D413C5A829FF2B5600869258 /* AuthLogoutClient.swift in Sources */,
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
 				D413C59C29FF1A2E00869258 /* SignUpRouter.swift in Sources */,
-				D413C5BB2A008F6F00869258 /* RequestRace.swift in Sources */,
+				D413C5BB2A008F6F00869258 /* CallRace.swift in Sources */,
 				D413C57F29F0956300869258 /* RemoteCreateAuth.swift in Sources */,
 				D413C5A029FF1BA100869258 /* GetStateAuth.swift in Sources */,
 				D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */,

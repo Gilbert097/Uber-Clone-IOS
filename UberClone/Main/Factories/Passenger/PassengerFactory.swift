@@ -11,7 +11,7 @@ public final class PassengerFactory {
     
     public static func build(nav: NavigationController) -> PassengerViewController {
         let viewController = PassengerViewController()
-        let decorator = MainQueueDispatchDecorator(RemoteRequestRace(databaseSetValueClient: FirebaseDatabaseAdapter()))
+        let decorator = MainQueueDispatchDecorator(RemoteCallRace(databaseSetValueClient: FirebaseDatabaseAdapter()))
         let presenter = PassengerPresenter(alertView: viewController,
                                            loadingView: viewController,
                                            requestRace: decorator,
@@ -20,7 +20,7 @@ public final class PassengerFactory {
         let router = PassengerRouter(nav: nav)
         presenter.dismiss = router.dismiss
         viewController.logout = presenter.logout
-        viewController.requestRace = presenter.requestRaceAction
+        viewController.requestRace = presenter.callRaceAction
         return viewController
     }
 }

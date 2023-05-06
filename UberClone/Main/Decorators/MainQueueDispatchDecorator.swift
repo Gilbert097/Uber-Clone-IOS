@@ -21,8 +21,8 @@ public final class MainQueueDispatchDecorator<T> {
     }
 }
 
-extension MainQueueDispatchDecorator: RequestRace where T: RequestRace{
-    public func request(model: RequestRaceModel, completion: @escaping (Result<Void, Error>) -> Void) {
+extension MainQueueDispatchDecorator: CallRace where T: CallRace{
+    public func request(model: CallRaceModel, completion: @escaping (Result<Void, Error>) -> Void) {
         self.instance.request(model: model) { [weak self] result in
             self?.dispatch { completion(result) }
         }
