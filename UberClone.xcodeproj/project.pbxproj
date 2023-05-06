@@ -71,6 +71,7 @@
 		D413C5B52A008F0900869258 /* DatabaseSetValueClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5B42A008F0900869258 /* DatabaseSetValueClient.swift */; };
 		D413C5BB2A008F6F00869258 /* RequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5BA2A008F6F00869258 /* RequestRace.swift */; };
 		D413C5BF2A047C8500869258 /* RemoteRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5BE2A047C8500869258 /* RemoteRequestRace.swift */; };
+		D413C5C22A06FE0F00869258 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -158,6 +159,7 @@
 		D413C5B42A008F0900869258 /* DatabaseSetValueClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSetValueClient.swift; sourceTree = "<group>"; };
 		D413C5BA2A008F6F00869258 /* RequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRace.swift; sourceTree = "<group>"; };
 		D413C5BE2A047C8500869258 /* RemoteRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRequestRace.swift; sourceTree = "<group>"; };
+		D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		D4036AF729E3613900E53951 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5C02A06FE0000869258 /* Decorators */,
 				D4036B2C29EF5B9E00E53951 /* Proxies */,
 				D4036AE529E2FF6100E53951 /* Factories */,
 			);
@@ -664,6 +667,14 @@
 			path = Passenger;
 			sourceTree = "<group>";
 		};
+		D413C5C02A06FE0000869258 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
 		D415F98F29DF6D9A000689FF = {
 			isa = PBXGroup;
 			children = (
@@ -883,6 +894,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D413C57C29F094DC00869258 /* AutenticationClient.swift in Sources */,
+				D413C5C22A06FE0F00869258 /* MainQueueDispatchDecorator.swift in Sources */,
 				D4036B2E29EF5BB100E53951 /* WeakVarProxy.swift in Sources */,
 				D4036AF029E301D200E53951 /* SignUpFactory.swift in Sources */,
 				D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */,
