@@ -10,14 +10,14 @@ import Foundation
 public final class PassengerPresenter {
     private let alertView: AlertView
     private let loadingView: LoadingView
-    private let requestRace: RequestRace
+    private let callRace: CallRace
     private let logoutAuth: LogoutAuth
     var dismiss: (() -> Void)!
     
-    public init(alertView: AlertView, loadingView: LoadingView, requestRace: RequestRace, logoutAuth: LogoutAuth) {
+    public init(alertView: AlertView, loadingView: LoadingView, callRace: CallRace, logoutAuth: LogoutAuth) {
         self.alertView = alertView
         self.loadingView = loadingView
-        self.requestRace = requestRace
+        self.callRace = callRace
         self.logoutAuth = logoutAuth
     }
     
@@ -29,13 +29,13 @@ public final class PassengerPresenter {
         }
     }
     
-    public func requestRaceAction() {
+    public func callRaceAction() {
         self.loadingView.display(viewModel: .init(isLoading: true))
-        let model = RequestRaceModel(email: "Gilberto.silva2@gmail.com",
+        let model = CallRaceModel(email: "Gilberto.silva2@gmail.com",
                                      name: "Gilberto2",
                                      latitude: "11111",
                                      longitude: "22222")
-        self.requestRace.request(model: model) { [weak self] result in
+        self.callRace.request(model: model) { [weak self] result in
             self?.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success:
