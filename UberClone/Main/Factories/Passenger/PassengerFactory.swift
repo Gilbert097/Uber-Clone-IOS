@@ -14,13 +14,13 @@ public final class PassengerFactory {
         let decorator = MainQueueDispatchDecorator(RemoteCallRace(databaseSetValueClient: FirebaseDatabaseAdapter()))
         let presenter = PassengerPresenter(alertView: viewController,
                                            loadingView: viewController,
-                                           requestRace: decorator,
+                                           callRace: decorator,
                                            logoutAuth: RemoteLogoutAuth(authLogoutClient: FirebaseAuthAdapter()))
         
         let router = PassengerRouter(nav: nav)
         presenter.dismiss = router.dismiss
         viewController.logout = presenter.logout
-        viewController.requestRace = presenter.callRaceAction
+        viewController.callRace = presenter.callRaceAction
         return viewController
     }
 }

@@ -36,7 +36,8 @@ public final class PassengerViewController: UIViewController {
     private let requestButton = PrimaryButton(title: "Chamar Uber", fontSize: 20, weight: .semibold)
     
     public var logout: (() -> Void)?
-    public var requestRace: (() -> Void)?
+    public var callRace: (() -> Void)?
+    private var lastLocation: CLLocation?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,7 @@ public final class PassengerViewController: UIViewController {
     }
     
     @objc private func requestButtonTapped() {
-        self.requestRace?()
+        self.callRace?()
     }
 }
 
@@ -110,8 +111,9 @@ extension PassengerViewController: ViewCode {
 extension PassengerViewController: CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let coordinate = manager.location?.coordinate else { return }
+        guard let location = manager.location, isNewLocation(currentLocation: location) else { return }
         
+        let coordinate = location.coordinate
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
         self.mapView.setRegion(region, animated: true)
         
@@ -121,6 +123,17 @@ extension PassengerViewController: CLLocationManagerDelegate {
         userAnnotation.coordinate = coordinate
         userAnnotation.title = "Seu Local"
         self.mapView.addAnnotation(userAnnotation)
+    }
+    
+    private func isNewLocation(currentLocation: CLLocation) -> Bool {
+        guard
+            let lastLocation = self.lastLocation
+        else {
+            self.lastLocation = currentLocation
+            return true
+        }
+        return lastLocation.coordinate.latitude != currentLocation.coordinate.latitude &&
+        lastLocation.coordinate.longitude != currentLocation.coordinate.longitude
     }
 }
 

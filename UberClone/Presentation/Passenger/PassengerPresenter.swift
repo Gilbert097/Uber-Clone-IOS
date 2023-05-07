@@ -46,3 +46,7 @@ public final class PassengerPresenter {
         }
     }
 }
+
+public class CallRaceRequest {
+    
+}
