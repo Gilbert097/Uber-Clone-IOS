@@ -15,25 +15,34 @@ public protocol AddAccount {
     )
 }
 
+public enum AccountType: String, Codable {
+    case passenger = "passenger"
+    case driver = "driver"
+}
+
 public struct AddAccountModel: Model {
     
     public var name: String
     public var email: String
     public var password: String
     public var passwordConfirmation: String
-    public var isPassenger: Bool
+    public var type: AccountType
     
     public init(
         name: String,
         email: String,
         password: String,
         passwordConfirmation: String,
-        isPassenger: Bool
+        type: AccountType
     ) {
         self.name = name
         self.email = email
         self.password = password
         self.passwordConfirmation = passwordConfirmation
-        self.isPassenger = isPassenger
+        self.type = type
+    }
+    
+    public func toAuthenticationModel() -> AuthenticationModel {
+        .init(email: email, password: password)
     }
 }

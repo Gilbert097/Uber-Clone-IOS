@@ -12,17 +12,17 @@ public final class SignUpPresenter {
     private let validation: Validation
     private let loadingView: LoadingView
     private let alertView: AlertView
-    private let createAuth: CreateAuth
+    private let addAccount: AddAccount
     public var goToPassenger: (() -> Void)!
     
     public init(validation: Validation,
                 loadingView: LoadingView,
                 alertView: AlertView,
-                createAuth: CreateAuth) {
+                addAccount: AddAccount) {
         self.validation = validation
         self.loadingView = loadingView
         self.alertView = alertView
-        self.createAuth = createAuth
+        self.addAccount = addAccount
     }
     
     public func signUp(request: SignUpResquest) {
@@ -31,9 +31,10 @@ public final class SignUpPresenter {
             self.alertView.showMessage(viewModel: .init(title: "Erro", message: messageError))
         } else {
             self.loadingView.display(viewModel: .init(isLoading: true))
-            self.createAuth.create(authenticationModel: request.toAuthenticationModel()) { [weak self] authResult in
+            
+            self.addAccount.add(addAccountModel: request.toAddAccountModel()) { [weak self] addAccountResult in
                 self?.loadingView.display(viewModel: .init(isLoading: false))
-                switch authResult {
+                switch addAccountResult {
                 case .success:
                     self?.goToPassenger()
                 case .failure:

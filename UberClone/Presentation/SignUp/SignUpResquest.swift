@@ -34,7 +34,7 @@ public struct SignUpResquest: Model {
             email: self.email!,
             password: self.password!,
             passwordConfirmation: self.passwordConfirmation!,
-            isPassenger: self.isPassenger
+            type: self.isPassenger ? .passenger : .driver
         )
     }
     
