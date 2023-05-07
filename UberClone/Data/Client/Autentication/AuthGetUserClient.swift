@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol AuthGetUserClient {
-    func getUser() -> UserModel?
+    func getUser() -> AuthUserModel?
 }

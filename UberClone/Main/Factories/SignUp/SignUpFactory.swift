@@ -13,11 +13,13 @@ public final class SignUpFactory {
         let router = SignUpRouter(nav: nav, passengerFactory: PassengerFactory.build)
         let validations = makeSignUpValidations()
         let viewController = SignUpViewController()
+        let createAuth = RemoteCreateAuth(authCreateClient: FirebaseAuthAdapter())
+        let addUser = RemoteAddUser(setValueClient: FirebaseDatabaseAdapter())
         let presenter = SignUpPresenter(
             validation: ValidationComposite(validations: validations),
             loadingView: WeakVarProxy(viewController),
             alertView: WeakVarProxy(viewController),
-            addAccount: RemoteAddAccount(authClient: FirebaseAuthAdapter(), setValueClient: FirebaseDatabaseAdapter())
+            addAccount: RemoteAddAccount(createAuth: createAuth, addUser: addUser)
         )
         presenter.goToPassenger = router.goToPassenger
         viewController.signUp = presenter.signUp

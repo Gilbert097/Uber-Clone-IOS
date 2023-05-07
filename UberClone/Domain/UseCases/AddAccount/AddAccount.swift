@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol AddAccount {
-    typealias Result = Swift.Result<UserModel, DomainError>
+    typealias Result = Swift.Result<AuthUserModel, DomainError>
     func add(
         addAccountModel: AddAccountModel,
         completion: @escaping (Result) -> Void
@@ -46,24 +46,7 @@ public struct AddAccountModel: Model {
         .init(email: email, password: password)
     }
     
-    public func toAccountModel() -> AccountModel {
+    public func toAddUserModel() -> AddUserModel {
         .init(name: name, email: email, type: type)
-    }
-}
-
-public struct AccountModel: Model {
-    
-    public var name: String
-    public var email: String
-    public var type: AccountType
-    
-    public init(
-        name: String,
-        email: String,
-        type: AccountType
-    ) {
-        self.name = name
-        self.email = email
-        self.type = type
     }
 }

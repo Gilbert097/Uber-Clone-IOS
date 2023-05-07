@@ -13,7 +13,7 @@ public class RemoteGetCurrentUser: GetCurrentUser {
     public init(client: AuthGetUserClient) {
         self.client = client
     }
-    public func get() -> UserModel? {
+    public func get() -> AuthUserModel? {
         self.client.getUser()
     }
 }

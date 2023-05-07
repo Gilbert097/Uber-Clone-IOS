@@ -15,7 +15,7 @@ public final class FirebaseAuthAdapter {
                                       _ error: Error?,
                                       _ completion: (AutenticationResult) -> Void) {
         if let result = result {
-            let userModel = UserModel(user: result.user)
+            let userModel = AuthUserModel(user: result.user)
             completion(.success(userModel))
         } else if let error = error {
             guard
@@ -102,14 +102,14 @@ extension FirebaseAuthAdapter: AuthLogoutClient {
 
 // MARK: - AuthGetUserClient
 extension FirebaseAuthAdapter: AuthGetUserClient {
-    public func getUser() -> UserModel? {
+    public func getUser() -> AuthUserModel? {
         guard let currentUser = Auth.auth().currentUser else { return nil }
-        return UserModel(user: currentUser)
+        return AuthUserModel(user: currentUser)
     }
 }
 
 // MARK: - UserModel
-private extension UserModel {
+private extension AuthUserModel {
     
      init(user: User) {
         self.uid = user.uid
