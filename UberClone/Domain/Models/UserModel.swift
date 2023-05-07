@@ -10,8 +10,12 @@ import Foundation
 public struct UserModel: Model {
     
     public var uid: String
+    public var email: String
+    public var name: String
     
-    public init(uid: String) {
+    public init(uid: String, email: String, name: String) {
         self.uid = uid
+        self.email = email
+        self.name = name
     }
 }

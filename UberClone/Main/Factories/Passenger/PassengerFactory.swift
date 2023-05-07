@@ -12,10 +12,12 @@ public final class PassengerFactory {
     public static func build(nav: NavigationController) -> PassengerViewController {
         let viewController = PassengerViewController()
         let decorator = MainQueueDispatchDecorator(RemoteCallRace(databaseSetValueClient: FirebaseDatabaseAdapter()))
+        let authAdapter = FirebaseAuthAdapter()
         let presenter = PassengerPresenter(alertView: viewController,
                                            loadingView: viewController,
                                            callRace: decorator,
-                                           logoutAuth: RemoteLogoutAuth(authLogoutClient: FirebaseAuthAdapter()))
+                                           logoutAuth: RemoteLogoutAuth(authLogoutClient: authAdapter),
+                                           getCurrentUser: RemoteGetCurrentUser(client: authAdapter))
         
         let router = PassengerRouter(nav: nav)
         presenter.dismiss = router.dismiss
