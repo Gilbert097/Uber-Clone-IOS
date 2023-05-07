@@ -29,12 +29,12 @@ public final class PassengerPresenter {
         }
     }
     
-    public func callRaceAction() {
+    public func callRaceAction(request: CallRaceRequest) {
         self.loadingView.display(viewModel: .init(isLoading: true))
         let model = CallRaceModel(email: "Gilberto.silva2@gmail.com",
-                                     name: "Gilberto2",
-                                     latitude: "11111",
-                                     longitude: "22222")
+                                  name: "Gilberto2",
+                                  latitude: String(request.latitude),
+                                  longitude: String(request.longitude))
         self.callRace.request(model: model) { [weak self] result in
             self?.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
@@ -45,8 +45,4 @@ public final class PassengerPresenter {
             }
         }
     }
-}
-
-public class CallRaceRequest {
-    
 }
