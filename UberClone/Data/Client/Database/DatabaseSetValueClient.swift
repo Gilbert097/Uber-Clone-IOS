@@ -8,5 +8,7 @@
 import Foundation
 
 public protocol DatabaseSetValueClient {
-    func setValue(path: String, data: Data, completion: @escaping (Swift.Result<Void, Error>) -> Void)
+    typealias SetValueResult = (Swift.Result<Void, Error>) -> Void
+    func setValue(path: String, data: Data, completion: @escaping SetValueResult)
+    func setValue(path: String, id: String, data: Data, completion: @escaping SetValueResult)
 }

@@ -76,6 +76,7 @@
 		D413C5C72A072EF500869258 /* AuthGetUserClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C62A072EF500869258 /* AuthGetUserClient.swift */; };
 		D413C5CA2A072F2C00869258 /* GetCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C92A072F2C00869258 /* GetCurrentUser.swift */; };
 		D413C5CD2A072F7200869258 /* RemoteGetCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5CC2A072F7200869258 /* RemoteGetCurrentUser.swift */; };
+		D413C5D12A081FC500869258 /* RemoteAddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D02A081FC500869258 /* RemoteAddAccount.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -168,6 +169,7 @@
 		D413C5C62A072EF500869258 /* AuthGetUserClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGetUserClient.swift; sourceTree = "<group>"; };
 		D413C5C92A072F2C00869258 /* GetCurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUser.swift; sourceTree = "<group>"; };
 		D413C5CC2A072F7200869258 /* RemoteGetCurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetCurrentUser.swift; sourceTree = "<group>"; };
+		D413C5D02A081FC500869258 /* RemoteAddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddAccount.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 		D4036B0829EF31DC00E53951 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5CE2A081F1A00869258 /* AddAccount */,
 				D413C5B82A008F4C00869258 /* Passenger */,
 				D413C5B72A008F4100869258 /* Autentication */,
 			);
@@ -560,6 +563,7 @@
 		D413C57D29F0955700869258 /* Usercases */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5CF2A081FB700869258 /* AddAccount */,
 				D413C5BD2A047C6C00869258 /* Passenger */,
 				D413C5BC2A047C6000869258 /* Autentication */,
 			);
@@ -641,7 +645,6 @@
 		D413C5B72A008F4100869258 /* Autentication */ = {
 			isa = PBXGroup;
 			children = (
-				D4036B0929EF31E900E53951 /* AddAccount.swift */,
 				D413C58229F09A6E00869258 /* CreateAuth.swift */,
 				D413C59F29FF1BA100869258 /* GetStateAuth.swift */,
 				D413C5AB29FF2C6500869258 /* LogoutAuth.swift */,
@@ -685,6 +688,22 @@
 				D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */,
 			);
 			path = Decorators;
+			sourceTree = "<group>";
+		};
+		D413C5CE2A081F1A00869258 /* AddAccount */ = {
+			isa = PBXGroup;
+			children = (
+				D4036B0929EF31E900E53951 /* AddAccount.swift */,
+			);
+			path = AddAccount;
+			sourceTree = "<group>";
+		};
+		D413C5CF2A081FB700869258 /* AddAccount */ = {
+			isa = PBXGroup;
+			children = (
+				D413C5D02A081FC500869258 /* RemoteAddAccount.swift */,
+			);
+			path = AddAccount;
 			sourceTree = "<group>";
 		};
 		D415F98F29DF6D9A000689FF = {
@@ -920,6 +939,7 @@
 				D413C59329FF141600869258 /* PassengerViewController.swift in Sources */,
 				D413C5AC29FF2C6500869258 /* LogoutAuth.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
+				D413C5D12A081FC500869258 /* RemoteAddAccount.swift in Sources */,
 				D4036B0A29EF31E900E53951 /* AddAccount.swift in Sources */,
 				D413C5C42A072A7A00869258 /* CallRaceRequest.swift in Sources */,
 				D4036AD429E1F04800E53951 /* SignUpViewController.swift in Sources */,
