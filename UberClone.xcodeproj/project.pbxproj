@@ -72,6 +72,7 @@
 		D413C5BB2A008F6F00869258 /* CallRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5BA2A008F6F00869258 /* CallRace.swift */; };
 		D413C5BF2A047C8500869258 /* RemoteCallRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5BE2A047C8500869258 /* RemoteCallRace.swift */; };
 		D413C5C22A06FE0F00869258 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */; };
+		D413C5C42A072A7A00869258 /* CallRaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C32A072A7A00869258 /* CallRaceRequest.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -160,6 +161,7 @@
 		D413C5BA2A008F6F00869258 /* CallRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRace.swift; sourceTree = "<group>"; };
 		D413C5BE2A047C8500869258 /* RemoteCallRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCallRace.swift; sourceTree = "<group>"; };
 		D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
+		D413C5C32A072A7A00869258 /* CallRaceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRaceRequest.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5A529FF2A6500869258 /* PassengerPresenter.swift */,
+				D413C5C32A072A7A00869258 /* CallRaceRequest.swift */,
 			);
 			path = Passenger;
 			sourceTree = "<group>";
@@ -909,6 +912,7 @@
 				D413C5AC29FF2C6500869258 /* LogoutAuth.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
 				D4036B0A29EF31E900E53951 /* AddAccount.swift in Sources */,
+				D413C5C42A072A7A00869258 /* CallRaceRequest.swift in Sources */,
 				D4036AD429E1F04800E53951 /* SignUpViewController.swift in Sources */,
 				D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */,
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,

@@ -36,7 +36,7 @@ public final class PassengerViewController: UIViewController {
     private let requestButton = PrimaryButton(title: "Chamar Uber", fontSize: 20, weight: .semibold)
     
     public var logout: (() -> Void)?
-    public var callRace: (() -> Void)?
+    public var callRace: ((CallRaceRequest) -> Void)?
     private var lastLocation: CLLocation?
     
     public override func viewDidLoad() {
@@ -60,7 +60,9 @@ public final class PassengerViewController: UIViewController {
     }
     
     @objc private func requestButtonTapped() {
-        self.callRace?()
+        guard let lastLocation = self.lastLocation else { return }
+        let model = CallRaceRequest(location: lastLocation)
+        self.callRace?(model)
     }
 }
 
