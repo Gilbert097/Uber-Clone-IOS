@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol GetCurrentUser {
+public protocol GetAuthUser {
     func get() -> AuthUserModel?
 }

@@ -17,7 +17,7 @@ public final class PassengerFactory {
                                            loadingView: viewController,
                                            callRace: decorator,
                                            logoutAuth: RemoteLogoutAuth(authLogoutClient: authAdapter),
-                                           getCurrentUser: RemoteGetCurrentUser(client: authAdapter))
+                                           getCurrentUser: RemoteGetAuthUser(client: authAdapter))
         
         let router = PassengerRouter(nav: nav)
         presenter.dismiss = router.dismiss
