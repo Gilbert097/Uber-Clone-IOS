@@ -45,4 +45,25 @@ public struct AddAccountModel: Model {
     public func toAuthenticationModel() -> AuthenticationModel {
         .init(email: email, password: password)
     }
+    
+    public func toAccountModel() -> AccountModel {
+        .init(name: name, email: email, type: type)
+    }
+}
+
+public struct AccountModel: Model {
+    
+    public var name: String
+    public var email: String
+    public var type: AccountType
+    
+    public init(
+        name: String,
+        email: String,
+        type: AccountType
+    ) {
+        self.name = name
+        self.email = email
+        self.type = type
+    }
 }
