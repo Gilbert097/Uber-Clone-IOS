@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol GetCurrentUser {
-    func get() -> UserModel?
+    func get() -> AuthUserModel?
 }

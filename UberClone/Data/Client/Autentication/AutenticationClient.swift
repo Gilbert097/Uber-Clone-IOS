@@ -7,7 +7,7 @@
 
 import Foundation
 
-public typealias AutenticationResult = Swift.Result<UserModel, AuthenticationError>
+public typealias AutenticationResult = Swift.Result<AuthUserModel, AuthenticationError>
 public protocol AutenticationClient {
     
     func auth(authenticationModel: AuthenticationModel,

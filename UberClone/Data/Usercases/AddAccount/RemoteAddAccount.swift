@@ -9,27 +9,25 @@ import Foundation
 
 public class RemoteAddAccount: AddAccount {
     
-    private let authClient: AuthCreateClient
-    private let setValueClient: DatabaseSetValueClient
+    private let createAuth: CreateAuth
+    private let addUser: AddUser
     
-    public init(authClient: AuthCreateClient, setValueClient: DatabaseSetValueClient) {
-        self.authClient = authClient
-        self.setValueClient = setValueClient
+    public init(createAuth: CreateAuth, addUser: AddUser) {
+        self.createAuth = createAuth
+        self.addUser = addUser
     }
     
     public func add(addAccountModel: AddAccountModel, completion: @escaping (AddAccount.Result) -> Void) {
         
-        self.authClient.create(authenticationModel: addAccountModel.toAuthenticationModel()) { [weak self] authResult in
+        self.createAuth.create(authenticationModel: addAccountModel.toAuthenticationModel()) { [weak self] authResult in
             guard let self = self else { return }
             switch authResult {
             case .success(let user):
-                let accountModel = addAccountModel.toAccountModel()
-                guard let data = accountModel.toData() else { return completion(.failure(.unexpected)) }
-                self.setValueClient.setValue(path: "users", id: user.uid, data: data) { setValueResult in
-                    switch setValueResult {
+                self.addUser.add(id: user.uid, addUserModel: addAccountModel.toAddUserModel()) { userResult in
+                    switch userResult {
                     case .success:
                         completion(.success(user))
-                    case .failure(_):
+                    case .failure:
                         completion(.failure(.unexpected))
                     }
                 }
