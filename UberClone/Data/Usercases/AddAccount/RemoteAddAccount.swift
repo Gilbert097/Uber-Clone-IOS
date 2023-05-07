@@ -23,7 +23,8 @@ public class RemoteAddAccount: AddAccount {
             guard let self = self else { return }
             switch authResult {
             case .success(let user):
-                guard let data = addAccountModel.toData() else { return completion(.failure(.unexpected)) }
+                let accountModel = addAccountModel.toAccountModel()
+                guard let data = accountModel.toData() else { return completion(.failure(.unexpected)) }
                 self.setValueClient.setValue(path: "users", id: user.uid, data: data) { setValueResult in
                     switch setValueResult {
                     case .success:
