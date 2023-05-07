@@ -12,14 +12,14 @@ public final class PassengerPresenter {
     private let loadingView: LoadingView
     private let callRace: CallRace
     private let logoutAuth: LogoutAuth
-    private let getCurrentUser: GetCurrentUser
+    private let getCurrentUser: GetAuthUser
     var dismiss: (() -> Void)!
     
     public init(alertView: AlertView,
                 loadingView: LoadingView,
                 callRace: CallRace,
                 logoutAuth: LogoutAuth,
-                getCurrentUser: GetCurrentUser) {
+                getCurrentUser: GetAuthUser) {
         self.alertView = alertView
         self.loadingView = loadingView
         self.callRace = callRace

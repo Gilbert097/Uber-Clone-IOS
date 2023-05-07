@@ -74,8 +74,8 @@
 		D413C5C22A06FE0F00869258 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */; };
 		D413C5C42A072A7A00869258 /* CallRaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C32A072A7A00869258 /* CallRaceRequest.swift */; };
 		D413C5C72A072EF500869258 /* AuthGetUserClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C62A072EF500869258 /* AuthGetUserClient.swift */; };
-		D413C5CA2A072F2C00869258 /* GetCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C92A072F2C00869258 /* GetCurrentUser.swift */; };
-		D413C5CD2A072F7200869258 /* RemoteGetCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5CC2A072F7200869258 /* RemoteGetCurrentUser.swift */; };
+		D413C5CA2A072F2C00869258 /* GetAuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5C92A072F2C00869258 /* GetAuthUser.swift */; };
+		D413C5CD2A072F7200869258 /* RemoteGetAuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5CC2A072F7200869258 /* RemoteGetAuthUser.swift */; };
 		D413C5D12A081FC500869258 /* RemoteAddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D02A081FC500869258 /* RemoteAddAccount.swift */; };
 		D413C5D42A08315100869258 /* AddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D32A08315100869258 /* AddUser.swift */; };
 		D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D82A08324F00869258 /* RemoteAddUser.swift */; };
@@ -169,8 +169,8 @@
 		D413C5C12A06FE0F00869258 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		D413C5C32A072A7A00869258 /* CallRaceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRaceRequest.swift; sourceTree = "<group>"; };
 		D413C5C62A072EF500869258 /* AuthGetUserClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGetUserClient.swift; sourceTree = "<group>"; };
-		D413C5C92A072F2C00869258 /* GetCurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUser.swift; sourceTree = "<group>"; };
-		D413C5CC2A072F7200869258 /* RemoteGetCurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetCurrentUser.swift; sourceTree = "<group>"; };
+		D413C5C92A072F2C00869258 /* GetAuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAuthUser.swift; sourceTree = "<group>"; };
+		D413C5CC2A072F7200869258 /* RemoteGetAuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetAuthUser.swift; sourceTree = "<group>"; };
 		D413C5D02A081FC500869258 /* RemoteAddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddAccount.swift; sourceTree = "<group>"; };
 		D413C5D32A08315100869258 /* AddUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
 		D413C5D82A08324F00869258 /* RemoteAddUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddUser.swift; sourceTree = "<group>"; };
@@ -651,6 +651,7 @@
 		D413C5B72A008F4100869258 /* Autentication */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5C92A072F2C00869258 /* GetAuthUser.swift */,
 				D413C58229F09A6E00869258 /* CreateAuth.swift */,
 				D413C59F29FF1BA100869258 /* GetStateAuth.swift */,
 				D413C5AB29FF2C6500869258 /* LogoutAuth.swift */,
@@ -670,6 +671,7 @@
 		D413C5BC2A047C6000869258 /* Autentication */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5CC2A072F7200869258 /* RemoteGetAuthUser.swift */,
 				D413C57E29F0956300869258 /* RemoteCreateAuth.swift */,
 				D413C58629F8931400869258 /* RemoteAutentication.swift */,
 				D413C59D29FF1B4B00869258 /* RemoteGetStateAuth.swift */,
@@ -713,7 +715,6 @@
 		D413C5D22A08313700869258 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				D413C5C92A072F2C00869258 /* GetCurrentUser.swift */,
 				D413C5D32A08315100869258 /* AddUser.swift */,
 			);
 			path = User;
@@ -722,7 +723,6 @@
 		D413C5D72A08322100869258 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				D413C5CC2A072F7200869258 /* RemoteGetCurrentUser.swift */,
 				D413C5D82A08324F00869258 /* RemoteAddUser.swift */,
 			);
 			path = User;
@@ -967,7 +967,7 @@
 				D413C5C42A072A7A00869258 /* CallRaceRequest.swift in Sources */,
 				D4036AD429E1F04800E53951 /* SignUpViewController.swift in Sources */,
 				D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */,
-				D413C5CA2A072F2C00869258 /* GetCurrentUser.swift in Sources */,
+				D413C5CA2A072F2C00869258 /* GetAuthUser.swift in Sources */,
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
 				D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
@@ -1004,7 +1004,7 @@
 				D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */,
 				D413C59829FF155900869258 /* PassengerFactory.swift in Sources */,
 				D413C57A29F0334B00869258 /* Data+.swift in Sources */,
-				D413C5CD2A072F7200869258 /* RemoteGetCurrentUser.swift in Sources */,
+				D413C5CD2A072F7200869258 /* RemoteGetAuthUser.swift in Sources */,
 				D413C59529FF146500869258 /* LoginRouter.swift in Sources */,
 				D413C58529F892CC00869258 /* Autentication.swift in Sources */,
 				D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */,
