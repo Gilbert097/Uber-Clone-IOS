@@ -15,6 +15,7 @@ public final class PassengerFactory {
         let authAdapter = FirebaseAuthAdapter()
         let presenter = PassengerPresenter(alertView: viewController,
                                            loadingView: viewController,
+                                           requestButtonStateview: viewController,
                                            callRace: decorator,
                                            logoutAuth: RemoteLogoutAuth(authLogoutClient: authAdapter),
                                            getCurrentUser: RemoteGetAuthUser(client: authAdapter))
