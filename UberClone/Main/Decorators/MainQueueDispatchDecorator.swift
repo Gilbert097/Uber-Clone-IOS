@@ -28,3 +28,12 @@ extension MainQueueDispatchDecorator: CallRace where T: CallRace {
         }
     }
 }
+
+extension MainQueueDispatchDecorator: CancelRace where T: CancelRace {
+    public func cancel(model: CancelRaceModel, completion: @escaping (Result<Void, Error>) -> Void) {
+        self.instance.cancel(model: model) { [weak self] result in
+            self?.dispatch { completion(result) }
+        }
+    }
+    
+}

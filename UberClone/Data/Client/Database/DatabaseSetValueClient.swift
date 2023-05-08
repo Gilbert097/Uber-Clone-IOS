@@ -12,3 +12,5 @@ public protocol DatabaseSetValueClient {
     func setValue(path: String, data: Data, completion: @escaping SetValueResult)
     func setValue(path: String, id: String, data: Data, completion: @escaping SetValueResult)
 }
+
+
