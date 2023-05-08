@@ -39,4 +39,13 @@ public class PrimaryButton: UIButton {
             self.configuration = config
         }
     }
+    
+    public func update(text: String, color: UIColor) {
+        var config = self.configuration
+        config!.background.backgroundColor = color
+        var container = AttributeContainer()
+        container.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
+        config!.attributedTitle = AttributedString(text, attributes: container)
+        self.configuration = config
+    }
 }

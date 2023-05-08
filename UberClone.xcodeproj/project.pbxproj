@@ -79,6 +79,7 @@
 		D413C5D12A081FC500869258 /* RemoteAddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D02A081FC500869258 /* RemoteAddAccount.swift */; };
 		D413C5D42A08315100869258 /* AddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D32A08315100869258 /* AddUser.swift */; };
 		D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D82A08324F00869258 /* RemoteAddUser.swift */; };
+		D413C5DB2A08688F00869258 /* RequestButtonStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5DA2A08688F00869258 /* RequestButtonStateView.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -174,6 +175,7 @@
 		D413C5D02A081FC500869258 /* RemoteAddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddAccount.swift; sourceTree = "<group>"; };
 		D413C5D32A08315100869258 /* AddUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
 		D413C5D82A08324F00869258 /* RemoteAddUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddUser.swift; sourceTree = "<group>"; };
+		D413C5DA2A08688F00869258 /* RequestButtonStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestButtonStateView.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 			children = (
 				D413C5A529FF2A6500869258 /* PassengerPresenter.swift */,
 				D413C5C32A072A7A00869258 /* CallRaceRequest.swift */,
+				D413C5DA2A08688F00869258 /* RequestButtonStateView.swift */,
 			);
 			path = Passenger;
 			sourceTree = "<group>";
@@ -992,6 +995,7 @@
 				D413C5A029FF1BA100869258 /* GetStateAuth.swift in Sources */,
 				D4036AD829E1F2E300E53951 /* TitleLabel.swift in Sources */,
 				D4036AE829E2FF7B00E53951 /* WelcomeFactory.swift in Sources */,
+				D413C5DB2A08688F00869258 /* RequestButtonStateView.swift in Sources */,
 				D413C5A329FF1D0300869258 /* WelcomePresenter.swift in Sources */,
 				D413C58329F09A6E00869258 /* CreateAuth.swift in Sources */,
 				D4036ADE29E1FF9400E53951 /* PrimaryButton.swift in Sources */,

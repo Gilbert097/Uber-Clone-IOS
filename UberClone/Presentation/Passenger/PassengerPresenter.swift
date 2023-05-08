@@ -10,21 +10,25 @@ import Foundation
 public final class PassengerPresenter {
     private let alertView: AlertView
     private let loadingView: LoadingView
+    private let requestButtonStateview: RequestButtonStateView
     private let callRace: CallRace
     private let logoutAuth: LogoutAuth
-    private let getCurrentUser: GetAuthUser
+    private let getAuthUser: GetAuthUser
+    private var isCalledRace = false
     var dismiss: (() -> Void)!
     
     public init(alertView: AlertView,
                 loadingView: LoadingView,
+                requestButtonStateview: RequestButtonStateView,
                 callRace: CallRace,
                 logoutAuth: LogoutAuth,
-                getCurrentUser: GetAuthUser) {
+                getAuthUser: GetAuthUser) {
         self.alertView = alertView
         self.loadingView = loadingView
         self.callRace = callRace
         self.logoutAuth = logoutAuth
-        self.getCurrentUser = getCurrentUser
+        self.getAuthUser = getAuthUser
+        self.requestButtonStateview = requestButtonStateview
     }
     
     public func logout() {
@@ -36,7 +40,16 @@ public final class PassengerPresenter {
     }
     
     public func callRaceAction(request: CallRaceRequest) {
-        guard let currentUser = self.getCurrentUser.get() else { return }
+        
+        if self.isCalledRace {
+            self.isCalledRace = false
+            self.requestButtonStateview.change(state: .call)
+        } else {
+            self.isCalledRace = true
+            self.requestButtonStateview.change(state: .cancel)
+        }
+        
+        /*guard let currentUser = self.getAuthUser.get() else { return }
         self.loadingView.display(viewModel: .init(isLoading: true))
         let model = CallRaceModel(email: currentUser.email,
                                   name: currentUser.name,
@@ -50,6 +63,6 @@ public final class PassengerPresenter {
             case .failure:
                 self?.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao realizar a requisição."))
             }
-        }
+        }*/
     }
 }

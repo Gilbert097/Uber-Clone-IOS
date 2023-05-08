@@ -161,3 +161,15 @@ extension PassengerViewController: AlertView {
         present(alert, animated: true)
     }
 }
+
+// MARK: - RequestButtonStateView
+extension PassengerViewController: RequestButtonStateView {
+    public func change(state: RequestButtonState) {
+        switch state {
+        case .call:
+            self.requestButton.update(text: "Chamar Uber", color: Color.primary)
+        case .cancel:
+            self.requestButton.update(text: "Cancelar", color: .red)
+        }
+    }
+}
