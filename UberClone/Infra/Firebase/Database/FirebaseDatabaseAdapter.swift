@@ -10,6 +10,7 @@ import FirebaseDatabase
 
 public final class FirebaseDatabaseAdapter { }
 
+// MARK: - DatabaseSetValueClient
 extension FirebaseDatabaseAdapter: DatabaseSetValueClient {
     
     public func setValue(path: String, data: Data, completion: @escaping SetValueResult) {
@@ -28,5 +29,23 @@ extension FirebaseDatabaseAdapter: DatabaseSetValueClient {
             guard error == nil else { return completion(.failure(error!)) }
             completion(.success(()))
         }
+    }
+}
+
+// MARK: - DatabaseDeleteValueClient
+extension FirebaseDatabaseAdapter: DatabaseDeleteValueClient {
+    public func delete(path: String, field: String, value: String, completion: @escaping DeleteValueResult) {
+        let database = Database.database().reference()
+        let requests = database.child(path)
+        
+        requests
+            .queryOrdered(byChild: field)
+            .queryEqual(toValue: value)
+            .observeSingleEvent(of: .childAdded) { snapshot in
+                snapshot.ref.removeValue { error, _  in
+                    guard error == nil else { return completion(.failure(error!)) }
+                    completion(.success(()))
+                }
+            }
     }
 }

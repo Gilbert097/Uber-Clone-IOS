@@ -80,6 +80,9 @@
 		D413C5D42A08315100869258 /* AddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D32A08315100869258 /* AddUser.swift */; };
 		D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5D82A08324F00869258 /* RemoteAddUser.swift */; };
 		D413C5DB2A08688F00869258 /* RequestButtonStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5DA2A08688F00869258 /* RequestButtonStateView.swift */; };
+		D413C5DE2A09B4E400869258 /* CancelRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5DD2A09B4E400869258 /* CancelRace.swift */; };
+		D413C5E02A09B52A00869258 /* RemoteCancelRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */; };
+		D413C5E22A09B59400869258 /* DatabaseDeleteValueClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E12A09B59400869258 /* DatabaseDeleteValueClient.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -176,6 +179,9 @@
 		D413C5D32A08315100869258 /* AddUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
 		D413C5D82A08324F00869258 /* RemoteAddUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddUser.swift; sourceTree = "<group>"; };
 		D413C5DA2A08688F00869258 /* RequestButtonStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestButtonStateView.swift; sourceTree = "<group>"; };
+		D413C5DD2A09B4E400869258 /* CancelRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelRace.swift; sourceTree = "<group>"; };
+		D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteCancelRace.swift; sourceTree = "<group>"; };
+		D413C5E12A09B59400869258 /* DatabaseDeleteValueClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDeleteValueClient.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -437,6 +443,7 @@
 		D4036B0829EF31DC00E53951 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5DC2A09B4CB00869258 /* CancelRace */,
 				D413C5D22A08313700869258 /* User */,
 				D413C5CE2A081F1A00869258 /* AddAccount */,
 				D413C5B82A008F4C00869258 /* CallRace */,
@@ -639,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5B42A008F0900869258 /* DatabaseSetValueClient.swift */,
+				D413C5E12A09B59400869258 /* DatabaseDeleteValueClient.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -687,6 +695,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5BE2A047C8500869258 /* RemoteCallRace.swift */,
+				D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */,
 			);
 			path = Passenger;
 			sourceTree = "<group>";
@@ -729,6 +738,14 @@
 				D413C5D82A08324F00869258 /* RemoteAddUser.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		D413C5DC2A09B4CB00869258 /* CancelRace */ = {
+			isa = PBXGroup;
+			children = (
+				D413C5DD2A09B4E400869258 /* CancelRace.swift */,
+			);
+			path = CancelRace;
 			sourceTree = "<group>";
 		};
 		D415F98F29DF6D9A000689FF = {
@@ -987,6 +1004,7 @@
 				D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */,
 				D413C57229F02EA700869258 /* AuthenticationError.swift in Sources */,
 				D4036B0029EF2EDC00E53951 /* Model.swift in Sources */,
+				D413C5E22A09B59400869258 /* DatabaseDeleteValueClient.swift in Sources */,
 				D413C5A829FF2B5600869258 /* AuthLogoutClient.swift in Sources */,
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
 				D413C59C29FF1A2E00869258 /* SignUpRouter.swift in Sources */,
@@ -1012,11 +1030,13 @@
 				D413C59529FF146500869258 /* LoginRouter.swift in Sources */,
 				D413C58529F892CC00869258 /* Autentication.swift in Sources */,
 				D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */,
+				D413C5E02A09B52A00869258 /* RemoteCancelRace.swift in Sources */,
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
 				D413C58C29F8979E00869258 /* LoginResquest.swift in Sources */,
 				D413C58E29F8A4E300869258 /* AuthCreateClient.swift in Sources */,
 				D413C5A629FF2A6500869258 /* PassengerPresenter.swift in Sources */,
 				D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */,
+				D413C5DE2A09B4E400869258 /* CancelRace.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 				D413C56D29F0235300869258 /* DomainError.swift in Sources */,
 				D4036B1329EF3B5C00E53951 /* ScreenLoadingView.swift in Sources */,
