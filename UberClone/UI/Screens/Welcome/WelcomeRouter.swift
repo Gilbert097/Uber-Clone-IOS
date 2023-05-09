@@ -12,13 +12,13 @@ public final class WelcomeRouter {
     private let nav: NavigationController
     private let loginFactory: (NavigationController) -> LoginViewController
     private let signUpFactory: (NavigationController) -> SignUpViewController
-    private let passengerFactory: (NavigationController) -> PassengerViewController
+    private let passengerFactory: (NavigationController) -> PassengerMapViewController
    
     public init(
         nav: NavigationController,
         loginFactory: @escaping (NavigationController) -> LoginViewController,
         signUpFactory: @escaping (NavigationController) -> SignUpViewController,
-        passengerFactory: @escaping (NavigationController) -> PassengerViewController
+        passengerFactory: @escaping (NavigationController) -> PassengerMapViewController
     ) {
         self.nav = nav
         self.loginFactory = loginFactory
