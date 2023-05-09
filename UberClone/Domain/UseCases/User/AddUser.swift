@@ -29,6 +29,8 @@ public class AddUserModel: Model {
     }
     
     public static func == (lhs: AddUserModel, rhs: AddUserModel) -> Bool {
-        false
+        lhs.name == rhs.name &&
+        lhs.email == rhs.email &&
+        lhs.type == rhs.type
     }
 }

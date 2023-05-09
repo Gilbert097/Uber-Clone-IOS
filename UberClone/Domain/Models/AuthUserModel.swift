@@ -9,9 +9,9 @@ import Foundation
 
 public struct AuthUserModel: Model {
     
-    public var uid: String
-    public var email: String
-    public var name: String
+    public let uid: String
+    public let email: String
+    public let name: String
     
     public init(uid: String, email: String, name: String) {
         self.uid = uid
