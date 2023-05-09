@@ -14,15 +14,15 @@ public final class PassengerFactory {
         let databaseAdapter = FirebaseDatabaseAdapter()
         let authAdapter = FirebaseAuthAdapter()
         
-        let callRace = MainQueueDispatchDecorator(RemoteCallRace(databaseSetValueClient: databaseAdapter))
-        let cancelRace = MainQueueDispatchDecorator(RemoteCancelRace(deleteClient: databaseAdapter))
+        let getUser = RemoteGetAuthUser(client: authAdapter)
+        let callRace = MainQueueDispatchDecorator(RemoteCallRace(getAuthUser: getUser, databaseSetValueClient: databaseAdapter))
+        let cancelRace = MainQueueDispatchDecorator(RemoteCancelRace(getAuthUser: getUser, deleteClient: databaseAdapter))
         
         let presenter = PassengerMapPresenter(alertView: viewController,
                                            loadingView: viewController,
                                            requestButtonStateview: viewController,
                                            callRace: callRace,
                                            logoutAuth: RemoteLogoutAuth(authLogoutClient: authAdapter),
-                                           getAuthUser: RemoteGetAuthUser(client: authAdapter),
                                            cancelRace: cancelRace)
         
         let router = PassengerRouter(nav: nav)

@@ -22,16 +22,16 @@ public final class MainQueueDispatchDecorator<T> {
 }
 
 extension MainQueueDispatchDecorator: CallRace where T: CallRace {
-    public func request(model: CallRaceModel, completion: @escaping (Result<Void, Error>) -> Void) {
-        self.instance.request(model: model) { [weak self] result in
+    public func request(request: CallRaceRequest, completion: @escaping (Result<Void, Error>) -> Void) {
+        self.instance.request(request: request) { [weak self] result in
             self?.dispatch { completion(result) }
         }
     }
 }
 
 extension MainQueueDispatchDecorator: CancelRace where T: CancelRace {
-    public func cancel(model: CancelRaceModel, completion: @escaping (Result<Void, Error>) -> Void) {
-        self.instance.cancel(model: model) { [weak self] result in
+    public func cancel(completion: @escaping (Result<Void, Error>) -> Void) {
+        self.instance.cancel() { [weak self] result in
             self?.dispatch { completion(result) }
         }
     }
