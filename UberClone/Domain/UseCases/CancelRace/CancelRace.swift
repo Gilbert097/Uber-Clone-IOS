@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol CancelRace {
-    func cancel(model: CancelRaceModel, completion: @escaping (Swift.Result<Void, Error>) -> Void)
+    func cancel(completion: @escaping (Swift.Result<Void, Error>) -> Void)
 }
 
 public class CancelRaceModel: Model {

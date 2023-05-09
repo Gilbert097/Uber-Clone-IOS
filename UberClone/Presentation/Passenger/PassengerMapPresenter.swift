@@ -13,7 +13,6 @@ public final class PassengerMapPresenter {
     private let requestButtonStateview: RequestButtonStateView
     private let callRace: CallRace
     private let logoutAuth: LogoutAuth
-    private let getAuthUser: GetAuthUser
     private let cancelRace: CancelRace
     private var isCalledRace = false
     var dismiss: (() -> Void)!
@@ -23,13 +22,11 @@ public final class PassengerMapPresenter {
                 requestButtonStateview: RequestButtonStateView,
                 callRace: CallRace,
                 logoutAuth: LogoutAuth,
-                getAuthUser: GetAuthUser,
                 cancelRace: CancelRace) {
         self.alertView = alertView
         self.loadingView = loadingView
         self.callRace = callRace
         self.logoutAuth = logoutAuth
-        self.getAuthUser = getAuthUser
         self.cancelRace = cancelRace
         self.requestButtonStateview = requestButtonStateview
     }
@@ -51,13 +48,8 @@ public final class PassengerMapPresenter {
     }
     
     private func requestCallRace(_ request: CallRaceRequest) {
-        guard let currentUser = self.getAuthUser.get() else { return }
         self.loadingView.display(viewModel: .init(isLoading: true))
-        let model = CallRaceModel(email: currentUser.email,
-                                  name: currentUser.name,
-                                  latitude: String(request.latitude),
-                                  longitude: String(request.longitude))
-        self.callRace.request(model: model) { [weak self] result in
+        self.callRace.request(request: request) { [weak self] result in
             self?.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success:
@@ -70,9 +62,8 @@ public final class PassengerMapPresenter {
     }
     
     private func requestCancelRace() {
-        guard let currentUser = self.getAuthUser.get() else { return }
         self.loadingView.display(viewModel: .init(isLoading: true))
-        self.cancelRace.cancel(model: .init(email: currentUser.email)) { [weak self] cancelResult in
+        self.cancelRace.cancel() { [weak self] cancelResult in
             self?.loadingView.display(viewModel: .init(isLoading: false))
             switch cancelResult {
             case .success:
