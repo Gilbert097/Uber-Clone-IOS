@@ -14,10 +14,15 @@ public final class WelcomeFactory {
             nav: nav,
             loginFactory: LoginFactory.build,
             signUpFactory: SignUpFactory.build,
-            passengerFactory: PassengerMapFactory.build
+            passengerMapFactory: PassengerMapFactory.build,
+            driverListFactory: DriverListFactory.build
         )
-        let presenter = WelcomePresenter(getStateAuth: RemoteGetStateAuth(authGetStateClient: FirebaseAuthAdapter()))
-        presenter.goToPassenger = router.goToPassenger
+        
+        let authAdapter = FirebaseAuthAdapter()
+        let databaseAdapter = FirebaseDatabaseAdapter()
+        let presenter = WelcomePresenter(getStateAuth: RemoteGetStateAuth(authGetStateClient: authAdapter),
+                                         getCurrentUser: RemoteGetCurrentUser(authGet: authAdapter, databaseGet: databaseAdapter))
+        presenter.goToMain = router.goToMain
         let viewController = WelcomeViewController()
         viewController.load = presenter.load
         viewController.login = router.goToLogin

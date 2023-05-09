@@ -12,18 +12,21 @@ public final class WelcomeRouter {
     private let nav: NavigationController
     private let loginFactory: (NavigationController) -> LoginViewController
     private let signUpFactory: (NavigationController) -> SignUpViewController
-    private let passengerFactory: (NavigationController) -> PassengerMapViewController
+    private let passengerMapFactory: (NavigationController) -> PassengerMapViewController
+    private let driverListFactory: (NavigationController) -> DriverListViewController
    
     public init(
         nav: NavigationController,
         loginFactory: @escaping (NavigationController) -> LoginViewController,
         signUpFactory: @escaping (NavigationController) -> SignUpViewController,
-        passengerFactory: @escaping (NavigationController) -> PassengerMapViewController
+        passengerMapFactory: @escaping (NavigationController) -> PassengerMapViewController,
+        driverListFactory: @escaping (NavigationController) -> DriverListViewController
     ) {
         self.nav = nav
         self.loginFactory = loginFactory
         self.signUpFactory = signUpFactory
-        self.passengerFactory = passengerFactory
+        self.passengerMapFactory = passengerMapFactory
+        self.driverListFactory = driverListFactory
     }
    
     public func goToLogin() {
@@ -34,7 +37,12 @@ public final class WelcomeRouter {
         nav.pushViewController(signUpFactory(nav))
     }
     
-    public func goToPassenger() {
-        nav.pushViewController(passengerFactory(nav))
+    public func goToMain(type: AccountType) {
+        switch type {
+        case .passenger:
+            nav.pushViewController(passengerMapFactory(self.nav))
+        case .driver:
+            nav.pushViewController(driverListFactory(self.nav))
+        }
     }
 }
