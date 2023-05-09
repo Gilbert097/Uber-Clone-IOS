@@ -10,18 +10,26 @@ import Foundation
 public final class SignUpRouter {
     
     private let nav: NavigationController
-    private let passengerFactory: (NavigationController) -> PassengerMapViewController
+    private let passengerMapFactory: (NavigationController) -> PassengerMapViewController
+    private let driverListFactory: (NavigationController) -> DriverListViewController
    
     public init(
         nav: NavigationController,
-        passengerFactory: @escaping (NavigationController) -> PassengerMapViewController
+        passengerMapFactory: @escaping (NavigationController) -> PassengerMapViewController,
+        driverListFactory: @escaping (NavigationController) -> DriverListViewController
     ) {
         self.nav = nav
-        self.passengerFactory = passengerFactory
+        self.passengerMapFactory = passengerMapFactory
+        self.driverListFactory = driverListFactory
     }
    
-    public func goToPassenger() {
-        nav.pushViewController(passengerFactory(self.nav))
+    public func goToMain(type: AccountType) {
+        switch type {
+        case .passenger:
+            nav.pushViewController(passengerMapFactory(self.nav))
+        case .driver:
+            nav.pushViewController(driverListFactory(self.nav))
+        }
     }
     
 }

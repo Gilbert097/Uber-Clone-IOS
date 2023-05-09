@@ -13,7 +13,7 @@ public final class SignUpPresenter {
     private let loadingView: LoadingView
     private let alertView: AlertView
     private let addAccount: AddAccount
-    public var goToPassenger: (() -> Void)!
+    public var goToMain: ((AccountType) -> Void)!
     
     public init(validation: Validation,
                 loadingView: LoadingView,
@@ -31,12 +31,12 @@ public final class SignUpPresenter {
             self.alertView.showMessage(viewModel: .init(title: "Erro", message: messageError))
         } else {
             self.loadingView.display(viewModel: .init(isLoading: true))
-            
-            self.addAccount.add(addAccountModel: request.toAddAccountModel()) { [weak self] addAccountResult in
+            let model = request.toAddAccountModel()
+            self.addAccount.add(addAccountModel: model) { [weak self] addAccountResult in
                 self?.loadingView.display(viewModel: .init(isLoading: false))
                 switch addAccountResult {
                 case .success:
-                    self?.goToPassenger()
+                    self?.goToMain(model.type)
                 case .failure:
                     print("Error")
                 }
