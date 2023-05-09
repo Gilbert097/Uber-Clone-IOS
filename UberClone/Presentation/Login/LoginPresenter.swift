@@ -34,12 +34,21 @@ public final class LoginPresenter {
             self.autentication.auth(authenticationModel: request.toAuthenticationModel()) { [weak self] authResult in
                 self?.loadingView.display(viewModel: .init(isLoading: false))
                 switch authResult {
-                case .success:
-                    self?.goToMain()
+                case .success(let userModel):
+                    self?.goToByUserType(type: userModel.type)
                 case .failure:
                     print("Error")
                 }
             }
+        }
+    }
+    
+    private func goToByUserType(type: AccountType) {
+        switch type {
+        case .passenger:
+            self.goToMain()
+        case .driver:
+            print("Logou como motorista.")
         }
     }
 }
