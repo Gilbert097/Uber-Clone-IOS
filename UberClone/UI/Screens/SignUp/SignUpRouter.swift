@@ -10,11 +10,11 @@ import Foundation
 public final class SignUpRouter {
     
     private let nav: NavigationController
-    private let passengerFactory: (NavigationController) -> PassengerViewController
+    private let passengerFactory: (NavigationController) -> PassengerMapViewController
    
     public init(
         nav: NavigationController,
-        passengerFactory: @escaping (NavigationController) -> PassengerViewController
+        passengerFactory: @escaping (NavigationController) -> PassengerMapViewController
     ) {
         self.nav = nav
         self.passengerFactory = passengerFactory

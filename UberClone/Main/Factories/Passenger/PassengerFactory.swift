@@ -9,15 +9,15 @@ import Foundation
 
 public final class PassengerFactory {
     
-    public static func build(nav: NavigationController) -> PassengerViewController {
-        let viewController = PassengerViewController()
+    public static func build(nav: NavigationController) -> PassengerMapViewController {
+        let viewController = PassengerMapViewController()
         let databaseAdapter = FirebaseDatabaseAdapter()
         let authAdapter = FirebaseAuthAdapter()
         
         let callRace = MainQueueDispatchDecorator(RemoteCallRace(databaseSetValueClient: databaseAdapter))
         let cancelRace = MainQueueDispatchDecorator(RemoteCancelRace(deleteClient: databaseAdapter))
         
-        let presenter = PassengerPresenter(alertView: viewController,
+        let presenter = PassengerMapPresenter(alertView: viewController,
                                            loadingView: viewController,
                                            requestButtonStateview: viewController,
                                            callRace: callRace,

@@ -1,5 +1,5 @@
 //
-//  PassengerPresenter.swift
+//  PassengerMapPresenter.swift
 //  UberClone
 //
 //  Created by Gilberto Silva on 30/04/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class PassengerPresenter {
+public final class PassengerMapPresenter {
     private let alertView: AlertView
     private let loadingView: LoadingView
     private let requestButtonStateview: RequestButtonStateView
