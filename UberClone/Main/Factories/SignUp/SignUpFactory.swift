@@ -10,7 +10,9 @@ import Foundation
 public final class SignUpFactory {
     
     public static func build(nav: NavigationController) -> SignUpViewController {
-        let router = SignUpRouter(nav: nav, passengerFactory: PassengerMapFactory.build)
+        let router = SignUpRouter(nav: nav,
+                                  passengerMapFactory: PassengerMapFactory.build,
+                                  driverListFactory: DriverListFactory.build)
         let validations = makeSignUpValidations()
         let viewController = SignUpViewController()
         let createAuth = RemoteCreateAuth(authCreateClient: FirebaseAuthAdapter())
@@ -21,7 +23,7 @@ public final class SignUpFactory {
             alertView: WeakVarProxy(viewController),
             addAccount: RemoteAddAccount(createAuth: createAuth, addUser: addUser)
         )
-        presenter.goToPassenger = router.goToPassenger
+        presenter.goToMain = router.goToMain
         viewController.signUp = presenter.signUp
         return viewController
     }
