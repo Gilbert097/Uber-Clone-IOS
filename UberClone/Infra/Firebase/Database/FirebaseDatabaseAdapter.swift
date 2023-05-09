@@ -49,3 +49,31 @@ extension FirebaseDatabaseAdapter: DatabaseDeleteValueClient {
             }
     }
 }
+
+// MARK: - DatabaseGetValueClient
+extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
+    
+    public func getValue(path: String, id: String, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
+        let database = Database.database().reference()
+        database
+            .child(path)
+            .child(id)
+            .observeSingleEvent(of: .value) { snapshot in
+                do {
+                    guard let dictionary = snapshot.value as? NSDictionary else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
+                    let data: Data = try NSKeyedArchiver.archivedData(withRootObject: dictionary, requiringSecureCoding: true)
+                    completion(.success(data))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+    }
+}
+
+public protocol DatabaseGetValueClient {
+    func getValue(path: String, id: String, completion: @escaping (Swift.Result<Data, Error>) -> Void)
+}
+
+public enum FirebaseDatabaseError: Error {
+    case valueNotFound
+}
