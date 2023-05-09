@@ -10,7 +10,7 @@ import Foundation
 public final class SignUpFactory {
     
     public static func build(nav: NavigationController) -> SignUpViewController {
-        let router = SignUpRouter(nav: nav, passengerFactory: PassengerFactory.build)
+        let router = SignUpRouter(nav: nav, passengerFactory: PassengerMapFactory.build)
         let validations = makeSignUpValidations()
         let viewController = SignUpViewController()
         let createAuth = RemoteCreateAuth(authCreateClient: FirebaseAuthAdapter())

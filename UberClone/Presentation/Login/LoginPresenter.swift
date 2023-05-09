@@ -13,7 +13,7 @@ public final class LoginPresenter {
     private let loadingView: LoadingView
     private let alertView: AlertView
     private let autentication: Autentication
-    public var goToMain: (() -> Void)!
+    public var goToMain: ((AccountType) -> Void)!
     
     public init(validation: Validation,
                 loadingView: LoadingView,
@@ -35,20 +35,11 @@ public final class LoginPresenter {
                 self?.loadingView.display(viewModel: .init(isLoading: false))
                 switch authResult {
                 case .success(let userModel):
-                    self?.goToByUserType(type: userModel.type)
+                    self?.goToMain(userModel.type)
                 case .failure:
                     print("Error")
                 }
             }
-        }
-    }
-    
-    private func goToByUserType(type: AccountType) {
-        switch type {
-        case .passenger:
-            self.goToMain()
-        case .driver:
-            print("Logou como motorista.")
         }
     }
 }
