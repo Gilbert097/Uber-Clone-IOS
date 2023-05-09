@@ -14,7 +14,7 @@ public final class WelcomeFactory {
             nav: nav,
             loginFactory: LoginFactory.build,
             signUpFactory: SignUpFactory.build,
-            passengerFactory: PassengerFactory.build
+            passengerFactory: PassengerMapFactory.build
         )
         let presenter = WelcomePresenter(getStateAuth: RemoteGetStateAuth(authGetStateClient: FirebaseAuthAdapter()))
         presenter.goToPassenger = router.goToPassenger

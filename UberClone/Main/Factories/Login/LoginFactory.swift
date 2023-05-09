@@ -10,7 +10,9 @@ import Foundation
 public final class LoginFactory {
     
     static func build(nav: NavigationController) -> LoginViewController {
-        let router = LoginRouter(nav: nav, passengerFactory: PassengerFactory.build)
+        let router = LoginRouter(nav: nav,
+                                 passengerMapFactory: PassengerMapFactory.build,
+                                 driverListFactory: DriverListFactory.build)
         let controller = LoginViewController()
         let authAdapter = FirebaseAuthAdapter()
         let databaseAdapter = FirebaseDatabaseAdapter()
@@ -21,7 +23,7 @@ public final class LoginFactory {
             alertView: WeakVarProxy(controller),
             autentication: RemoteAutentication(autentication: authAdapter,
                                                getCurrentUser: getCurrentUser))
-        presenter.goToMain = router.goToPassenger
+        presenter.goToMain = router.goToMain
         controller.login = presenter.login
         return controller
     }

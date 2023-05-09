@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class PassengerFactory {
+public final class PassengerMapFactory {
     
     public static func build(nav: NavigationController) -> PassengerMapViewController {
         let viewController = PassengerMapViewController()
