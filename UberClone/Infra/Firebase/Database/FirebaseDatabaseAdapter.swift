@@ -59,13 +59,8 @@ extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
             .child(path)
             .child(id)
             .observeSingleEvent(of: .value) { snapshot in
-                do {
-                    guard let dictionary = snapshot.value as? NSDictionary else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
-                    let data: Data = try NSKeyedArchiver.archivedData(withRootObject: dictionary, requiringSecureCoding: true)
-                    completion(.success(data))
-                } catch {
-                    completion(.failure(error))
-                }
+                guard let data = snapshot.data else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
+                completion(.success(data))
             }
     }
 }

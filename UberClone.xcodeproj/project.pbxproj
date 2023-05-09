@@ -87,6 +87,7 @@
 		D413C5E62A09C97C00869258 /* GetCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E52A09C97C00869258 /* GetCurrentUser.swift */; };
 		D413C5E82A09CB6100869258 /* DatabaseGetValueClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E72A09CB6100869258 /* DatabaseGetValueClient.swift */; };
 		D413C5EA2A09CB7400869258 /* FirebaseDatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E92A09CB7400869258 /* FirebaseDatabaseError.swift */; };
+		D413C5ED2A0AF29800869258 /* DataSnapshot+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5EC2A0AF29800869258 /* DataSnapshot+.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -190,6 +191,7 @@
 		D413C5E52A09C97C00869258 /* GetCurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrentUser.swift; sourceTree = "<group>"; };
 		D413C5E72A09CB6100869258 /* DatabaseGetValueClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseGetValueClient.swift; sourceTree = "<group>"; };
 		D413C5E92A09CB7400869258 /* FirebaseDatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseError.swift; sourceTree = "<group>"; };
+		D413C5EC2A0AF29800869258 /* DataSnapshot+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSnapshot+.swift"; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 		D413C57329F02EB400869258 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5EB2A0AF28B00869258 /* Helpers */,
 				D413C5B62A008F1A00869258 /* Database */,
 				D413C57729F0330700869258 /* Authentication */,
 			);
@@ -758,6 +761,14 @@
 				D413C5DD2A09B4E400869258 /* CancelRace.swift */,
 			);
 			path = CancelRace;
+			sourceTree = "<group>";
+		};
+		D413C5EB2A0AF28B00869258 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D413C5EC2A0AF29800869258 /* DataSnapshot+.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D415F98F29DF6D9A000689FF = {
@@ -1002,6 +1013,7 @@
 				D4036AC229DF75B000E53951 /* ViewCode.swift in Sources */,
 				D413C5CA2A072F2C00869258 /* GetAuthUser.swift in Sources */,
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
+				D413C5ED2A0AF29800869258 /* DataSnapshot+.swift in Sources */,
 				D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
 				D4036AEA29E3016800E53951 /* WelcomeRouter.swift in Sources */,
