@@ -83,6 +83,10 @@
 		D413C5DE2A09B4E400869258 /* CancelRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5DD2A09B4E400869258 /* CancelRace.swift */; };
 		D413C5E02A09B52A00869258 /* RemoteCancelRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */; };
 		D413C5E22A09B59400869258 /* DatabaseDeleteValueClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E12A09B59400869258 /* DatabaseDeleteValueClient.swift */; };
+		D413C5E42A09C8F100869258 /* RemoteGetCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E32A09C8F100869258 /* RemoteGetCurrentUser.swift */; };
+		D413C5E62A09C97C00869258 /* GetCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E52A09C97C00869258 /* GetCurrentUser.swift */; };
+		D413C5E82A09CB6100869258 /* DatabaseGetValueClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E72A09CB6100869258 /* DatabaseGetValueClient.swift */; };
+		D413C5EA2A09CB7400869258 /* FirebaseDatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5E92A09CB7400869258 /* FirebaseDatabaseError.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -182,6 +186,10 @@
 		D413C5DD2A09B4E400869258 /* CancelRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelRace.swift; sourceTree = "<group>"; };
 		D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteCancelRace.swift; sourceTree = "<group>"; };
 		D413C5E12A09B59400869258 /* DatabaseDeleteValueClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDeleteValueClient.swift; sourceTree = "<group>"; };
+		D413C5E32A09C8F100869258 /* RemoteGetCurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetCurrentUser.swift; sourceTree = "<group>"; };
+		D413C5E52A09C97C00869258 /* GetCurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrentUser.swift; sourceTree = "<group>"; };
+		D413C5E72A09CB6100869258 /* DatabaseGetValueClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseGetValueClient.swift; sourceTree = "<group>"; };
+		D413C5E92A09CB7400869258 /* FirebaseDatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseError.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -647,6 +655,8 @@
 			children = (
 				D413C5B42A008F0900869258 /* DatabaseSetValueClient.swift */,
 				D413C5E12A09B59400869258 /* DatabaseDeleteValueClient.swift */,
+				D413C5E72A09CB6100869258 /* DatabaseGetValueClient.swift */,
+				D413C5E92A09CB7400869258 /* FirebaseDatabaseError.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -728,6 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5D32A08315100869258 /* AddUser.swift */,
+				D413C5E52A09C97C00869258 /* GetCurrentUser.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -736,6 +747,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5D82A08324F00869258 /* RemoteAddUser.swift */,
+				D413C5E32A09C8F100869258 /* RemoteGetCurrentUser.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -977,6 +989,7 @@
 				D413C59029FF12A900869258 /* AuthGetStateClient.swift in Sources */,
 				D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */,
 				D4036ADA29E1F55100E53951 /* PrimaryInputTextField.swift in Sources */,
+				D413C5E62A09C97C00869258 /* GetCurrentUser.swift in Sources */,
 				D4036B1529EF463C00E53951 /* AlertView.swift in Sources */,
 				D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */,
 				D413C59329FF141600869258 /* PassengerViewController.swift in Sources */,
@@ -999,6 +1012,7 @@
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
 				D413C58729F8931400869258 /* RemoteAutentication.swift in Sources */,
 				D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */,
+				D413C5EA2A09CB7400869258 /* FirebaseDatabaseError.swift in Sources */,
 				D413C5BF2A047C8500869258 /* RemoteCallRace.swift in Sources */,
 				D413C56A29F01FFC00869258 /* AuthUserModel.swift in Sources */,
 				D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */,
@@ -1032,11 +1046,13 @@
 				D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */,
 				D413C5E02A09B52A00869258 /* RemoteCancelRace.swift in Sources */,
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
+				D413C5E42A09C8F100869258 /* RemoteGetCurrentUser.swift in Sources */,
 				D413C58C29F8979E00869258 /* LoginResquest.swift in Sources */,
 				D413C58E29F8A4E300869258 /* AuthCreateClient.swift in Sources */,
 				D413C5A629FF2A6500869258 /* PassengerPresenter.swift in Sources */,
 				D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */,
 				D413C5DE2A09B4E400869258 /* CancelRace.swift in Sources */,
+				D413C5E82A09CB6100869258 /* DatabaseGetValueClient.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 				D413C56D29F0235300869258 /* DomainError.swift in Sources */,
 				D4036B1329EF3B5C00E53951 /* ScreenLoadingView.swift in Sources */,

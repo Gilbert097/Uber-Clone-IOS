@@ -69,11 +69,3 @@ extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
             }
     }
 }
-
-public protocol DatabaseGetValueClient {
-    func getValue(path: String, id: String, completion: @escaping (Swift.Result<Data, Error>) -> Void)
-}
-
-public enum FirebaseDatabaseError: Error {
-    case valueNotFound
-}
