@@ -90,6 +90,10 @@
 		D413C5ED2A0AF29800869258 /* DataSnapshot+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5EC2A0AF29800869258 /* DataSnapshot+.swift */; };
 		D413C5F02A0B011D00869258 /* DriverListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5EF2A0B011D00869258 /* DriverListViewController.swift */; };
 		D413C5F32A0B015A00869258 /* DriverListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5F22A0B015A00869258 /* DriverListFactory.swift */; };
+		D413C5F52A0C579100869258 /* DatabaseOberveAddValueClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5F42A0C579100869258 /* DatabaseOberveAddValueClient.swift */; };
+		D413C5F82A0C595F00869258 /* GetRaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5F72A0C595F00869258 /* GetRaces.swift */; };
+		D413C5FA2A0C5A1900869258 /* RemoteGetRaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */; };
+		D413C5FD2A0C5E3800869258 /* DriverListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5FC2A0C5E3800869258 /* DriverListPresenter.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -196,6 +200,10 @@
 		D413C5EC2A0AF29800869258 /* DataSnapshot+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSnapshot+.swift"; sourceTree = "<group>"; };
 		D413C5EF2A0B011D00869258 /* DriverListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverListViewController.swift; sourceTree = "<group>"; };
 		D413C5F22A0B015A00869258 /* DriverListFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverListFactory.swift; sourceTree = "<group>"; };
+		D413C5F42A0C579100869258 /* DatabaseOberveAddValueClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOberveAddValueClient.swift; sourceTree = "<group>"; };
+		D413C5F72A0C595F00869258 /* GetRaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRaces.swift; sourceTree = "<group>"; };
+		D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteGetRaces.swift; sourceTree = "<group>"; };
+		D413C5FC2A0C5E3800869258 /* DriverListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverListPresenter.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -387,6 +395,7 @@
 				D413C58829F8976900869258 /* Login */,
 				D4036AF429E35E5C00E53951 /* SignUp */,
 				D413C5A429FF2A4C00869258 /* Passenger */,
+				D413C5FB2A0C5E2600869258 /* Driver */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -459,10 +468,9 @@
 		D4036B0829EF31DC00E53951 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				D413C5DC2A09B4CB00869258 /* CancelRace */,
+				D413C5DC2A09B4CB00869258 /* Race */,
 				D413C5D22A08313700869258 /* User */,
 				D413C5CE2A081F1A00869258 /* AddAccount */,
-				D413C5B82A008F4C00869258 /* CallRace */,
 				D413C5B72A008F4100869258 /* Autentication */,
 			);
 			path = UseCases;
@@ -596,7 +604,7 @@
 			children = (
 				D413C5D72A08322100869258 /* User */,
 				D413C5CF2A081FB700869258 /* AddAccount */,
-				D413C5BD2A047C6C00869258 /* Passenger */,
+				D413C5BD2A047C6C00869258 /* Race */,
 				D413C5BC2A047C6000869258 /* Autentication */,
 			);
 			path = Usercases;
@@ -624,7 +632,6 @@
 			isa = PBXGroup;
 			children = (
 				D413C59729FF155900869258 /* PassengerMapFactory.swift */,
-				D413C5F22A0B015A00869258 /* DriverListFactory.swift */,
 			);
 			path = Passenger;
 			sourceTree = "<group>";
@@ -667,6 +674,7 @@
 				D413C5E12A09B59400869258 /* DatabaseDeleteValueClient.swift */,
 				D413C5E72A09CB6100869258 /* DatabaseGetValueClient.swift */,
 				D413C5E92A09CB7400869258 /* FirebaseDatabaseError.swift */,
+				D413C5F42A0C579100869258 /* DatabaseOberveAddValueClient.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -691,14 +699,6 @@
 			path = Autentication;
 			sourceTree = "<group>";
 		};
-		D413C5B82A008F4C00869258 /* CallRace */ = {
-			isa = PBXGroup;
-			children = (
-				D413C5BA2A008F6F00869258 /* CallRace.swift */,
-			);
-			path = CallRace;
-			sourceTree = "<group>";
-		};
 		D413C5BC2A047C6000869258 /* Autentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,13 +711,14 @@
 			path = Autentication;
 			sourceTree = "<group>";
 		};
-		D413C5BD2A047C6C00869258 /* Passenger */ = {
+		D413C5BD2A047C6C00869258 /* Race */ = {
 			isa = PBXGroup;
 			children = (
 				D413C5BE2A047C8500869258 /* RemoteCallRace.swift */,
 				D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */,
+				D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */,
 			);
-			path = Passenger;
+			path = Race;
 			sourceTree = "<group>";
 		};
 		D413C5C02A06FE0000869258 /* Decorators */ = {
@@ -762,12 +763,14 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		D413C5DC2A09B4CB00869258 /* CancelRace */ = {
+		D413C5DC2A09B4CB00869258 /* Race */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5BA2A008F6F00869258 /* CallRace.swift */,
+				D413C5F72A0C595F00869258 /* GetRaces.swift */,
 				D413C5DD2A09B4E400869258 /* CancelRace.swift */,
 			);
-			path = CancelRace;
+			path = Race;
 			sourceTree = "<group>";
 		};
 		D413C5EB2A0AF28B00869258 /* Helpers */ = {
@@ -789,6 +792,15 @@
 		D413C5F12A0B012F00869258 /* Driver */ = {
 			isa = PBXGroup;
 			children = (
+				D413C5F22A0B015A00869258 /* DriverListFactory.swift */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		D413C5FB2A0C5E2600869258 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				D413C5FC2A0C5E3800869258 /* DriverListPresenter.swift */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -1030,6 +1042,7 @@
 				D413C5AC29FF2C6500869258 /* LogoutAuth.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
 				D413C5D12A081FC500869258 /* RemoteAddAccount.swift in Sources */,
+				D413C5FD2A0C5E3800869258 /* DriverListPresenter.swift in Sources */,
 				D4036B0A29EF31E900E53951 /* AddAccount.swift in Sources */,
 				D413C5C42A072A7A00869258 /* CallRaceRequest.swift in Sources */,
 				D4036AD429E1F04800E53951 /* SignUpViewController.swift in Sources */,
@@ -1047,6 +1060,7 @@
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
 				D413C58729F8931400869258 /* RemoteAutentication.swift in Sources */,
 				D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */,
+				D413C5F52A0C579100869258 /* DatabaseOberveAddValueClient.swift in Sources */,
 				D413C5EA2A09CB7400869258 /* FirebaseDatabaseError.swift in Sources */,
 				D413C5BF2A047C8500869258 /* RemoteCallRace.swift in Sources */,
 				D413C56A29F01FFC00869258 /* AuthUserModel.swift in Sources */,
@@ -1070,6 +1084,8 @@
 				D413C5C72A072EF500869258 /* AuthGetUserClient.swift in Sources */,
 				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
 				D413C5AF29FF2DFF00869258 /* PassengerRouter.swift in Sources */,
+				D413C5F82A0C595F00869258 /* GetRaces.swift in Sources */,
+				D413C5FA2A0C5A1900869258 /* RemoteGetRaces.swift in Sources */,
 				D413C59E29FF1B4B00869258 /* RemoteGetStateAuth.swift in Sources */,
 				D413C5AA29FF2C4E00869258 /* RemoteLogoutAuth.swift in Sources */,
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,

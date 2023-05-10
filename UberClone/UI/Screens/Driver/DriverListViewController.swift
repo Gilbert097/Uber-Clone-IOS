@@ -8,12 +8,14 @@
 import UIKit
 
 public class DriverListViewController: UIViewController {
+    
+    public var loadList: (() -> Void)?
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Motorista"
         self.view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        self.loadList?()
     }
     
 
