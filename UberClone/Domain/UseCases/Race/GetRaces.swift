@@ -13,10 +13,10 @@ public protocol GetRaces {
 
 public class RaceModel: Model {
    
-    private let email: String
-    private let name: String
-    private let latitude: String
-    private let longitude: String
+    public let email: String
+    public let name: String
+    public let latitude: String
+    public let longitude: String
     
     public init(email: String, name: String, latitude: String, longitude: String) {
         self.email = email

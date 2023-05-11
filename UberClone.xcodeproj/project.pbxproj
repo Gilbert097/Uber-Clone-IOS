@@ -94,6 +94,8 @@
 		D413C5F82A0C595F00869258 /* GetRaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5F72A0C595F00869258 /* GetRaces.swift */; };
 		D413C5FA2A0C5A1900869258 /* RemoteGetRaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */; };
 		D413C5FD2A0C5E3800869258 /* DriverListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5FC2A0C5E3800869258 /* DriverListPresenter.swift */; };
+		D413C5FF2A0C729400869258 /* RefreshListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5FE2A0C729400869258 /* RefreshListView.swift */; };
+		D413C6012A0C73A700869258 /* RaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C6002A0C73A700869258 /* RaceViewModel.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -204,6 +206,8 @@
 		D413C5F72A0C595F00869258 /* GetRaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRaces.swift; sourceTree = "<group>"; };
 		D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteGetRaces.swift; sourceTree = "<group>"; };
 		D413C5FC2A0C5E3800869258 /* DriverListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverListPresenter.swift; sourceTree = "<group>"; };
+		D413C5FE2A0C729400869258 /* RefreshListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshListView.swift; sourceTree = "<group>"; };
+		D413C6002A0C73A700869258 /* RaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceViewModel.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -785,6 +789,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5EF2A0B011D00869258 /* DriverListViewController.swift */,
+				D413C5FE2A0C729400869258 /* RefreshListView.swift */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -801,6 +806,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5FC2A0C5E3800869258 /* DriverListPresenter.swift */,
+				D413C6002A0C73A700869258 /* RaceViewModel.swift */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -1025,6 +1031,7 @@
 			files = (
 				D413C57C29F094DC00869258 /* AutenticationClient.swift in Sources */,
 				D413C5C22A06FE0F00869258 /* MainQueueDispatchDecorator.swift in Sources */,
+				D413C6012A0C73A700869258 /* RaceViewModel.swift in Sources */,
 				D4036B2E29EF5BB100E53951 /* WeakVarProxy.swift in Sources */,
 				D4036AF029E301D200E53951 /* SignUpFactory.swift in Sources */,
 				D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */,
@@ -1071,6 +1078,7 @@
 				D413C5A829FF2B5600869258 /* AuthLogoutClient.swift in Sources */,
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
 				D413C59C29FF1A2E00869258 /* SignUpRouter.swift in Sources */,
+				D413C5FF2A0C729400869258 /* RefreshListView.swift in Sources */,
 				D413C5BB2A008F6F00869258 /* CallRace.swift in Sources */,
 				D413C57F29F0956300869258 /* RemoteCreateAuth.swift in Sources */,
 				D413C5A029FF1BA100869258 /* GetStateAuth.swift in Sources */,
