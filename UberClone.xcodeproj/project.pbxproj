@@ -96,6 +96,7 @@
 		D413C5FD2A0C5E3800869258 /* DriverListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5FC2A0C5E3800869258 /* DriverListPresenter.swift */; };
 		D413C5FF2A0C729400869258 /* RefreshListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C5FE2A0C729400869258 /* RefreshListView.swift */; };
 		D413C6012A0C73A700869258 /* RaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C6002A0C73A700869258 /* RaceViewModel.swift */; };
+		D413C6032A0C771000869258 /* DriverListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413C6022A0C771000869258 /* DriverListRouter.swift */; };
 		D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99B29DF6D9A000689FF /* AppDelegate.swift */; };
 		D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99D29DF6D9A000689FF /* SceneDelegate.swift */; };
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
@@ -208,6 +209,7 @@
 		D413C5FC2A0C5E3800869258 /* DriverListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverListPresenter.swift; sourceTree = "<group>"; };
 		D413C5FE2A0C729400869258 /* RefreshListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshListView.swift; sourceTree = "<group>"; };
 		D413C6002A0C73A700869258 /* RaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceViewModel.swift; sourceTree = "<group>"; };
+		D413C6022A0C771000869258 /* DriverListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverListRouter.swift; sourceTree = "<group>"; };
 		D415F99829DF6D9A000689FF /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415F99B29DF6D9A000689FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D415F99D29DF6D9A000689FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 		D413C5EE2A0B00FA00869258 /* Driver */ = {
 			isa = PBXGroup;
 			children = (
+				D413C6022A0C771000869258 /* DriverListRouter.swift */,
 				D413C5EF2A0B011D00869258 /* DriverListViewController.swift */,
 				D413C5FE2A0C729400869258 /* RefreshListView.swift */,
 			);
@@ -1087,6 +1090,7 @@
 				D4036AE829E2FF7B00E53951 /* WelcomeFactory.swift in Sources */,
 				D413C5DB2A08688F00869258 /* RequestButtonStateView.swift in Sources */,
 				D413C5A329FF1D0300869258 /* WelcomePresenter.swift in Sources */,
+				D413C6032A0C771000869258 /* DriverListRouter.swift in Sources */,
 				D413C58329F09A6E00869258 /* CreateAuth.swift in Sources */,
 				D4036ADE29E1FF9400E53951 /* PrimaryButton.swift in Sources */,
 				D413C5C72A072EF500869258 /* AuthGetUserClient.swift in Sources */,

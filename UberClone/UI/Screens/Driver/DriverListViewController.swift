@@ -17,15 +17,27 @@ public class DriverListViewController: UIViewController {
         return view
     }()
     
+    private lazy var logoutButtonItem: UIBarButtonItem = {
+        UIBarButtonItem(
+            title: "Deslogar",
+            style: .plain,
+            target: self,
+            action: #selector(logoutButtonTapped)
+        )
+    }()
+    
     private var list: [RaceViewModel]?
     public var load: (() -> Void)?
+    public var logout: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Requisições"
-        self.view.backgroundColor = .white
         setupView()
         self.load?()
+    }
+    
+    @objc private func logoutButtonTapped() {
+        self.logout?()
     }
 }
 
@@ -45,6 +57,13 @@ extension DriverListViewController: ViewCode {
             self.tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        self.title = "Requisições"
+        self.view.backgroundColor = .white
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationItem.leftBarButtonItem = self.logoutButtonItem
     }
 }
 
