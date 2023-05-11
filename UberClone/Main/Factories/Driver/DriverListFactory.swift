@@ -11,9 +11,10 @@ public final class DriverListFactory {
     
     public static func build(nav: NavigationController) -> DriverListViewController {
         let databaseAdapter = FirebaseDatabaseAdapter()
-        let presenter = DriverListPresenter(getRaces: RemoteGetRaces(observeClient: databaseAdapter))
         let viewController = DriverListViewController()
-        viewController.loadList = presenter.loadList
+        let presenter = DriverListPresenter(getRaces: RemoteGetRaces(observeClient: databaseAdapter),
+                                            refreshListView: viewController)
+        viewController.load = presenter.load
         return viewController
     }
 }
