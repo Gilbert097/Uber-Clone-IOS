@@ -15,10 +15,10 @@ public class RaceModel: Model {
    
     public let email: String
     public let name: String
-    public let latitude: String
-    public let longitude: String
+    public let latitude: Double
+    public let longitude: Double
     
-    public init(email: String, name: String, latitude: String, longitude: String) {
+    public init(email: String, name: String, latitude: Double, longitude: Double) {
         self.email = email
         self.name = name
         self.latitude = latitude
@@ -30,5 +30,9 @@ public class RaceModel: Model {
         lhs.name == rhs.name &&
         lhs.latitude == rhs.latitude &&
         lhs.longitude == rhs.longitude
+    }
+    
+    public func getLocation() -> LocationModel {
+        LocationModel(latitude: self.latitude, longitude: self.longitude)
     }
 }

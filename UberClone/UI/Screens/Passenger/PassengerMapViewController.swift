@@ -100,7 +100,7 @@ extension PassengerMapViewController: ViewCode {
 extension PassengerMapViewController: MapView {
     
     public func setRegion(location: LocationModel) {
-        let coordinate = location.toCLLocationCoordinate2D()
+        let coordinate = location.toCLLocation().coordinate
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
         self.mapView.setRegion(region, animated: true)
     }
