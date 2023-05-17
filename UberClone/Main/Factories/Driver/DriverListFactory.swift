@@ -13,13 +13,15 @@ public final class DriverListFactory {
         let databaseAdapter = FirebaseDatabaseAdapter()
         let authAdapter = FirebaseAuthAdapter()
         let viewController = DriverListViewController()
-        let router = DriverListRouter(nav: nav)
+        let router = DriverListRouter(nav: nav,
+                                      confirmRaceFactory: ConfirmRaceFactory.build)
         let presenter = DriverListPresenter(getRaces: RemoteGetRaces(observeClient: databaseAdapter),
                                             logoutAuth: RemoteLogoutAuth(authLogoutClient: authAdapter),
                                             refreshListView: viewController,
                                             locationManager: AppLocationManager())
         viewController.load = presenter.load
         viewController.logout = presenter.logout
+        viewController.didRaceSelected = router.goToConfirmRace
         presenter.dismiss = router.dismiss
         return viewController
     }

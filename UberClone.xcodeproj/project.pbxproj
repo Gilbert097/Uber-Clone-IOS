@@ -104,6 +104,8 @@
 		D415F9A829DF6D9B000689FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D415F9A629DF6D9B000689FF /* LaunchScreen.storyboard */; };
 		D45001582A12BB6C00B1A052 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45001572A12BB6C00B1A052 /* AppLocationManager.swift */; };
 		D48482562A12F69400DEFCDC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482552A12F69400DEFCDC /* LocationManager.swift */; };
+		D484825C2A156BCD00DEFCDC /* ConfirmRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */; };
+		D484825F2A156C1F00DEFCDC /* ConfirmRaceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */; };
 		D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -221,6 +223,8 @@
 		D415F9A929DF6D9B000689FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D45001572A12BB6C00B1A052 /* AppLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationManager.swift; sourceTree = "<group>"; };
 		D48482552A12F69400DEFCDC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceViewController.swift; sourceTree = "<group>"; };
+		D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceFactory.swift; sourceTree = "<group>"; };
 		D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -272,6 +276,7 @@
 				D4036AD229E1F03300E53951 /* SignUp */,
 				D413C59129FF13DB00869258 /* Passenger */,
 				D413C5EE2A0B00FA00869258 /* Driver */,
+				D484825A2A156B9400DEFCDC /* ConfirmRace */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				D4036AEE29E301C200E53951 /* SignUp */,
 				D413C59629FF154600869258 /* Passenger */,
 				D413C5F12A0B012F00869258 /* Driver */,
+				D484825D2A156BFB00DEFCDC /* ConfirmRace */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -868,6 +874,22 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		D484825A2A156B9400DEFCDC /* ConfirmRace */ = {
+			isa = PBXGroup;
+			children = (
+				D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */,
+			);
+			path = ConfirmRace;
+			sourceTree = "<group>";
+		};
+		D484825D2A156BFB00DEFCDC /* ConfirmRace */ = {
+			isa = PBXGroup;
+			children = (
+				D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */,
+			);
+			path = ConfirmRace;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1074,6 +1096,7 @@
 				D413C5CA2A072F2C00869258 /* GetAuthUser.swift in Sources */,
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
 				D413C5ED2A0AF29800869258 /* DataSnapshot+.swift in Sources */,
+				D484825C2A156BCD00DEFCDC /* ConfirmRaceViewController.swift in Sources */,
 				D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
 				D4036AEA29E3016800E53951 /* WelcomeRouter.swift in Sources */,
@@ -1117,6 +1140,7 @@
 				D413C5AA29FF2C4E00869258 /* RemoteLogoutAuth.swift in Sources */,
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
 				D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */,
+				D484825F2A156C1F00DEFCDC /* ConfirmRaceFactory.swift in Sources */,
 				D413C59829FF155900869258 /* PassengerMapFactory.swift in Sources */,
 				D45001582A12BB6C00B1A052 /* AppLocationManager.swift in Sources */,
 				D413C57A29F0334B00869258 /* Data+.swift in Sources */,
