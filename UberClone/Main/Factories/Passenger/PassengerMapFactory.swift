@@ -20,14 +20,17 @@ public final class PassengerMapFactory {
         let cancelRace = MainQueueDispatchDecorator(RemoteCancelRace(getAuthUser: getUser, deleteClient: databaseAdapter))
         
         let presenter = PassengerMapPresenter(alertView: viewController,
-                                           loadingView: viewController,
-                                           requestButtonStateview: viewController,
-                                           callRace: callRace,
-                                           logoutAuth: RemoteLogoutAuth(authLogoutClient: authAdapter),
-                                           cancelRace: cancelRace)
+                                              loadingView: viewController,
+                                              requestButtonStateview: viewController,
+                                              callRace: callRace,
+                                              logoutAuth: RemoteLogoutAuth(authLogoutClient: authAdapter),
+                                              cancelRace: cancelRace,
+                                              locationManager: AppLocationManager(),
+                                              mapView: viewController)
         
         let router = PassengerRouter(nav: nav)
         presenter.dismiss = router.dismiss
+        viewController.load = presenter.load
         viewController.logout = presenter.logout
         viewController.callRace = presenter.callRaceAction
         return viewController

@@ -25,34 +25,23 @@ public final class PassengerMapViewController: UIViewController {
         return view
     }()
     
-    private lazy var locationManager: CLLocationManager = {
-        let view = CLLocationManager()
-        view.delegate = self
-        view.desiredAccuracy = kCLLocationAccuracyBest
-        return view
-    }()
-    
     private let loadingView = ScreenLoadingView()
     private let requestButton = PrimaryButton(title: "Chamar Uber", fontSize: 20, weight: .semibold)
     
+    public var load: (() -> Void)?
     public var logout: (() -> Void)?
-    public var callRace: ((CallRaceRequest) -> Void)?
-    private var lastLocation: CLLocation?
+    public var callRace: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupLocationManager()
+        load?()
         configure()
     }
     
     private func configure() {
         self.requestButton.addTarget(self, action: #selector(requestButtonTapped), for: .touchUpInside)
-    }
-    
-    private func setupLocationManager() {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        self.mapView.removeAnnotations(self.mapView.annotations)
     }
     
     @objc private func logoutButtonTapped() {
@@ -60,9 +49,7 @@ public final class PassengerMapViewController: UIViewController {
     }
     
     @objc private func requestButtonTapped() {
-        guard let lastLocation = self.lastLocation else { return }
-        let model = CallRaceRequest(location: lastLocation)
-        self.callRace?(model)
+        self.callRace?()
     }
 }
 
@@ -109,33 +96,17 @@ extension PassengerMapViewController: ViewCode {
     }
 }
 
-// MARK: - CLLocationManagerDelegate
-extension PassengerMapViewController: CLLocationManagerDelegate {
+// MARK: - MapView
+extension PassengerMapViewController: MapView {
     
-    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = manager.location, isNewLocation(currentLocation: location) else { return }
-        
-        let coordinate = location.coordinate
+    public func setRegion(location: LocationModel) {
+        let coordinate = location.toCLLocationCoordinate2D()
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
         self.mapView.setRegion(region, animated: true)
-        
-        self.mapView.removeAnnotations(self.mapView.annotations)
-        
-        let userAnnotation = MKPointAnnotation()
-        userAnnotation.coordinate = coordinate
-        userAnnotation.title = "Seu Local"
-        self.mapView.addAnnotation(userAnnotation)
     }
     
-    private func isNewLocation(currentLocation: CLLocation) -> Bool {
-        guard
-            let lastLocation = self.lastLocation
-        else {
-            self.lastLocation = currentLocation
-            return true
-        }
-        return lastLocation.coordinate.latitude != currentLocation.coordinate.latitude &&
-        lastLocation.coordinate.longitude != currentLocation.coordinate.longitude
+    public func showPointAnnotation(point: PointAnnotationModel) {
+        self.mapView.addAnnotation(point.toMKPointAnnotation())
     }
 }
 
@@ -172,4 +143,10 @@ extension PassengerMapViewController: RequestButtonStateView {
             self.requestButton.update(text: "Cancelar", color: .red)
         }
     }
+}
+
+
+public protocol MapView {
+    func setRegion(location: LocationModel)
+    func showPointAnnotation(point: PointAnnotationModel)
 }

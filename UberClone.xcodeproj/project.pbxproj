@@ -102,6 +102,8 @@
 		D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415F99F29DF6D9A000689FF /* WelcomeViewController.swift */; };
 		D415F9A529DF6D9B000689FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D415F9A429DF6D9B000689FF /* Assets.xcassets */; };
 		D415F9A829DF6D9B000689FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D415F9A629DF6D9B000689FF /* LaunchScreen.storyboard */; };
+		D45001582A12BB6C00B1A052 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45001572A12BB6C00B1A052 /* AppLocationManager.swift */; };
+		D48482562A12F69400DEFCDC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482552A12F69400DEFCDC /* LocationManager.swift */; };
 		D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +219,8 @@
 		D415F9A429DF6D9B000689FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D415F9A729DF6D9B000689FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D415F9A929DF6D9B000689FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D45001572A12BB6C00B1A052 /* AppLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationManager.swift; sourceTree = "<group>"; };
+		D48482552A12F69400DEFCDC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -395,6 +399,7 @@
 		D4036AF129E35DAA00E53951 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D44B9C732A12F055005CE46C /* Managers */,
 				D4036B0E29EF39BD00E53951 /* Views */,
 				D4036B0129EF2F3800E53951 /* Validators */,
 				D413C5A129FF1CD600869258 /* Welcome */,
@@ -854,6 +859,15 @@
 			path = UberClone;
 			sourceTree = "<group>";
 		};
+		D44B9C732A12F055005CE46C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D48482552A12F69400DEFCDC /* LocationManager.swift */,
+				D45001572A12BB6C00B1A052 /* AppLocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1069,6 +1083,7 @@
 				D4036AE429E2FEA400E53951 /* NavigationController.swift in Sources */,
 				D4036AC629DF7B7100E53951 /* UIView+.swift in Sources */,
 				D413C58729F8931400869258 /* RemoteAutentication.swift in Sources */,
+				D48482562A12F69400DEFCDC /* LocationManager.swift in Sources */,
 				D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */,
 				D413C5F52A0C579100869258 /* DatabaseOberveAddValueClient.swift in Sources */,
 				D413C5EA2A09CB7400869258 /* FirebaseDatabaseError.swift in Sources */,
@@ -1103,6 +1118,7 @@
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
 				D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */,
 				D413C59829FF155900869258 /* PassengerMapFactory.swift in Sources */,
+				D45001582A12BB6C00B1A052 /* AppLocationManager.swift in Sources */,
 				D413C57A29F0334B00869258 /* Data+.swift in Sources */,
 				D413C5CD2A072F7200869258 /* RemoteGetAuthUser.swift in Sources */,
 				D413C59529FF146500869258 /* LoginRouter.swift in Sources */,
