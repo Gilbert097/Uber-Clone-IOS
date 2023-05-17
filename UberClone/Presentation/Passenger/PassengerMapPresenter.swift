@@ -14,7 +14,10 @@ public final class PassengerMapPresenter {
     private let callRace: CallRace
     private let logoutAuth: LogoutAuth
     private let cancelRace: CancelRace
+    private let locationManager: LocationManager
+    private let mapView: MapView
     private var isCalledRace = false
+    private var lastLocation: LocationModel?
     var dismiss: (() -> Void)!
     
     public init(alertView: AlertView,
@@ -22,13 +25,48 @@ public final class PassengerMapPresenter {
                 requestButtonStateview: RequestButtonStateView,
                 callRace: CallRace,
                 logoutAuth: LogoutAuth,
-                cancelRace: CancelRace) {
+                cancelRace: CancelRace,
+                locationManager: LocationManager,
+                mapView: MapView) {
         self.alertView = alertView
         self.loadingView = loadingView
         self.callRace = callRace
         self.logoutAuth = logoutAuth
         self.cancelRace = cancelRace
+        self.mapView = mapView
+        self.locationManager = locationManager
         self.requestButtonStateview = requestButtonStateview
+    }
+    
+    public func load() {
+        self.locationManager.register { [weak self] in self?.handleUpdateLocationResult($0)}
+        self.locationManager.start()
+    }
+    
+    private func handleUpdateLocationResult(_ result:  Result<LocationModel, LocationError>) {
+        switch result {
+        case .success(let location):
+            guard
+                let lastLocation = self.lastLocation
+            else {
+                self.lastLocation = location
+                setMapView(location)
+                return
+            }
+            
+            if !lastLocation.isEqual(location: location) {
+                self.lastLocation = location
+                setMapView(location)
+            }
+        case .failure:
+            self.locationManager.stop()
+            self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização."))
+        }
+    }
+    
+    private func setMapView(_ location: LocationModel) {
+        self.mapView.setRegion(location: location)
+        self.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: location))
     }
     
     public func logout() {
@@ -39,15 +77,17 @@ public final class PassengerMapPresenter {
         }
     }
     
-    public func callRaceAction(request: CallRaceRequest) {
+    public func callRaceAction() {
         if self.isCalledRace {
             requestCancelRace()
         } else {
-            requestCallRace(request)
+            requestCallRace()
         }
     }
     
-    private func requestCallRace(_ request: CallRaceRequest) {
+    private func requestCallRace() {
+        guard let lastLocation = self.lastLocation else { return }
+        let request = CallRaceRequest(latitude: lastLocation.latitude, longitude: lastLocation.longitude)
         self.loadingView.display(viewModel: .init(isLoading: true))
         self.callRace.request(request: request) { [weak self] result in
             self?.loadingView.display(viewModel: .init(isLoading: false))
