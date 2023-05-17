@@ -23,8 +23,8 @@ public class RemoteCallRace: CallRace {
             case .success(let user):
                 let model = CallRaceModel(email: user.email,
                                           name: user.name,
-                                          latitude: String(request.latitude),
-                                          longitude: String(request.longitude))
+                                          latitude: request.latitude,
+                                          longitude: request.longitude)
                 guard let data = model.toData() else { return completion(.failure(DomainError.unexpected))}
                 self?.databaseSetValueClient.setValue(path: "requests", data: data, completion: completion)
             case .failure:

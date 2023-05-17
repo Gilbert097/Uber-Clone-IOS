@@ -40,8 +40,17 @@ public struct LocationModel: Model {
         return location.latitude == self.latitude && location.longitude == self.longitude
     }
     
-    public func toCLLocationCoordinate2D() -> CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+    public func toCLLocation() -> CLLocation {
+        CLLocation(latitude: self.latitude, longitude: self.longitude)
+    }
+    
+    public func distance(model: LocationModel) -> Double {
+        let selfLocation = self.toCLLocation()
+        let location = model.toCLLocation()
+        
+        let distance = selfLocation.distance(from: location)
+        let distanceKM = round(distance/1000)
+        return distanceKM
     }
 }
 
@@ -57,7 +66,7 @@ public struct PointAnnotationModel: Model {
     
     public func toMKPointAnnotation() -> MKPointAnnotation {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = self.location.toCLLocationCoordinate2D()
+        annotation.coordinate = self.location.toCLLocation().coordinate
         annotation.title = self.title
         return annotation
     }
