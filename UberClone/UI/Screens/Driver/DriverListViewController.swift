@@ -13,6 +13,7 @@ public class DriverListViewController: UIViewController {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.dataSource = self
+        view.delegate = self
         view.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return view
     }()
@@ -29,6 +30,7 @@ public class DriverListViewController: UIViewController {
     private var list: [RaceViewModel]?
     public var load: (() -> Void)?
     public var logout: (() -> Void)?
+    public var didRaceSelected: ((RaceViewModel) -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +86,16 @@ extension DriverListViewController: UITableViewDataSource {
         cell.textLabel?.text = list?[indexPath.row].email
         cell.detailTextLabel?.text = list?[indexPath.row].distanceText
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension DriverListViewController: UITableViewDelegate {
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let raceSelected = list?[indexPath.row] else { return }
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.didRaceSelected?(raceSelected)
     }
 }
 

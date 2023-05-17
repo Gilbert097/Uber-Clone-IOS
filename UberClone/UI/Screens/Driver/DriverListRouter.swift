@@ -10,12 +10,19 @@ import Foundation
 public final class DriverListRouter {
     
     private let nav: NavigationController
+    private let confirmRaceFactory: (NavigationController) -> ConfirmRaceViewController
     
-    public init(nav: NavigationController) {
+    public init(nav: NavigationController,
+                confirmRaceFactory: @escaping (NavigationController) -> ConfirmRaceViewController) {
         self.nav = nav
+        self.confirmRaceFactory = confirmRaceFactory
     }
     
     public func dismiss() {
         self.nav.popViewController(animated: true)
+    }
+    
+    public func goToConfirmRace(race: RaceViewModel) {
+        self.nav.pushViewController(confirmRaceFactory(self.nav))
     }
 }
