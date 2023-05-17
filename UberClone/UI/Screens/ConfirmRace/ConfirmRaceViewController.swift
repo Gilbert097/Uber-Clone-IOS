@@ -6,24 +6,63 @@
 //
 
 import UIKit
+import MapKit
 
 public class ConfirmRaceViewController: UIViewController {
+    
+    private let mapView: MKMapView = {
+        let view  = MKMapView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let loadingView = ScreenLoadingView()
+    private let confirmButton = PrimaryButton(title: "Aceitar corrida", fontSize: 20, weight: .semibold)
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+}
+
+// MARK: - ViewCode
+extension ConfirmRaceViewController: ViewCode {
+    
+    func setupViewHierarchy() {
+        self.view.addSubviews([mapView, confirmButton, loadingView])
+    }
+    
+    
+    func setupConstraints() {
+        let safeArea = self.view.safeAreaLayoutGuide
+        
+        // mapView
+        NSLayoutConstraint.activate([
+            self.mapView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            self.mapView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.mapView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.mapView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+        ])
+        
+        // confirmButton
+        NSLayoutConstraint.activate([
+            self.confirmButton.heightAnchor.constraint(equalToConstant: 65),
+            self.confirmButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            self.confirmButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            self.confirmButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -16)
+        ])
+        
+        // loadingView
+        NSLayoutConstraint.activate([
+            self.loadingView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            self.loadingView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.loadingView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.loadingView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+        ])
+    }
+    
+    func setupAdditionalConfiguration() {
         self.title = "Requisição"
         self.view.backgroundColor = .white
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
