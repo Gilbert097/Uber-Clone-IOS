@@ -16,6 +16,7 @@ public class DriverListPresenter {
     private var races: [RaceViewModel] = []
     private var lastLocation: LocationModel?
     var dismiss: (() -> Void)!
+    var goToConfirmRace: ((ConfirmRaceParameter) -> Void)!
     
     public init(getRaces: GetRaces,
                 logoutAuth: LogoutAuth,
@@ -69,5 +70,11 @@ public class DriverListPresenter {
                 self?.dismiss?()
             }
         }
+    }
+    
+    public func didRaceSelected(race: RaceViewModel) {
+        guard let lastLocation = self.lastLocation else { return }
+        let parameter = ConfirmRaceParameter(race: race, driverLocation: lastLocation)
+        self.goToConfirmRace(parameter)
     }
 }
