@@ -106,6 +106,11 @@
 		D48482562A12F69400DEFCDC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482552A12F69400DEFCDC /* LocationManager.swift */; };
 		D484825C2A156BCD00DEFCDC /* ConfirmRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */; };
 		D484825F2A156C1F00DEFCDC /* ConfirmRaceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */; };
+		D48482612A158B6500DEFCDC /* DatabaseUpdateValueClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482602A158B6500DEFCDC /* DatabaseUpdateValueClient.swift */; };
+		D48482632A158BA300DEFCDC /* ConfirmRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482622A158BA300DEFCDC /* ConfirmRace.swift */; };
+		D48482652A158DC000DEFCDC /* RemoteConfirmRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */; };
+		D48482682A15980C00DEFCDC /* ConfirmRacePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482672A15980C00DEFCDC /* ConfirmRacePresenter.swift */; };
+		D484826A2A159B6300DEFCDC /* ConfirmRaceParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */; };
 		D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -225,6 +230,11 @@
 		D48482552A12F69400DEFCDC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceViewController.swift; sourceTree = "<group>"; };
 		D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceFactory.swift; sourceTree = "<group>"; };
+		D48482602A158B6500DEFCDC /* DatabaseUpdateValueClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUpdateValueClient.swift; sourceTree = "<group>"; };
+		D48482622A158BA300DEFCDC /* ConfirmRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmRace.swift; sourceTree = "<group>"; };
+		D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfirmRace.swift; sourceTree = "<group>"; };
+		D48482672A15980C00DEFCDC /* ConfirmRacePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRacePresenter.swift; sourceTree = "<group>"; };
+		D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceParameter.swift; sourceTree = "<group>"; };
 		D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -413,6 +423,7 @@
 				D4036AF429E35E5C00E53951 /* SignUp */,
 				D413C5A429FF2A4C00869258 /* Passenger */,
 				D413C5FB2A0C5E2600869258 /* Driver */,
+				D48482662A1597F800DEFCDC /* ConfirmRace */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -692,6 +703,7 @@
 				D413C5E72A09CB6100869258 /* DatabaseGetValueClient.swift */,
 				D413C5E92A09CB7400869258 /* FirebaseDatabaseError.swift */,
 				D413C5F42A0C579100869258 /* DatabaseOberveAddValueClient.swift */,
+				D48482602A158B6500DEFCDC /* DatabaseUpdateValueClient.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -734,6 +746,7 @@
 				D413C5BE2A047C8500869258 /* RemoteCallRace.swift */,
 				D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */,
 				D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */,
+				D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */,
 			);
 			path = Race;
 			sourceTree = "<group>";
@@ -784,6 +797,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5BA2A008F6F00869258 /* CallRace.swift */,
+				D48482622A158BA300DEFCDC /* ConfirmRace.swift */,
 				D413C5F72A0C595F00869258 /* GetRaces.swift */,
 				D413C5DD2A09B4E400869258 /* CancelRace.swift */,
 			);
@@ -886,6 +900,15 @@
 			isa = PBXGroup;
 			children = (
 				D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */,
+			);
+			path = ConfirmRace;
+			sourceTree = "<group>";
+		};
+		D48482662A1597F800DEFCDC /* ConfirmRace */ = {
+			isa = PBXGroup;
+			children = (
+				D48482672A15980C00DEFCDC /* ConfirmRacePresenter.swift */,
+				D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */,
 			);
 			path = ConfirmRace;
 			sourceTree = "<group>";
@@ -1112,6 +1135,7 @@
 				D413C5EA2A09CB7400869258 /* FirebaseDatabaseError.swift in Sources */,
 				D413C5BF2A047C8500869258 /* RemoteCallRace.swift in Sources */,
 				D413C56A29F01FFC00869258 /* AuthUserModel.swift in Sources */,
+				D48482612A158B6500DEFCDC /* DatabaseUpdateValueClient.swift in Sources */,
 				D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */,
 				D413C57229F02EA700869258 /* AuthenticationError.swift in Sources */,
 				D4036B0029EF2EDC00E53951 /* Model.swift in Sources */,
@@ -1121,6 +1145,7 @@
 				D413C59C29FF1A2E00869258 /* SignUpRouter.swift in Sources */,
 				D413C5FF2A0C729400869258 /* RefreshListView.swift in Sources */,
 				D413C5BB2A008F6F00869258 /* CallRace.swift in Sources */,
+				D48482682A15980C00DEFCDC /* ConfirmRacePresenter.swift in Sources */,
 				D413C57F29F0956300869258 /* RemoteCreateAuth.swift in Sources */,
 				D413C5A029FF1BA100869258 /* GetStateAuth.swift in Sources */,
 				D413C5F02A0B011D00869258 /* DriverListViewController.swift in Sources */,
@@ -1132,8 +1157,10 @@
 				D413C58329F09A6E00869258 /* CreateAuth.swift in Sources */,
 				D4036ADE29E1FF9400E53951 /* PrimaryButton.swift in Sources */,
 				D413C5C72A072EF500869258 /* AuthGetUserClient.swift in Sources */,
+				D48482632A158BA300DEFCDC /* ConfirmRace.swift in Sources */,
 				D4036AC829DF84E100E53951 /* UIColor+.swift in Sources */,
 				D413C5AF29FF2DFF00869258 /* PassengerRouter.swift in Sources */,
+				D48482652A158DC000DEFCDC /* RemoteConfirmRace.swift in Sources */,
 				D413C5F82A0C595F00869258 /* GetRaces.swift in Sources */,
 				D413C5FA2A0C5A1900869258 /* RemoteGetRaces.swift in Sources */,
 				D413C59E29FF1B4B00869258 /* RemoteGetStateAuth.swift in Sources */,
@@ -1156,6 +1183,7 @@
 				D413C5A629FF2A6500869258 /* PassengerMapPresenter.swift in Sources */,
 				D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */,
 				D413C5DE2A09B4E400869258 /* CancelRace.swift in Sources */,
+				D484826A2A159B6300DEFCDC /* ConfirmRaceParameter.swift in Sources */,
 				D413C5E82A09CB6100869258 /* DatabaseGetValueClient.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 				D413C56D29F0235300869258 /* DomainError.swift in Sources */,

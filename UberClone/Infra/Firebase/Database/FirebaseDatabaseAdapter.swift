@@ -100,3 +100,29 @@ extension FirebaseDatabaseAdapter: DatabaseOberveAddValueClient {
         //childPath.removeObserver(withHandle: observe)
     }
 }
+
+// MARK: - DatabaseUpdateValueClient
+extension FirebaseDatabaseAdapter: DatabaseUpdateValueClient {
+    
+    public func updateValue(path: String,
+                            field: String,
+                            id: String,
+                            data: Data,
+                            completion: @escaping (Swift.Result<Void, Error>) -> Void) {
+        Database
+            .database()
+            .reference()
+            .child(path)
+            .queryOrdered(byChild: field)
+            .queryEqual(toValue: id)
+            .observeSingleEvent(of: .childAdded) { snapshot in
+                print(snapshot.value!)
+                guard let values = data.toJson() else { return completion(.failure(FirebaseDatabaseError.internalError)) }
+                snapshot.ref.updateChildValues(values) { error, ref in
+                    guard error == nil else { return completion(.failure(FirebaseDatabaseError.internalError)) }
+                    completion(.success(()))
+                }
+            }
+    }
+}
+

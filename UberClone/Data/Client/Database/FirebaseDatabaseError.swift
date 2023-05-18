@@ -9,4 +9,5 @@ import Foundation
 
 public enum FirebaseDatabaseError: Error {
     case valueNotFound
+    case internalError
 }

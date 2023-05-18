@@ -21,8 +21,9 @@ public final class DriverListFactory {
                                             locationManager: AppLocationManager())
         viewController.load = presenter.load
         viewController.logout = presenter.logout
-        viewController.didRaceSelected = router.goToConfirmRace
+        viewController.didRaceSelected = presenter.didRaceSelected
         presenter.dismiss = router.dismiss
+        presenter.goToConfirmRace = router.goToConfirmRace
         return viewController
     }
 }
