@@ -111,6 +111,7 @@
 		D48482652A158DC000DEFCDC /* RemoteConfirmRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */; };
 		D48482682A15980C00DEFCDC /* ConfirmRacePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482672A15980C00DEFCDC /* ConfirmRacePresenter.swift */; };
 		D484826A2A159B6300DEFCDC /* ConfirmRaceParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */; };
+		D484826C2A16904400DEFCDC /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484826B2A16904400DEFCDC /* MapView.swift */; };
 		D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -235,6 +236,7 @@
 		D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfirmRace.swift; sourceTree = "<group>"; };
 		D48482672A15980C00DEFCDC /* ConfirmRacePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRacePresenter.swift; sourceTree = "<group>"; };
 		D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceParameter.swift; sourceTree = "<group>"; };
+		D484826B2A16904400DEFCDC /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -520,6 +522,7 @@
 			children = (
 				D4036B0F29EF39CC00E53951 /* LoadingView.swift */,
 				D4036B1429EF463C00E53951 /* AlertView.swift */,
+				D484826B2A16904400DEFCDC /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1154,6 +1157,7 @@
 				D413C5DB2A08688F00869258 /* RequestButtonStateView.swift in Sources */,
 				D413C5A329FF1D0300869258 /* WelcomePresenter.swift in Sources */,
 				D413C6032A0C771000869258 /* DriverListRouter.swift in Sources */,
+				D484826C2A16904400DEFCDC /* MapView.swift in Sources */,
 				D413C58329F09A6E00869258 /* CreateAuth.swift in Sources */,
 				D4036ADE29E1FF9400E53951 /* PrimaryButton.swift in Sources */,
 				D413C5C72A072EF500869258 /* AuthGetUserClient.swift in Sources */,
