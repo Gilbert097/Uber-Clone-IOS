@@ -1,5 +1,5 @@
 //
-//  RemoteCallRace.swift
+//  RemoteRequestRace.swift
 //  UberClone
 //
 //  Created by Gilberto Silva on 04/05/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RemoteCallRace: CallRace {
+public class RemoteRequestRace: RequestRace {
     
     private let getCurrentUser: GetCurrentUser
     private let databaseSetValueClient: DatabaseSetValueClient
@@ -17,11 +17,11 @@ public class RemoteCallRace: CallRace {
         self.databaseSetValueClient = databaseSetValueClient
     }
     
-    public func request(request: CallRaceRequest, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func request(request: RequestRaceRequest, completion: @escaping (Result<Void, Error>) -> Void) {
         self.getCurrentUser.getUser { [weak self] result in
             switch result {
             case .success(let user):
-                let model = CallRaceModel(email: user.email,
+                let model = RequestRaceModel(email: user.email,
                                           name: user.name,
                                           latitude: request.latitude,
                                           longitude: request.longitude)

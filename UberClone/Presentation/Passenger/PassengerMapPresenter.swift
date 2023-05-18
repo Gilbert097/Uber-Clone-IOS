@@ -11,7 +11,7 @@ public final class PassengerMapPresenter {
     private let alertView: AlertView
     private let loadingView: LoadingView
     private let requestButtonStateview: RequestButtonStateView
-    private let callRace: CallRace
+    private let callRace: RequestRace
     private let logoutAuth: LogoutAuth
     private let cancelRace: CancelRace
     private let locationManager: LocationManager
@@ -23,7 +23,7 @@ public final class PassengerMapPresenter {
     public init(alertView: AlertView,
                 loadingView: LoadingView,
                 requestButtonStateview: RequestButtonStateView,
-                callRace: CallRace,
+                callRace: RequestRace,
                 logoutAuth: LogoutAuth,
                 cancelRace: CancelRace,
                 locationManager: LocationManager,
@@ -87,7 +87,7 @@ public final class PassengerMapPresenter {
     
     private func requestCallRace() {
         guard let lastLocation = self.lastLocation else { return }
-        let request = CallRaceRequest(latitude: lastLocation.latitude, longitude: lastLocation.longitude)
+        let request = RequestRaceRequest(latitude: lastLocation.latitude, longitude: lastLocation.longitude)
         self.loadingView.display(viewModel: .init(isLoading: true))
         self.callRace.request(request: request) { [weak self] result in
             self?.loadingView.display(viewModel: .init(isLoading: false))

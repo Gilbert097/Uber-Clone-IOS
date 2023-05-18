@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-public class CallRaceRequest {
+public class RequestRaceRequest {
     let latitude: Double
     let longitude: Double
     
