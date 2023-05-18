@@ -153,7 +153,7 @@ public protocol MapShowPointAnnotationView {
 }
 
 public protocol MapShowRouteView {
-    func showRoute(location: LocationModel)
+    func showRoute(point: PointAnnotationModel)
 }
 
 public protocol MapSetRegionView {

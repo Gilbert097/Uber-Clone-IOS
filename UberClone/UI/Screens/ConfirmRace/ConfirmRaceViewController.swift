@@ -96,13 +96,13 @@ extension ConfirmRaceViewController: ConfirmRaceMapView {
         self.mapView.addAnnotation(point.toMKPointAnnotation())
     }
     
-    public func showRoute(location: LocationModel) {
-        CLGeocoder().reverseGeocodeLocation(location.toCLLocation()) { locations, erro in
+    public func showRoute(point: PointAnnotationModel) {
+        CLGeocoder().reverseGeocodeLocation(point.location.toCLLocation()) { locations, erro in
             if erro == nil {
                 if let locationFirst = locations?.first {
                     let placeMark = MKPlacemark(placemark: locationFirst)
                     let mapItem = MKMapItem(placemark: placeMark)
-                    mapItem.name = "Gilberto Teste"
+                    mapItem.name = point.title
                     
                     let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
                     mapItem.openInMaps(launchOptions: options)

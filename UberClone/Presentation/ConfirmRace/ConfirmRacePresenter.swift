@@ -28,10 +28,9 @@ public class ConfirmRacePresenter {
     }
     
     public func load() {
-        let location = LocationModel(latitude: self.parameter.race.latitude, longitude: self.parameter.race.longitude)
-        let point = PointAnnotationModel(title: self.parameter.race.name, location: location)
+        let point = makePointAnnotation()
         self.mapView.showPointAnnotation(point: point)
-        self.mapView.setRegion(location: location)
+        self.mapView.setRegion(location: point.location)
     }
     
     public func didConfirmRace() {
@@ -41,13 +40,17 @@ public class ConfirmRacePresenter {
             self.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success:
-                let location = LocationModel(latitude: self.parameter.race.latitude, longitude: self.parameter.race.longitude)
-                self.mapView.showRoute(location: location)
-                //self.alertView.showMessage(viewModel: .init(title: "Sucesso", message: "Corrida confirmada com sucesso!"))
+                let point = self.makePointAnnotation()
+                self.mapView.showRoute(point: point)
             case .failure:
                 self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida."))
             }
         }
+    }
+    
+    private func makePointAnnotation() -> PointAnnotationModel {
+        let location = LocationModel(latitude: self.parameter.race.latitude, longitude: self.parameter.race.longitude)
+        return PointAnnotationModel(title: self.parameter.race.name, location: location)
     }
 }
 
