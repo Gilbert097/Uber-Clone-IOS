@@ -8,6 +8,8 @@
 import UIKit
 import MapKit
 
+public protocol PassengerMapView: MapSetRegionView, MapShowPointAnnotationView {}
+
 public final class PassengerMapViewController: UIViewController {
     
     private lazy var logoutButtonItem: UIBarButtonItem = {
@@ -96,8 +98,8 @@ extension PassengerMapViewController: ViewCode {
     }
 }
 
-// MARK: - MapView
-extension PassengerMapViewController: MapView {
+// MARK: - PassengerMapView
+extension PassengerMapViewController: PassengerMapView {
     
     public func setRegion(location: LocationModel) {
         let coordinate = location.toCLLocation().coordinate
@@ -146,7 +148,14 @@ extension PassengerMapViewController: RequestButtonStateView {
 }
 
 
-public protocol MapView {
-    func setRegion(location: LocationModel)
+public protocol MapShowPointAnnotationView {
     func showPointAnnotation(point: PointAnnotationModel)
+}
+
+public protocol MapShowRouteView {
+    func showRoute(location: LocationModel)
+}
+
+public protocol MapSetRegionView {
+    func setRegion(location: LocationModel)
 }

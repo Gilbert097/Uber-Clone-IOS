@@ -13,13 +13,13 @@ public class ConfirmRacePresenter {
     private let parameter: ConfirmRaceParameter
     private let loadingView: LoadingView
     private let alertView: AlertView
-    private let mapView: MapView
+    private let mapView: ConfirmRaceMapView
     
     public init(confirmRace: ConfirmRace,
                 parameter: ConfirmRaceParameter,
                 loadingView: LoadingView,
                 alertView: AlertView,
-                mapView: MapView) {
+                mapView: ConfirmRaceMapView) {
         self.confirmRace = confirmRace
         self.parameter = parameter
         self.loadingView = loadingView
@@ -36,11 +36,14 @@ public class ConfirmRacePresenter {
     
     public func didConfirmRace() {
         self.loadingView.display(viewModel: .init(isLoading: true))
-        self.confirmRace.confirm(model: .init(parameter: self.parameter)) { result in
+        self.confirmRace.confirm(model: .init(parameter: self.parameter)) { [weak self] result in
+            guard let self = self else { return }
             self.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success:
-                self.alertView.showMessage(viewModel: .init(title: "Sucesso", message: "Corrida confirmada com sucesso!"))
+                let location = LocationModel(latitude: self.parameter.race.latitude, longitude: self.parameter.race.longitude)
+                self.mapView.showRoute(location: location)
+                //self.alertView.showMessage(viewModel: .init(title: "Sucesso", message: "Corrida confirmada com sucesso!"))
             case .failure:
                 self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida."))
             }

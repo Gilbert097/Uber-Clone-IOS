@@ -8,6 +8,8 @@
 import UIKit
 import MapKit
 
+public protocol ConfirmRaceMapView: MapSetRegionView, MapShowPointAnnotationView, MapShowRouteView  {}
+
 public class ConfirmRaceViewController: UIViewController {
     
     private let mapView: MKMapView = {
@@ -81,8 +83,8 @@ extension ConfirmRaceViewController: ViewCode {
     }
 }
 
-// MARK: - MapView
-extension ConfirmRaceViewController: MapView {
+// MARK: - ConfirmRaceMapView
+extension ConfirmRaceViewController: ConfirmRaceMapView {
     
     public func setRegion(location: LocationModel) {
         let coordinate = location.toCLLocation().coordinate
@@ -92,6 +94,21 @@ extension ConfirmRaceViewController: MapView {
     
     public func showPointAnnotation(point: PointAnnotationModel) {
         self.mapView.addAnnotation(point.toMKPointAnnotation())
+    }
+    
+    public func showRoute(location: LocationModel) {
+        CLGeocoder().reverseGeocodeLocation(location.toCLLocation()) { locations, erro in
+            if erro == nil {
+                if let locationFirst = locations?.first {
+                    let placeMark = MKPlacemark(placemark: locationFirst)
+                    let mapItem = MKMapItem(placemark: placeMark)
+                    mapItem.name = "Gilberto Teste"
+                    
+                    let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+                    mapItem.openInMaps(launchOptions: options)
+                }
+            }
+        }
     }
 }
 

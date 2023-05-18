@@ -15,7 +15,7 @@ public final class PassengerMapPresenter {
     private let logoutAuth: LogoutAuth
     private let cancelRace: CancelRace
     private let locationManager: LocationManager
-    private let mapView: MapView
+    private let mapView: PassengerMapView
     private var isCalledRace = false
     private var lastLocation: LocationModel?
     var dismiss: (() -> Void)!
@@ -27,7 +27,7 @@ public final class PassengerMapPresenter {
                 logoutAuth: LogoutAuth,
                 cancelRace: CancelRace,
                 locationManager: LocationManager,
-                mapView: MapView) {
+                mapView: PassengerMapView) {
         self.alertView = alertView
         self.loadingView = loadingView
         self.callRace = callRace
