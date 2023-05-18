@@ -112,6 +112,8 @@
 		D48482682A15980C00DEFCDC /* ConfirmRacePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482672A15980C00DEFCDC /* ConfirmRacePresenter.swift */; };
 		D484826A2A159B6300DEFCDC /* ConfirmRaceParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */; };
 		D484826C2A16904400DEFCDC /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484826B2A16904400DEFCDC /* MapView.swift */; };
+		D48482702A16962300DEFCDC /* RemoteCheckRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */; };
+		D48482722A16963500DEFCDC /* CheckRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482712A16963500DEFCDC /* CheckRequestRace.swift */; };
 		D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -237,6 +239,8 @@
 		D48482672A15980C00DEFCDC /* ConfirmRacePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRacePresenter.swift; sourceTree = "<group>"; };
 		D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceParameter.swift; sourceTree = "<group>"; };
 		D484826B2A16904400DEFCDC /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCheckRequestRace.swift; sourceTree = "<group>"; };
+		D48482712A16963500DEFCDC /* CheckRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRequestRace.swift; sourceTree = "<group>"; };
 		D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -750,6 +754,7 @@
 				D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */,
 				D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */,
 				D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */,
+				D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */,
 			);
 			path = Race;
 			sourceTree = "<group>";
@@ -803,6 +808,7 @@
 				D48482622A158BA300DEFCDC /* ConfirmRace.swift */,
 				D413C5F72A0C595F00869258 /* GetRaces.swift */,
 				D413C5DD2A09B4E400869258 /* CancelRace.swift */,
+				D48482712A16963500DEFCDC /* CheckRequestRace.swift */,
 			);
 			path = Race;
 			sourceTree = "<group>";
@@ -1169,6 +1175,7 @@
 				D413C5FA2A0C5A1900869258 /* RemoteGetRaces.swift in Sources */,
 				D413C59E29FF1B4B00869258 /* RemoteGetStateAuth.swift in Sources */,
 				D413C5AA29FF2C4E00869258 /* RemoteLogoutAuth.swift in Sources */,
+				D48482722A16963500DEFCDC /* CheckRequestRace.swift in Sources */,
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
 				D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */,
 				D484825F2A156C1F00DEFCDC /* ConfirmRaceFactory.swift in Sources */,
@@ -1180,6 +1187,7 @@
 				D413C58529F892CC00869258 /* Autentication.swift in Sources */,
 				D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */,
 				D413C5E02A09B52A00869258 /* RemoteCancelRace.swift in Sources */,
+				D48482702A16962300DEFCDC /* RemoteCheckRequestRace.swift in Sources */,
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
 				D413C5E42A09C8F100869258 /* RemoteGetCurrentUser.swift in Sources */,
 				D413C58C29F8979E00869258 /* LoginResquest.swift in Sources */,

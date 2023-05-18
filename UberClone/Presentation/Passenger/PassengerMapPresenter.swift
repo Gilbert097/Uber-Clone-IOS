@@ -14,6 +14,7 @@ public final class PassengerMapPresenter {
     private let callRace: RequestRace
     private let logoutAuth: LogoutAuth
     private let cancelRace: CancelRace
+    private let checkRequestRace: CheckRequestRace
     private let locationManager: LocationManager
     private let mapView: PassengerMapView
     private var isCalledRace = false
@@ -26,6 +27,7 @@ public final class PassengerMapPresenter {
                 callRace: RequestRace,
                 logoutAuth: LogoutAuth,
                 cancelRace: CancelRace,
+                checkRequestRace: CheckRequestRace,
                 locationManager: LocationManager,
                 mapView: PassengerMapView) {
         self.alertView = alertView
@@ -33,6 +35,7 @@ public final class PassengerMapPresenter {
         self.callRace = callRace
         self.logoutAuth = logoutAuth
         self.cancelRace = cancelRace
+        self.checkRequestRace = checkRequestRace
         self.mapView = mapView
         self.locationManager = locationManager
         self.requestButtonStateview = requestButtonStateview
@@ -41,6 +44,13 @@ public final class PassengerMapPresenter {
     public func load() {
         self.locationManager.register { [weak self] in self?.handleUpdateLocationResult($0)}
         self.locationManager.start()
+        
+        self.checkRequestRace.check { [weak self] hasRequest in
+            if hasRequest {
+                self?.isCalledRace = true
+                self?.requestButtonStateview.change(state: .cancel)
+            }
+        }
     }
     
     private func handleUpdateLocationResult(_ result:  Result<LocationModel, LocationError>) {

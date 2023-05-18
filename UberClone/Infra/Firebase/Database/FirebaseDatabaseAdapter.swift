@@ -78,6 +78,19 @@ extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
                 completion(.success(data))
             }
     }
+    
+    public func getValue(path: String, field: String, value: String, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
+        Database
+            .database()
+            .reference()
+            .child(path)
+            .queryOrdered(byChild: field)
+            .queryEqual(toValue: value)
+            .observeSingleEvent(of: .childAdded) { snapshot in
+                guard let data = snapshot.data else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
+                completion(.success(data))
+            }
+    }
 }
 
 // MARK: - DatabaseOberveAddValueClient
