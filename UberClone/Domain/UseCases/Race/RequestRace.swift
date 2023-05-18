@@ -7,11 +7,11 @@
 
 import Foundation
 
-public protocol CallRace {
-    func request(request: CallRaceRequest, completion: @escaping (Swift.Result<Void, Error>) -> Void)
+public protocol RequestRace {
+    func request(request: RequestRaceRequest, completion: @escaping (Swift.Result<Void, Error>) -> Void)
 }
 
-public class CallRaceModel: Model {
+public class RequestRaceModel: Model {
    
     private let email: String
     private let name: String
@@ -25,7 +25,7 @@ public class CallRaceModel: Model {
         self.longitude = longitude
     }
     
-    public static func == (lhs: CallRaceModel, rhs: CallRaceModel) -> Bool {
+    public static func == (lhs: RequestRaceModel, rhs: RequestRaceModel) -> Bool {
         lhs.email == rhs.email &&
         lhs.name == rhs.name &&
         lhs.latitude == rhs.latitude &&

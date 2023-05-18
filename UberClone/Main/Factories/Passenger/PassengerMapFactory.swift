@@ -16,7 +16,7 @@ public final class PassengerMapFactory {
         
         let getUser = RemoteGetAuthUser(client: authAdapter)
         let getCurrentUser = RemoteGetCurrentUser(authGet: authAdapter, databaseGet: databaseAdapter)
-        let callRace = MainQueueDispatchDecorator(RemoteCallRace(getCurrentUser: getCurrentUser, databaseSetValueClient: databaseAdapter))
+        let callRace = MainQueueDispatchDecorator(RemoteRequestRace(getCurrentUser: getCurrentUser, databaseSetValueClient: databaseAdapter))
         let cancelRace = MainQueueDispatchDecorator(RemoteCancelRace(getAuthUser: getUser, deleteClient: databaseAdapter))
         
         let presenter = PassengerMapPresenter(alertView: viewController,
