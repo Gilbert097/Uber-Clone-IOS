@@ -26,7 +26,8 @@ public class RemoteRequestRace: RequestRace {
                                           latitude: request.latitude,
                                           longitude: request.longitude)
                 guard let data = model.toData() else { return completion(.failure(DomainError.unexpected))}
-                self?.databaseSetValueClient.setValue(path: "requests", data: data, completion: completion)
+                let query = DatabaseQuery(path: "requests", data: data)
+                self?.databaseSetValueClient.setValue(query: query, completion: completion)
             case .failure:
                 completion(.failure(DomainError.unexpected))
             }

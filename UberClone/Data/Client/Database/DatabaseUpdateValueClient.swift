@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol DatabaseUpdateValueClient {
-    func updateValue(path: String, field: String, id: String, data: Data, completion: @escaping (Swift.Result<Void, Error>) -> Void)
+    func updateValue(query: DatabaseQuery, completion: @escaping (Swift.Result<Void, Error>) -> Void)
 }

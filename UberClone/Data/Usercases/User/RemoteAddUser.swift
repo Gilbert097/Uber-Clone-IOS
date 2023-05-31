@@ -17,7 +17,9 @@ public class RemoteAddUser: AddUser {
     
     public func add(id: String, addUserModel: AddUserModel, completion: @escaping (AddUser.Result) -> Void) {
         guard let data = addUserModel.toData() else { return completion(.failure(.unexpected)) }
-        self.setValueClient.setValue(path: "users", id: id, data: data) { setValueResult in
+        
+        let query = DatabaseQuery(path: "users", child: .init(path: id, data: data))
+        self.setValueClient.setValue(query: query) { setValueResult in
             switch setValueResult {
             case .success:
                 completion(.success(()))

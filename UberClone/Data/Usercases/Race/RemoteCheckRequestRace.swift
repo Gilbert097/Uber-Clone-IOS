@@ -18,7 +18,9 @@ public class RemoteCheckRequestRace: CheckRequestRace {
     }
     public func check(completion: @escaping (Bool) -> Void) {
         guard let authUser = self.authGet.getUser() else { return completion(false)}
-        self.databaseGet.getValue(path: "requests", field: "email", value: authUser.email) { result in
+        
+        let query = DatabaseQuery(path: "requests", condition: .init(field:  "email", value: authUser.email))
+        self.databaseGet.getValue(query: query) { result in
             switch result {
             case .success:
                 completion(true)
