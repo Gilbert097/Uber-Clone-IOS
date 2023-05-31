@@ -115,6 +115,7 @@
 		D48482702A16962300DEFCDC /* RemoteCheckRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */; };
 		D48482722A16963500DEFCDC /* CheckRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482712A16963500DEFCDC /* CheckRequestRace.swift */; };
 		D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */; };
+		D49201442A280C1C00D9B587 /* DatabaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201432A280C1C00D9B587 /* DatabaseQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +243,7 @@
 		D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCheckRequestRace.swift; sourceTree = "<group>"; };
 		D48482712A16963500DEFCDC /* CheckRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRequestRace.swift; sourceTree = "<group>"; };
 		D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D49201432A280C1C00D9B587 /* DatabaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseQuery.swift; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -719,6 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				D413C5B02A00856500869258 /* FirebaseDatabaseAdapter.swift */,
+				D49201432A280C1C00D9B587 /* DatabaseQuery.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -1191,6 +1194,7 @@
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
 				D413C5E42A09C8F100869258 /* RemoteGetCurrentUser.swift in Sources */,
 				D413C58C29F8979E00869258 /* LoginResquest.swift in Sources */,
+				D49201442A280C1C00D9B587 /* DatabaseQuery.swift in Sources */,
 				D413C58E29F8A4E300869258 /* AuthCreateClient.swift in Sources */,
 				D413C5A629FF2A6500869258 /* PassengerMapPresenter.swift in Sources */,
 				D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */,
@@ -1393,6 +1397,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1422,6 +1427,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

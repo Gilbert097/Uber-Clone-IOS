@@ -97,7 +97,7 @@ extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
 // MARK: - DatabaseOberveAddValueClient
 extension FirebaseDatabaseAdapter: DatabaseOberveAddValueClient {
     
-    public func observeAdd(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
+    public func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
         let childPath = Database
             .database()
             .reference()
