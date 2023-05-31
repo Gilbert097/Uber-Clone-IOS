@@ -19,7 +19,8 @@ public class RemoteGetCurrentUser: GetCurrentUser {
     
     public func getUser(completion: @escaping (GetCurrentUser.Result) -> Void) {
         guard let authUser = self.authGet.getUser() else { return completion(.failure(.unexpected))}
-        self.databaseGet.getValue(path: "users", id: authUser.uid) { result in
+        let query = DatabaseQuery(path: "users", child: .init(path: authUser.uid), event: .value)
+        self.databaseGet.getValue(query: query) { result in
             switch result {
             case .success(let data):
                 if let model: UserModel = data.toModel() {

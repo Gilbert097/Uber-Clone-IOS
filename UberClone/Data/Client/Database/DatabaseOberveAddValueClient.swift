@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol DatabaseOberveAddValueClient {
-    func observeAdd(path: String, completion: @escaping (Swift.Result<Data, Error>) -> Void)
+    func observeAdd(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void)
 }

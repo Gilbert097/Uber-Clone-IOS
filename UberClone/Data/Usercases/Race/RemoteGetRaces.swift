@@ -16,7 +16,7 @@ public class RemoteGetRaces: GetRaces {
     }
     
     public func observe(completion: @escaping (Result<RaceModel, DomainError>) -> Void) {
-        self.observeClient.observeAdd(path: "requests") { result in
+        self.observeClient.observeAdd(query: .init(path: "requests")) { result in
             switch result {
             case .success(let data):
                 if let race: RaceModel = data.toModel() {

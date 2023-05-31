@@ -9,5 +9,5 @@ import Foundation
 
 public protocol DatabaseDeleteValueClient {
     typealias DeleteValueResult = (Swift.Result<Void, Error>) -> Void
-    func delete(path: String, field: String, value: String, completion: @escaping DeleteValueResult)
+    func delete(query: DatabaseQuery, completion: @escaping DeleteValueResult)
 }

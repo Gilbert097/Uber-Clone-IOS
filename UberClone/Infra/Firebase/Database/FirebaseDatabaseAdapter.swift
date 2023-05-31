@@ -21,89 +21,90 @@ public final class FirebaseDatabaseAdapter {
 // MARK: - DatabaseSetValueClient
 extension FirebaseDatabaseAdapter: DatabaseSetValueClient {
     
-    public func setValue(path: String, data: Data, completion: @escaping SetValueResult) {
-        Database
+    public func setValue(query: DatabaseQuery, completion: @escaping SetValueResult) {
+        let refPath = Database
             .database()
             .reference()
-            .child(path)
-            .childByAutoId()
-            .setValue(data.toJson()) { error, _ in
-                guard error == nil else { return completion(.failure(error!)) }
-                completion(.success(()))
-            }
-    }
-    
-    public func setValue(path: String, id: String, data: Data, completion: @escaping SetValueResult) {
-        Database
-            .database()
-            .reference()
-            .child(path)
-            .child(id)
-            .setValue(data.toJson()) { error, _ in
-                guard error == nil else { return completion(.failure(error!)) }
-                completion(.success(()))
-            }
+            .child(query.path)
+        
+        if let data = query.data {
+            refPath
+                .childByAutoId()
+                .setValue(data.toJson()) { error, _ in
+                    guard error == nil else { return completion(.failure(error!)) }
+                    completion(.success(()))
+                }
+        }
+        
+        if let child = query.child, let data = child.data {
+            refPath
+                .child(child.path)
+                .setValue(data.toJson()) { error, _ in
+                    guard error == nil else { return completion(.failure(error!)) }
+                    completion(.success(()))
+                }
+        }
     }
 }
 
 // MARK: - DatabaseDeleteValueClient
 extension FirebaseDatabaseAdapter: DatabaseDeleteValueClient {
-    public func delete(path: String, field: String, value: String, completion: @escaping DeleteValueResult) {
-        Database
+    public func delete(query: DatabaseQuery, completion: @escaping DeleteValueResult) {
+        let refPath = Database
             .database()
             .reference()
-            .child(path)
-            .queryOrdered(byChild: field)
-            .queryEqual(toValue: value)
-            .observeSingleEvent(of: .childAdded) { snapshot in
-                snapshot.ref.removeValue { error, _  in
-                    guard error == nil else { return completion(.failure(error!)) }
-                    completion(.success(()))
+            .child(query.path)
+        
+        if let condition = query.condition {
+            refPath
+                .queryOrdered(byChild: condition.field)
+                .queryEqual(toValue: condition.value)
+                .observeSingleEvent(of: query.event.type) { snapshot in
+                    snapshot.ref.removeValue { error, _  in
+                        guard error == nil else { return completion(.failure(error!)) }
+                        completion(.success(()))
+                    }
                 }
-            }
+        }
     }
 }
 
 // MARK: - DatabaseGetValueClient
 extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
     
-    public func getValue(path: String, id: String, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
-        Database
+    public func getValue(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
+        var refPath = Database
             .database()
             .reference()
-            .child(path)
-            .child(id)
-            .observeSingleEvent(of: .value) { snapshot in
-                guard let data = snapshot.data else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
-                completion(.success(data))
-            }
-    }
-    
-    public func getValue(path: String, field: String, value: String, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
-        Database
-            .database()
-            .reference()
-            .child(path)
-            .queryOrdered(byChild: field)
-            .queryEqual(toValue: value)
-            .observeSingleEvent(of: .childAdded) { snapshot in
-                guard let data = snapshot.data else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
-                completion(.success(data))
-            }
+            .child(query.path)
+        
+        if let child = query.child {
+            refPath = refPath.child(child.path)
+        } else if let contidion = query.condition {
+            refPath = refPath
+                .queryOrdered(byChild: contidion.field)
+                .queryEqual(toValue: contidion.value)
+                .ref
+        }
+        
+        refPath.observeSingleEvent(of: query.event.type) { snapshot in
+            guard let data = snapshot.data else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
+            completion(.success(data))
+        }
     }
 }
 
 // MARK: - DatabaseOberveAddValueClient
 extension FirebaseDatabaseAdapter: DatabaseOberveAddValueClient {
     
-    public func observeAdd(path: String, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
+    public func observeAdd(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
         let childPath = Database
             .database()
             .reference()
-            .child(path)
+            .child(query.path)
         
         _ = childPath
-            .observe(.childAdded) { snapshot in
+            .observe(query.event.type) { snapshot in
                 if let dictionary = snapshot.value as? NSDictionary {
                     print(dictionary)
                 }
@@ -117,25 +118,46 @@ extension FirebaseDatabaseAdapter: DatabaseOberveAddValueClient {
 // MARK: - DatabaseUpdateValueClient
 extension FirebaseDatabaseAdapter: DatabaseUpdateValueClient {
     
-    public func updateValue(path: String,
-                            field: String,
-                            id: String,
-                            data: Data,
+    public func updateValue(query: DatabaseQuery,
                             completion: @escaping (Swift.Result<Void, Error>) -> Void) {
-        Database
+        var refPath = Database
             .database()
             .reference()
-            .child(path)
-            .queryOrdered(byChild: field)
-            .queryEqual(toValue: id)
-            .observeSingleEvent(of: .childAdded) { snapshot in
-                print(snapshot.value!)
-                guard let values = data.toJson() else { return completion(.failure(FirebaseDatabaseError.internalError)) }
-                snapshot.ref.updateChildValues(values) { error, ref in
-                    guard error == nil else { return completion(.failure(FirebaseDatabaseError.internalError)) }
-                    completion(.success(()))
-                }
+            .child(query.path)
+        
+        if let contidion = query.condition {
+            refPath = refPath
+                .queryOrdered(byChild: contidion.field)
+                .queryEqual(toValue: contidion.value)
+                .ref
+        }
+        
+        refPath.observeSingleEvent(of: query.event.type) { snapshot in
+            print(snapshot.value!)
+            guard
+                let data = query.data,
+                let values = data.toJson()
+            else {
+                return completion(.failure(FirebaseDatabaseError.internalError))
             }
+            snapshot.ref.updateChildValues(values) { error, ref in
+                guard error == nil else { return completion(.failure(FirebaseDatabaseError.internalError)) }
+                completion(.success(()))
+            }
+        }
     }
 }
 
+private extension DatabaseEvent {
+    
+    var type: DataEventType {
+        switch self {
+        case .added:
+            return .childAdded
+        case .value:
+            return .value
+        case .changed:
+            return.childChanged
+        }
+    }
+}
