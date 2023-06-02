@@ -16,5 +16,5 @@ public protocol MapShowRouteView {
 }
 
 public protocol MapSetRegionView {
-    func setRegion(location: LocationModel)
+    func setRegion(center: LocationModel, latitudinalMeters: Double, longitudinalMeters: Double)
 }

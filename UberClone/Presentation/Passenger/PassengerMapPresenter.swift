@@ -8,6 +8,7 @@
 import Foundation
 
 public final class PassengerMapPresenter {
+    
     private let alertView: AlertView
     private let loadingView: LoadingView
     private let requestButtonStateview: RequestButtonStateView
@@ -19,6 +20,7 @@ public final class PassengerMapPresenter {
     private let locationManager: LocationManager
     private let mapView: PassengerMapView
     private var isCalledRace = false
+    private var isAcceptedRace = false
     private var lastLocation: LocationModel?
     var dismiss: (() -> Void)!
     
@@ -44,12 +46,6 @@ public final class PassengerMapPresenter {
         self.requestButtonStateview = requestButtonStateview
     }
     
-    public func load() {
-        configureLocationManager()
-        checkExistingRaceRequest()
-        registerRaceAcceptedObserver()
-    }
-    
     private func checkExistingRaceRequest() {
         self.checkRequestRace.check { [weak self] hasRequest in
             if hasRequest {
@@ -62,18 +58,21 @@ public final class PassengerMapPresenter {
     private func registerRaceAcceptedObserver() {
         self.raceAccepted.observe { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .success(let confirmModel):
-                
+            self.isAcceptedRace = true
+            if case let .success(confirmModel) = result {
                 if let lastLocation = self.lastLocation {
                     let driverLocation = confirmModel.getDriverLocation()
                     let distance = driverLocation.distance(model: lastLocation)
                     let text = "Motorista \(distance) KM distante"
                     self.requestButtonStateview.change(state: .accepted(text: text))
+                    
+                    let latitudeDif = abs(lastLocation.latitude - driverLocation.latitude) * 300000
+                    let longitudeDif = abs(lastLocation.longitude - driverLocation.longitude) * 300000
+                    
+                    self.mapView.setRegion(center: lastLocation, latitudinalMeters: latitudeDif, longitudinalMeters: longitudeDif)
+                    self.mapView.showPointAnnotation(point: .init(title: "Passageiro", location: lastLocation))
+                    self.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
                 }
-                break
-            case .failure(_):
-                break
             }
         }
     }
@@ -94,7 +93,7 @@ public final class PassengerMapPresenter {
                 return
             }
             
-            if !lastLocation.isEqual(location: location) {
+            if !self.isAcceptedRace && !lastLocation.isEqual(location: location) {
                 self.lastLocation = location
                 setMapView(location)
             }
@@ -105,24 +104,8 @@ public final class PassengerMapPresenter {
     }
     
     private func setMapView(_ location: LocationModel) {
-        self.mapView.setRegion(location: location)
+        self.mapView.setRegion(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
         self.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: location))
-    }
-    
-    public func logout() {
-        self.logoutAuth.logout { [weak self] isLogout in
-            if isLogout {
-                self?.dismiss?()
-            }
-        }
-    }
-    
-    public func callRaceAction() {
-        if self.isCalledRace {
-            requestCancelRace()
-        } else {
-            requestCallRace()
-        }
     }
     
     private func requestCallRace() {
@@ -152,6 +135,33 @@ public final class PassengerMapPresenter {
             case .failure:
                 self?.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar cancelar a corrida."))
             }
+        }
+    }
+}
+
+
+// MARK: - Public Methods
+extension PassengerMapPresenter {
+    
+    public func load() {
+        configureLocationManager()
+        checkExistingRaceRequest()
+        registerRaceAcceptedObserver()
+    }
+    
+    public func logout() {
+        self.logoutAuth.logout { [weak self] isLogout in
+            if isLogout {
+                self?.dismiss?()
+            }
+        }
+    }
+    
+    public func callRaceAction() {
+        if self.isCalledRace {
+            requestCancelRace()
+        } else {
+            requestCallRace()
         }
     }
 }
