@@ -42,4 +42,8 @@ public class ConfirmRaceModel: Model {
         lhs.driverLatitude == rhs.driverLatitude &&
         lhs.driverLongitude == rhs.driverLongitude
     }
+    
+    public func getDriverLocation() -> LocationModel {
+        LocationModel(latitude: self.driverLatitude, longitude: self.driverLongitude)
+    }
 }

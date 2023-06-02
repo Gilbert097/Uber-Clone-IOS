@@ -143,6 +143,8 @@ extension PassengerMapViewController: RequestButtonStateView {
             self.requestButton.update(text: "Chamar Uber", color: Color.primary)
         case .cancel:
             self.requestButton.update(text: "Cancelar", color: .red)
+        case .accepted(let text):
+            self.requestButton.update(text: text, color: .lightGray)
         }
     }
 }
