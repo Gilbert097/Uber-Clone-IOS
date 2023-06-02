@@ -85,10 +85,9 @@ extension ConfirmRaceViewController: ViewCode {
 
 // MARK: - ConfirmRaceMapView
 extension ConfirmRaceViewController: ConfirmRaceMapView {
-    
-    public func setRegion(location: LocationModel) {
-        let coordinate = location.toCLLocation().coordinate
-        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+    public func setRegion(center: LocationModel, latitudinalMeters: Double, longitudinalMeters: Double) {
+        let coordinate = center.toCLLocation().coordinate
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: latitudinalMeters, longitudinalMeters: longitudinalMeters)
         self.mapView.setRegion(region, animated: true)
     }
     

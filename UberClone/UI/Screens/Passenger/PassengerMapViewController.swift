@@ -43,7 +43,6 @@ public final class PassengerMapViewController: UIViewController {
     
     private func configure() {
         self.requestButton.addTarget(self, action: #selector(requestButtonTapped), for: .touchUpInside)
-        self.mapView.removeAnnotations(self.mapView.annotations)
     }
     
     @objc private func logoutButtonTapped() {
@@ -100,10 +99,10 @@ extension PassengerMapViewController: ViewCode {
 
 // MARK: - PassengerMapView
 extension PassengerMapViewController: PassengerMapView {
-    
-    public func setRegion(location: LocationModel) {
-        let coordinate = location.toCLLocation().coordinate
-        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+    public func setRegion(center: LocationModel, latitudinalMeters: Double, longitudinalMeters: Double) {
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        let coordinate = center.toCLLocation().coordinate
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: latitudinalMeters, longitudinalMeters: longitudinalMeters)
         self.mapView.setRegion(region, animated: true)
     }
     

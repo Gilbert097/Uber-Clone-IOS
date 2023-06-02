@@ -30,7 +30,7 @@ public class ConfirmRacePresenter {
     public func load() {
         let point = makePointAnnotation()
         self.mapView.showPointAnnotation(point: point)
-        self.mapView.setRegion(location: point.location)
+        self.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
     }
     
     public func didConfirmRace() {
