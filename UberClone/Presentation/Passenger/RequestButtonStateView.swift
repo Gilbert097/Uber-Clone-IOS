@@ -14,4 +14,5 @@ public protocol RequestButtonStateView {
 public enum RequestButtonState {
     case call
     case cancel
+    case accepted(text: String)
 }

@@ -116,6 +116,8 @@
 		D48482722A16963500DEFCDC /* CheckRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482712A16963500DEFCDC /* CheckRequestRace.swift */; };
 		D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */; };
 		D49201442A280C1C00D9B587 /* DatabaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201432A280C1C00D9B587 /* DatabaseQuery.swift */; };
+		D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */; };
+		D49201482A29442100D9B587 /* RaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201472A29442100D9B587 /* RaceAccepted.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +246,8 @@
 		D48482712A16963500DEFCDC /* CheckRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRequestRace.swift; sourceTree = "<group>"; };
 		D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D49201432A280C1C00D9B587 /* DatabaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseQuery.swift; sourceTree = "<group>"; };
+		D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceAccepted.swift; sourceTree = "<group>"; };
+		D49201472A29442100D9B587 /* RaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceAccepted.swift; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -720,8 +724,8 @@
 		D413C5B62A008F1A00869258 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				D413C5B02A00856500869258 /* FirebaseDatabaseAdapter.swift */,
 				D49201432A280C1C00D9B587 /* DatabaseQuery.swift */,
+				D413C5B02A00856500869258 /* FirebaseDatabaseAdapter.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -758,6 +762,7 @@
 				D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */,
 				D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */,
 				D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */,
+				D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */,
 			);
 			path = Race;
 			sourceTree = "<group>";
@@ -809,6 +814,7 @@
 			children = (
 				D413C5BA2A008F6F00869258 /* RequestRace.swift */,
 				D48482622A158BA300DEFCDC /* ConfirmRace.swift */,
+				D49201472A29442100D9B587 /* RaceAccepted.swift */,
 				D413C5F72A0C595F00869258 /* GetRaces.swift */,
 				D413C5DD2A09B4E400869258 /* CancelRace.swift */,
 				D48482712A16963500DEFCDC /* CheckRequestRace.swift */,
@@ -1132,6 +1138,7 @@
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
 				D413C5ED2A0AF29800869258 /* DataSnapshot+.swift in Sources */,
 				D484825C2A156BCD00DEFCDC /* ConfirmRaceViewController.swift in Sources */,
+				D49201482A29442100D9B587 /* RaceAccepted.swift in Sources */,
 				D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
 				D4036AEA29E3016800E53951 /* WelcomeRouter.swift in Sources */,
@@ -1203,6 +1210,7 @@
 				D413C5E82A09CB6100869258 /* DatabaseGetValueClient.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 				D413C56D29F0235300869258 /* DomainError.swift in Sources */,
+				D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */,
 				D4036B1329EF3B5C00E53951 /* ScreenLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

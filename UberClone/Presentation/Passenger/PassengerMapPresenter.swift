@@ -15,6 +15,7 @@ public final class PassengerMapPresenter {
     private let logoutAuth: LogoutAuth
     private let cancelRace: CancelRace
     private let checkRequestRace: CheckRequestRace
+    private let raceAccepted: RaceAccepted
     private let locationManager: LocationManager
     private let mapView: PassengerMapView
     private var isCalledRace = false
@@ -28,6 +29,7 @@ public final class PassengerMapPresenter {
                 logoutAuth: LogoutAuth,
                 cancelRace: CancelRace,
                 checkRequestRace: CheckRequestRace,
+                raceAccepted: RaceAccepted,
                 locationManager: LocationManager,
                 mapView: PassengerMapView) {
         self.alertView = alertView
@@ -35,6 +37,7 @@ public final class PassengerMapPresenter {
         self.callRace = callRace
         self.logoutAuth = logoutAuth
         self.cancelRace = cancelRace
+        self.raceAccepted = raceAccepted
         self.checkRequestRace = checkRequestRace
         self.mapView = mapView
         self.locationManager = locationManager
@@ -42,8 +45,7 @@ public final class PassengerMapPresenter {
     }
     
     public func load() {
-        self.locationManager.register { [weak self] in self?.handleUpdateLocationResult($0)}
-        self.locationManager.start()
+        configureLocationManager()
         
         self.checkRequestRace.check { [weak self] hasRequest in
             if hasRequest {
@@ -51,6 +53,28 @@ public final class PassengerMapPresenter {
                 self?.requestButtonStateview.change(state: .cancel)
             }
         }
+        
+        self.raceAccepted.observe { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let confirmModel):
+                
+                if let lastLocation = self.lastLocation {
+                    let driverLocation = confirmModel.getDriverLocation()
+                    let distance = driverLocation.distance(model: lastLocation)
+                    let text = "Motorista \(distance) KM distante"
+                    self.requestButtonStateview.change(state: .accepted(text: text))
+                }
+                break
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    private func configureLocationManager() {
+        self.locationManager.register { [weak self] in self?.handleUpdateLocationResult($0)}
+        self.locationManager.start()
     }
     
     private func handleUpdateLocationResult(_ result:  Result<LocationModel, LocationError>) {

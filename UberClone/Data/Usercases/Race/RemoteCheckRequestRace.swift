@@ -16,6 +16,7 @@ public class RemoteCheckRequestRace: CheckRequestRace {
         self.authGet = authGet
         self.databaseGet = databaseGet
     }
+    
     public func check(completion: @escaping (Bool) -> Void) {
         guard let authUser = self.authGet.getUser() else { return completion(false)}
         
