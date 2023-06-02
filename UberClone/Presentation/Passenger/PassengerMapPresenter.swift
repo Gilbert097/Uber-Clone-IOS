@@ -46,14 +46,20 @@ public final class PassengerMapPresenter {
     
     public func load() {
         configureLocationManager()
-        
+        checkExistingRaceRequest()
+        registerRaceAcceptedObserver()
+    }
+    
+    private func checkExistingRaceRequest() {
         self.checkRequestRace.check { [weak self] hasRequest in
             if hasRequest {
                 self?.isCalledRace = true
                 self?.requestButtonStateview.change(state: .cancel)
             }
         }
-        
+    }
+    
+    private func registerRaceAcceptedObserver() {
         self.raceAccepted.observe { [weak self] result in
             guard let self = self else { return }
             switch result {
