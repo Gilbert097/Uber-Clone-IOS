@@ -21,6 +21,8 @@ public final class PassengerMapViewController: UIViewController {
         )
     }()
     
+    private let searchview = AddressSearchView()
+    
     private let mapView: MKMapView = {
         let view  = MKMapView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +60,7 @@ public final class PassengerMapViewController: UIViewController {
 extension PassengerMapViewController: ViewCode {
     
     func setupViewHierarchy() {
-        self.view.addSubviews([mapView, requestButton, loadingView])
+        self.view.addSubviews([mapView, searchview, requestButton, loadingView])
     }
     
     func setupConstraints() {
@@ -70,6 +72,13 @@ extension PassengerMapViewController: ViewCode {
             self.mapView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             self.mapView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             self.mapView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+        ])
+        
+        // searchview
+        NSLayoutConstraint.activate([
+            self.searchview.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 16),
+            self.searchview.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            self.searchview.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
         
         // requestButton
