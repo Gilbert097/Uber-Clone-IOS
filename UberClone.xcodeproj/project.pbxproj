@@ -118,6 +118,7 @@
 		D49201442A280C1C00D9B587 /* DatabaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201432A280C1C00D9B587 /* DatabaseQuery.swift */; };
 		D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */; };
 		D49201482A29442100D9B587 /* RaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201472A29442100D9B587 /* RaceAccepted.swift */; };
+		D492014A2A2A899D00D9B587 /* AddressSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201492A2A899D00D9B587 /* AddressSearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +249,7 @@
 		D49201432A280C1C00D9B587 /* DatabaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseQuery.swift; sourceTree = "<group>"; };
 		D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceAccepted.swift; sourceTree = "<group>"; };
 		D49201472A29442100D9B587 /* RaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceAccepted.swift; sourceTree = "<group>"; };
+		D49201492A2A899D00D9B587 /* AddressSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchView.swift; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -665,6 +667,7 @@
 			children = (
 				D413C59229FF141600869258 /* PassengerMapViewController.swift */,
 				D413C5AE29FF2DFF00869258 /* PassengerRouter.swift */,
+				D49201492A2A899D00D9B587 /* AddressSearchView.swift */,
 			);
 			path = Passenger;
 			sourceTree = "<group>";
@@ -1126,6 +1129,7 @@
 				D4036B1529EF463C00E53951 /* AlertView.swift in Sources */,
 				D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */,
 				D413C59329FF141600869258 /* PassengerMapViewController.swift in Sources */,
+				D492014A2A2A899D00D9B587 /* AddressSearchView.swift in Sources */,
 				D413C5AC29FF2C6500869258 /* LogoutAuth.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
 				D413C5D12A081FC500869258 /* RemoteAddAccount.swift in Sources */,
