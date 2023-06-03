@@ -18,6 +18,7 @@ public final class PassengerMapPresenter {
     private let checkRequestRace: CheckRequestRace
     private let raceAccepted: RaceAccepted
     private let locationManager: LocationManager
+    private let geocodeLocation: GeocodeLocationManager
     private let mapView: PassengerMapView
     private var isCalledRace = false
     private var isAcceptedRace = false
@@ -33,6 +34,7 @@ public final class PassengerMapPresenter {
                 checkRequestRace: CheckRequestRace,
                 raceAccepted: RaceAccepted,
                 locationManager: LocationManager,
+                geocodeLocation: GeocodeLocationManager,
                 mapView: PassengerMapView) {
         self.alertView = alertView
         self.loadingView = loadingView
@@ -43,6 +45,7 @@ public final class PassengerMapPresenter {
         self.checkRequestRace = checkRequestRace
         self.mapView = mapView
         self.locationManager = locationManager
+        self.geocodeLocation = geocodeLocation
         self.requestButtonStateview = requestButtonStateview
     }
     
@@ -108,10 +111,25 @@ public final class PassengerMapPresenter {
         self.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: location))
     }
     
-    private func requestCallRace() {
-        guard let lastLocation = self.lastLocation else { return }
-        let request = RequestRaceRequest(latitude: lastLocation.latitude, longitude: lastLocation.longitude)
+    private func findDestinationAddress(_ destinationAddress: String) {
         self.loadingView.display(viewModel: .init(isLoading: true))
+        self.geocodeLocation.findLocationAddress(address: destinationAddress) { [weak self] result in
+            guard let self = self else { return }
+            self.loadingView.display(viewModel: .init(isLoading: false))
+            switch result {
+            case .success(let model):
+                print(model.getFullAddress())
+                //self.requestCallRace(model)
+            case .failure:
+                self.loadingView.display(viewModel: .init(isLoading: false))
+                self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização."))
+            }
+        }
+    }
+    
+    private func requestCallRace(_ addressModel: AddressLocationModel) {
+        guard let lastLocation = self.lastLocation else { return }
+        let request = RequestRaceRequest(latitude: lastLocation.latitude, longitude: lastLocation.longitude, addressModel: addressModel)
         self.callRace.request(request: request) { [weak self] result in
             self?.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
@@ -157,11 +175,11 @@ extension PassengerMapPresenter {
         }
     }
     
-    public func callRaceAction() {
+    public func didCallRace(destinationAddress: String) {
         if self.isCalledRace {
             requestCancelRace()
         } else {
-            requestCallRace()
+            findDestinationAddress(destinationAddress)
         }
     }
 }
