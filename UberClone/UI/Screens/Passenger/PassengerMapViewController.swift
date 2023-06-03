@@ -34,7 +34,7 @@ public final class PassengerMapViewController: UIViewController {
     
     public var load: (() -> Void)?
     public var logout: (() -> Void)?
-    public var callRace: (() -> Void)?
+    public var callRace: ((String) -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ public final class PassengerMapViewController: UIViewController {
     }
     
     @objc private func requestButtonTapped() {
-        self.callRace?()
+        self.callRace?(searchview.destinyText)
     }
 }
 

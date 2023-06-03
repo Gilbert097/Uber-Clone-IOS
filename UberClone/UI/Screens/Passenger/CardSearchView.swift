@@ -10,16 +10,16 @@ import UIKit
 
 public class CardSearchView: UIView {
     
-    let mainStack: UIStackView = {
+    private let mainStack: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
-        view.distribution = .fillProportionally
+        view.distribution = .fill
         view.spacing = 5
         return view
     }()
     
-    let originField: SearchFieldView = {
+    private let originField: SearchFieldView = {
         let view = SearchFieldView()
         view.text = "Meu Local"
         view.markerColor = .green
@@ -27,19 +27,25 @@ public class CardSearchView: UIView {
         return view
     }()
     
-    let separatorView: UIView = {
+    private let separatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .lightGray
         return view
     }()
     
-    let destinyField: SearchFieldView = {
+    private let destinyField: SearchFieldView = {
         let view = SearchFieldView()
         view.placeHolder = "Digite seu destino"
         view.markerColor = .lightGray
         return view
     }()
+    
+    public var destinyText: String {
+        get {
+            return destinyField.text
+        }
+    }
     
     public init() {
         super.init(frame: .zero)

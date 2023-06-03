@@ -28,9 +28,13 @@ public class SearchFieldView: UIStackView {
         return view
     }()
     
-    public var text: String = .init() {
-        didSet {
-            self.textField.text = text
+    public var text: String {
+        set {
+            self.textField.text = newValue
+        }
+        
+        get {
+            return self.textField.text ?? .init()
         }
     }
     

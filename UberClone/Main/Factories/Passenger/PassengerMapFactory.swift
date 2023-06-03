@@ -30,13 +30,14 @@ public final class PassengerMapFactory {
                                               checkRequestRace: checkRequestRace,
                                               raceAccepted: raceAccepted,
                                               locationManager: AppLocationManager(),
+                                              geocodeLocation: AppGeocodeLocationManager(),
                                               mapView: viewController)
         
         let router = PassengerRouter(nav: nav)
         presenter.dismiss = router.dismiss
         viewController.load = presenter.load
         viewController.logout = presenter.logout
-        viewController.callRace = presenter.callRaceAction
+        viewController.callRace = presenter.didCallRace
         return viewController
     }
 }
