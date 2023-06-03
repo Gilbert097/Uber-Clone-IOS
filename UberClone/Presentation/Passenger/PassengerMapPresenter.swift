@@ -102,7 +102,7 @@ public final class PassengerMapPresenter {
             }
         case .failure:
             self.locationManager.stop()
-            self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização."))
+            self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
         }
     }
     
@@ -118,11 +118,14 @@ public final class PassengerMapPresenter {
             self.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success(let model):
-                print(model.getFullAddress())
-                //self.requestCallRace(model)
+                let cancelButton = AlertButtonModel(title: "Cancelar", isCancel: true)
+                let confirmButton = AlertButtonModel(title: "Confimar", action: { [weak self] in self?.requestCallRace(model) })
+                let alert = AlertViewModel(title: "Confirme seu endereço!",
+                                           message: model.getFullAddress(),
+                                           buttons: [confirmButton, cancelButton])
+                self.alertView.showMessage(viewModel: alert)
             case .failure:
-                self.loadingView.display(viewModel: .init(isLoading: false))
-                self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização."))
+                self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
             }
         }
     }
@@ -130,6 +133,7 @@ public final class PassengerMapPresenter {
     private func requestCallRace(_ addressModel: AddressLocationModel) {
         guard let lastLocation = self.lastLocation else { return }
         let request = RequestRaceRequest(latitude: lastLocation.latitude, longitude: lastLocation.longitude, addressModel: addressModel)
+        self.loadingView.display(viewModel: .init(isLoading: true))
         self.callRace.request(request: request) { [weak self] result in
             self?.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
@@ -137,7 +141,7 @@ public final class PassengerMapPresenter {
                 self?.isCalledRace = true
                 self?.requestButtonStateview.change(state: .cancel)
             case .failure:
-                self?.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao realizar a requisição."))
+                self?.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao realizar a requisição.", buttons: [.init(title: "ok")]))
             }
         }
     }
@@ -151,7 +155,7 @@ public final class PassengerMapPresenter {
                 self?.isCalledRace = false
                 self?.requestButtonStateview.change(state: .call)
             case .failure:
-                self?.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar cancelar a corrida."))
+                self?.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar cancelar a corrida.", buttons: [.init(title: "ok")]))
             }
         }
     }

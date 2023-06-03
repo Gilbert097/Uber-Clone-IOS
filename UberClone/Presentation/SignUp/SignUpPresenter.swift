@@ -28,7 +28,7 @@ public final class SignUpPresenter {
     public func signUp(request: SignUpResquest) {
         
         if let messageError = self.validation.validate(data: request.toJson()) {
-            self.alertView.showMessage(viewModel: .init(title: "Erro", message: messageError))
+            self.alertView.showMessage(viewModel: .init(title: "Erro", message: messageError, buttons: [.init(title: "ok")]))
         } else {
             self.loadingView.display(viewModel: .init(isLoading: true))
             let model = request.toAddAccountModel()
