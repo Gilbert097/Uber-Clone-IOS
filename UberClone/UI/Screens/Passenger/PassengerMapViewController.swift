@@ -21,7 +21,7 @@ public final class PassengerMapViewController: UIViewController {
         )
     }()
     
-    private let searchview = AddressSearchView()
+    private let searchview = CardSearchView()
     
     private let mapView: MKMapView = {
         let view  = MKMapView()
