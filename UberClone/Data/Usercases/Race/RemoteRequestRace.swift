@@ -22,9 +22,11 @@ public class RemoteRequestRace: RequestRace {
             switch result {
             case .success(let user):
                 let model = RequestRaceModel(email: user.email,
-                                          name: user.name,
-                                          latitude: request.latitude,
-                                          longitude: request.longitude)
+                                             name: user.name,
+                                             latitude: request.latitude,
+                                             longitude: request.longitude,
+                                             latitudeDestination: request.addressModel.location.latitude,
+                                             longitudeDestination: request.addressModel.location.longitude)
                 guard let data = model.toData() else { return completion(.failure(DomainError.unexpected))}
                 let query = DatabaseQuery(path: "requests", data: data)
                 self?.databaseSetValueClient.setValue(query: query, completion: completion)

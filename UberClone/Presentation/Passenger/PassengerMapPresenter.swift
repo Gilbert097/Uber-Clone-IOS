@@ -132,7 +132,9 @@ public final class PassengerMapPresenter {
     
     private func requestCallRace(_ addressModel: AddressLocationModel) {
         guard let lastLocation = self.lastLocation else { return }
-        let request = RequestRaceRequest(latitude: lastLocation.latitude, longitude: lastLocation.longitude, addressModel: addressModel)
+        let request = RequestRaceRequest(latitude: lastLocation.latitude,
+                                         longitude: lastLocation.longitude,
+                                         addressModel: addressModel)
         self.loadingView.display(viewModel: .init(isLoading: true))
         self.callRace.request(request: request) { [weak self] result in
             self?.loadingView.display(viewModel: .init(isLoading: false))
