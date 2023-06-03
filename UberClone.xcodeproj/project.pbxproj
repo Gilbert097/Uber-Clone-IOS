@@ -118,7 +118,7 @@
 		D49201442A280C1C00D9B587 /* DatabaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201432A280C1C00D9B587 /* DatabaseQuery.swift */; };
 		D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */; };
 		D49201482A29442100D9B587 /* RaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201472A29442100D9B587 /* RaceAccepted.swift */; };
-		D492014A2A2A899D00D9B587 /* AddressSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201492A2A899D00D9B587 /* AddressSearchView.swift */; };
+		D492014A2A2A899D00D9B587 /* CardSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201492A2A899D00D9B587 /* CardSearchView.swift */; };
 		D492014C2A2A9D2300D9B587 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492014B2A2A9D2300D9B587 /* SearchFieldView.swift */; };
 		D492014E2A2BC85900D9B587 /* GeocodeLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492014D2A2BC85900D9B587 /* GeocodeLocationManager.swift */; };
 		D49201522A2BC89700D9B587 /* AppGeocodeLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201512A2BC89700D9B587 /* AppGeocodeLocationManager.swift */; };
@@ -252,7 +252,7 @@
 		D49201432A280C1C00D9B587 /* DatabaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseQuery.swift; sourceTree = "<group>"; };
 		D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceAccepted.swift; sourceTree = "<group>"; };
 		D49201472A29442100D9B587 /* RaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceAccepted.swift; sourceTree = "<group>"; };
-		D49201492A2A899D00D9B587 /* AddressSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchView.swift; sourceTree = "<group>"; };
+		D49201492A2A899D00D9B587 /* CardSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSearchView.swift; sourceTree = "<group>"; };
 		D492014B2A2A9D2300D9B587 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		D492014D2A2BC85900D9B587 /* GeocodeLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationManager.swift; sourceTree = "<group>"; };
 		D49201512A2BC89700D9B587 /* AppGeocodeLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGeocodeLocationManager.swift; sourceTree = "<group>"; };
@@ -673,7 +673,7 @@
 			children = (
 				D413C59229FF141600869258 /* PassengerMapViewController.swift */,
 				D413C5AE29FF2DFF00869258 /* PassengerRouter.swift */,
-				D49201492A2A899D00D9B587 /* AddressSearchView.swift */,
+				D49201492A2A899D00D9B587 /* CardSearchView.swift */,
 				D492014B2A2A9D2300D9B587 /* SearchFieldView.swift */,
 			);
 			path = Passenger;
@@ -1146,7 +1146,7 @@
 				D4036B1529EF463C00E53951 /* AlertView.swift in Sources */,
 				D415F99C29DF6D9A000689FF /* AppDelegate.swift in Sources */,
 				D413C59329FF141600869258 /* PassengerMapViewController.swift in Sources */,
-				D492014A2A2A899D00D9B587 /* AddressSearchView.swift in Sources */,
+				D492014A2A2A899D00D9B587 /* CardSearchView.swift in Sources */,
 				D413C5AC29FF2C6500869258 /* LogoutAuth.swift in Sources */,
 				D415F99E29DF6D9A000689FF /* SceneDelegate.swift in Sources */,
 				D413C5D12A081FC500869258 /* RemoteAddAccount.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  AddressSearchView.swift
+//  CardSearchView.swift
 //  UberClone
 //
 //  Created by Gilberto Silva on 02/06/23.
@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-public class AddressSearchView: UIView {
+public class CardSearchView: UIView {
     
     let mainStack: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
-        view.distribution = .fillEqually
+        view.distribution = .fillProportionally
         view.spacing = 5
         return view
     }()
@@ -24,6 +24,13 @@ public class AddressSearchView: UIView {
         view.text = "Meu Local"
         view.markerColor = .green
         view.isInputTexEnabled = false
+        return view
+    }()
+    
+    let separatorView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightGray
         return view
     }()
     
@@ -46,9 +53,9 @@ public class AddressSearchView: UIView {
 }
 
 // MARK: - ViewCode
-extension AddressSearchView: ViewCode {
+extension CardSearchView: ViewCode {
     func setupViewHierarchy() {
-        mainStack.addArrangedSubviews([originField, destinyField])
+        mainStack.addArrangedSubviews([originField, separatorView, destinyField])
         self.addSubview(mainStack)
     }
     
@@ -57,11 +64,17 @@ extension AddressSearchView: ViewCode {
             self.heightAnchor.constraint(equalToConstant: 90)
         ])
         
+        // mainStack
         NSLayoutConstraint.activate([
             self.mainStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             self.mainStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             self.mainStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
             self.mainStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
+        ])
+        
+        //separatorView
+        NSLayoutConstraint.activate([
+            self.separatorView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
     
