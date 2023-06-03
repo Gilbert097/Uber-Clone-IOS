@@ -14,17 +14,20 @@ public class ConfirmRacePresenter {
     private let loadingView: LoadingView
     private let alertView: AlertView
     private let mapView: ConfirmRaceMapView
+    private let geocodeLocation: GeocodeLocationManager
     
     public init(confirmRace: ConfirmRace,
                 parameter: ConfirmRaceParameter,
                 loadingView: LoadingView,
                 alertView: AlertView,
-                mapView: ConfirmRaceMapView) {
+                mapView: ConfirmRaceMapView,
+                geocodeLocation: GeocodeLocationManager) {
         self.confirmRace = confirmRace
         self.parameter = parameter
         self.loadingView = loadingView
         self.alertView = alertView
         self.mapView = mapView
+        self.geocodeLocation = geocodeLocation
     }
     
     public func load() {
@@ -41,7 +44,7 @@ public class ConfirmRacePresenter {
             switch result {
             case .success:
                 let point = self.makePointAnnotation()
-                self.mapView.showRoute(point: point)
+                self.geocodeLocation.openInMaps(point: point)
             case .failure:
                 self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida."))
             }
