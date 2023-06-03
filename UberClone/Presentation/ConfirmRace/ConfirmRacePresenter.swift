@@ -46,7 +46,7 @@ public class ConfirmRacePresenter {
                 let point = self.makePointAnnotation()
                 self.geocodeLocation.openInMaps(point: point)
             case .failure:
-                self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida."))
+                self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida.", buttons: [.init(title: "ok")]))
             }
         }
     }

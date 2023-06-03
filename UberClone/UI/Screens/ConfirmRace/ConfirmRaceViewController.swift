@@ -109,12 +109,7 @@ extension ConfirmRaceViewController: LoadingView {
 extension ConfirmRaceViewController: AlertView {
     
     public func showMessage(viewModel: AlertViewModel) {
-        let alert = UIAlertController(
-            title: viewModel.title,
-            message: viewModel.message,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        let alert = AlertFactory.build(viewModel: viewModel)
         present(alert, animated: true)
     }
 }

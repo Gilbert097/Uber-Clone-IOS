@@ -28,7 +28,7 @@ public final class LoginPresenter {
     public func login(request: LoginResquest) {
         
         if let messageError = self.validation.validate(data: request.toJson()) {
-            self.alertView.showMessage(viewModel: .init(title: "Erro", message: messageError))
+            self.alertView.showMessage(viewModel: .init(title: "Erro", message: messageError, buttons: [.init(title: "ok")]))
         } else {
             self.loadingView.display(viewModel: .init(isLoading: true))
             self.autentication.auth(authenticationModel: request.toAuthenticationModel()) { [weak self] authResult in

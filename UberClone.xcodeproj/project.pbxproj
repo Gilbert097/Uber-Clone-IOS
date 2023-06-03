@@ -122,6 +122,7 @@
 		D492014C2A2A9D2300D9B587 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492014B2A2A9D2300D9B587 /* SearchFieldView.swift */; };
 		D492014E2A2BC85900D9B587 /* GeocodeLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492014D2A2BC85900D9B587 /* GeocodeLocationManager.swift */; };
 		D49201522A2BC89700D9B587 /* AppGeocodeLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201512A2BC89700D9B587 /* AppGeocodeLocationManager.swift */; };
+		D49201552A2BF71A00D9B587 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201542A2BF71A00D9B587 /* AlertFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,6 +257,7 @@
 		D492014B2A2A9D2300D9B587 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		D492014D2A2BC85900D9B587 /* GeocodeLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationManager.swift; sourceTree = "<group>"; };
 		D49201512A2BC89700D9B587 /* AppGeocodeLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGeocodeLocationManager.swift; sourceTree = "<group>"; };
+		D49201542A2BF71A00D9B587 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -527,6 +529,7 @@
 		D4036B0B29EF365800E53951 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D49201532A2BF70400D9B587 /* Alert */,
 				D4036AC429DF7B6100E53951 /* Helpers */,
 				D4036AC029DF759E00E53951 /* Protocols */,
 				D4036AC929DF859800E53951 /* Components */,
@@ -951,6 +954,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		D49201532A2BF70400D9B587 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				D49201542A2BF71A00D9B587 /* AlertFactory.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1178,6 +1189,7 @@
 				D48482612A158B6500DEFCDC /* DatabaseUpdateValueClient.swift in Sources */,
 				D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */,
 				D413C57229F02EA700869258 /* AuthenticationError.swift in Sources */,
+				D49201552A2BF71A00D9B587 /* AlertFactory.swift in Sources */,
 				D4036B0029EF2EDC00E53951 /* Model.swift in Sources */,
 				D49201522A2BC89700D9B587 /* AppGeocodeLocationManager.swift in Sources */,
 				D413C5E22A09B59400869258 /* DatabaseDeleteValueClient.swift in Sources */,
