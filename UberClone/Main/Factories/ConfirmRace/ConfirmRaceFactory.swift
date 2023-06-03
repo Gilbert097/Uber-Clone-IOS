@@ -16,7 +16,8 @@ public final class ConfirmRaceFactory {
                                              parameter: paramter,
                                              loadingView: viewController,
                                              alertView: viewController,
-                                             mapView: viewController)
+                                             mapView: viewController,
+                                             geocodeLocation: AppGeocodeLocationManager())
         viewController.confirmRace = presenter.didConfirmRace
         viewController.load = presenter.load
         return viewController

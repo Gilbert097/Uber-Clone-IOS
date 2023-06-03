@@ -119,6 +119,9 @@
 		D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */; };
 		D49201482A29442100D9B587 /* RaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201472A29442100D9B587 /* RaceAccepted.swift */; };
 		D492014A2A2A899D00D9B587 /* AddressSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201492A2A899D00D9B587 /* AddressSearchView.swift */; };
+		D492014C2A2A9D2300D9B587 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492014B2A2A9D2300D9B587 /* SearchFieldView.swift */; };
+		D492014E2A2BC85900D9B587 /* GeocodeLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492014D2A2BC85900D9B587 /* GeocodeLocationManager.swift */; };
+		D49201522A2BC89700D9B587 /* AppGeocodeLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201512A2BC89700D9B587 /* AppGeocodeLocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +253,9 @@
 		D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceAccepted.swift; sourceTree = "<group>"; };
 		D49201472A29442100D9B587 /* RaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceAccepted.swift; sourceTree = "<group>"; };
 		D49201492A2A899D00D9B587 /* AddressSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchView.swift; sourceTree = "<group>"; };
+		D492014B2A2A9D2300D9B587 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
+		D492014D2A2BC85900D9B587 /* GeocodeLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationManager.swift; sourceTree = "<group>"; };
+		D49201512A2BC89700D9B587 /* AppGeocodeLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGeocodeLocationManager.swift; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -668,6 +674,7 @@
 				D413C59229FF141600869258 /* PassengerMapViewController.swift */,
 				D413C5AE29FF2DFF00869258 /* PassengerRouter.swift */,
 				D49201492A2A899D00D9B587 /* AddressSearchView.swift */,
+				D492014B2A2A9D2300D9B587 /* SearchFieldView.swift */,
 			);
 			path = Passenger;
 			sourceTree = "<group>";
@@ -903,8 +910,9 @@
 		D44B9C732A12F055005CE46C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				D48482552A12F69400DEFCDC /* LocationManager.swift */,
+				D492014F2A2BC87A00D9B587 /* Protocols */,
 				D45001572A12BB6C00B1A052 /* AppLocationManager.swift */,
+				D49201512A2BC89700D9B587 /* AppGeocodeLocationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -932,6 +940,15 @@
 				D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */,
 			);
 			path = ConfirmRace;
+			sourceTree = "<group>";
+		};
+		D492014F2A2BC87A00D9B587 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D48482552A12F69400DEFCDC /* LocationManager.swift */,
+				D492014D2A2BC85900D9B587 /* GeocodeLocationManager.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1162,6 +1179,7 @@
 				D4036B0D29EF37BA00E53951 /* CompareFieldValidation.swift in Sources */,
 				D413C57229F02EA700869258 /* AuthenticationError.swift in Sources */,
 				D4036B0029EF2EDC00E53951 /* Model.swift in Sources */,
+				D49201522A2BC89700D9B587 /* AppGeocodeLocationManager.swift in Sources */,
 				D413C5E22A09B59400869258 /* DatabaseDeleteValueClient.swift in Sources */,
 				D413C5A829FF2B5600869258 /* AuthLogoutClient.swift in Sources */,
 				D4036ADC29E1FEF200E53951 /* SecondaryButton.swift in Sources */,
@@ -1201,6 +1219,7 @@
 				D413C58529F892CC00869258 /* Autentication.swift in Sources */,
 				D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */,
 				D413C5E02A09B52A00869258 /* RemoteCancelRace.swift in Sources */,
+				D492014C2A2A9D2300D9B587 /* SearchFieldView.swift in Sources */,
 				D48482702A16962300DEFCDC /* RemoteCheckRequestRace.swift in Sources */,
 				D4036AED29E3019000E53951 /* LoginFactory.swift in Sources */,
 				D413C5E42A09C8F100869258 /* RemoteGetCurrentUser.swift in Sources */,
@@ -1208,6 +1227,7 @@
 				D49201442A280C1C00D9B587 /* DatabaseQuery.swift in Sources */,
 				D413C58E29F8A4E300869258 /* AuthCreateClient.swift in Sources */,
 				D413C5A629FF2A6500869258 /* PassengerMapPresenter.swift in Sources */,
+				D492014E2A2BC85900D9B587 /* GeocodeLocationManager.swift in Sources */,
 				D4036B0729EF30E300E53951 /* ValidationComposite.swift in Sources */,
 				D413C5DE2A09B4E400869258 /* CancelRace.swift in Sources */,
 				D484826A2A159B6300DEFCDC /* ConfirmRaceParameter.swift in Sources */,
