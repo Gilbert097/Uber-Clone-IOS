@@ -28,10 +28,12 @@ public class DriverListPresenter {
         self.locationManager = locationManager
     }
     
-    public func load() {
+    private func configureLocationManager() {
         self.locationManager.register { [weak self] in self?.handleUpdateLocationResult($0)}
         self.locationManager.start()
-        
+    }
+    
+    private func registerGetRacesOberver() {
         self.getRaces.observe { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -62,6 +64,15 @@ public class DriverListPresenter {
         case .failure:
             self.locationManager.stop()
         }
+    }
+}
+
+// MARK: - Public Methods
+extension DriverListPresenter {
+    
+    public func load() {
+        configureLocationManager()
+        registerGetRacesOberver()
     }
     
     public func logout() {
