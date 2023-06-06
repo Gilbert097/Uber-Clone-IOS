@@ -35,5 +35,12 @@ extension MainQueueDispatchDecorator: CancelRace where T: CancelRace {
             self?.dispatch { completion(result) }
         }
     }
-    
+}
+
+extension MainQueueDispatchDecorator: ConfirmRace where T: ConfirmRace {
+    public func confirm(model: ConfirmRaceModel, completion: @escaping (Result<Void, Error>) -> Void) {
+        self.instance.confirm(model: model) { [weak self] result in
+            self?.dispatch { completion(result) }
+        }
+    }
 }

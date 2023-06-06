@@ -9,6 +9,7 @@ import Foundation
 
 public class ConfirmRacePresenter {
     
+    private let getAuthUser: GetAuthUser
     private let confirmRace: ConfirmRace
     private let parameter: ConfirmRaceParameter
     private let loadingView: LoadingView
@@ -16,12 +17,14 @@ public class ConfirmRacePresenter {
     private let mapView: ConfirmRaceMapView
     private let geocodeLocation: GeocodeLocationManager
     
-    public init(confirmRace: ConfirmRace,
+    public init(getAuthUser: GetAuthUser,
+                confirmRace: ConfirmRace,
                 parameter: ConfirmRaceParameter,
                 loadingView: LoadingView,
                 alertView: AlertView,
                 mapView: ConfirmRaceMapView,
                 geocodeLocation: GeocodeLocationManager) {
+        self.getAuthUser = getAuthUser
         self.confirmRace = confirmRace
         self.parameter = parameter
         self.loadingView = loadingView
@@ -37,8 +40,9 @@ public class ConfirmRacePresenter {
     }
     
     public func didConfirmRace() {
+        guard let user = getAuthUser.get() else { return }
         self.loadingView.display(viewModel: .init(isLoading: true))
-        self.confirmRace.confirm(model: .init(parameter: self.parameter)) { [weak self] result in
+        self.confirmRace.confirm(model: .init(parameter: self.parameter, driverEmail: user.email)) { [weak self] result in
             guard let self = self else { return }
             self.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
@@ -57,14 +61,15 @@ public class ConfirmRacePresenter {
     }
 }
 
- private extension ConfirmRaceModel {
+private extension ConfirmRaceModel {
     
-      convenience init(parameter: ConfirmRaceParameter) {
-         self.init(email: parameter.race.email,
-                   name: parameter.race.name,
-                   latitude: parameter.race.latitude,
-                   longitude: parameter.race.longitude,
-                   driverLatitude: parameter.driverLocation.latitude,
-                   driverLongitude: parameter.driverLocation.longitude)
+    convenience init(parameter: ConfirmRaceParameter, driverEmail: String) {
+        self.init(email: parameter.race.email,
+                  name: parameter.race.name,
+                  latitude: parameter.race.latitude,
+                  longitude: parameter.race.longitude,
+                  driverLatitude: parameter.driverLocation.latitude,
+                  driverLongitude: parameter.driverLocation.longitude,
+                  driverEmail: driverEmail)
     }
 }

@@ -19,19 +19,22 @@ public class ConfirmRaceModel: Model {
     public let longitude: Double
     public let driverLatitude: Double
     public let driverLongitude: Double
+    public let driverEmail: String
     
     public init(email: String,
                 name: String,
                 latitude: Double,
                 longitude: Double,
                 driverLatitude: Double,
-                driverLongitude: Double) {
+                driverLongitude: Double,
+                driverEmail: String) {
         self.email = email
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
         self.driverLatitude = driverLatitude
         self.driverLongitude = driverLongitude
+        self.driverEmail = driverEmail
     }
     
     public static func == (lhs: ConfirmRaceModel, rhs: ConfirmRaceModel) -> Bool {
@@ -40,7 +43,8 @@ public class ConfirmRaceModel: Model {
         lhs.latitude == rhs.latitude &&
         lhs.longitude == rhs.longitude &&
         lhs.driverLatitude == rhs.driverLatitude &&
-        lhs.driverLongitude == rhs.driverLongitude
+        lhs.driverLongitude == rhs.driverLongitude &&
+        lhs.driverEmail == rhs.driverEmail
     }
     
     public func getDriverLocation() -> LocationModel {
