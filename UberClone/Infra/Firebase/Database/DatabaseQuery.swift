@@ -38,5 +38,6 @@ public enum DatabaseEvent {
     case added
     case value
     case changed
+    case removed
 }
 

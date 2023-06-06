@@ -10,6 +10,7 @@ import Foundation
 public class DriverListPresenter {
     
     private let getRaces: GetRaces
+    private let raceCanceled: RaceCanceled
     private let logoutAuth: LogoutAuth
     private let refreshListView: RefreshListView
     private let locationManager: LocationManager
@@ -19,10 +20,12 @@ public class DriverListPresenter {
     var goToConfirmRace: ((ConfirmRaceParameter) -> Void)!
     
     public init(getRaces: GetRaces,
+                raceCanceled: RaceCanceled,
                 logoutAuth: LogoutAuth,
                 refreshListView: RefreshListView,
                 locationManager: LocationManager) {
         self.getRaces = getRaces
+        self.raceCanceled = raceCanceled
         self.logoutAuth = logoutAuth
         self.refreshListView = refreshListView
         self.locationManager = locationManager
@@ -33,7 +36,7 @@ public class DriverListPresenter {
         self.locationManager.start()
     }
     
-    private func registerGetRacesOberver() {
+    private func registerGetRacesObserver() {
         self.getRaces.observe { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -42,6 +45,23 @@ public class DriverListPresenter {
                 let distanceText = "\(distance) KM de distância."
                 let viewModel = RaceViewModel(model: raceModel, distanceText: distanceText)
                 self.races.append(viewModel)
+                self.refreshListView.refreshList(list: self.races)
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    private func registerRaceCanceledObserver() {
+        self.raceCanceled.observe { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let raceModel):
+                for (index, race) in self.races.enumerated() {
+                    if race.email == raceModel.email {
+                        self.races.remove(at: index)
+                    }
+                }
                 self.refreshListView.refreshList(list: self.races)
             case .failure(_):
                 break
@@ -72,7 +92,8 @@ extension DriverListPresenter {
     
     public func load() {
         configureLocationManager()
-        registerGetRacesOberver()
+        registerGetRacesObserver()
+        registerRaceCanceledObserver()
     }
     
     public func logout() {
