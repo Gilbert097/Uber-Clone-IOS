@@ -157,7 +157,9 @@ private extension DatabaseEvent {
         case .value:
             return .value
         case .changed:
-            return.childChanged
+            return .childChanged
+        case .removed:
+            return .childRemoved
         }
     }
 }
