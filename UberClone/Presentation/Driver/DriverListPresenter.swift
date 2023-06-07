@@ -10,6 +10,7 @@ import Foundation
 public class DriverListPresenter {
     
     private let getRaces: GetRaces
+    private let getAuth: GetAuthUser
     private let raceCanceled: RaceCanceled
     private let logoutAuth: LogoutAuth
     private let refreshListView: RefreshListView
@@ -20,6 +21,7 @@ public class DriverListPresenter {
     var goToConfirmRace: ((ConfirmRaceParameter) -> Void)!
     
     public init(getRaces: GetRaces,
+                getAuth: GetAuthUser,
                 raceCanceled: RaceCanceled,
                 logoutAuth: LogoutAuth,
                 refreshListView: RefreshListView,
@@ -29,6 +31,7 @@ public class DriverListPresenter {
         self.logoutAuth = logoutAuth
         self.refreshListView = refreshListView
         self.locationManager = locationManager
+        self.getAuth = getAuth
     }
     
     private func configureLocationManager() {
@@ -36,14 +39,16 @@ public class DriverListPresenter {
         self.locationManager.start()
     }
     
-    private func registerGetRacesObserver() {
-        self.getRaces.observe { [weak self] result in
+    private func executeGetRaces() {
+        self.getRaces.execute { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let raceModel):
+                guard let user = self.getAuth.get() else { return }
+                let isRunning = user.email == raceModel.driverEmail
                 let distance = self.calculateDistance(raceModel: raceModel)
                 let distanceText = "\(distance) KM de distância."
-                let viewModel = RaceViewModel(model: raceModel, distanceText: distanceText)
+                let viewModel = RaceViewModel(model: raceModel, distanceText: distanceText, isRunning: isRunning)
                 self.races.append(viewModel)
                 self.refreshListView.refreshList(list: self.races)
             case .failure(_):
@@ -90,7 +95,7 @@ extension DriverListPresenter {
     
     public func load() {
         configureLocationManager()
-        registerGetRacesObserver()
+        executeGetRaces()
         registerRaceCanceledObserver()
     }
     

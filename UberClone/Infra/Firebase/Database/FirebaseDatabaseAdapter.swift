@@ -73,23 +73,25 @@ extension FirebaseDatabaseAdapter: DatabaseDeleteValueClient {
 extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
     
     public func getValue(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
-        var refPath = Database
+        let refPath = Database
             .database()
             .reference()
             .child(query.path)
         
-        if let child = query.child {
-            refPath = refPath.child(child.path)
-        } else if let contidion = query.condition {
-            refPath = refPath
-                .queryOrdered(byChild: contidion.field)
-                .queryEqual(toValue: contidion.value)
-                .ref
-        }
-        
-        refPath.observeSingleEvent(of: query.event.type) { snapshot in
+        let completion: ((DataSnapshot) -> Void) = { snapshot in
             guard let data = snapshot.data else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
             completion(.success(data))
+        }
+        
+        if let child = query.child {
+            refPath
+                .child(child.path)
+                .observeSingleEvent(of: query.event.type, with: completion)
+        } else if let contidion = query.condition {
+            refPath
+                .queryOrdered(byChild: contidion.field)
+                .queryEqual(toValue: contidion.value)
+                .observeSingleEvent(of: query.event.type, with: completion)
         }
     }
 }
