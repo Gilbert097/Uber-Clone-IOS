@@ -43,13 +43,15 @@ public class DriverListPresenter {
         self.getRaces.execute { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let raceModel):
+            case .success(let races):
                 guard let user = self.getAuth.get() else { return }
-                let isRunning = user.email == raceModel.driverEmail
-                let distance = self.calculateDistance(raceModel: raceModel)
-                let distanceText = "\(distance) KM de distância."
-                let viewModel = RaceViewModel(model: raceModel, distanceText: distanceText, isRunning: isRunning)
-                self.races.append(viewModel)
+                let viewModels: [RaceViewModel] = races.map { race in
+                    let isRunning = user.email == race.driverEmail
+                    let distance = self.calculateDistance(raceModel: race)
+                    let distanceText = "\(distance) KM de distância."
+                    return RaceViewModel(model: race, distanceText: distanceText, isRunning: isRunning)
+                }
+                self.races = viewModels
                 self.refreshListView.refreshList(list: self.races)
             case .failure(_):
                 break
