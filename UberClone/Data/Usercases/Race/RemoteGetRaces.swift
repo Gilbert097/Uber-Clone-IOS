@@ -9,14 +9,14 @@ import Foundation
 
 public class RemoteGetRaces: GetRaces {
     
-    private let observeClient: DatabaseOberveAddValueClient
+    private let getValueClient: DatabaseGetValueClient
     
-    public init(observeClient: DatabaseOberveAddValueClient) {
-        self.observeClient = observeClient
+    public init(getValueClient: DatabaseGetValueClient) {
+        self.getValueClient = getValueClient
     }
     
-    public func observe(completion: @escaping (Result<RaceModel, DomainError>) -> Void) {
-        self.observeClient.observe(query: .init(path: "requests")) { result in
+    public func execute(completion: @escaping (Result<RaceModel, DomainError>) -> Void) {
+        self.getValueClient.getValue(query: .init(path: "requests")) { result in
             switch result {
             case .success(let data):
                 if let race: RaceModel = data.toModel() {
