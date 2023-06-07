@@ -7,6 +7,11 @@
 
 import Foundation
 
-public protocol DatabaseOberveAddValueClient {
+public protocol DatabaseOberveValueClient {
     func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void)
+}
+
+
+public protocol DatabaseOberveValuesClient {
+    func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<[Data], Error>) -> Void)
 }

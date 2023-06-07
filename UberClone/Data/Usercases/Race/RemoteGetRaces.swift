@@ -9,14 +9,14 @@ import Foundation
 
 public class RemoteGetRaces: GetRaces {
     
-    private let getValuesClient: DatabaseGetValuesClient
+    private let observeValuesClient: DatabaseOberveValuesClient
     
-    public init(getValuesClient: DatabaseGetValuesClient) {
-        self.getValuesClient = getValuesClient
+    public init(observeValuesClient: DatabaseOberveValuesClient) {
+        self.observeValuesClient = observeValuesClient
     }
     
     public func execute(completion: @escaping (Result<[RaceModel], DomainError>) -> Void) {
-        self.getValuesClient.getValues(query: .init(path: "requests", event: .value)) { result in
+        self.observeValuesClient.observe(query: .init(path: "requests", event: .value)) { result in
             switch result {
             case .success(let datas):
                 let races: [RaceModel] = datas

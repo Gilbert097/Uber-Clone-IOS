@@ -9,9 +9,9 @@ import Foundation
 
 public class RemoteRaceCanceled: RaceCanceled {
     
-    private let observeClient: DatabaseOberveAddValueClient
+    private let observeClient: DatabaseOberveValueClient
     
-    public init(observeClient: DatabaseOberveAddValueClient) {
+    public init(observeClient: DatabaseOberveValueClient) {
         self.observeClient = observeClient
     }
     

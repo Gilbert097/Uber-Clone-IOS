@@ -39,7 +39,7 @@ public class DriverListPresenter {
         self.locationManager.start()
     }
     
-    private func executeGetRaces() {
+    private func registerGetRacesObserver() {
         self.getRaces.execute { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -97,7 +97,7 @@ extension DriverListPresenter {
     
     public func load() {
         configureLocationManager()
-        executeGetRaces()
+        registerGetRacesObserver()
         registerRaceCanceledObserver()
     }
     
