@@ -10,9 +10,9 @@ import Foundation
 public class RemoteRaceAccepted: RaceAccepted {
     
     private let authGet: AuthGetUserClient
-    private let observeClient: DatabaseOberveAddValueClient
+    private let observeClient: DatabaseOberveValueClient
     
-    public init(authGet: AuthGetUserClient, observeClient: DatabaseOberveAddValueClient) {
+    public init(authGet: AuthGetUserClient, observeClient: DatabaseOberveValueClient) {
         self.authGet = authGet
         self.observeClient = observeClient
     }

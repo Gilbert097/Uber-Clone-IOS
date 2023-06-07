@@ -144,7 +144,7 @@ extension FirebaseDatabaseAdapter: DatabaseGetValuesClient {
 }
 
 // MARK: - DatabaseOberveAddValueClient
-extension FirebaseDatabaseAdapter: DatabaseOberveAddValueClient {
+extension FirebaseDatabaseAdapter: DatabaseOberveValueClient {
     
     public func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
         let childPath = Database
@@ -163,6 +163,36 @@ extension FirebaseDatabaseAdapter: DatabaseOberveAddValueClient {
         //childPath.removeObserver(withHandle: observe)
     }
 }
+
+// MARK: - DatabaseOberveValuesClient
+extension FirebaseDatabaseAdapter: DatabaseOberveValuesClient {
+    
+    public func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<[Data], Error>) -> Void) {
+        let childPath = Database
+            .database()
+            .reference()
+            .child(query.path)
+        
+        _ = childPath
+            .observe(query.event.type) { snapshot in
+                if snapshot.childrenCount > 0 {
+                    
+                   let allObjects = snapshot
+                        .children
+                        .allObjects as! [DataSnapshot]
+                    
+                   let datas = allObjects
+                        .map({ $0.data})
+                        .compactMap { $0 }
+                    completion(.success(datas))
+                } else {
+                    completion(.failure(FirebaseDatabaseError.valueNotFound))
+                }
+            }
+        //childPath.removeObserver(withHandle: observe)
+    }
+}
+
 
 // MARK: - DatabaseUpdateValueClient
 extension FirebaseDatabaseAdapter: DatabaseUpdateValueClient {

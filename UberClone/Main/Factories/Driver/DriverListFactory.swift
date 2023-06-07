@@ -15,7 +15,7 @@ public final class DriverListFactory {
         let viewController = DriverListViewController()
         let router = DriverListRouter(nav: nav,
                                       confirmRaceFactory: ConfirmRaceFactory.build)
-        let presenter = DriverListPresenter(getRaces: RemoteGetRaces(getValuesClient: databaseAdapter),
+        let presenter = DriverListPresenter(getRaces: RemoteGetRaces(observeValuesClient: databaseAdapter),
                                             getAuth: RemoteGetAuthUser(client: authAdapter),
                                             raceCanceled: RemoteRaceCanceled(observeClient: databaseAdapter),
                                             logoutAuth: RemoteLogoutAuth(authLogoutClient: authAdapter),
