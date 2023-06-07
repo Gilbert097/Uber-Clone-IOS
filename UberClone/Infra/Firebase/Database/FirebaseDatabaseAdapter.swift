@@ -79,6 +79,7 @@ extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
             .child(query.path)
         
         let completion: ((DataSnapshot) -> Void) = { snapshot in
+            print("getValue -> \(snapshot)")
             guard let data = snapshot.data else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
             completion(.success(data))
         }
@@ -91,6 +92,52 @@ extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
             refPath
                 .queryOrdered(byChild: contidion.field)
                 .queryEqual(toValue: contidion.value)
+                .observeSingleEvent(of: query.event.type, with: completion)
+        } else {
+            refPath
+                .observeSingleEvent(of: query.event.type, with: completion)
+        }
+    }
+}
+
+// MARK: - DatabaseGetValuesClient
+extension FirebaseDatabaseAdapter: DatabaseGetValuesClient {
+    
+    public func getValues(query: DatabaseQuery, completion: @escaping (Swift.Result<[Data], Error>) -> Void) {
+        let refPath = Database
+            .database()
+            .reference()
+            .child(query.path)
+        
+        let completion: ((DataSnapshot) -> Void) = { snapshot in
+            print("getValues -> \(snapshot)")
+            
+            if snapshot.childrenCount > 0 {
+                
+               let allObjects = snapshot
+                    .children
+                    .allObjects as! [DataSnapshot]
+                
+               let datas = allObjects
+                    .map({ $0.data})
+                    .compactMap { $0 }
+                completion(.success(datas))
+            } else {
+                completion(.failure(FirebaseDatabaseError.valueNotFound))
+            }
+        }
+        
+        if let child = query.child {
+            refPath
+                .child(child.path)
+                .observeSingleEvent(of: query.event.type, with: completion)
+        } else if let contidion = query.condition {
+            refPath
+                .queryOrdered(byChild: contidion.field)
+                .queryEqual(toValue: contidion.value)
+                .observeSingleEvent(of: query.event.type, with: completion)
+        } else {
+            refPath
                 .observeSingleEvent(of: query.event.type, with: completion)
         }
     }

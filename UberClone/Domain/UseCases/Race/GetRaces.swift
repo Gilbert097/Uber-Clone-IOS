@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol GetRaces {
-    func execute(completion: @escaping (Swift.Result<RaceModel, DomainError>) -> Void)
+    func execute(completion: @escaping (Swift.Result<[RaceModel], DomainError>) -> Void)
 }
 
 public class RaceModel: Model {
