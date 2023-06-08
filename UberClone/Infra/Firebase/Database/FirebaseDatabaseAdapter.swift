@@ -204,14 +204,7 @@ extension FirebaseDatabaseAdapter: DatabaseUpdateValueClient {
             .reference()
             .child(query.path)
         
-        if let contidion = query.condition {
-            refPath = refPath
-                .queryOrdered(byChild: contidion.field)
-                .queryEqual(toValue: contidion.value)
-                .ref
-        }
-        
-        refPath.observeSingleEvent(of: query.event.type) { snapshot in
+        let completion: ((DataSnapshot) -> Void) = { snapshot in
             print(snapshot.value!)
             guard
                 let data = query.data,
@@ -223,6 +216,16 @@ extension FirebaseDatabaseAdapter: DatabaseUpdateValueClient {
                 guard error == nil else { return completion(.failure(FirebaseDatabaseError.internalError)) }
                 completion(.success(()))
             }
+        }
+        
+        if let contidion = query.condition {
+            refPath
+                .queryOrdered(byChild: contidion.field)
+                .queryEqual(toValue: contidion.value)
+                .observeSingleEvent(of: query.event.type, with: completion)
+        } else {
+            refPath
+                .observeSingleEvent(of: query.event.type, with: completion)
         }
     }
 }

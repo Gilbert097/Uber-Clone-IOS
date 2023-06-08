@@ -16,6 +16,7 @@ public class ConfirmRacePresenter {
     private let alertView: AlertView
     private let mapView: ConfirmRaceMapView
     private let geocodeLocation: GeocodeLocationManager
+    private var pointTarget: PointAnnotationModel?
     
     public init(getAuthUser: GetAuthUser,
                 confirmRace: ConfirmRace,
@@ -47,8 +48,8 @@ public class ConfirmRacePresenter {
             self.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success:
-                let point = self.makePointAnnotation()
-                self.geocodeLocation.openInMaps(point: point)
+                self.pointTarget = self.makePointAnnotation()
+                self.geocodeLocation.openInMaps(point: self.pointTarget!)
             case .failure:
                 self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida.", buttons: [.init(title: "ok")]))
             }

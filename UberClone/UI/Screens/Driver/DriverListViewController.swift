@@ -83,7 +83,7 @@ extension DriverListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "cell")
-        cell.textLabel?.text = list?[indexPath.row].email
+        cell.textLabel?.text = list?[indexPath.row].displayText
         cell.detailTextLabel?.text = list?[indexPath.row].distanceText
         return cell
     }

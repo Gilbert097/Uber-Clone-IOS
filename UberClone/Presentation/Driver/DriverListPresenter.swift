@@ -49,7 +49,8 @@ public class DriverListPresenter {
                     let isRunning = user.email == race.driverEmail
                     let distance = self.calculateDistance(raceModel: race)
                     let distanceText = "\(distance) KM de distância."
-                    return RaceViewModel(model: race, distanceText: distanceText, isRunning: isRunning)
+                    let displayText = isRunning ? "\(race.name) { ANDAMENTO }" : race.name
+                    return RaceViewModel(model: race, distanceText: distanceText, displayText: displayText)
                 }
                 self.races = viewModels
                 self.refreshListView.refreshList(list: self.races)

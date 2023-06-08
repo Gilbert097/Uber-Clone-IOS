@@ -14,23 +14,23 @@ public class RaceViewModel {
     public let distanceText: String
     public let latitude: Double
     public let longitude: Double
-    public let isRunning: Bool
+    public let displayText: String
     
-    public init(email: String, name: String, distanceText: String, latitude: Double, longitude: Double, isRunning: Bool) {
+    public init(email: String, name: String, distanceText: String, latitude: Double, longitude: Double, displayText: String) {
         self.email = email
         self.name = name
         self.distanceText = distanceText
         self.latitude = latitude
         self.longitude = longitude
-        self.isRunning = isRunning
+        self.displayText = displayText
     }
     
-    public init(model: RaceModel, distanceText: String, isRunning: Bool) {
+    public init(model: RaceModel, distanceText: String, displayText: String) {
         self.email = model.email
         self.name = model.name
         self.distanceText = distanceText
         self.latitude = model.latitude
         self.longitude = model.longitude
-        self.isRunning = isRunning
+        self.displayText = displayText
     }
 }
