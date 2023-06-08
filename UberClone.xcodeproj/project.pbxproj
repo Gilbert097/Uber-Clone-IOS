@@ -125,6 +125,7 @@
 		D49201552A2BF71A00D9B587 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201542A2BF71A00D9B587 /* AlertFactory.swift */; };
 		D49201572A2FB1FD00D9B587 /* RaceCanceled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201562A2FB1FD00D9B587 /* RaceCanceled.swift */; };
 		D49201592A2FB22C00D9B587 /* RemoteRaceCanceled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201582A2FB22C00D9B587 /* RemoteRaceCanceled.swift */; };
+		D492015B2A32485700D9B587 /* ConfirmRaceButtonStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492015A2A32485700D9B587 /* ConfirmRaceButtonStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +263,7 @@
 		D49201542A2BF71A00D9B587 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		D49201562A2FB1FD00D9B587 /* RaceCanceled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceCanceled.swift; sourceTree = "<group>"; };
 		D49201582A2FB22C00D9B587 /* RemoteRaceCanceled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceCanceled.swift; sourceTree = "<group>"; };
+		D492015A2A32485700D9B587 /* ConfirmRaceButtonStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmRaceButtonStateView.swift; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -945,6 +947,7 @@
 		D48482662A1597F800DEFCDC /* ConfirmRace */ = {
 			isa = PBXGroup;
 			children = (
+				D492015A2A32485700D9B587 /* ConfirmRaceButtonStateView.swift */,
 				D48482672A15980C00DEFCDC /* ConfirmRacePresenter.swift */,
 				D48482692A159B6300DEFCDC /* ConfirmRaceParameter.swift */,
 			);
@@ -1228,6 +1231,7 @@
 				D413C5AA29FF2C4E00869258 /* RemoteLogoutAuth.swift in Sources */,
 				D48482722A16963500DEFCDC /* CheckRequestRace.swift in Sources */,
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
+				D492015B2A32485700D9B587 /* ConfirmRaceButtonStateView.swift in Sources */,
 				D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */,
 				D484825F2A156C1F00DEFCDC /* ConfirmRaceFactory.swift in Sources */,
 				D413C59829FF155900869258 /* PassengerMapFactory.swift in Sources */,

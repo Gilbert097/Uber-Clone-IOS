@@ -15,6 +15,7 @@ public class ConfirmRacePresenter {
     private let loadingView: LoadingView
     private let alertView: AlertView
     private let mapView: ConfirmRaceMapView
+    private let buttonState: ConfirmRaceButtonStateView
     private let geocodeLocation: GeocodeLocationManager
     private var pointTarget: PointAnnotationModel?
     
@@ -24,6 +25,7 @@ public class ConfirmRacePresenter {
                 loadingView: LoadingView,
                 alertView: AlertView,
                 mapView: ConfirmRaceMapView,
+                buttonState: ConfirmRaceButtonStateView,
                 geocodeLocation: GeocodeLocationManager) {
         self.getAuthUser = getAuthUser
         self.confirmRace = confirmRace
@@ -31,6 +33,7 @@ public class ConfirmRacePresenter {
         self.loadingView = loadingView
         self.alertView = alertView
         self.mapView = mapView
+        self.buttonState = buttonState
         self.geocodeLocation = geocodeLocation
     }
     
@@ -48,6 +51,7 @@ public class ConfirmRacePresenter {
             self.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success:
+                self.buttonState.change(state: .pickUpPassenger)
                 self.pointTarget = self.makePointAnnotation()
                 self.geocodeLocation.openInMaps(point: self.pointTarget!)
             case .failure:
@@ -71,6 +75,7 @@ private extension ConfirmRaceModel {
                   longitude: parameter.race.longitude,
                   driverLatitude: parameter.driverLocation.latitude,
                   driverLongitude: parameter.driverLocation.longitude,
-                  driverEmail: driverEmail)
+                  driverEmail: driverEmail,
+                  status: .pickUpPassenger)
     }
 }
