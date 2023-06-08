@@ -39,3 +39,10 @@ public class RaceModel: Model {
         LocationModel(latitude: self.latitude, longitude: self.longitude)
     }
 }
+
+public enum RaceStatus: String, Codable {
+    case onRequest
+    case pickUpPassenger
+    case startRace
+    case onRun
+}
