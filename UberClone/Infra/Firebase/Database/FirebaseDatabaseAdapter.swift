@@ -199,7 +199,7 @@ extension FirebaseDatabaseAdapter: DatabaseUpdateValueClient {
     
     public func updateValue(query: DatabaseQuery,
                             completion: @escaping (Swift.Result<Void, Error>) -> Void) {
-        var refPath = Database
+        let refPath = Database
             .database()
             .reference()
             .child(query.path)
