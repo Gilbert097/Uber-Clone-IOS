@@ -126,6 +126,8 @@
 		D49201572A2FB1FD00D9B587 /* RaceCanceled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201562A2FB1FD00D9B587 /* RaceCanceled.swift */; };
 		D49201592A2FB22C00D9B587 /* RemoteRaceCanceled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201582A2FB22C00D9B587 /* RemoteRaceCanceled.swift */; };
 		D492015B2A32485700D9B587 /* ConfirmRaceButtonStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492015A2A32485700D9B587 /* ConfirmRaceButtonStateView.swift */; };
+		D492015D2A3A721000D9B587 /* RemoteUpdateDriverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492015C2A3A721000D9B587 /* RemoteUpdateDriverLocation.swift */; };
+		D492015F2A3A724900D9B587 /* UpdateDriverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492015E2A3A724900D9B587 /* UpdateDriverLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +266,8 @@
 		D49201562A2FB1FD00D9B587 /* RaceCanceled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceCanceled.swift; sourceTree = "<group>"; };
 		D49201582A2FB22C00D9B587 /* RemoteRaceCanceled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceCanceled.swift; sourceTree = "<group>"; };
 		D492015A2A32485700D9B587 /* ConfirmRaceButtonStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmRaceButtonStateView.swift; sourceTree = "<group>"; };
+		D492015C2A3A721000D9B587 /* RemoteUpdateDriverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUpdateDriverLocation.swift; sourceTree = "<group>"; };
+		D492015E2A3A724900D9B587 /* UpdateDriverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDriverLocation.swift; sourceTree = "<group>"; };
 		E7E601068C97C945A41865AD /* Pods-UberCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberCloneTests.release.xcconfig"; path = "Target Support Files/Pods-UberCloneTests/Pods-UberCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -781,6 +785,7 @@
 				D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */,
 				D49201582A2FB22C00D9B587 /* RemoteRaceCanceled.swift */,
 				D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */,
+				D492015C2A3A721000D9B587 /* RemoteUpdateDriverLocation.swift */,
 				D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */,
 				D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */,
 			);
@@ -834,6 +839,7 @@
 			children = (
 				D413C5BA2A008F6F00869258 /* RequestRace.swift */,
 				D48482622A158BA300DEFCDC /* ConfirmRace.swift */,
+				D492015E2A3A724900D9B587 /* UpdateDriverLocation.swift */,
 				D49201472A29442100D9B587 /* RaceAccepted.swift */,
 				D413C5F72A0C595F00869258 /* GetRaces.swift */,
 				D49201562A2FB1FD00D9B587 /* RaceCanceled.swift */,
@@ -1240,6 +1246,7 @@
 				D413C5CD2A072F7200869258 /* RemoteGetAuthUser.swift in Sources */,
 				D413C59529FF146500869258 /* LoginRouter.swift in Sources */,
 				D413C58529F892CC00869258 /* Autentication.swift in Sources */,
+				D492015F2A3A724900D9B587 /* UpdateDriverLocation.swift in Sources */,
 				D4036B1029EF39CC00E53951 /* LoadingView.swift in Sources */,
 				D49201592A2FB22C00D9B587 /* RemoteRaceCanceled.swift in Sources */,
 				D413C5E02A09B52A00869258 /* RemoteCancelRace.swift in Sources */,
@@ -1258,6 +1265,7 @@
 				D413C5E82A09CB6100869258 /* DatabaseGetValueClient.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
 				D413C56D29F0235300869258 /* DomainError.swift in Sources */,
+				D492015D2A3A721000D9B587 /* RemoteUpdateDriverLocation.swift in Sources */,
 				D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */,
 				D4036B1329EF3B5C00E53951 /* ScreenLoadingView.swift in Sources */,
 			);

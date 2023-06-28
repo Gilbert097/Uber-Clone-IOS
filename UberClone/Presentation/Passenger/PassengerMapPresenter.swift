@@ -100,7 +100,7 @@ public final class PassengerMapPresenter {
                 self.lastLocation = location
                 setMapView(location)
             }
-        case .failure:
+        case .failure: break
             self.locationManager.stop()
             self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
         }

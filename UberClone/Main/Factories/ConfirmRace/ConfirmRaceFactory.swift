@@ -10,16 +10,20 @@ import Foundation
 public final class ConfirmRaceFactory {
     
     public static func build(nav: NavigationController, paramter: ConfirmRaceParameter) -> ConfirmRaceViewController {
-        let confirmRace =  MainQueueDispatchDecorator(RemoteConfirmRace(updateClient: FirebaseDatabaseAdapter())) 
+        let confirmRace =  MainQueueDispatchDecorator(RemoteConfirmRace(updateClient: FirebaseDatabaseAdapter()))
         let viewController = ConfirmRaceViewController()
-        let presenter = ConfirmRacePresenter(getAuthUser: RemoteGetAuthUser(client: FirebaseAuthAdapter()),
-                                             confirmRace: confirmRace,
-                                             parameter: paramter,
-                                             loadingView: viewController,
-                                             alertView: viewController,
-                                             mapView: viewController,
-                                             buttonState: viewController,
-                                             geocodeLocation: AppGeocodeLocationManager())
+        let database = FirebaseDatabaseAdapter()
+        let presenter = ConfirmRacePresenter(
+            getAuthUser: RemoteGetAuthUser(client: FirebaseAuthAdapter()),
+            confirmRace: confirmRace,
+            updateLocation: RemoteUpdateDriverLocation(updateClient: database),
+            parameter: paramter,
+            loadingView: viewController,
+            alertView: viewController,
+            mapView: viewController,
+            buttonState: viewController,
+            locationManager: AppLocationManager(),
+            geocodeLocation: AppGeocodeLocationManager())
         viewController.confirmRace = presenter.didConfirmRace
         viewController.load = presenter.load
         return viewController

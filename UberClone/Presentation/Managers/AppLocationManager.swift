@@ -50,13 +50,9 @@ extension AppLocationManager: LocationManager {
 extension AppLocationManager: CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        let locationError: LocationError
         if let error = error as? CLError, error.code == .denied {
-            locationError = .unauthorized
-        } else {
-            locationError = .unableToDetermineLocation
+            handleUpdateLocationResult(.failure(LocationError.unauthorized))
         }
-        handleUpdateLocationResult(.failure(locationError))
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
