@@ -37,6 +37,7 @@ public class CardSearchView: UIView {
     private let destinyField: SearchFieldView = {
         let view = SearchFieldView()
         view.placeHolder = "Digite seu destino"
+        view.text = "R. Cap. Antônio Joaquim da Paixão, 39 Contagem - Centro"
         view.markerColor = .lightGray
         return view
     }()

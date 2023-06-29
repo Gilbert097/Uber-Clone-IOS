@@ -11,6 +11,7 @@ public class ConfirmRacePresenter {
     
     private let getAuthUser: GetAuthUser
     private let confirmRace: ConfirmRace
+    private let getRace: GetRace
     private let updateLocation: UpdateDriverLocation
     private let parameter: ConfirmRaceParameter
     private let loadingView: LoadingView
@@ -25,6 +26,7 @@ public class ConfirmRacePresenter {
     
     public init(getAuthUser: GetAuthUser,
                 confirmRace: ConfirmRace,
+                getRace: GetRace,
                 updateLocation: UpdateDriverLocation,
                 parameter: ConfirmRaceParameter,
                 loadingView: LoadingView,
@@ -35,6 +37,7 @@ public class ConfirmRacePresenter {
                 geocodeLocation: GeocodeLocationManager) {
         self.getAuthUser = getAuthUser
         self.confirmRace = confirmRace
+        self.getRace = getRace
         self.updateLocation = updateLocation
         self.parameter = parameter
         self.loadingView = loadingView
@@ -66,19 +69,34 @@ public class ConfirmRacePresenter {
         case .success(let location):
             if self.lasLocation == nil {
                 self.lasLocation = location
-                updateDriverLocation(location)
+                executeGetRace()
             } else if let lasLocation = self.lasLocation,
                         !lasLocation.isEqual(location: location) {
                 self.lasLocation = location
-                updateDriverLocation(location)
+                executeGetRace()
             }
         case .failure:
             self.locationManager.stop()
         }
     }
     
-    private func updateDriverLocation(_ location: LocationModel) {
-        let model = UpdateDriverModel(email: self.parameter.race.email, driverLatitude: location.latitude, driverLongitude: location.longitude)
+    private func executeGetRace() {
+        self.getRace.execute(email: self.parameter.race.email) { [weak self] result in
+            switch result {
+            case .success(let race):
+                if let status = race.status, status == .pickUpPassenger {
+                    self?.updateDriverLocation()
+                    self?.buttonState.change(state: .pickUpPassenger)
+                }
+            case .failure:
+                print("Get race error")
+            }
+        }
+    }
+    
+    private func updateDriverLocation() {
+        guard let lasLocation = self.lasLocation else { return }
+        let model = UpdateDriverModel(email: self.parameter.race.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
         self.updateLocation.update(model: model) { result in
             switch result {
             case .success:
