@@ -12,21 +12,38 @@ public protocol GetRaces {
 }
 
 public class RaceModel: Model {
-   
+    
     public let email: String
     public let name: String
     public let latitude: Double
     public let longitude: Double
-    public let driverEmail: String?
-    public let status: RaceStatus?
+    public var driverEmail: String?
+    public var driverLatitude: Double?
+    public var driverLongitude: Double?
+    public var status: RaceStatus?
+    public var latitudeDestination: Double?
+    public var longitudeDestination: Double?
     
-    public init(email: String, name: String, latitude: Double, longitude: Double, driverEmail: String?, status: RaceStatus?) {
+    public init(email: String,
+                name: String,
+                latitude: Double,
+                longitude: Double,
+                driverEmail: String? = nil,
+                driverLatitude: Double? = nil,
+                driverLongitude: Double? = nil,
+                status: RaceStatus? = nil,
+                latitudeDestination: Double? = nil,
+                longitudeDestination: Double? = nil) {
         self.email = email
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
         self.driverEmail = driverEmail
+        self.driverLatitude = driverLatitude
+        self.driverLongitude = driverLongitude
         self.status = status
+        self.latitudeDestination = latitudeDestination
+        self.longitudeDestination = longitudeDestination
     }
     
     public static func == (lhs: RaceModel, rhs: RaceModel) -> Bool {
@@ -35,7 +52,11 @@ public class RaceModel: Model {
         lhs.latitude == rhs.latitude &&
         lhs.longitude == rhs.longitude &&
         lhs.driverEmail == rhs.driverEmail &&
-        lhs.status == rhs.status
+        lhs.status == rhs.status &&
+        lhs.driverLatitude == rhs.driverLatitude &&
+        lhs.driverLongitude == rhs.driverLongitude &&
+        lhs.latitudeDestination == rhs.latitudeDestination &&
+        lhs.longitudeDestination == rhs.longitudeDestination
     }
     
     public func getLocation() -> LocationModel {

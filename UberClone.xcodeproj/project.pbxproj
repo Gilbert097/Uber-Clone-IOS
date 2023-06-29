@@ -103,6 +103,8 @@
 		D415F9A529DF6D9B000689FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D415F9A429DF6D9B000689FF /* Assets.xcassets */; };
 		D415F9A829DF6D9B000689FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D415F9A629DF6D9B000689FF /* LaunchScreen.storyboard */; };
 		D45001582A12BB6C00B1A052 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45001572A12BB6C00B1A052 /* AppLocationManager.swift */; };
+		D45330442A4CC3A300965B5D /* GetRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45330432A4CC3A300965B5D /* GetRace.swift */; };
+		D45330462A4CC3C400965B5D /* RemoteGetRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45330452A4CC3C400965B5D /* RemoteGetRace.swift */; };
 		D48482562A12F69400DEFCDC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482552A12F69400DEFCDC /* LocationManager.swift */; };
 		D484825C2A156BCD00DEFCDC /* ConfirmRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */; };
 		D484825F2A156C1F00DEFCDC /* ConfirmRaceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */; };
@@ -243,6 +245,8 @@
 		D415F9A729DF6D9B000689FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D415F9A929DF6D9B000689FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D45001572A12BB6C00B1A052 /* AppLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationManager.swift; sourceTree = "<group>"; };
+		D45330432A4CC3A300965B5D /* GetRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRace.swift; sourceTree = "<group>"; };
+		D45330452A4CC3C400965B5D /* RemoteGetRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteGetRace.swift; sourceTree = "<group>"; };
 		D48482552A12F69400DEFCDC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceViewController.swift; sourceTree = "<group>"; };
 		D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceFactory.swift; sourceTree = "<group>"; };
@@ -783,6 +787,7 @@
 				D413C5BE2A047C8500869258 /* RemoteRequestRace.swift */,
 				D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */,
 				D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */,
+				D45330452A4CC3C400965B5D /* RemoteGetRace.swift */,
 				D49201582A2FB22C00D9B587 /* RemoteRaceCanceled.swift */,
 				D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */,
 				D492015C2A3A721000D9B587 /* RemoteUpdateDriverLocation.swift */,
@@ -842,6 +847,7 @@
 				D492015E2A3A724900D9B587 /* UpdateDriverLocation.swift */,
 				D49201472A29442100D9B587 /* RaceAccepted.swift */,
 				D413C5F72A0C595F00869258 /* GetRaces.swift */,
+				D45330432A4CC3A300965B5D /* GetRace.swift */,
 				D49201562A2FB1FD00D9B587 /* RaceCanceled.swift */,
 				D413C5DD2A09B4E400869258 /* CancelRace.swift */,
 				D48482712A16963500DEFCDC /* CheckRequestRace.swift */,
@@ -1164,6 +1170,7 @@
 				D4036ACD29E0C98E00E53951 /* LoginViewController.swift in Sources */,
 				D413C5B52A008F0900869258 /* DatabaseSetValueClient.swift in Sources */,
 				D413C58A29F8977900869258 /* LoginPresenter.swift in Sources */,
+				D45330442A4CC3A300965B5D /* GetRace.swift in Sources */,
 				D413C5D42A08315100869258 /* AddUser.swift in Sources */,
 				D413C59029FF12A900869258 /* AuthGetStateClient.swift in Sources */,
 				D415F9A029DF6D9A000689FF /* WelcomeViewController.swift in Sources */,
@@ -1264,6 +1271,7 @@
 				D484826A2A159B6300DEFCDC /* ConfirmRaceParameter.swift in Sources */,
 				D413C5E82A09CB6100869258 /* DatabaseGetValueClient.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
+				D45330462A4CC3C400965B5D /* RemoteGetRace.swift in Sources */,
 				D413C56D29F0235300869258 /* DomainError.swift in Sources */,
 				D492015D2A3A721000D9B587 /* RemoteUpdateDriverLocation.swift in Sources */,
 				D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */,
