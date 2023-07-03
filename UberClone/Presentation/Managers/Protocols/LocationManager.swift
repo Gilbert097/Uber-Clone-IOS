@@ -44,12 +44,15 @@ public struct LocationModel: Model {
         CLLocation(latitude: self.latitude, longitude: self.longitude)
     }
     
-    public func distance(model: LocationModel) -> Double {
+    public func distance(model: LocationModel, isRound: Bool = true) -> Double {
         let selfLocation = self.toCLLocation()
         let location = model.toCLLocation()
         
         let distance = selfLocation.distance(from: location)
-        let distanceKM = round(distance/1000)
+        let distanceKM = distance/1000
+        if isRound {
+            return round(distanceKM)
+        }
         return distanceKM
     }
 }

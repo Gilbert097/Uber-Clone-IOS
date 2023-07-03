@@ -82,11 +82,24 @@ public class ConfirmRacePresenter {
     
     private func executeGetRace() {
         self.getRace.execute(email: self.parameter.race.email) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let race):
-                if let status = race.status, status == .pickUpPassenger {
-                    self?.updateDriverLocation()
-                    self?.buttonState.change(state: .pickUpPassenger)
+                if let status = race.status {
+                    switch status {
+                    case .pickUpPassenger:
+                        guard let driverLocation = self.lasLocation else { return }
+                        let passengerLocation = LocationModel(latitude: self.parameter.race.latitude, longitude: self.parameter.race.longitude)
+                        let distance = driverLocation.distance(model: passengerLocation, isRound: false)
+                        let status: RaceStatus = distance <= 0.2 ? .startRace : .pickUpPassenger
+                        self.updateDriverLocation(status)
+                        self.buttonState.change(state: .init(status: status))
+                    case .startRace:
+                        self.buttonState.change(state: .startRace)
+                    default:
+                        break
+                    }
+                    
                 }
             case .failure:
                 print("Get race error")
@@ -94,9 +107,9 @@ public class ConfirmRacePresenter {
         }
     }
     
-    private func updateDriverLocation() {
+    private func updateDriverLocation(_ status: RaceStatus) {
         guard let lasLocation = self.lasLocation else { return }
-        let model = UpdateDriverModel(email: self.parameter.race.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
+        let model = UpdateDriverModel(email: self.parameter.race.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude, status: status)
         self.updateLocation.update(model: model) { result in
             switch result {
             case .success:
