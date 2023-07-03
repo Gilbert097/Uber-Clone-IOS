@@ -117,9 +117,13 @@ extension ConfirmRaceViewController: AlertView {
 // MARK: - ConfirmRaceButtonStateView
 extension ConfirmRaceViewController: ConfirmRaceButtonStateView {
     public func change(state: ConfirmRaceButtonState) {
-        if case .pickUpPassenger = state {
+        switch state {
+        case .pickUpPassenger:
             self.confirmButton.update(text: "A caminho do passageiro", color: .lightGray)
             self.confirmButton.isUserInteractionEnabled = false
+        case .startRace:
+            self.confirmButton.update(text: "Iniciar viagem", color: Color.primary)
         }
+        
     }
 }

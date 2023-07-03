@@ -33,11 +33,13 @@ public class AppLocationManager: NSObject {
 extension AppLocationManager: LocationManager {
 
     public func start() {
+        print("----> START LOCATION MANAGER <----")
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     
     public func stop() {
+        print("----> STOP LOCATION MANAGER <----")
         locationManager.stopUpdatingLocation()
     }
     
