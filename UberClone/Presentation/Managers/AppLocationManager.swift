@@ -36,6 +36,7 @@ extension AppLocationManager: LocationManager {
         print("----> START LOCATION MANAGER <----")
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.allowsBackgroundLocationUpdates = true
     }
     
     public func stop() {
