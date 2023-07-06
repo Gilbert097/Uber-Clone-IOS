@@ -55,6 +55,12 @@ public struct LocationModel: Model {
         }
         return distanceKM
     }
+    
+    public func calculateRegionLocation(locationRef: LocationModel) -> (latDif: Double, longDif: Double) {
+        let latitudeDif = abs(self.latitude - locationRef.latitude) * 300000
+        let longitudeDif = abs(self.longitude - locationRef.longitude) * 300000
+        return (latitudeDif, longitudeDif)
+    }
 }
 
 public struct PointAnnotationModel: Model {

@@ -63,21 +63,26 @@ public final class PassengerMapPresenter {
             guard let self = self else { return }
             self.isAcceptedRace = true
             if case let .success(confirmModel) = result {
-                if let lastLocation = self.lastLocation {
+                if let passengerLocation = self.lastLocation {
                     let driverLocation = confirmModel.getDriverLocation()
-                    let distance = driverLocation.distance(model: lastLocation)
-                    let text = "Motorista \(distance) KM distante"
-                    self.requestButtonStateview.change(state: .accepted(text: text))
-                    
-                    let latitudeDif = abs(lastLocation.latitude - driverLocation.latitude) * 300000
-                    let longitudeDif = abs(lastLocation.longitude - driverLocation.longitude) * 300000
-                    
-                    self.mapView.setRegion(center: lastLocation, latitudinalMeters: latitudeDif, longitudinalMeters: longitudeDif)
-                    self.mapView.showPointAnnotation(point: .init(title: "Passageiro", location: lastLocation))
-                    self.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
+                    self.changeAcceptedState(driverLocation: driverLocation, passengerLocation: passengerLocation)
+                    self.showPointAnnotations(driverLocation: driverLocation, passengerLocation: passengerLocation)
                 }
             }
         }
+    }
+    
+    private func showPointAnnotations(driverLocation: LocationModel, passengerLocation: LocationModel) {
+        let (latDif, longDif) = passengerLocation.calculateRegionLocation(locationRef: driverLocation)
+        self.mapView.setRegion(center: passengerLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+        self.mapView.showPointAnnotation(point: .init(title: "Passageiro", location: passengerLocation))
+        self.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
+    }
+    
+    private func changeAcceptedState(driverLocation: LocationModel, passengerLocation: LocationModel) {
+        let distance = driverLocation.distance(model: passengerLocation)
+        let text = "Motorista \(distance) KM distante"
+        self.requestButtonStateview.change(state: .accepted(text: text))
     }
     
     private func configureLocationManager() {
