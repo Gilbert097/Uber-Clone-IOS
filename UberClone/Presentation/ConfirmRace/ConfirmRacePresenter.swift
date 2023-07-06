@@ -48,16 +48,53 @@ public class ConfirmRacePresenter {
         self.geocodeLocation = geocodeLocation
     }
     
+    private func configureMapView() {
+        let point = makePointAnnotation()
+        self.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.mapView.showPointAnnotation(point: point)
+    }
+    
+    private func makePointAnnotation() -> PointAnnotationModel {
+        return PointAnnotationModel(title: self.parameter.name, location: self.parameter.getLocation())
+    }
+    
+    private func showPointAnnotations(titleTarget: String, locationTarget: LocationModel) {
+        guard let driverLocation = self.lasLocation else { return }
+        let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: locationTarget)
+        self.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+        self.mapView.showPointAnnotation(point: .init(title: titleTarget, location: locationTarget))
+        self.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
+    }
+}
+
+// MARK: Puclic Methods
+extension ConfirmRacePresenter {
+    
     public func load() {
         configureMapView()
         configureLocationManager()
     }
     
-    private func configureMapView() {
-        let point = makePointAnnotation()
-        self.mapView.showPointAnnotation(point: point)
-        self.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
+    public func didConfirmRace() {
+        guard let user = getAuthUser.get(), let driverLocation = self.lasLocation else { return }
+        self.loadingView.display(viewModel: .init(isLoading: true))
+        self.confirmRace.confirm(model: .init(parameter: self.parameter, driverEmail: user.email, driverLocation: driverLocation)) { [weak self] result in
+            guard let self = self else { return }
+            self.loadingView.display(viewModel: .init(isLoading: false))
+            switch result {
+            case .success:
+                self.buttonState.change(state: .pickUpPassenger)
+                self.pointTarget = self.makePointAnnotation()
+                self.geocodeLocation.openInMaps(point: self.pointTarget!)
+            case .failure:
+                self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida.", buttons: [.init(title: "ok")]))
+            }
+        }
     }
+}
+
+// MARK: Location Manager Methods
+extension ConfirmRacePresenter {
     
     private func configureLocationManager() {
         self.locationManager.register { [weak self] in self?.handleUpdateLocationResult($0)}
@@ -71,7 +108,7 @@ public class ConfirmRacePresenter {
                 self.lasLocation = location
                 executeGetRace()
             } else if let lasLocation = self.lasLocation,
-                        !lasLocation.isEqual(location: location) {
+                      !lasLocation.isEqual(location: location) {
                 self.lasLocation = location
                 executeGetRace()
             }
@@ -79,27 +116,18 @@ public class ConfirmRacePresenter {
             self.locationManager.stop()
         }
     }
+}
+
+// MARK: Race Status Methods
+extension ConfirmRacePresenter {
     
     private func executeGetRace() {
-        self.getRace.execute(email: self.parameter.race.email) { [weak self] result in
+        self.getRace.execute(email: self.parameter.email) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let race):
                 if let status = race.status {
-                    switch status {
-                    case .pickUpPassenger:
-                        guard let driverLocation = self.lasLocation else { return }
-                        let passengerLocation = LocationModel(latitude: self.parameter.race.latitude, longitude: self.parameter.race.longitude)
-                        let distance = driverLocation.distance(model: passengerLocation, isRound: false)
-                        let status: RaceStatus = distance <= 0.2 ? .startRace : .pickUpPassenger
-                        self.updateDriverLocation(status)
-                        self.buttonState.change(state: .init(status: status))
-                    case .startRace:
-                        self.buttonState.change(state: .startRace)
-                    default:
-                        break
-                    }
-                    
+                    self.handleRaceStatus(status: status)
                 }
             case .failure:
                 print("Get race error")
@@ -107,9 +135,33 @@ public class ConfirmRacePresenter {
         }
     }
     
+    private func handleRaceStatus(status: RaceStatus) {
+        switch status {
+        case .pickUpPassenger:
+            handlePickUpPassengerStatus()
+        case .startRace:
+            handleStartRaceStatus()
+        default:
+            break
+        }
+    }
+    
+    private func handlePickUpPassengerStatus() {
+        guard let driverLocation = self.lasLocation else { return }
+        let passengerLocation = self.parameter.getLocation()
+        let status = getStatusByDistance(driverLocation, passengerLocation)
+        updateDriverLocation(status)
+        if status == .pickUpPassenger {
+            buttonState.change(state: .pickUpPassenger)
+            showPointAnnotations(titleTarget: "Passageiro", locationTarget: passengerLocation)
+        } else {
+            handleStartRaceStatus()
+        }
+    }
+    
     private func updateDriverLocation(_ status: RaceStatus) {
         guard let lasLocation = self.lasLocation else { return }
-        let model = UpdateDriverModel(email: self.parameter.race.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude, status: status)
+        let model = UpdateDriverModel(email: self.parameter.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude, status: status)
         self.updateLocation.update(model: model) { result in
             switch result {
             case .success:
@@ -120,38 +172,27 @@ public class ConfirmRacePresenter {
         }
     }
     
-    public func didConfirmRace() {
-        guard let user = getAuthUser.get() else { return }
-        self.loadingView.display(viewModel: .init(isLoading: true))
-        self.confirmRace.confirm(model: .init(parameter: self.parameter, driverEmail: user.email)) { [weak self] result in
-            guard let self = self else { return }
-            self.loadingView.display(viewModel: .init(isLoading: false))
-            switch result {
-            case .success:
-                self.buttonState.change(state: .pickUpPassenger)
-                self.pointTarget = self.makePointAnnotation()
-                self.geocodeLocation.openInMaps(point: self.pointTarget!)
-            case .failure:
-                self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida.", buttons: [.init(title: "ok")]))
-            }
-        }
+    private func handleStartRaceStatus() {
+        guard let destinationLocation = self.parameter.getLocationDestination() else { return }
+        self.buttonState.change(state: .startRace)
+        showPointAnnotations(titleTarget: "Destino", locationTarget: destinationLocation)
     }
     
-    private func makePointAnnotation() -> PointAnnotationModel {
-        let location = LocationModel(latitude: self.parameter.race.latitude, longitude: self.parameter.race.longitude)
-        return PointAnnotationModel(title: self.parameter.race.name, location: location)
+    private func getStatusByDistance(_ driverLocation: LocationModel,_ passengerLocation: LocationModel) -> RaceStatus {
+        let distance = driverLocation.distance(model: passengerLocation, isRound: false)
+        return distance <= 0.2 ? .startRace : .pickUpPassenger
     }
 }
 
 private extension ConfirmRaceModel {
     
-    convenience init(parameter: ConfirmRaceParameter, driverEmail: String) {
-        self.init(email: parameter.race.email,
-                  name: parameter.race.name,
-                  latitude: parameter.race.latitude,
-                  longitude: parameter.race.longitude,
-                  driverLatitude: parameter.driverLocation.latitude,
-                  driverLongitude: parameter.driverLocation.longitude,
+    convenience init(parameter: ConfirmRaceParameter, driverEmail: String, driverLocation: LocationModel) {
+        self.init(email: parameter.email,
+                  name: parameter.name,
+                  latitude: parameter.latitude,
+                  longitude: parameter.longitude,
+                  driverLatitude: driverLocation.latitude,
+                  driverLongitude: driverLocation.longitude,
                   driverEmail: driverEmail,
                   status: .pickUpPassenger)
     }

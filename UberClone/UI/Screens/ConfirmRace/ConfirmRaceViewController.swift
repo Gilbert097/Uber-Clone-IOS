@@ -33,7 +33,6 @@ public class ConfirmRaceViewController: UIViewController {
     
     private func configure() {
         self.confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
-        self.mapView.removeAnnotations(self.mapView.annotations)
     }
     
     @objc private func confirmButtonTapped() {
@@ -86,6 +85,7 @@ extension ConfirmRaceViewController: ViewCode {
 // MARK: - ConfirmRaceMapView
 extension ConfirmRaceViewController: ConfirmRaceMapView {
     public func setRegion(center: LocationModel, latitudinalMeters: Double, longitudinalMeters: Double) {
+        self.mapView.removeAnnotations(self.mapView.annotations)
         let coordinate = center.toCLLocation().coordinate
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: latitudinalMeters, longitudinalMeters: longitudinalMeters)
         self.mapView.setRegion(region, animated: true)

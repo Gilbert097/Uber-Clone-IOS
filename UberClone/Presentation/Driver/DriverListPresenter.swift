@@ -111,8 +111,7 @@ extension DriverListPresenter {
     }
     
     public func didRaceSelected(race: RaceViewModel) {
-        guard let lastLocation = self.lastLocation else { return }
-        let parameter = ConfirmRaceParameter(race: race, driverLocation: lastLocation)
+        let parameter = ConfirmRaceParameter(viewModel: race)
         self.goToConfirmRace(parameter)
     }
 }
