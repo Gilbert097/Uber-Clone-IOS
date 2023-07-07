@@ -16,7 +16,7 @@ public final class ConfirmRaceFactory {
         let presenter = ConfirmRacePresenter(
             getAuthUser: RemoteGetAuthUser(client: FirebaseAuthAdapter()),
             confirmRace: confirmRace,
-            getRace: RemoteGetRace(getValueClient: database),
+            raceChanged: RemoteRaceChanged(observeValueClient: database),
             updateLocation: RemoteUpdateDriverLocation(updateClient: database),
             parameter: paramter,
             loadingView: viewController,
