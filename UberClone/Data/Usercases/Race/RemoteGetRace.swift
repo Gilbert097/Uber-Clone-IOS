@@ -7,16 +7,16 @@
 
 import Foundation
 
-public class RemoteGetRace: GetRace {
+public class RemoteRaceChanged: RaceChanged {
     
-    private let getValueClient: DatabaseGetValueClient
+    private let observeValueClient: DatabaseOberveValueClient
     
-    public init(getValueClient: DatabaseGetValueClient) {
-        self.getValueClient = getValueClient
+    public init(observeValueClient: DatabaseOberveValueClient) {
+        self.observeValueClient = observeValueClient
     }
     
-    public func execute(email: String, completion: @escaping (Result<RaceModel, DomainError>) -> Void) {
-        self.getValueClient.getValue(query: .init(path: "requests", condition: .init(field: "email", value: email))) { result in
+    public func observe(email: String, completion: @escaping (Result<RaceModel, DomainError>) -> Void) {
+        self.observeValueClient.observe(query: .init(path: "requests", condition: .init(field: "email", value: email), event: .changed)) { result in
             switch result {
             case .success(let data):
                 if let race: RaceModel = data.toModel() {
