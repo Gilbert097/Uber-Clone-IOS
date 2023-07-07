@@ -21,7 +21,7 @@ public protocol LocationManager {
     func register(listener: @escaping UpdateLocationListener)
 }
 
-public struct LocationModel: Model {
+public class LocationModel: Model {
     
     public let latitude: Double
     public let longitude: Double
@@ -36,8 +36,8 @@ public struct LocationModel: Model {
         self.longitude = location.coordinate.longitude
     }
     
-    public func isEqual(location: LocationModel) -> Bool {
-        return location.latitude == self.latitude && location.longitude == self.longitude
+    public static func == (lhs: LocationModel, rhs: LocationModel) -> Bool {
+        lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
     }
     
     public func toCLLocation() -> CLLocation {

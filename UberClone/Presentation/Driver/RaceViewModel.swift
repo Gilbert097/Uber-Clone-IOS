@@ -15,8 +15,11 @@ public class RaceViewModel {
     public let latitude: Double
     public let longitude: Double
     public let displayText: String
+    public let driverLatitude: Double?
+    public let driverLongitude: Double?
     public let latitudeDestination: Double?
     public let longitudeDestination: Double?
+    public let status: RaceStatus?
     
     public init(email: String,
                 name: String,
@@ -24,8 +27,11 @@ public class RaceViewModel {
                 latitude: Double,
                 longitude: Double,
                 displayText: String,
+                driverLatitude: Double? = nil,
+                driverLongitude: Double? = nil,
                 latitudeDestination: Double? = nil,
-                longitudeDestination: Double? = nil) {
+                longitudeDestination: Double? = nil,
+                status: RaceStatus? = nil) {
         self.email = email
         self.name = name
         self.distanceText = distanceText
@@ -34,6 +40,9 @@ public class RaceViewModel {
         self.displayText = displayText
         self.latitudeDestination = latitudeDestination
         self.longitudeDestination = longitudeDestination
+        self.status = status
+        self.driverLatitude = driverLatitude
+        self.driverLongitude = driverLongitude
     }
     
     public init(model: RaceModel, distanceText: String, displayText: String) {
@@ -45,7 +54,8 @@ public class RaceViewModel {
         self.displayText = displayText
         self.latitudeDestination = model.latitudeDestination
         self.longitudeDestination = model.longitudeDestination
+        self.status = model.status
+        self.driverLatitude = model.driverLatitude
+        self.driverLongitude = model.driverLongitude
     }
-    
-    
 }

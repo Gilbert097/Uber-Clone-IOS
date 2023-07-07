@@ -101,7 +101,7 @@ public final class PassengerMapPresenter {
                 return
             }
             
-            if !self.isAcceptedRace && !lastLocation.isEqual(location: location) {
+            if !self.isAcceptedRace && lastLocation != location {
                 self.lastLocation = location
                 setMapView(location)
             }
