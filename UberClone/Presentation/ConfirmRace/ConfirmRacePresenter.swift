@@ -49,9 +49,14 @@ public class ConfirmRacePresenter {
     }
     
     private func configureMapView() {
-        let point = makePointAnnotation()
-        self.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
-        self.mapView.showPointAnnotation(point: point)
+        if let status = self.parameter.status {
+            self.lasLocation = parameter.getDriverLocation()
+            handleRaceStatus(status: status)
+        } else {
+            let point = makePointAnnotation()
+            self.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
+            self.mapView.showPointAnnotation(point: point)
+        }
     }
     
     private func makePointAnnotation() -> PointAnnotationModel {
@@ -106,10 +111,23 @@ extension ConfirmRacePresenter {
         switch result {
         case .success(let location):
             guard let lasLocation = self.lasLocation else { return updateDriverLocation(location)}
-            guard !lasLocation.isEqual(location: location) else { return }
+            guard lasLocation != location else { return }
             updateDriverLocation(location)
         case .failure:
             self.locationManager.stop()
+        }
+    }
+    
+    private func updateDriverLocation(_ lasLocation: LocationModel) {
+        self.lasLocation = lasLocation
+        let model = UpdateDriverModel(email: self.parameter.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
+        self.updateLocation.update(model: model) { result in
+            switch result {
+            case .success:
+                print("Update driver sucess")
+            case .failure:
+                print("Update driver error")
+            }
         }
     }
 }
@@ -154,23 +172,10 @@ extension ConfirmRacePresenter {
         }
     }
     
-    private func updateDriverLocation(_ lasLocation: LocationModel) {
-        self.lasLocation = lasLocation
-        let model = UpdateDriverModel(email: self.parameter.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
-        self.updateLocation.update(model: model) { result in
-            switch result {
-            case .success:
-                print("Update driver sucess")
-            case .failure:
-                print("Update driver error")
-            }
-        }
-    }
-    
     private func handleStartRaceStatus() {
-        self.buttonState.change(state: .startRace)
-        guard let destinationLocation = self.parameter.getLocationDestination() else { return }
-        showPointAnnotations(titleTarget: "Destino", locationTarget: destinationLocation)
+//        self.buttonState.change(state: .startRace)
+//        guard let destinationLocation = self.parameter.getLocationDestination() else { return }
+//        showPointAnnotations(titleTarget: "Destino", locationTarget: destinationLocation)
     }
     
     private func getStatusByDistance(_ driverLocation: LocationModel,_ passengerLocation: LocationModel) -> RaceStatus {
