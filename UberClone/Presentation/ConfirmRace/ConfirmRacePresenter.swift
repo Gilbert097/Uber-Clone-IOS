@@ -48,18 +48,22 @@ public class ConfirmRacePresenter {
         self.geocodeLocation = geocodeLocation
     }
     
-    private func configureMapView() {
+    private func setupInitalState() {
         if let status = self.parameter.status {
             self.lasLocation = parameter.getDriverLocation()
-            handleRaceStatus(status: status)
+            processRaceStatus(status: status)
         } else {
-            let point = makePointAnnotation()
-            self.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
-            self.mapView.showPointAnnotation(point: point)
+            setupInitialPassengerPoint()
         }
     }
     
-    private func makePointAnnotation() -> PointAnnotationModel {
+    private func setupInitialPassengerPoint() {
+        let point = makePassengerPoint()
+        self.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.mapView.showPointAnnotation(point: point)
+    }
+    
+    private func makePassengerPoint() -> PointAnnotationModel {
         return PointAnnotationModel(title: self.parameter.name, location: self.parameter.getLocation())
     }
     
@@ -76,7 +80,7 @@ public class ConfirmRacePresenter {
 extension ConfirmRacePresenter {
     
     public func load() {
-        configureMapView()
+        setupInitalState()
         configureLocationManager()
         registerObserveRaceChanged()
     }
@@ -90,7 +94,7 @@ extension ConfirmRacePresenter {
             switch result {
             case .success:
                 self.buttonState.change(state: .pickUpPassenger)
-                self.pointTarget = self.makePointAnnotation()
+                self.pointTarget = self.makePassengerPoint()
                 self.geocodeLocation.openInMaps(point: self.pointTarget!)
             case .failure:
                 self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida.", buttons: [.init(title: "ok")]))
@@ -141,7 +145,7 @@ extension ConfirmRacePresenter {
             switch result {
             case .success(let race):
                 if let status = race.status {
-                    self.handleRaceStatus(status: status)
+                    self.processRaceStatus(status: status)
                 }
             case .failure:
                 print("Get race error")
@@ -149,33 +153,21 @@ extension ConfirmRacePresenter {
         }
     }
     
-    private func handleRaceStatus(status: RaceStatus) {
+    private func processRaceStatus(status: RaceStatus) {
         switch status {
         case .pickUpPassenger:
-            handlePickUpPassengerStatus()
-        case .startRace:
-            handleStartRaceStatus()
+            setPickUpPassengerState()
         default:
             break
         }
     }
     
-    private func handlePickUpPassengerStatus() {
+    private func setPickUpPassengerState() {
         guard let driverLocation = self.lasLocation else { return }
         let passengerLocation = self.parameter.getLocation()
         let status = getStatusByDistance(driverLocation, passengerLocation)
         buttonState.change(state: .init(status: status))
         showPointAnnotations(titleTarget: "Passageiro", locationTarget: passengerLocation)
-        
-        if status == .startRace {
-            // atualizar status no banco
-        }
-    }
-    
-    private func handleStartRaceStatus() {
-//        self.buttonState.change(state: .startRace)
-//        guard let destinationLocation = self.parameter.getLocationDestination() else { return }
-//        showPointAnnotations(titleTarget: "Destino", locationTarget: destinationLocation)
     }
     
     private func getStatusByDistance(_ driverLocation: LocationModel,_ passengerLocation: LocationModel) -> RaceStatus {
