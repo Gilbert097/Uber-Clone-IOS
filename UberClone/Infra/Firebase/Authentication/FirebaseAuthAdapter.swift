@@ -20,7 +20,7 @@ public final class FirebaseAuthAdapter {
         } else if let error = error {
             guard
                 let errorParse = error as NSError?,
-                let code = AuthErrorCode(rawValue: errorParse.code)
+                let code = AuthErrorCode.Code(rawValue: errorParse.code)
             else { return completion(.failure(.internalError)) }
             
             switch code {
