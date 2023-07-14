@@ -9,25 +9,47 @@ import Foundation
 
 public class ConfirmRacePresenter {
     
-    private let getAuthUser: GetAuthUser
-    private let confirmRace: ConfirmRace
-    private let raceChanged: RaceChanged
-    private let updateLocation: UpdateDriverLocation
+    public struct UseCases {
+        
+        public let getAuthUser: GetAuthUser
+        public let confirmRace: ConfirmRace
+        public let raceChanged: RaceChanged
+        public let updateLocation: UpdateDriverLocation
+        
+        public init(getAuthUser: GetAuthUser, confirmRace: ConfirmRace, raceChanged: RaceChanged, updateLocation: UpdateDriverLocation) {
+            self.getAuthUser = getAuthUser
+            self.confirmRace = confirmRace
+            self.raceChanged = raceChanged
+            self.updateLocation = updateLocation
+        }
+    }
+    
+    public struct View {
+        
+        public let loadingView: LoadingView
+        public let alertView: AlertView
+        public let mapView: ConfirmRaceMapView
+        public let buttonState: ConfirmRaceButtonStateView
+        
+        public init(loadingView: LoadingView, alertView: AlertView, mapView: ConfirmRaceMapView, buttonState: ConfirmRaceButtonStateView) {
+            self.loadingView = loadingView
+            self.alertView = alertView
+            self.mapView = mapView
+            self.buttonState = buttonState
+        }
+    }
+
+    private let view: ConfirmRacePresenter.View
+    private let useCases: ConfirmRacePresenter.UseCases
     private let parameter: ConfirmRaceParameter
-    private let loadingView: LoadingView
-    private let alertView: AlertView
-    private let mapView: ConfirmRaceMapView
-    private let buttonState: ConfirmRaceButtonStateView
     private let locationManager: LocationManager
     private let geocodeLocation: GeocodeLocationManager
     private var pointTarget: PointAnnotationModel?
     private var lasLocation: LocationModel?
     private var currentRace: RaceModel?
     
-    public init(getAuthUser: GetAuthUser,
-                confirmRace: ConfirmRace,
-                raceChanged: RaceChanged,
-                updateLocation: UpdateDriverLocation,
+    public init(view: ConfirmRacePresenter.View,
+                useCases: ConfirmRacePresenter.UseCases,
                 parameter: ConfirmRaceParameter,
                 loadingView: LoadingView,
                 alertView: AlertView,
@@ -35,15 +57,9 @@ public class ConfirmRacePresenter {
                 buttonState: ConfirmRaceButtonStateView,
                 locationManager: LocationManager,
                 geocodeLocation: GeocodeLocationManager) {
-        self.getAuthUser = getAuthUser
-        self.confirmRace = confirmRace
-        self.raceChanged = raceChanged
-        self.updateLocation = updateLocation
+        self.view = view
+        self.useCases = useCases
         self.parameter = parameter
-        self.loadingView = loadingView
-        self.alertView = alertView
-        self.mapView = mapView
-        self.buttonState = buttonState
         self.locationManager = locationManager
         self.geocodeLocation = geocodeLocation
     }
@@ -59,8 +75,8 @@ public class ConfirmRacePresenter {
     
     private func setupInitialPassengerPoint() {
         let point = makePassengerPoint()
-        self.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
-        self.mapView.showPointAnnotation(point: point)
+        self.view.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.view.mapView.showPointAnnotation(point: point)
     }
     
     private func makePassengerPoint() -> PointAnnotationModel {
@@ -70,9 +86,9 @@ public class ConfirmRacePresenter {
     private func showPointAnnotations(titleTarget: String, locationTarget: LocationModel) {
         guard let driverLocation = self.lasLocation else { return }
         let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: locationTarget)
-        self.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
-        self.mapView.showPointAnnotation(point: .init(title: titleTarget, location: locationTarget))
-        self.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
+        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+        self.view.mapView.showPointAnnotation(point: .init(title: titleTarget, location: locationTarget))
+        self.view.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
     }
 }
 
@@ -86,18 +102,18 @@ extension ConfirmRacePresenter {
     }
     
     public func didConfirmRace() {
-        guard let user = getAuthUser.get(), let driverLocation = self.lasLocation else { return }
-        self.loadingView.display(viewModel: .init(isLoading: true))
-        self.confirmRace.confirm(model: .init(parameter: self.parameter, driverEmail: user.email, driverLocation: driverLocation)) { [weak self] result in
+        guard let user = self.useCases.getAuthUser.get(), let driverLocation = self.lasLocation else { return }
+        self.view.loadingView.display(viewModel: .init(isLoading: true))
+        self.useCases.confirmRace.confirm(model: .init(parameter: self.parameter, driverEmail: user.email, driverLocation: driverLocation)) { [weak self] result in
             guard let self = self else { return }
-            self.loadingView.display(viewModel: .init(isLoading: false))
+            self.view.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success:
-                self.buttonState.change(state: .pickUpPassenger)
+                self.view.buttonState.change(state: .pickUpPassenger)
                 self.pointTarget = self.makePassengerPoint()
                 self.geocodeLocation.openInMaps(point: self.pointTarget!)
             case .failure:
-                self.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida.", buttons: [.init(title: "ok")]))
+                self.view.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar confirmar corrida.", buttons: [.init(title: "ok")]))
             }
         }
     }
@@ -125,7 +141,7 @@ extension ConfirmRacePresenter {
     private func updateDriverLocation(_ lasLocation: LocationModel) {
         self.lasLocation = lasLocation
         let model = UpdateDriverModel(email: self.parameter.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
-        self.updateLocation.update(model: model) { result in
+        self.useCases.updateLocation.update(model: model) { result in
             switch result {
             case .success:
                 print("Update driver sucess")
@@ -140,7 +156,7 @@ extension ConfirmRacePresenter {
 extension ConfirmRacePresenter {
     
     private func registerObserveRaceChanged() {
-        self.raceChanged.observe(email: self.parameter.email) { [weak self] result in
+        self.useCases.raceChanged.observe(email: self.parameter.email) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let race):
@@ -166,7 +182,7 @@ extension ConfirmRacePresenter {
         guard let driverLocation = self.lasLocation else { return }
         let passengerLocation = self.parameter.getLocation()
         let status = getStatusByDistance(driverLocation, passengerLocation)
-        buttonState.change(state: .init(status: status))
+        self.view.buttonState.change(state: .init(status: status))
         showPointAnnotations(titleTarget: "Passageiro", locationTarget: passengerLocation)
     }
     

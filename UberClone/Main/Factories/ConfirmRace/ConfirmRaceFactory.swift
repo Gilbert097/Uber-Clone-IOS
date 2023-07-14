@@ -9,16 +9,13 @@ import Foundation
 
 public final class ConfirmRaceFactory {
     
-    public static func build(nav: NavigationController, paramter: ConfirmRaceParameter) -> ConfirmRaceViewController {
-        let confirmRace =  MainQueueDispatchDecorator(RemoteConfirmRace(updateClient: FirebaseDatabaseAdapter()))
+    public static func build(nav: NavigationController, parameter: ConfirmRaceParameter) -> ConfirmRaceViewController {
         let viewController = ConfirmRaceViewController()
-        let database = FirebaseDatabaseAdapter()
+        
         let presenter = ConfirmRacePresenter(
-            getAuthUser: RemoteGetAuthUser(client: FirebaseAuthAdapter()),
-            confirmRace: confirmRace,
-            raceChanged: RemoteRaceChanged(observeValueClient: database),
-            updateLocation: RemoteUpdateDriverLocation(updateClient: database),
-            parameter: paramter,
+            view: makeView(viewController: viewController),
+            useCases: makeUseCases(),
+            parameter: parameter,
             loadingView: viewController,
             alertView: viewController,
             mapView: viewController,
@@ -28,5 +25,25 @@ public final class ConfirmRaceFactory {
         viewController.confirmRace = presenter.didConfirmRace
         viewController.load = presenter.load
         return viewController
+    }
+    
+    private static func makeUseCases() -> ConfirmRacePresenter.UseCases {
+        let database = FirebaseDatabaseAdapter()
+        let useCases = ConfirmRacePresenter.UseCases(
+            getAuthUser: RemoteGetAuthUser(client: FirebaseAuthAdapter()),
+            confirmRace: MainQueueDispatchDecorator(RemoteConfirmRace(updateClient: FirebaseDatabaseAdapter())),
+            raceChanged: RemoteRaceChanged(observeValueClient: database),
+            updateLocation: RemoteUpdateDriverLocation(updateClient: database)
+        )
+        return useCases
+    }
+    
+    private static func makeView(viewController: ConfirmRaceViewController) -> ConfirmRacePresenter.View {
+        ConfirmRacePresenter.View(
+            loadingView: viewController,
+            alertView: viewController,
+            mapView: viewController,
+            buttonState: viewController
+        )
     }
 }
