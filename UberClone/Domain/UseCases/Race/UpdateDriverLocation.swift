@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol UpdateDriverLocation {
-    func update(model: UpdateDriverModel, completion: @escaping (Swift.Result<Void, Error>) -> Void)
+    func update(model: UpdateDriverModel)
 }
 
 public class UpdateDriverModel: Model {

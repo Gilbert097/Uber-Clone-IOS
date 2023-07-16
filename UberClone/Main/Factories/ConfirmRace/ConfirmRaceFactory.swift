@@ -31,9 +31,10 @@ public final class ConfirmRaceFactory {
         let database = FirebaseDatabaseAdapter()
         let useCases = ConfirmRacePresenter.UseCases(
             getAuthUser: RemoteGetAuthUser(client: FirebaseAuthAdapter()),
-            confirmRace: MainQueueDispatchDecorator(RemoteConfirmRace(updateClient: FirebaseDatabaseAdapter())),
+            confirmRace: MainQueueDispatchDecorator(RemoteConfirmRace(updateClient: database)),
             raceChanged: RemoteRaceChanged(observeValueClient: database),
-            updateLocation: RemoteUpdateDriverLocation(updateClient: database)
+            updateLocation: RemoteUpdateDriverLocation(updateClient: database),
+            updateRaceStatus: RemoteUpdateRaceStatus(updateClient: database)
         )
         return useCases
     }

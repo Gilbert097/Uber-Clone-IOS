@@ -15,12 +15,18 @@ public class ConfirmRacePresenter {
         public let confirmRace: ConfirmRace
         public let raceChanged: RaceChanged
         public let updateLocation: UpdateDriverLocation
+        public let updateRaceStatus: UpdateRaceStatus
         
-        public init(getAuthUser: GetAuthUser, confirmRace: ConfirmRace, raceChanged: RaceChanged, updateLocation: UpdateDriverLocation) {
+        public init(getAuthUser: GetAuthUser,
+                    confirmRace: ConfirmRace,
+                    raceChanged: RaceChanged,
+                    updateLocation: UpdateDriverLocation,
+                    updateRaceStatus: UpdateRaceStatus) {
             self.getAuthUser = getAuthUser
             self.confirmRace = confirmRace
             self.raceChanged = raceChanged
             self.updateLocation = updateLocation
+            self.updateRaceStatus = updateRaceStatus
         }
     }
     
@@ -31,7 +37,10 @@ public class ConfirmRacePresenter {
         public let mapView: ConfirmRaceMapView
         public let buttonState: ConfirmRaceButtonStateView
         
-        public init(loadingView: LoadingView, alertView: AlertView, mapView: ConfirmRaceMapView, buttonState: ConfirmRaceButtonStateView) {
+        public init(loadingView: LoadingView,
+                    alertView: AlertView,
+                    mapView: ConfirmRaceMapView,
+                    buttonState: ConfirmRaceButtonStateView) {
             self.loadingView = loadingView
             self.alertView = alertView
             self.mapView = mapView
@@ -47,6 +56,7 @@ public class ConfirmRacePresenter {
     private var pointTarget: PointAnnotationModel?
     private var lasLocation: LocationModel?
     private var currentRace: RaceModel?
+    private var currentStatus: RaceStatus = .onRequest
     
     public init(view: ConfirmRacePresenter.View,
                 useCases: ConfirmRacePresenter.UseCases,
@@ -141,14 +151,7 @@ extension ConfirmRacePresenter {
     private func updateDriverLocation(_ lasLocation: LocationModel) {
         self.lasLocation = lasLocation
         let model = UpdateDriverModel(email: self.parameter.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
-        self.useCases.updateLocation.update(model: model) { result in
-            switch result {
-            case .success:
-                print("Update driver sucess")
-            case .failure:
-                print("Update driver error")
-            }
-        }
+        self.useCases.updateLocation.update(model: model) 
     }
 }
 
@@ -170,25 +173,37 @@ extension ConfirmRacePresenter {
     }
     
     private func processRaceStatus(status: RaceStatus) {
+        self.currentStatus = status
         switch status {
         case .pickUpPassenger:
-            setPickUpPassengerState()
+            changeState(state: .pickUpPassenger)
+            checkRaceStart()
+        case .startRace:
+            changeState(state: .startRace)
         default:
             break
         }
     }
     
-    private func setPickUpPassengerState() {
+    private func checkRaceStart() {
         guard let driverLocation = self.lasLocation else { return }
         let passengerLocation = self.parameter.getLocation()
-        let status = getStatusByDistance(driverLocation, passengerLocation)
-        self.view.buttonState.change(state: .init(status: status))
-        showPointAnnotations(titleTarget: "Passageiro", locationTarget: passengerLocation)
+        let distance = driverLocation.distance(model: passengerLocation, isRound: false)
+        
+        if distance <= 0.5 {
+            updateRaceStatus(.startRace)
+            changeState(state: .startRace)
+        }
     }
     
-    private func getStatusByDistance(_ driverLocation: LocationModel,_ passengerLocation: LocationModel) -> RaceStatus {
-        let distance = driverLocation.distance(model: passengerLocation, isRound: false)
-        return distance <= 0.2 ? .startRace : .pickUpPassenger
+    private func updateRaceStatus(_ status: RaceStatus) {
+        let model = UpdateRaceStatusModel(email: self.parameter.email, status: status)
+        self.useCases.updateRaceStatus.update(model: model)
+    }
+    
+    private func changeState(state: ConfirmRaceButtonState) {
+        self.view.buttonState.change(state: state)
+        showPointAnnotations(titleTarget: "Passageiro", locationTarget: self.parameter.getLocation())
     }
 }
 
