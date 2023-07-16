@@ -14,6 +14,7 @@ public protocol ConfirmRaceButtonStateView {
 public enum ConfirmRaceButtonState: String {
     case pickUpPassenger
     case startRace
+    case onRun
 }
 
 extension ConfirmRaceButtonState {

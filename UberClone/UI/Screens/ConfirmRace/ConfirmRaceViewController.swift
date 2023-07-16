@@ -19,9 +19,9 @@ public class ConfirmRaceViewController: UIViewController {
     }()
     
     private let loadingView = ScreenLoadingView()
-    private let confirmButton = PrimaryButton(title: "Aceitar corrida", fontSize: 20, weight: .semibold)
+    private let button = PrimaryButton(title: "Aceitar corrida", fontSize: 20, weight: .semibold)
 
-    public var confirmRace: (() -> Void)?
+    public var buttonAction: (() -> Void)?
     public var load: (() -> Void)?
     
     public override func viewDidLoad() {
@@ -32,11 +32,11 @@ public class ConfirmRaceViewController: UIViewController {
     }
     
     private func configure() {
-        self.confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+        self.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
-    @objc private func confirmButtonTapped() {
-        self.confirmRace?()
+    @objc private func buttonTapped() {
+        self.buttonAction?()
     }
 }
 
@@ -44,7 +44,7 @@ public class ConfirmRaceViewController: UIViewController {
 extension ConfirmRaceViewController: ViewCode {
     
     func setupViewHierarchy() {
-        self.view.addSubviews([mapView, confirmButton, loadingView])
+        self.view.addSubviews([mapView, button, loadingView])
     }
     
     
@@ -61,10 +61,10 @@ extension ConfirmRaceViewController: ViewCode {
         
         // confirmButton
         NSLayoutConstraint.activate([
-            self.confirmButton.heightAnchor.constraint(equalToConstant: 65),
-            self.confirmButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            self.confirmButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            self.confirmButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -16)
+            self.button.heightAnchor.constraint(equalToConstant: 65),
+            self.button.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            self.button.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            self.button.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -16)
         ])
         
         // loadingView
@@ -119,10 +119,12 @@ extension ConfirmRaceViewController: ConfirmRaceButtonStateView {
     public func change(state: ConfirmRaceButtonState) {
         switch state {
         case .pickUpPassenger:
-            self.confirmButton.update(text: "A caminho do passageiro", color: .lightGray)
-            self.confirmButton.isUserInteractionEnabled = false
+            self.button.update(text: "A caminho do passageiro", color: .lightGray)
+            self.button.isUserInteractionEnabled = false
         case .startRace:
-            self.confirmButton.update(text: "Iniciar viagem", color: Color.primary)
+            self.button.update(text: "Iniciar viagem", color: Color.primary)
+        case .onRun:
+            self.button.update(text: "Finalizar viagem", color: Color.primary)
         }
         
     }

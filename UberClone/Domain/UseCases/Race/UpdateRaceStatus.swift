@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol UpdateRaceStatus {
-    func update(model: UpdateRaceStatusModel)
+    func update(model: UpdateRaceStatusModel, completion: ((Swift.Result<Void, Error>) -> Void)?)
 }
 
 public class UpdateRaceStatusModel: Model {

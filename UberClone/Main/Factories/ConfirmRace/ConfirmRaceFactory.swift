@@ -22,7 +22,7 @@ public final class ConfirmRaceFactory {
             buttonState: viewController,
             locationManager: AppLocationManager(),
             geocodeLocation: AppGeocodeLocationManager())
-        viewController.confirmRace = presenter.didConfirmRace
+        viewController.buttonAction = presenter.buttonAction
         viewController.load = presenter.load
         return viewController
     }

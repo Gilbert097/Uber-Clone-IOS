@@ -13,14 +13,16 @@ public enum GeocodeAddressError: Error {
 }
 
 public class AppGeocodeLocationManager: GeocodeLocationManager {
+    private var lastPoint: PointAnnotationModel?
     
     public func openInMaps(point: PointAnnotationModel) {
-        CLGeocoder().reverseGeocodeLocation(point.location.toCLLocation()) { locations, erro in
+        self.lastPoint = point
+        CLGeocoder().reverseGeocodeLocation(point.location.toCLLocation()) { [weak self] locations, erro in
             if erro == nil {
-                if let locationFirst = locations?.first {
+                if let locationFirst = locations?.first, let lastPoint = self?.lastPoint {
                     let placeMark = MKPlacemark(placemark: locationFirst)
                     let mapItem = MKMapItem(placemark: placeMark)
-                    mapItem.name = point.title
+                    mapItem.name = lastPoint.title
                     
                     let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
                     mapItem.openInMaps(launchOptions: options)
