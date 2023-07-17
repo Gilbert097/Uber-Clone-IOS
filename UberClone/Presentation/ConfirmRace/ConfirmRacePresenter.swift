@@ -16,17 +16,20 @@ public class ConfirmRacePresenter {
         public let raceChanged: RaceChanged
         public let updateLocation: UpdateDriverLocation
         public let updateRaceStatus: UpdateRaceStatus
+        public let finishRace: FinishRace
         
         public init(getAuthUser: GetAuthUser,
                     confirmRace: ConfirmRace,
                     raceChanged: RaceChanged,
                     updateLocation: UpdateDriverLocation,
-                    updateRaceStatus: UpdateRaceStatus) {
+                    updateRaceStatus: UpdateRaceStatus,
+                    finishRace: FinishRace) {
             self.getAuthUser = getAuthUser
             self.confirmRace = confirmRace
             self.raceChanged = raceChanged
             self.updateLocation = updateLocation
             self.updateRaceStatus = updateRaceStatus
+            self.finishRace = finishRace
         }
     }
     
@@ -145,6 +148,8 @@ extension ConfirmRacePresenter {
             confirmRace()
         case .startRace:
             startRace()
+        case .onRun:
+            finishRace()
         default:
             break
         }
@@ -175,6 +180,23 @@ extension ConfirmRacePresenter {
             switch result {
             case .success:
                 self.changeRaceRunState()
+            case .failure:
+                self.view.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar iniciar corrida.", buttons: [.init(title: "ok")]))
+            }
+        }
+    }
+    
+    private func finishRace() {
+        guard let destinationLocation = self.parameter.getLocationDestination() else { return }
+        self.view.loadingView.display(viewModel: .init(isLoading: true))
+        let model = FinishRaceModel(email: self.parameter.email, initialLocation: self.parameter.getLocation(), destinationLocation: destinationLocation)
+        self.useCases.finishRace.finish(model: model) { [weak self] result in
+            guard let self = self else { return }
+            self.view.loadingView.display(viewModel: .init(isLoading: false))
+            switch result {
+            case .success(let value):
+                let valueFormatted = value.format()
+                self.view.buttonState.change(state: .finish(value: valueFormatted))
             case .failure:
                 self.view.alertView.showMessage(viewModel: .init(title: "Error", message: "Error ao tentar iniciar corrida.", buttons: [.init(title: "ok")]))
             }
@@ -273,5 +295,16 @@ private extension ConfirmRaceModel {
                   driverLongitude: driverLocation.longitude,
                   driverEmail: driverEmail,
                   status: .pickUpPassenger)
+    }
+}
+
+extension Double {
+    
+    public func format() -> String {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.maximumFractionDigits = 2
+        nf.locale = Locale(identifier: "pt_BR")
+        return nf.string(from: NSNumber(value: self))!
     }
 }

@@ -34,7 +34,8 @@ public final class ConfirmRaceFactory {
             confirmRace: MainQueueDispatchDecorator(RemoteConfirmRace(updateClient: database)),
             raceChanged: RemoteRaceChanged(observeValueClient: database),
             updateLocation: RemoteUpdateDriverLocation(updateClient: database),
-            updateRaceStatus: RemoteUpdateRaceStatus(updateClient: database)
+            updateRaceStatus: RemoteUpdateRaceStatus(updateClient: database),
+            finishRace: RemoteFinishRace(updateClient: database)
         )
         return useCases
     }

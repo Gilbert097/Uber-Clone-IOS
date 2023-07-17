@@ -125,6 +125,9 @@ extension ConfirmRaceViewController: ConfirmRaceButtonStateView {
             self.button.update(text: "Iniciar viagem", color: Color.primary)
         case .onRun:
             self.button.update(text: "Finalizar viagem", color: Color.primary)
+        case .finish(value: let value):
+            self.button.update(text: "Viagem finalizada - R$ \(value)", color: .lightGray)
+            self.button.isUserInteractionEnabled = false
         }
         
     }

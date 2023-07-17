@@ -11,10 +11,11 @@ public protocol ConfirmRaceButtonStateView {
     func change(state: ConfirmRaceButtonState)
 }
 
-public enum ConfirmRaceButtonState: String {
+public enum ConfirmRaceButtonState{
     case pickUpPassenger
     case startRace
     case onRun
+    case finish(value: String)
 }
 
 extension ConfirmRaceButtonState {

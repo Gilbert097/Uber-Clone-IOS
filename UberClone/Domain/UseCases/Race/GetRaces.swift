@@ -69,4 +69,5 @@ public enum RaceStatus: String, Codable {
     case pickUpPassenger
     case startRace
     case onRun
+    case finish
 }
