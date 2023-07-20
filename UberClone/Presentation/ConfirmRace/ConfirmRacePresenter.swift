@@ -10,45 +10,19 @@ import Foundation
 public class ConfirmRacePresenter {
     
     public struct UseCases {
-        
         public let getAuthUser: GetAuthUser
         public let confirmRace: ConfirmRace
         public let raceChanged: RaceChanged
         public let updateLocation: UpdateDriverLocation
         public let updateRaceStatus: UpdateRaceStatus
         public let finishRace: FinishRace
-        
-        public init(getAuthUser: GetAuthUser,
-                    confirmRace: ConfirmRace,
-                    raceChanged: RaceChanged,
-                    updateLocation: UpdateDriverLocation,
-                    updateRaceStatus: UpdateRaceStatus,
-                    finishRace: FinishRace) {
-            self.getAuthUser = getAuthUser
-            self.confirmRace = confirmRace
-            self.raceChanged = raceChanged
-            self.updateLocation = updateLocation
-            self.updateRaceStatus = updateRaceStatus
-            self.finishRace = finishRace
-        }
     }
     
     public struct View {
-        
         public let loadingView: LoadingView
         public let alertView: AlertView
         public let mapView: ConfirmRaceMapView
         public let buttonState: ConfirmRaceButtonStateView
-        
-        public init(loadingView: LoadingView,
-                    alertView: AlertView,
-                    mapView: ConfirmRaceMapView,
-                    buttonState: ConfirmRaceButtonStateView) {
-            self.loadingView = loadingView
-            self.alertView = alertView
-            self.mapView = mapView
-            self.buttonState = buttonState
-        }
     }
     
     private let view: ConfirmRacePresenter.View

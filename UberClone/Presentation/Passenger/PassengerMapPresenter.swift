@@ -9,57 +9,51 @@ import Foundation
 
 public final class PassengerMapPresenter {
     
-    private let alertView: AlertView
-    private let loadingView: LoadingView
-    private let requestButtonStateview: RequestButtonStateView
-    private let callRace: RequestRace
-    private let logoutAuth: LogoutAuth
-    private let cancelRace: CancelRace
-    private let checkRequestRace: CheckRequestRace
-    private let raceAccepted: RaceAccepted
+    public struct UseCases {
+        public let callRace: RequestRace
+        public let logoutAuth: LogoutAuth
+        public let cancelRace: CancelRace
+        public let checkRequestRace: CheckRequestRace
+        public let raceAccepted: RaceAccepted
+    }
+    
+    public struct View {
+        public let alertView: AlertView
+        public let loadingView: LoadingView
+        public let requestButtonStateview: RequestButtonStateView
+        public let mapView: PassengerMapView
+    }
+    
+    private let useCases: PassengerMapPresenter.UseCases
+    private let view: PassengerMapPresenter.View
     private let locationManager: LocationManager
     private let geocodeLocation: GeocodeLocationManager
-    private let mapView: PassengerMapView
     private var isCalledRace = false
     private var isAcceptedRace = false
     private var lastLocation: LocationModel?
     var dismiss: (() -> Void)!
     
-    public init(alertView: AlertView,
-                loadingView: LoadingView,
-                requestButtonStateview: RequestButtonStateView,
-                callRace: RequestRace,
-                logoutAuth: LogoutAuth,
-                cancelRace: CancelRace,
-                checkRequestRace: CheckRequestRace,
-                raceAccepted: RaceAccepted,
+    public init(useCases: PassengerMapPresenter.UseCases,
+                view: PassengerMapPresenter.View,
                 locationManager: LocationManager,
-                geocodeLocation: GeocodeLocationManager,
-                mapView: PassengerMapView) {
-        self.alertView = alertView
-        self.loadingView = loadingView
-        self.callRace = callRace
-        self.logoutAuth = logoutAuth
-        self.cancelRace = cancelRace
-        self.raceAccepted = raceAccepted
-        self.checkRequestRace = checkRequestRace
-        self.mapView = mapView
+                geocodeLocation: GeocodeLocationManager) {
+        self.useCases = useCases
+        self.view = view
         self.locationManager = locationManager
         self.geocodeLocation = geocodeLocation
-        self.requestButtonStateview = requestButtonStateview
     }
     
     private func checkExistingRaceRequest() {
-        self.checkRequestRace.check { [weak self] hasRequest in
+        self.useCases.checkRequestRace.check { [weak self] hasRequest in
             if hasRequest {
                 self?.isCalledRace = true
-                self?.requestButtonStateview.change(state: .cancel)
+                self?.view.requestButtonStateview.change(state: .cancel)
             }
         }
     }
     
     private func registerRaceAcceptedObserver() {
-        self.raceAccepted.observe { [weak self] result in
+        self.useCases.raceAccepted.observe { [weak self] result in
             guard let self = self else { return }
             self.isAcceptedRace = true
             if case let .success(confirmModel) = result {
@@ -74,15 +68,15 @@ public final class PassengerMapPresenter {
     
     private func showPointAnnotations(driverLocation: LocationModel, passengerLocation: LocationModel) {
         let (latDif, longDif) = passengerLocation.calculateRegionLocation(locationRef: driverLocation)
-        self.mapView.setRegion(center: passengerLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
-        self.mapView.showPointAnnotation(point: .init(title: "Passageiro", location: passengerLocation))
-        self.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
+        self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+        self.view.mapView.showPointAnnotation(point: .init(title: "Passageiro", location: passengerLocation))
+        self.view.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
     }
     
     private func changeAcceptedState(driverLocation: LocationModel, passengerLocation: LocationModel) {
         let distance = driverLocation.distance(model: passengerLocation)
         let text = "Motorista \(distance) KM distante"
-        self.requestButtonStateview.change(state: .accepted(text: text))
+        self.view.requestButtonStateview.change(state: .accepted(text: text))
     }
     
     private func configureLocationManager() {
@@ -107,20 +101,20 @@ public final class PassengerMapPresenter {
             }
         case .failure: break
             self.locationManager.stop()
-            self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
+            self.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
         }
     }
     
     private func setMapView(_ location: LocationModel) {
-        self.mapView.setRegion(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
-        self.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: location))
+        self.view.mapView.setRegion(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.view.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: location))
     }
     
     private func findDestinationAddress(_ destinationAddress: String) {
-        self.loadingView.display(viewModel: .init(isLoading: true))
+        self.view.loadingView.display(viewModel: .init(isLoading: true))
         self.geocodeLocation.findLocationAddress(address: destinationAddress) { [weak self] result in
             guard let self = self else { return }
-            self.loadingView.display(viewModel: .init(isLoading: false))
+            self.view.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success(let model):
                 let cancelButton = AlertButtonModel(title: "Cancelar", isCancel: true)
@@ -128,9 +122,9 @@ public final class PassengerMapPresenter {
                 let alert = AlertViewModel(title: "Confirme seu endereço!",
                                            message: model.getFullAddress(),
                                            buttons: [confirmButton, cancelButton])
-                self.alertView.showMessage(viewModel: alert)
+                self.view.alertView.showMessage(viewModel: alert)
             case .failure:
-                self.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
+                self.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
             }
         }
     }
@@ -140,29 +134,29 @@ public final class PassengerMapPresenter {
         let request = RequestRaceRequest(latitude: lastLocation.latitude,
                                          longitude: lastLocation.longitude,
                                          addressModel: addressModel)
-        self.loadingView.display(viewModel: .init(isLoading: true))
-        self.callRace.request(request: request) { [weak self] result in
-            self?.loadingView.display(viewModel: .init(isLoading: false))
+        self.view.loadingView.display(viewModel: .init(isLoading: true))
+        self.useCases.callRace.request(request: request) { [weak self] result in
+            self?.view.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success:
                 self?.isCalledRace = true
-                self?.requestButtonStateview.change(state: .cancel)
+                self?.view.requestButtonStateview.change(state: .cancel)
             case .failure:
-                self?.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao realizar a requisição.", buttons: [.init(title: "ok")]))
+                self?.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao realizar a requisição.", buttons: [.init(title: "ok")]))
             }
         }
     }
     
     private func requestCancelRace() {
-        self.loadingView.display(viewModel: .init(isLoading: true))
-        self.cancelRace.cancel() { [weak self] cancelResult in
-            self?.loadingView.display(viewModel: .init(isLoading: false))
+        self.view.loadingView.display(viewModel: .init(isLoading: true))
+        self.useCases.cancelRace.cancel() { [weak self] cancelResult in
+            self?.view.loadingView.display(viewModel: .init(isLoading: false))
             switch cancelResult {
             case .success:
                 self?.isCalledRace = false
-                self?.requestButtonStateview.change(state: .call)
+                self?.view.requestButtonStateview.change(state: .call)
             case .failure:
-                self?.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar cancelar a corrida.", buttons: [.init(title: "ok")]))
+                self?.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar cancelar a corrida.", buttons: [.init(title: "ok")]))
             }
         }
     }
@@ -179,7 +173,7 @@ extension PassengerMapPresenter {
     }
     
     public func logout() {
-        self.logoutAuth.logout { [weak self] isLogout in
+        self.useCases.logoutAuth.logout { [weak self] isLogout in
             if isLogout {
                 self?.dismiss?()
             }
