@@ -117,6 +117,11 @@ public class ConfirmRacePresenter {
         self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
     }
     
+    private func showDriverRegion() {
+        guard let driverLocation = self.lasLocation else { return }
+        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: 200, longitudinalMeters: 200)
+    }
+    
     private func showDriverPointAnnotation() {
         guard let driverLocation = self.lasLocation else { return }
         self.view.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
@@ -257,6 +262,8 @@ extension ConfirmRacePresenter {
             changeState(state: .startRace)
         case .onRun:
             changeRaceRunState()
+        case .finish:
+            changeRaceFinishState()
         default:
             break
         }
@@ -280,7 +287,14 @@ extension ConfirmRacePresenter {
     
     private func changeRaceRunState() {
         self.view.buttonState.change(state: .onRun)
-        self.showDriverAndDestinationMap()
+        showDriverAndDestinationMap()
+    }
+    
+    private func changeRaceFinishState() {
+        let value = self.parameter.value ?? .init()
+        self.view.buttonState.change(state: .finish(value: value.format()))
+        showDriverRegion()
+        showDriverPointAnnotation()
     }
 }
 

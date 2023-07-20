@@ -18,6 +18,7 @@ public struct ConfirmRaceParameter {
     public let latitudeDestination: Double?
     public let longitudeDestination: Double?
     public let status: RaceStatus?
+    public let value: Double?
     
     public init(email: String,
                 name: String,
@@ -27,7 +28,8 @@ public struct ConfirmRaceParameter {
                 driverLongitude: Double? = nil,
                 latitudeDestination: Double? = nil,
                 longitudeDestination: Double? = nil,
-                status: RaceStatus? = nil) {
+                status: RaceStatus? = nil,
+                value: Double? = nil) {
         self.email = email
         self.name = name
         self.latitude = latitude
@@ -37,6 +39,7 @@ public struct ConfirmRaceParameter {
         self.status = status
         self.driverLatitude = driverLatitude
         self.driverLongitude = driverLongitude
+        self.value = value
     }
     
     public func getLocation() -> LocationModel {
@@ -66,5 +69,6 @@ extension ConfirmRaceParameter {
         self.status = viewModel.status
         self.driverLatitude = viewModel.driverLatitude
         self.driverLongitude = viewModel.driverLongitude
+        self.value = viewModel.value
     }
 }

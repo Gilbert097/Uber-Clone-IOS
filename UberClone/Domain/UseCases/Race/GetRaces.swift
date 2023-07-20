@@ -23,6 +23,7 @@ public class RaceModel: Model {
     public var status: RaceStatus?
     public var latitudeDestination: Double?
     public var longitudeDestination: Double?
+    public var value: Double?
     
     public init(email: String,
                 name: String,
@@ -33,7 +34,8 @@ public class RaceModel: Model {
                 driverLongitude: Double? = nil,
                 status: RaceStatus? = nil,
                 latitudeDestination: Double? = nil,
-                longitudeDestination: Double? = nil) {
+                longitudeDestination: Double? = nil,
+                value: Double? = nil) {
         self.email = email
         self.name = name
         self.latitude = latitude
@@ -44,6 +46,7 @@ public class RaceModel: Model {
         self.status = status
         self.latitudeDestination = latitudeDestination
         self.longitudeDestination = longitudeDestination
+        self.value = value
     }
     
     public static func == (lhs: RaceModel, rhs: RaceModel) -> Bool {
@@ -56,7 +59,8 @@ public class RaceModel: Model {
         lhs.driverLatitude == rhs.driverLatitude &&
         lhs.driverLongitude == rhs.driverLongitude &&
         lhs.latitudeDestination == rhs.latitudeDestination &&
-        lhs.longitudeDestination == rhs.longitudeDestination
+        lhs.longitudeDestination == rhs.longitudeDestination &&
+        lhs.value == rhs.value
     }
     
     public func getLocation() -> LocationModel {
