@@ -46,10 +46,8 @@ public class DriverListPresenter {
             case .success(let races):
                 guard let user = self.getAuth.get() else { return }
                 let viewModels: [RaceViewModel] = races.map { race in
-                    let isRunning = user.email == race.driverEmail
-                    let distance = self.calculateDistance(raceModel: race)
-                    let distanceText = "\(distance) KM de distância."
-                    let displayText = isRunning ? "\(race.name) { ANDAMENTO }" : race.name
+                    let distanceText = self.makeDistanceText(race: race)
+                    let displayText = self.makeDisplayText(race: race, authUser: user)
                     return RaceViewModel(model: race, distanceText: distanceText, displayText: displayText)
                 }
                 self.races = viewModels
@@ -58,6 +56,20 @@ public class DriverListPresenter {
                 break
             }
         }
+    }
+    
+    private func makeDistanceText(race: RaceModel) -> String {
+        let distance = self.calculateDistance(raceModel: race)
+        return "\(distance) KM de distância."
+    }
+    
+    private func makeDisplayText(race: RaceModel, authUser: AuthUserModel) -> String {
+        if let status = race.status, status == .finish {
+            return "\(race.name) { FINALIZADA }"
+        } else if authUser.email == race.driverEmail {
+            return "\(race.name) { ANDAMENTO }"
+        }
+       return race.name
     }
     
     private func registerRaceCanceledObserver() {
