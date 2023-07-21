@@ -32,7 +32,7 @@ public final class PassengerMapFactory {
         let getCurrentUser = RemoteGetCurrentUser(authGet: authAdapter, databaseGet: databaseAdapter)
         let callRace = MainQueueDispatchDecorator(RemoteRequestRace(getCurrentUser: getCurrentUser, databaseSetValueClient: databaseAdapter))
         let cancelRace = MainQueueDispatchDecorator(RemoteCancelRace(getAuthUser: getUser, deleteClient: databaseAdapter))
-        let checkRequestRace = RemoteCheckRequestRace(authGet: authAdapter, databaseGet: databaseAdapter)
+        let getRace = RemoteGetRace(getValueClient: databaseAdapter)
         let raceAccepted = RemoteRaceAccepted(authGet: authAdapter, observeClient: databaseAdapter)
         let logoutAuth = RemoteLogoutAuth(authLogoutClient: authAdapter)
         
@@ -40,8 +40,9 @@ public final class PassengerMapFactory {
             callRace: callRace,
             logoutAuth: logoutAuth,
             cancelRace: cancelRace,
-            checkRequestRace: checkRequestRace,
-            raceAccepted: raceAccepted
+            getRace: getRace,
+            raceAccepted: raceAccepted,
+            authGet: getUser
         )
     }
     

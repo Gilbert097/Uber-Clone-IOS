@@ -13,8 +13,9 @@ public final class PassengerMapPresenter {
         public let callRace: RequestRace
         public let logoutAuth: LogoutAuth
         public let cancelRace: CancelRace
-        public let checkRequestRace: CheckRequestRace
+        public let getRace: GetRace
         public let raceAccepted: RaceAccepted
+        public let authGet: GetAuthUser
     }
     
     public struct View {
@@ -44,12 +45,39 @@ public final class PassengerMapPresenter {
     }
     
     private func checkExistingRaceRequest() {
-        self.useCases.checkRequestRace.check { [weak self] hasRequest in
-            if hasRequest {
-                self?.isCalledRace = true
-                self?.view.requestButtonStateview.change(state: .cancel)
+        guard let authUser = self.useCases.authGet.get() else { return }
+        self.useCases.getRace.getValue(email: authUser.email) { [weak self] result in
+            switch result {
+            case .success(let race):
+                if let race = race {
+                    self?.processRaceStatus(race: race)
+                }
+            case .failure:
+                break
             }
         }
+    }
+    
+    private func processRaceStatus(race: RaceModel) {
+        if let status = race.status {
+            switch status {
+            case .finish:
+                changeFinishState(race: race)
+            default:
+                break
+            }
+        } else {
+            self.isCalledRace = true
+            self.view.requestButtonStateview.change(state: .cancel)
+        }
+    }
+    
+    private func changeFinishState(race: RaceModel) {
+        guard let passengerLocation = self.lastLocation else { return }
+        self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.view.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: passengerLocation))
+        let value = race.value ?? .init()
+        self.view.requestButtonStateview.change(state: .finish(value: value.format()))
     }
     
     private func registerRaceAcceptedObserver() {

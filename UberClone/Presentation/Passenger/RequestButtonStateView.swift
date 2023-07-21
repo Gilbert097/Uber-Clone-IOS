@@ -15,4 +15,5 @@ public enum RequestButtonState {
     case call
     case cancel
     case accepted(text: String)
+    case finish(value: String)
 }

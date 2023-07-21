@@ -106,9 +106,11 @@
 		D433AC282A647CC600EC8BA2 /* RemoteUpdateRaceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433AC272A647CC600EC8BA2 /* RemoteUpdateRaceStatus.swift */; };
 		D433AC2A2A65AD2200EC8BA2 /* FinishRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433AC292A65AD2200EC8BA2 /* FinishRace.swift */; };
 		D433AC2C2A65ADDD00EC8BA2 /* RemoteFinishRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433AC2B2A65ADDD00EC8BA2 /* RemoteFinishRace.swift */; };
+		D450008C2A69E63700488AB3 /* RemoteGetRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450008B2A69E63700488AB3 /* RemoteGetRace.swift */; };
+		D450008E2A69E64400488AB3 /* GetRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450008D2A69E64400488AB3 /* GetRace.swift */; };
 		D45001582A12BB6C00B1A052 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45001572A12BB6C00B1A052 /* AppLocationManager.swift */; };
 		D45330442A4CC3A300965B5D /* RaceChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45330432A4CC3A300965B5D /* RaceChanged.swift */; };
-		D45330462A4CC3C400965B5D /* RemoteGetRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45330452A4CC3C400965B5D /* RemoteGetRace.swift */; };
+		D45330462A4CC3C400965B5D /* RemoteRaceChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45330452A4CC3C400965B5D /* RemoteRaceChanged.swift */; };
 		D48482562A12F69400DEFCDC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482552A12F69400DEFCDC /* LocationManager.swift */; };
 		D484825C2A156BCD00DEFCDC /* ConfirmRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */; };
 		D484825F2A156C1F00DEFCDC /* ConfirmRaceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */; };
@@ -252,9 +254,11 @@
 		D433AC272A647CC600EC8BA2 /* RemoteUpdateRaceStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUpdateRaceStatus.swift; sourceTree = "<group>"; };
 		D433AC292A65AD2200EC8BA2 /* FinishRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishRace.swift; sourceTree = "<group>"; };
 		D433AC2B2A65ADDD00EC8BA2 /* RemoteFinishRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteFinishRace.swift; sourceTree = "<group>"; };
+		D450008B2A69E63700488AB3 /* RemoteGetRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteGetRace.swift; sourceTree = "<group>"; };
+		D450008D2A69E64400488AB3 /* GetRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRace.swift; sourceTree = "<group>"; };
 		D45001572A12BB6C00B1A052 /* AppLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationManager.swift; sourceTree = "<group>"; };
 		D45330432A4CC3A300965B5D /* RaceChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceChanged.swift; sourceTree = "<group>"; };
-		D45330452A4CC3C400965B5D /* RemoteGetRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteGetRace.swift; sourceTree = "<group>"; };
+		D45330452A4CC3C400965B5D /* RemoteRaceChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceChanged.swift; sourceTree = "<group>"; };
 		D48482552A12F69400DEFCDC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D484825B2A156BCD00DEFCDC /* ConfirmRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceViewController.swift; sourceTree = "<group>"; };
 		D484825E2A156C1F00DEFCDC /* ConfirmRaceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRaceFactory.swift; sourceTree = "<group>"; };
@@ -795,7 +799,8 @@
 				D413C5BE2A047C8500869258 /* RemoteRequestRace.swift */,
 				D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */,
 				D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */,
-				D45330452A4CC3C400965B5D /* RemoteGetRace.swift */,
+				D45330452A4CC3C400965B5D /* RemoteRaceChanged.swift */,
+				D450008B2A69E63700488AB3 /* RemoteGetRace.swift */,
 				D49201582A2FB22C00D9B587 /* RemoteRaceCanceled.swift */,
 				D48482642A158DC000DEFCDC /* RemoteConfirmRace.swift */,
 				D433AC2B2A65ADDD00EC8BA2 /* RemoteFinishRace.swift */,
@@ -860,6 +865,7 @@
 				D49201472A29442100D9B587 /* RaceAccepted.swift */,
 				D413C5F72A0C595F00869258 /* GetRaces.swift */,
 				D45330432A4CC3A300965B5D /* RaceChanged.swift */,
+				D450008D2A69E64400488AB3 /* GetRace.swift */,
 				D49201562A2FB1FD00D9B587 /* RaceCanceled.swift */,
 				D413C5DD2A09B4E400869258 /* CancelRace.swift */,
 				D48482712A16963500DEFCDC /* CheckRequestRace.swift */,
@@ -1207,6 +1213,7 @@
 				D4036ACF29E0CB2500E53951 /* Color.swift in Sources */,
 				D413C5ED2A0AF29800869258 /* DataSnapshot+.swift in Sources */,
 				D484825C2A156BCD00DEFCDC /* ConfirmRaceViewController.swift in Sources */,
+				D450008E2A69E64400488AB3 /* GetRace.swift in Sources */,
 				D49201482A29442100D9B587 /* RaceAccepted.swift in Sources */,
 				D4036AF629E35E6600E53951 /* SignUpResquest.swift in Sources */,
 				D4036AD629E1F1C900E53951 /* LabelField.swift in Sources */,
@@ -1258,6 +1265,7 @@
 				D413C59E29FF1B4B00869258 /* RemoteGetStateAuth.swift in Sources */,
 				D413C5AA29FF2C4E00869258 /* RemoteLogoutAuth.swift in Sources */,
 				D48482722A16963500DEFCDC /* CheckRequestRace.swift in Sources */,
+				D450008C2A69E63700488AB3 /* RemoteGetRace.swift in Sources */,
 				D4036AF329E35DD000E53951 /* SignUpPresenter.swift in Sources */,
 				D492015B2A32485700D9B587 /* ConfirmRaceButtonStateView.swift in Sources */,
 				D413C5D92A08324F00869258 /* RemoteAddUser.swift in Sources */,
@@ -1287,7 +1295,7 @@
 				D484826A2A159B6300DEFCDC /* ConfirmRaceParameter.swift in Sources */,
 				D413C5E82A09CB6100869258 /* DatabaseGetValueClient.swift in Sources */,
 				D4036AD129E0D7AF00E53951 /* HighlightedTextField.swift in Sources */,
-				D45330462A4CC3C400965B5D /* RemoteGetRace.swift in Sources */,
+				D45330462A4CC3C400965B5D /* RemoteRaceChanged.swift in Sources */,
 				D413C56D29F0235300869258 /* DomainError.swift in Sources */,
 				D492015D2A3A721000D9B587 /* RemoteUpdateDriverLocation.swift in Sources */,
 				D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */,
