@@ -16,6 +16,16 @@ public final class FirebaseDatabaseAdapter {
             .reference()
             .removeAllObservers()
     }
+    
+    private func executeQueryWithCondition(reference: DatabaseReference,
+                                            condition: DatabaseCondition,
+                                            event: DatabaseEvent,
+                                            completion: @escaping ((DataSnapshot) -> Void)) {
+        reference
+            .queryOrdered(byChild: condition.field)
+            .queryEqual(toValue: condition.value)
+            .observeSingleEvent(of: event.type, with: completion)
+    }
 }
 
 // MARK: - DatabaseSetValueClient
@@ -56,15 +66,13 @@ extension FirebaseDatabaseAdapter: DatabaseDeleteValueClient {
             .child(query.path)
         
         if let condition = query.condition {
-            refPath
-                .queryOrdered(byChild: condition.field)
-                .queryEqual(toValue: condition.value)
-                .observeSingleEvent(of: query.event.type) { snapshot in
-                    snapshot.ref.removeValue { error, _  in
-                        guard error == nil else { return completion(.failure(error!)) }
-                        completion(.success(()))
-                    }
+            let completion: ((DataSnapshot) -> Void) = { snapshot in
+                snapshot.ref.removeValue { error, _  in
+                    guard error == nil else { return completion(.failure(error!)) }
+                    completion(.success(()))
                 }
+            }
+            executeQueryWithCondition(reference: refPath, condition: condition, event: query.event, completion: completion)
         }
     }
 }
@@ -88,11 +96,8 @@ extension FirebaseDatabaseAdapter: DatabaseGetValueClient {
             refPath
                 .child(child.path)
                 .observeSingleEvent(of: query.event.type, with: completion)
-        } else if let contidion = query.condition {
-            refPath
-                .queryOrdered(byChild: contidion.field)
-                .queryEqual(toValue: contidion.value)
-                .observeSingleEvent(of: query.event.type, with: completion)
+        } else if let condition = query.condition {
+            executeQueryWithCondition(reference: refPath, condition: condition, event: query.event, completion: completion)
         } else {
             refPath
                 .observeSingleEvent(of: query.event.type, with: completion)
@@ -114,11 +119,11 @@ extension FirebaseDatabaseAdapter: DatabaseGetValuesClient {
             
             if snapshot.childrenCount > 0 {
                 
-               let allObjects = snapshot
+                let allObjects = snapshot
                     .children
                     .allObjects as! [DataSnapshot]
                 
-               let datas = allObjects
+                let datas = allObjects
                     .map({ $0.data})
                     .compactMap { $0 }
                 completion(.success(datas))
@@ -131,11 +136,8 @@ extension FirebaseDatabaseAdapter: DatabaseGetValuesClient {
             refPath
                 .child(child.path)
                 .observeSingleEvent(of: query.event.type, with: completion)
-        } else if let contidion = query.condition {
-            refPath
-                .queryOrdered(byChild: contidion.field)
-                .queryEqual(toValue: contidion.value)
-                .observeSingleEvent(of: query.event.type, with: completion)
+        } else if let condition = query.condition {
+            executeQueryWithCondition(reference: refPath, condition: condition, event: query.event, completion: completion)
         } else {
             refPath
                 .observeSingleEvent(of: query.event.type, with: completion)
@@ -177,11 +179,11 @@ extension FirebaseDatabaseAdapter: DatabaseOberveValuesClient {
             .observe(query.event.type) { snapshot in
                 if snapshot.childrenCount > 0 {
                     
-                   let allObjects = snapshot
+                    let allObjects = snapshot
                         .children
                         .allObjects as! [DataSnapshot]
                     
-                   let datas = allObjects
+                    let datas = allObjects
                         .map({ $0.data})
                         .compactMap { $0 }
                     completion(.success(datas))
@@ -218,11 +220,8 @@ extension FirebaseDatabaseAdapter: DatabaseUpdateValueClient {
             }
         }
         
-        if let contidion = query.condition {
-            refPath
-                .queryOrdered(byChild: contidion.field)
-                .queryEqual(toValue: contidion.value)
-                .observeSingleEvent(of: query.event.type, with: completion)
+        if let condition = query.condition {
+            executeQueryWithCondition(reference: refPath, condition: condition, event: query.event, completion: completion)
         } else {
             refPath
                 .observeSingleEvent(of: query.event.type, with: completion)

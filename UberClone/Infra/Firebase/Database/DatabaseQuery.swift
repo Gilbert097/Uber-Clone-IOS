@@ -15,7 +15,11 @@ public class DatabaseQuery {
     public let child: DatabaseQuery?
     public let event: DatabaseEvent
     
-    public init(path: String, condition: DatabaseCondition? = nil, data: Data? = nil, child: DatabaseQuery? = nil, event: DatabaseEvent = .added) {
+    public init(path: String,
+                condition: DatabaseCondition? = nil,
+                data: Data? = nil,
+                child: DatabaseQuery? = nil,
+                event: DatabaseEvent = .added) {
         self.path = path
         self.condition = condition
         self.data = data
@@ -26,9 +30,9 @@ public class DatabaseQuery {
 
 public class DatabaseCondition {
     public let field: String
-    public let value: String
+    public let value: Any?
     
-    public init(field: String, value: String) {
+    public init(field: String, value: Any?) {
         self.field = field
         self.value = value
     }

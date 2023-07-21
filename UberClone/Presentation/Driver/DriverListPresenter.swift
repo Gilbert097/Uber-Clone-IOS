@@ -64,7 +64,7 @@ public class DriverListPresenter {
     }
     
     private func makeDisplayText(race: RaceModel, authUser: AuthUserModel) -> String {
-        if let status = race.status, status == .finish {
+        if let status = race.status, [RaceStatus.finish, RaceStatus.confirmFinish].contains(status) {
             return "\(race.name) { FINALIZADA }"
         } else if authUser.email == race.driverEmail {
             return "\(race.name) { ANDAMENTO }"

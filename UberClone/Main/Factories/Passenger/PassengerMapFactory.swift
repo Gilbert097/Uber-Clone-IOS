@@ -35,6 +35,7 @@ public final class PassengerMapFactory {
         let getRace = RemoteGetRace(getValueClient: databaseAdapter)
         let raceAccepted = RemoteRaceAccepted(authGet: authAdapter, observeClient: databaseAdapter)
         let logoutAuth = RemoteLogoutAuth(authLogoutClient: authAdapter)
+        let updateStatus = RemoteUpdateRaceStatus(updateClient: databaseAdapter)
         
         return PassengerMapPresenter.UseCases(
             callRace: callRace,
@@ -42,7 +43,8 @@ public final class PassengerMapFactory {
             cancelRace: cancelRace,
             getRace: getRace,
             raceAccepted: raceAccepted,
-            authGet: getUser
+            authGet: getUser,
+            updateStatus: updateStatus
         )
     }
     

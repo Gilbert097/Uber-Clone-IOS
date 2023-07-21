@@ -33,9 +33,4 @@ public class RemoteFinishRace: FinishRace {
         }
     }
     
-    public func confirm(model: ConfirmRaceModel, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let data = model.toData() else { return completion(.failure(DomainError.unexpected))}
-        let query = DatabaseQuery(path: "requests", condition: .init(field: "email", value: model.email), data: data)
-        self.updateClient.updateValue(query: query, completion: completion)
-    }
 }

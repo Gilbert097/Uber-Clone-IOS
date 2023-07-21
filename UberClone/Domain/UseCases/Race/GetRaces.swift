@@ -68,10 +68,11 @@ public class RaceModel: Model {
     }
 }
 
-public enum RaceStatus: String, Codable {
+public enum RaceStatus: String, Codable, CaseIterable {
     case onRequest
     case pickUpPassenger
     case startRace
     case onRun
     case finish
+    case confirmFinish
 }

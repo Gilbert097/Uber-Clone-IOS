@@ -16,6 +16,7 @@ public final class PassengerMapPresenter {
         public let getRace: GetRace
         public let raceAccepted: RaceAccepted
         public let authGet: GetAuthUser
+        public let updateStatus: UpdateRaceStatus
     }
     
     public struct View {
@@ -76,8 +77,20 @@ public final class PassengerMapPresenter {
         guard let passengerLocation = self.lastLocation else { return }
         self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: 200, longitudinalMeters: 200)
         self.view.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: passengerLocation))
-        let value = race.value ?? .init()
-        self.view.requestButtonStateview.change(state: .finish(value: value.format()))
+        let value = (race.value ?? .init()).format()
+        let buttonModel = AlertButtonModel(title: "ok") { [weak self] in self?.confirmFinish() }
+        self.view.alertView.showMessage(viewModel: .init(title: "Viagem", message: "Sua viagem anterior foi finalizada - R$ \(value)", buttons: [buttonModel]))
+    }
+    
+    private func confirmFinish() {
+        guard let authUser = self.useCases.authGet.get() else { return }
+        self.view.loadingView.display(viewModel: .init(isLoading: true))
+        self.useCases.updateStatus.update(model: .init(email: authUser.email, status: .confirmFinish)) { [weak self] result in
+            self?.view.loadingView.display(viewModel: .init(isLoading: false))
+            if case .failure = result {
+                self?.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar confirmar corrida finalizada.", buttons: [.init(title: "ok")]))
+            }
+        }
     }
     
     private func registerRaceAcceptedObserver() {
