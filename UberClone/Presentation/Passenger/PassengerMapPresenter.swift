@@ -209,7 +209,7 @@ extension PassengerMapPresenter {
     
     public func load() {
         configureLocationManager()
-        //checkExistingRaceRequest()
+        checkExistingRaceRequest()
         //registerRaceAcceptedObserver()
     }
     

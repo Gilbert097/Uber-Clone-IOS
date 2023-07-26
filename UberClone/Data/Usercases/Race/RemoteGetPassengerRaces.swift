@@ -16,7 +16,7 @@ public class RemoteGetPassengerRaces: GetPassengerRaces {
     }
     
     public func execute(email: String, completion: @escaping (Result<[RaceModel], DomainError>) -> Void) {
-        self.getValuesClient.getValues(query: .init(path: "requests", condition: .init(field: "email", value: email))) { result in
+        self.getValuesClient.getValues(query: .init(path: "requests", condition: .init(field: "email", value: email), event: .value)) { result in
             switch result {
             case .success(let datas):
                 let races: [RaceModel] = datas

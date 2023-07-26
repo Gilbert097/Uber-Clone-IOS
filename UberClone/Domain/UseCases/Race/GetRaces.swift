@@ -13,6 +13,7 @@ public protocol GetRaces {
 
 public class RaceModel: Model {
     
+    public let id: String
     public let email: String
     public let name: String
     public let latitude: Double
@@ -25,7 +26,8 @@ public class RaceModel: Model {
     public var longitudeDestination: Double?
     public var value: Double?
     
-    public init(email: String,
+    public init(id: String,
+                email: String,
                 name: String,
                 latitude: Double,
                 longitude: Double,
@@ -36,6 +38,7 @@ public class RaceModel: Model {
                 latitudeDestination: Double? = nil,
                 longitudeDestination: Double? = nil,
                 value: Double? = nil) {
+        self.id = id
         self.email = email
         self.name = name
         self.latitude = latitude
@@ -50,6 +53,7 @@ public class RaceModel: Model {
     }
     
     public static func == (lhs: RaceModel, rhs: RaceModel) -> Bool {
+        lhs.id == rhs.id &&
         lhs.email == rhs.email &&
         lhs.name == rhs.name &&
         lhs.latitude == rhs.latitude &&
