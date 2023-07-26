@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol RaceChanged {
-    func observe(email: String, completion: @escaping (Swift.Result<RaceModel, DomainError>) -> Void)
+    func observe(raceId: String, completion: @escaping (Swift.Result<RaceModel, DomainError>) -> Void)
 }
 

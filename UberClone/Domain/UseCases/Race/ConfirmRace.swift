@@ -13,6 +13,7 @@ public protocol ConfirmRace {
 
 public class ConfirmRaceModel: Model {
    
+    public let id: String
     public let email: String
     public let name: String
     public let latitude: Double
@@ -22,7 +23,8 @@ public class ConfirmRaceModel: Model {
     public let driverEmail: String
     public let status: RaceStatus
     
-    public init(email: String,
+    public init(id: String,
+                email: String,
                 name: String,
                 latitude: Double,
                 longitude: Double,
@@ -30,6 +32,7 @@ public class ConfirmRaceModel: Model {
                 driverLongitude: Double,
                 driverEmail: String,
                 status: RaceStatus) {
+        self.id = id
         self.email = email
         self.name = name
         self.latitude = latitude
@@ -41,6 +44,7 @@ public class ConfirmRaceModel: Model {
     }
     
     public static func == (lhs: ConfirmRaceModel, rhs: ConfirmRaceModel) -> Bool {
+        lhs.id == rhs.id &&
         lhs.email == rhs.email &&
         lhs.name == rhs.name &&
         lhs.latitude == rhs.latitude &&

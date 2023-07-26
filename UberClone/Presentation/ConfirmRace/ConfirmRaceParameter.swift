@@ -9,6 +9,7 @@ import Foundation
 
 public struct ConfirmRaceParameter {
     
+    public let id: String
     public let email: String
     public let name: String
     public let latitude: Double
@@ -20,7 +21,8 @@ public struct ConfirmRaceParameter {
     public let status: RaceStatus?
     public let value: Double?
     
-    public init(email: String,
+    public init(id: String,
+                email: String,
                 name: String,
                 latitude: Double,
                 longitude: Double,
@@ -30,6 +32,7 @@ public struct ConfirmRaceParameter {
                 longitudeDestination: Double? = nil,
                 status: RaceStatus? = nil,
                 value: Double? = nil) {
+        self.id = id
         self.email = email
         self.name = name
         self.latitude = latitude
@@ -60,6 +63,7 @@ public struct ConfirmRaceParameter {
 extension ConfirmRaceParameter {
     
     public init(viewModel: RaceViewModel) {
+        self.id = viewModel.id
         self.email = viewModel.email
         self.name = viewModel.name
         self.latitude = viewModel.latitude

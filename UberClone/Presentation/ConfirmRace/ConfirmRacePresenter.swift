@@ -49,66 +49,6 @@ public class ConfirmRacePresenter {
         self.locationManager = locationManager
         self.geocodeLocation = geocodeLocation
     }
-    
-    private func setupInitalState() {
-        if let status = self.parameter.status {
-            self.lasLocation = parameter.getDriverLocation()
-            processRaceStatus(status: status)
-        } else {
-            setupInitialPassengerPoint()
-        }
-    }
-    
-    private func setupInitialPassengerPoint() {
-        let point = PointAnnotationModel(title: self.parameter.name, location: self.parameter.getLocation())
-        self.view.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
-        self.view.mapView.showPointAnnotation(point: point)
-    }
-    
-    private func showDriverAndPassengerMap() {
-        showDriverAndPassengerRegion()
-        showDriverPointAnnotation()
-        showPassengerPointAnnotation()
-    }
-    
-    private func showDriverAndDestinationMap() {
-        showDriverAndDestinationRegion()
-        showDriverPointAnnotation()
-        showDestinationPointAnnotation()
-    }
-    
-    private func showDriverAndDestinationRegion() {
-        guard let driverLocation = self.lasLocation,
-              let destinationLocation = self.parameter.getLocationDestination() else { return }
-        let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: destinationLocation)
-        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
-    }
-    
-    private func showDriverAndPassengerRegion() {
-        guard let driverLocation = self.lasLocation else { return }
-        let passengerLocation = self.parameter.getLocation()
-        let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: passengerLocation)
-        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
-    }
-    
-    private func showDriverRegion() {
-        guard let driverLocation = self.lasLocation else { return }
-        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: 200, longitudinalMeters: 200)
-    }
-    
-    private func showDriverPointAnnotation() {
-        guard let driverLocation = self.lasLocation else { return }
-        self.view.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
-    }
-    
-    private func showPassengerPointAnnotation() {
-        self.view.mapView.showPointAnnotation(point: .init(title: "Passageiro", location:  self.parameter.getLocation()))
-    }
-    
-    private func showDestinationPointAnnotation() {
-        guard let destinationLocation = self.parameter.getLocationDestination() else { return }
-        self.view.mapView.showPointAnnotation(point: .init(title: "Destino", location: destinationLocation))
-    }
 }
 
 // MARK: Puclic Methods
@@ -213,7 +153,7 @@ extension ConfirmRacePresenter {
 extension ConfirmRacePresenter {
     
     private func registerObserveRaceChanged() {
-        self.useCases.raceChanged.observe(email: self.parameter.email) { [weak self] result in
+        self.useCases.raceChanged.observe(raceId: self.parameter.id) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let race):
@@ -272,10 +212,75 @@ extension ConfirmRacePresenter {
     }
 }
 
+// MARK: - MapView Methods
+extension ConfirmRacePresenter {
+    
+    private func setupInitalState() {
+        if let status = self.parameter.status {
+            self.lasLocation = parameter.getDriverLocation()
+            processRaceStatus(status: status)
+        } else {
+            setupInitialPassengerPoint()
+        }
+    }
+    
+    private func setupInitialPassengerPoint() {
+        let point = PointAnnotationModel(title: self.parameter.name, location: self.parameter.getLocation())
+        self.view.mapView.setRegion(center: point.location, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.view.mapView.showPointAnnotation(point: point)
+    }
+    
+    private func showDriverAndPassengerMap() {
+        showDriverAndPassengerRegion()
+        showDriverPointAnnotation()
+        showPassengerPointAnnotation()
+    }
+    
+    private func showDriverAndDestinationMap() {
+        showDriverAndDestinationRegion()
+        showDriverPointAnnotation()
+        showDestinationPointAnnotation()
+    }
+    
+    private func showDriverAndDestinationRegion() {
+        guard let driverLocation = self.lasLocation,
+              let destinationLocation = self.parameter.getLocationDestination() else { return }
+        let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: destinationLocation)
+        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+    }
+    
+    private func showDriverAndPassengerRegion() {
+        guard let driverLocation = self.lasLocation else { return }
+        let passengerLocation = self.parameter.getLocation()
+        let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: passengerLocation)
+        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+    }
+    
+    private func showDriverRegion() {
+        guard let driverLocation = self.lasLocation else { return }
+        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: 200, longitudinalMeters: 200)
+    }
+    
+    private func showDriverPointAnnotation() {
+        guard let driverLocation = self.lasLocation else { return }
+        self.view.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
+    }
+    
+    private func showPassengerPointAnnotation() {
+        self.view.mapView.showPointAnnotation(point: .init(title: "Passageiro", location:  self.parameter.getLocation()))
+    }
+    
+    private func showDestinationPointAnnotation() {
+        guard let destinationLocation = self.parameter.getLocationDestination() else { return }
+        self.view.mapView.showPointAnnotation(point: .init(title: "Destino", location: destinationLocation))
+    }
+}
+
 private extension ConfirmRaceModel {
     
     convenience init(parameter: ConfirmRaceParameter, driverEmail: String, driverLocation: LocationModel) {
-        self.init(email: parameter.email,
+        self.init(id: parameter.id,
+                  email: parameter.email,
                   name: parameter.name,
                   latitude: parameter.latitude,
                   longitude: parameter.longitude,
@@ -283,16 +288,5 @@ private extension ConfirmRaceModel {
                   driverLongitude: driverLocation.longitude,
                   driverEmail: driverEmail,
                   status: .pickUpPassenger)
-    }
-}
-
-extension Double {
-    
-    public func format() -> String {
-        let nf = NumberFormatter()
-        nf.numberStyle = .decimal
-        nf.maximumFractionDigits = 2
-        nf.locale = Locale(identifier: "pt_BR")
-        return nf.string(from: NSNumber(value: self))!
     }
 }

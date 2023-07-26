@@ -67,8 +67,13 @@ public class RaceModel: Model {
         lhs.value == rhs.value
     }
     
-    public func getLocation() -> LocationModel {
+    public func getPassengerLocation() -> LocationModel {
         LocationModel(latitude: self.latitude, longitude: self.longitude)
+    }
+    
+    public func getDriverLocation() -> LocationModel? {
+        guard let driverLatitude = self.driverLatitude, let driverLongitude = driverLongitude else { return nil }
+        return LocationModel(latitude: driverLatitude, longitude: driverLongitude)
     }
 }
 

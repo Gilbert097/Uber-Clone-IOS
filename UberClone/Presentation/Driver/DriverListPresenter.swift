@@ -91,7 +91,7 @@ public class DriverListPresenter {
     
     private func calculateDistance(raceModel: RaceModel) -> Double {
         guard let driverLocation = self.lastLocation else { return 0 }
-        let passengerLocation = raceModel.getLocation()
+        let passengerLocation = raceModel.getPassengerLocation()
         return driverLocation.distance(model: passengerLocation)
     }
     

@@ -14,7 +14,7 @@ public final class PassengerMapPresenter {
         public let logoutAuth: LogoutAuth
         public let cancelRace: CancelRace
         public let getRaces: GetPassengerRaces
-        public let raceAccepted: RaceAccepted
+        public let raceChanged: ChangedPassengerRaces
         public let authGet: GetAuthUser
         public let updateStatus: UpdateRaceStatus
     }
@@ -48,40 +48,7 @@ public final class PassengerMapPresenter {
     
     private func checkExistingRaceRequest() {
         guard let authUser = self.useCases.authGet.get() else { return }
-        self.useCases.getRaces.execute(email: authUser.email) { [weak self] result in
-            switch result {
-            case .success(let races):
-                if let currentRace = races.first(where: { $0.status != .confirmFinish }) {
-                    self?.processRaceStatus(race: currentRace)
-                }
-            case .failure:
-                break
-            }
-        }
-    }
-    
-    private func processRaceStatus(race: RaceModel) {
-        self.currentRaceId = race.id
-        if let status = race.status {
-            switch status {
-            case .finish:
-                changeFinishState(race: race)
-            default:
-                break
-            }
-        } else {
-            self.isCalledRace = true
-            self.view.requestButtonStateview.change(state: .cancel)
-        }
-    }
-    
-    private func changeFinishState(race: RaceModel) {
-        guard let passengerLocation = self.lastLocation else { return }
-        self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: 200, longitudinalMeters: 200)
-        self.view.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: passengerLocation))
-        let value = (race.value ?? .init()).format()
-        let buttonModel = AlertButtonModel(title: "ok") { [weak self] in self?.confirmFinish() }
-        self.view.alertView.showMessage(viewModel: .init(title: "Viagem", message: "Sua viagem anterior foi finalizada - R$ \(value)", buttons: [buttonModel]))
+        self.useCases.getRaces.execute(email: authUser.email) { [weak self] in self?.handleRacesResult($0)}
     }
     
     private func confirmFinish() {
@@ -93,64 +60,6 @@ public final class PassengerMapPresenter {
                 self?.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar confirmar corrida finalizada.", buttons: [.init(title: "ok")]))
             }
         }
-    }
-    
-    private func registerRaceAcceptedObserver() {
-        self.useCases.raceAccepted.observe { [weak self] result in
-            guard let self = self else { return }
-            self.isAcceptedRace = true
-            if case let .success(confirmModel) = result {
-                if let passengerLocation = self.lastLocation {
-                    let driverLocation = confirmModel.getDriverLocation()
-                    self.changeAcceptedState(driverLocation: driverLocation, passengerLocation: passengerLocation)
-                    self.showPointAnnotations(driverLocation: driverLocation, passengerLocation: passengerLocation)
-                }
-            }
-        }
-    }
-    
-    private func showPointAnnotations(driverLocation: LocationModel, passengerLocation: LocationModel) {
-        let (latDif, longDif) = passengerLocation.calculateRegionLocation(locationRef: driverLocation)
-        self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
-        self.view.mapView.showPointAnnotation(point: .init(title: "Passageiro", location: passengerLocation))
-        self.view.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
-    }
-    
-    private func changeAcceptedState(driverLocation: LocationModel, passengerLocation: LocationModel) {
-        let distance = driverLocation.distance(model: passengerLocation)
-        let text = "Motorista \(distance) KM distante"
-        self.view.requestButtonStateview.change(state: .accepted(text: text))
-    }
-    
-    private func configureLocationManager() {
-        self.locationManager.register { [weak self] in self?.handleUpdateLocationResult($0)}
-        self.locationManager.start()
-    }
-    
-    private func handleUpdateLocationResult(_ result:  Result<LocationModel, LocationError>) {
-        switch result {
-        case .success(let location):
-            guard
-                let lastLocation = self.lastLocation
-            else {
-                self.lastLocation = location
-                setMapView(location)
-                return
-            }
-            
-            if !self.isAcceptedRace && lastLocation != location {
-                self.lastLocation = location
-                setMapView(location)
-            }
-        case .failure: break
-            self.locationManager.stop()
-            self.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
-        }
-    }
-    
-    private func setMapView(_ location: LocationModel) {
-        self.view.mapView.setRegion(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
-        self.view.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: location))
     }
     
     private func findDestinationAddress(_ destinationAddress: String) {
@@ -214,7 +123,7 @@ extension PassengerMapPresenter {
     public func load() {
         configureLocationManager()
         checkExistingRaceRequest()
-        //registerRaceAcceptedObserver()
+        registerObserveRaceChanged()
     }
     
     public func logout() {
@@ -232,4 +141,118 @@ extension PassengerMapPresenter {
             findDestinationAddress(destinationAddress)
         }
     }
+}
+
+// MARK: - Location Manager
+extension PassengerMapPresenter {
+    
+    private func configureLocationManager() {
+        self.locationManager.register { [weak self] in self?.handleUpdateLocationResult($0)}
+        self.locationManager.start()
+    }
+    
+    private func handleUpdateLocationResult(_ result:  Result<LocationModel, LocationError>) {
+        switch result {
+        case .success(let location):
+            guard
+                let lastLocation = self.lastLocation
+            else {
+                self.lastLocation = location
+                setupInitialPassengerPoint(location)
+                return
+            }
+// TODO: - Avaliar implementação.
+//            if !self.isAcceptedRace && lastLocation != location {
+//                self.lastLocation = location
+//                setupInitialPassengerPoint(location)
+//            }
+        case .failure: break
+            self.locationManager.stop()
+            self.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
+        }
+    }
+}
+
+// MARK: - MapView Methods
+extension PassengerMapPresenter {
+    
+    private func showDriverAndPassengerOnMapView(driverLocation: LocationModel, passengerLocation: LocationModel) {
+        showDriverAndPassengerRegion(driverLocation: driverLocation, passengerLocation: passengerLocation)
+        showDriverPointAnnotation(driverLocation: driverLocation)
+        showPassengerPointAnnotation(passengerLocation: passengerLocation)
+    }
+    
+    private func showDriverAndPassengerRegion(driverLocation: LocationModel, passengerLocation: LocationModel) {
+        let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: passengerLocation)
+        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+    }
+    
+    private func showDriverPointAnnotation(driverLocation: LocationModel) {
+        self.view.mapView.showPointAnnotation(point: .init(title: "Mororista", location: driverLocation))
+    }
+    
+    private func showPassengerPointAnnotation(passengerLocation: LocationModel) {
+        self.view.mapView.showPointAnnotation(point: .init(title: "Passageiro", location: passengerLocation))
+    }
+    
+    
+    private func setupInitialPassengerPoint(_ location: LocationModel) {
+        self.view.mapView.setRegion(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.view.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: location))
+    }
+}
+
+
+// MARK: - Race Status Methods
+extension PassengerMapPresenter {
+    
+    private func registerObserveRaceChanged() {
+        guard let authUser = self.useCases.authGet.get() else { return }
+        self.useCases.raceChanged.observe(email: authUser.email) { [weak self] in self?.handleRacesResult($0)}
+    }
+    
+    private func handleRacesResult(_ result: Result<[RaceModel], DomainError>) {
+        if case let .success(races) = result {
+            self.processRaceStatus(races: races)
+        }
+    }
+    
+    private func processRaceStatus(races: [RaceModel]) {
+        if let currentRace = races.first(where: { $0.status != .confirmFinish }) {
+            self.currentRaceId = currentRace.id
+            if let status = currentRace.status {
+                switch status {
+                case .finish:
+                    changeFinishState(race: currentRace)
+                case .pickUpPassenger:
+                    changePickUpPassengerState(race: currentRace)
+                default:
+                    break
+                }
+            } else {
+                self.isCalledRace = true
+                self.view.requestButtonStateview.change(state: .cancel)
+            }
+        }
+    }
+    
+    private func changePickUpPassengerState(race: RaceModel) {
+        self.isAcceptedRace = true
+        if let passengerLocation = self.lastLocation, let driverLocation = race.getDriverLocation() {
+            let distance = driverLocation.distance(model: passengerLocation)
+            let text = "Motorista \(distance) KM distante"
+            self.view.requestButtonStateview.change(state: .accepted(text: text))
+            showDriverAndPassengerOnMapView(driverLocation: driverLocation, passengerLocation: passengerLocation)
+        }
+    }
+    
+    private func changeFinishState(race: RaceModel) {
+        guard let passengerLocation = self.lastLocation else { return }
+        self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.view.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: passengerLocation))
+        let value = (race.value ?? .init()).format()
+        let buttonModel = AlertButtonModel(title: "ok") { [weak self] in self?.confirmFinish() }
+        self.view.alertView.showMessage(viewModel: .init(title: "Viagem", message: "Sua viagem anterior foi finalizada - R$ \(value)", buttons: [buttonModel]))
+    }
+    
 }

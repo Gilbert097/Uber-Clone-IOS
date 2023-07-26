@@ -15,8 +15,8 @@ public class RemoteRaceChanged: RaceChanged {
         self.observeValueClient = observeValueClient
     }
     
-    public func observe(email: String, completion: @escaping (Result<RaceModel, DomainError>) -> Void) {
-        self.observeValueClient.observe(query: .init(path: "requests", condition: .init(field: "email", value: email), event: .changed)) { result in
+    public func observe(raceId: String, completion: @escaping (Result<RaceModel, DomainError>) -> Void) {
+        self.observeValueClient.observe(query: .init(path: "requests", condition: .init(field: "id", value: raceId), event: .changed)) { result in
             switch result {
             case .success(let data):
                 if let race: RaceModel = data.toModel() {

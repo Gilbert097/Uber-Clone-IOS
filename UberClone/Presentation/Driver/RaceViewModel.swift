@@ -9,6 +9,7 @@ import Foundation
 
 public class RaceViewModel {
   
+    public let id: String
     public let email: String
     public let name: String
     public let distanceText: String
@@ -22,7 +23,8 @@ public class RaceViewModel {
     public let status: RaceStatus?
     public let value: Double?
     
-    public init(email: String,
+    public init(id: String,
+                email: String,
                 name: String,
                 distanceText: String,
                 latitude: Double,
@@ -34,6 +36,7 @@ public class RaceViewModel {
                 longitudeDestination: Double? = nil,
                 status: RaceStatus? = nil,
                 value: Double? = nil) {
+        self.id = id
         self.email = email
         self.name = name
         self.distanceText = distanceText
@@ -49,6 +52,7 @@ public class RaceViewModel {
     }
     
     public init(model: RaceModel, distanceText: String, displayText: String) {
+        self.id = model.id
         self.email = model.email
         self.name = model.name
         self.distanceText = distanceText
