@@ -38,9 +38,8 @@ extension FirebaseDatabaseAdapter: DatabaseSetValueClient {
             .child(query.path)
         
         if let data = query.data {
-            refPath
-                .childByAutoId()
-                .setValue(data.toJson()) { error, _ in
+            createChildPath(refPath: refPath, data: data)
+                .setValue(data.value.toJson()) { error, _ in
                     guard error == nil else { return completion(.failure(error!)) }
                     completion(.success(()))
                 }
@@ -49,10 +48,18 @@ extension FirebaseDatabaseAdapter: DatabaseSetValueClient {
         if let child = query.child, let data = child.data {
             refPath
                 .child(child.path)
-                .setValue(data.toJson()) { error, _ in
+                .setValue(data.value.toJson()) { error, _ in
                     guard error == nil else { return completion(.failure(error!)) }
                     completion(.success(()))
                 }
+        }
+    }
+    
+    private func createChildPath(refPath: DatabaseReference, data: DatabaseData) -> DatabaseReference {
+        if let key = data.key {
+            return refPath.child(key)
+        } else {
+            return refPath.childByAutoId()
         }
     }
 }
@@ -210,7 +217,7 @@ extension FirebaseDatabaseAdapter: DatabaseUpdateValueClient {
             print(snapshot.value!)
             guard
                 let data = query.data,
-                let values = data.toJson()
+                let values = data.value.toJson()
             else {
                 return completion(.failure(FirebaseDatabaseError.internalError))
             }

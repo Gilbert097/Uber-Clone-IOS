@@ -21,14 +21,15 @@ public class RemoteRequestRace: RequestRace {
         self.getCurrentUser.getUser { [weak self] result in
             switch result {
             case .success(let user):
-                let model = RequestRaceModel(email: user.email,
+                let model = RequestRaceModel(id: UUID().uuidString.lowercased(),
+                                             email: user.email,
                                              name: user.name,
                                              latitude: request.latitude,
                                              longitude: request.longitude,
                                              latitudeDestination: request.addressModel.location.latitude,
                                              longitudeDestination: request.addressModel.location.longitude)
                 guard let data = model.toData() else { return completion(.failure(DomainError.unexpected))}
-                let query = DatabaseQuery(path: "requests", data: data)
+                let query = DatabaseQuery(path: "requests", data: .init(key: model.id, value: data))
                 self?.databaseSetValueClient.setValue(query: query, completion: completion)
             case .failure:
                 completion(.failure(DomainError.unexpected))

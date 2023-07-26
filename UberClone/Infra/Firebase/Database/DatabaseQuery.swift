@@ -11,13 +11,13 @@ public class DatabaseQuery {
     
     public let path: String
     public let condition: DatabaseCondition?
-    public let data: Data?
+    public let data: DatabaseData?
     public let child: DatabaseQuery?
     public let event: DatabaseEvent
     
     public init(path: String,
                 condition: DatabaseCondition? = nil,
-                data: Data? = nil,
+                data: DatabaseData? = nil,
                 child: DatabaseQuery? = nil,
                 event: DatabaseEvent = .added) {
         self.path = path
@@ -28,12 +28,18 @@ public class DatabaseQuery {
     }
 }
 
-public class DatabaseCondition {
+public struct DatabaseCondition {
     public let field: String
     public let value: Any?
+}
+
+public struct DatabaseData {
+   
+    public let key: String?
+    public let value: Data
     
-    public init(field: String, value: Any?) {
-        self.field = field
+    internal init(key: String? = nil, value: Data) {
+        self.key = key
         self.value = value
     }
 }
@@ -44,4 +50,3 @@ public enum DatabaseEvent {
     case changed
     case removed
 }
-

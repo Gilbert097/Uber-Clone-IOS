@@ -13,19 +13,22 @@ public protocol RequestRace {
 
 public class RequestRaceModel: Model {
    
-    private let email: String
-    private let name: String
-    private let latitude: Double
-    private let longitude: Double
-    private let latitudeDestination: Double
-    private let longitudeDestination: Double
+    public let id: String
+    public let email: String
+    public let name: String
+    public let latitude: Double
+    public let longitude: Double
+    public let latitudeDestination: Double
+    public let longitudeDestination: Double
     
-    public init(email: String,
+    public init(id: String,
+                email: String,
                 name: String,
                 latitude: Double,
                 longitude: Double,
                 latitudeDestination: Double,
                 longitudeDestination: Double) {
+        self.id = id
         self.email = email
         self.name = name
         self.latitude = latitude
@@ -35,6 +38,7 @@ public class RequestRaceModel: Model {
     }
     
     public static func == (lhs: RequestRaceModel, rhs: RequestRaceModel) -> Bool {
+        lhs.id == rhs.id &&
         lhs.email == rhs.email &&
         lhs.name == rhs.name &&
         lhs.latitude == rhs.latitude &&

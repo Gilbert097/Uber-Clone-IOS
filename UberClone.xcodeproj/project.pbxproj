@@ -108,6 +108,8 @@
 		D433AC2C2A65ADDD00EC8BA2 /* RemoteFinishRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433AC2B2A65ADDD00EC8BA2 /* RemoteFinishRace.swift */; };
 		D450008C2A69E63700488AB3 /* RemoteGetRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450008B2A69E63700488AB3 /* RemoteGetRace.swift */; };
 		D450008E2A69E64400488AB3 /* GetRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450008D2A69E64400488AB3 /* GetRace.swift */; };
+		D45000942A6B471A00488AB3 /* RemoteGetPassengerRaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45000932A6B471A00488AB3 /* RemoteGetPassengerRaces.swift */; };
+		D45000962A6B472E00488AB3 /* GetPassengerRaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45000952A6B472E00488AB3 /* GetPassengerRaces.swift */; };
 		D45001582A12BB6C00B1A052 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45001572A12BB6C00B1A052 /* AppLocationManager.swift */; };
 		D45330442A4CC3A300965B5D /* RaceChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45330432A4CC3A300965B5D /* RaceChanged.swift */; };
 		D45330462A4CC3C400965B5D /* RemoteRaceChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45330452A4CC3C400965B5D /* RemoteRaceChanged.swift */; };
@@ -256,6 +258,8 @@
 		D433AC2B2A65ADDD00EC8BA2 /* RemoteFinishRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteFinishRace.swift; sourceTree = "<group>"; };
 		D450008B2A69E63700488AB3 /* RemoteGetRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteGetRace.swift; sourceTree = "<group>"; };
 		D450008D2A69E64400488AB3 /* GetRace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRace.swift; sourceTree = "<group>"; };
+		D45000932A6B471A00488AB3 /* RemoteGetPassengerRaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteGetPassengerRaces.swift; sourceTree = "<group>"; };
+		D45000952A6B472E00488AB3 /* GetPassengerRaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPassengerRaces.swift; sourceTree = "<group>"; };
 		D45001572A12BB6C00B1A052 /* AppLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationManager.swift; sourceTree = "<group>"; };
 		D45330432A4CC3A300965B5D /* RaceChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceChanged.swift; sourceTree = "<group>"; };
 		D45330452A4CC3C400965B5D /* RemoteRaceChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceChanged.swift; sourceTree = "<group>"; };
@@ -799,6 +803,7 @@
 				D413C5BE2A047C8500869258 /* RemoteRequestRace.swift */,
 				D413C5DF2A09B52A00869258 /* RemoteCancelRace.swift */,
 				D413C5F92A0C5A1900869258 /* RemoteGetRaces.swift */,
+				D45000932A6B471A00488AB3 /* RemoteGetPassengerRaces.swift */,
 				D45330452A4CC3C400965B5D /* RemoteRaceChanged.swift */,
 				D450008B2A69E63700488AB3 /* RemoteGetRace.swift */,
 				D49201582A2FB22C00D9B587 /* RemoteRaceCanceled.swift */,
@@ -864,6 +869,7 @@
 				D433AC252A647C2300EC8BA2 /* UpdateRaceStatus.swift */,
 				D49201472A29442100D9B587 /* RaceAccepted.swift */,
 				D413C5F72A0C595F00869258 /* GetRaces.swift */,
+				D45000952A6B472E00488AB3 /* GetPassengerRaces.swift */,
 				D45330432A4CC3A300965B5D /* RaceChanged.swift */,
 				D450008D2A69E64400488AB3 /* GetRace.swift */,
 				D49201562A2FB1FD00D9B587 /* RaceCanceled.swift */,
@@ -1227,6 +1233,7 @@
 				D48482562A12F69400DEFCDC /* LocationManager.swift in Sources */,
 				D4036B0529EF2FDB00E53951 /* RequiredFieldValidation.swift in Sources */,
 				D413C5F52A0C579100869258 /* DatabaseOberveValueClient.swift in Sources */,
+				D45000942A6B471A00488AB3 /* RemoteGetPassengerRaces.swift in Sources */,
 				D413C5EA2A09CB7400869258 /* FirebaseDatabaseError.swift in Sources */,
 				D413C5BF2A047C8500869258 /* RemoteRequestRace.swift in Sources */,
 				D413C56A29F01FFC00869258 /* AuthUserModel.swift in Sources */,
@@ -1242,6 +1249,7 @@
 				D413C59C29FF1A2E00869258 /* SignUpRouter.swift in Sources */,
 				D413C5FF2A0C729400869258 /* RefreshListView.swift in Sources */,
 				D413C5BB2A008F6F00869258 /* RequestRace.swift in Sources */,
+				D45000962A6B472E00488AB3 /* GetPassengerRaces.swift in Sources */,
 				D48482682A15980C00DEFCDC /* ConfirmRacePresenter.swift in Sources */,
 				D413C57F29F0956300869258 /* RemoteCreateAuth.swift in Sources */,
 				D413C5A029FF1BA100869258 /* GetStateAuth.swift in Sources */,

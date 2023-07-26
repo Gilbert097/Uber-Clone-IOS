@@ -22,7 +22,7 @@ public class RemoteFinishRace: FinishRace {
         let raceValueModel = RaceValueModel(value: total, status: .finish)
         
         guard let data = raceValueModel.toData() else { return completion(.failure(DomainError.unexpected))}
-        let query = DatabaseQuery(path: "requests", condition: .init(field: "email", value: model.email), data: data)
+        let query = DatabaseQuery(path: "requests", condition: .init(field: "email", value: model.email), data: .init(value: data))
         self.updateClient.updateValue(query: query) { result in
             switch result {
             case .success:

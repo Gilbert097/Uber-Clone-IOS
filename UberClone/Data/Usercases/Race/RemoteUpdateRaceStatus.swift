@@ -17,7 +17,7 @@ public class RemoteUpdateRaceStatus: UpdateRaceStatus {
     
     public func update(model: UpdateRaceStatusModel, completion: ((Swift.Result<Void, Error>) -> Void)?) {
         guard let data = model.toData() else { return }
-        let query = DatabaseQuery(path: "requests", condition: .init(field: "email", value: model.email), data: data)
+        let query = DatabaseQuery(path: "requests", condition: .init(field: "email", value: model.email), data: DatabaseData(value: data))
         self.updateClient.updateValue(query: query) { result in
             completion?(result)
             switch result {

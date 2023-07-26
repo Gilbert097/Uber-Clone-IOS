@@ -13,7 +13,7 @@ public final class PassengerMapPresenter {
         public let callRace: RequestRace
         public let logoutAuth: LogoutAuth
         public let cancelRace: CancelRace
-        public let getRace: GetRace
+        public let getRaces: GetPassengerRaces
         public let raceAccepted: RaceAccepted
         public let authGet: GetAuthUser
         public let updateStatus: UpdateRaceStatus
@@ -47,11 +47,11 @@ public final class PassengerMapPresenter {
     
     private func checkExistingRaceRequest() {
         guard let authUser = self.useCases.authGet.get() else { return }
-        self.useCases.getRace.getValue(email: authUser.email) { [weak self] result in
+        self.useCases.getRaces.execute(email: authUser.email) { [weak self] result in
             switch result {
-            case .success(let race):
-                if let race = race {
-                    self?.processRaceStatus(race: race)
+            case .success(let races):
+                if let currentRace = races.first(where: { $0.status != .confirmFinish }) {
+                    self?.processRaceStatus(race: currentRace)
                 }
             case .failure:
                 break
@@ -209,8 +209,8 @@ extension PassengerMapPresenter {
     
     public func load() {
         configureLocationManager()
-        checkExistingRaceRequest()
-        registerRaceAcceptedObserver()
+        //checkExistingRaceRequest()
+        //registerRaceAcceptedObserver()
     }
     
     public func logout() {
