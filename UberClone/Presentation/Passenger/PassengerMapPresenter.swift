@@ -154,18 +154,10 @@ extension PassengerMapPresenter {
     private func handleUpdateLocationResult(_ result:  Result<LocationModel, LocationError>) {
         switch result {
         case .success(let location):
-            guard
-                let lastLocation = self.lastLocation
-            else {
-                self.lastLocation = location
+            if self.lastLocation == nil {
                 setupInitialPassengerPoint(location)
-                return
             }
-// TODO: - Avaliar implementação.
-//            if !self.isAcceptedRace && lastLocation != location {
-//                self.lastLocation = location
-//                setupInitialPassengerPoint(location)
-//            }
+            self.lastLocation = location
         case .failure: break
             self.locationManager.stop()
             self.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao recuperar localização.", buttons: [.init(title: "ok")]))
@@ -184,7 +176,7 @@ extension PassengerMapPresenter {
     
     private func showDriverAndPassengerRegion(driverLocation: LocationModel, passengerLocation: LocationModel) {
         let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: passengerLocation)
-        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+        self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
     }
     
     private func showDriverPointAnnotation(driverLocation: LocationModel) {
@@ -224,7 +216,7 @@ extension PassengerMapPresenter {
                 switch status {
                 case .finish:
                     changeFinishState(race: currentRace)
-                case .pickUpPassenger:
+                case .pickUpPassenger, .startRace:
                     changePickUpPassengerState(race: currentRace)
                 default:
                     break
@@ -240,7 +232,7 @@ extension PassengerMapPresenter {
         self.isAcceptedRace = true
         if let passengerLocation = self.lastLocation, let driverLocation = race.getDriverLocation() {
             let distance = driverLocation.distance(model: passengerLocation)
-            let text = "Motorista \(distance) KM distante"
+            let text = race.getDistanceText(distance: distance)
             self.view.requestButtonStateview.change(state: .accepted(text: text))
             showDriverAndPassengerOnMapView(driverLocation: driverLocation, passengerLocation: passengerLocation)
         }

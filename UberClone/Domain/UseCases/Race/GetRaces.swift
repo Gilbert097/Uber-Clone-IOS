@@ -75,6 +75,15 @@ public class RaceModel: Model {
         guard let driverLatitude = self.driverLatitude, let driverLongitude = driverLongitude else { return nil }
         return LocationModel(latitude: driverLatitude, longitude: driverLongitude)
     }
+    
+    public func getDistanceText(distance: Double) -> String {
+        let distanceKM = distance / 1000
+        if distanceKM > 1 {
+            return "Motorista \(round(distanceKM)) KM distante"
+        } else {
+            return "Motorista \(lround(distance)) M distante"
+        }
+    }
 }
 
 public enum RaceStatus: String, Codable, CaseIterable {

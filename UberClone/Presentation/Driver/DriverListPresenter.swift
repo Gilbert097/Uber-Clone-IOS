@@ -60,7 +60,7 @@ public class DriverListPresenter {
     
     private func makeDistanceText(race: RaceModel) -> String {
         let distance = self.calculateDistance(raceModel: race)
-        return "\(distance) KM de distância."
+        return race.getDistanceText(distance: distance)
     }
     
     private func makeDisplayText(race: RaceModel, authUser: AuthUserModel) -> String {

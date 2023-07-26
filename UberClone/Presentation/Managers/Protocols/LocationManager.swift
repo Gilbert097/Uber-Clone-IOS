@@ -44,16 +44,15 @@ public class LocationModel: Model {
         CLLocation(latitude: self.latitude, longitude: self.longitude)
     }
     
-    public func distance(model: LocationModel, isRound: Bool = true) -> Double {
+    public func distance(model: LocationModel) -> Double {
         let selfLocation = self.toCLLocation()
         let location = model.toCLLocation()
-        
-        let distance = selfLocation.distance(from: location)
-        let distanceKM = distance/1000
-        if isRound {
-            return round(distanceKM)
-        }
-        return distanceKM
+        return selfLocation.distance(from: location)
+//        let distanceKM = distance/1000
+//        if isRound {
+//            return round(distanceKM)
+//        }
+//        return distanceKM
     }
     
     public func calculateRegionLocation(locationRef: LocationModel) -> (latDif: Double, longDif: Double) {

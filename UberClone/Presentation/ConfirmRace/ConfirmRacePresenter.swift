@@ -186,9 +186,9 @@ extension ConfirmRacePresenter {
     private func checkRaceStart() {
         guard let driverLocation = self.lasLocation else { return }
         let passengerLocation = self.parameter.getLocation()
-        let distance = driverLocation.distance(model: passengerLocation, isRound: false)
+        let distanceKM = driverLocation.distance(model: passengerLocation) / 1000
         
-        if distance <= 0.5 {
+        if distanceKM <= 0.5 {
             self.useCases.updateRaceStatus.update(model: .init(email: self.parameter.email, status: .startRace), completion: nil)
             changeState(state: .startRace)
         }

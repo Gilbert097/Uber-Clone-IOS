@@ -17,8 +17,9 @@ public class RemoteFinishRace: FinishRace {
     
     public func finish(model: FinishRaceModel, completion: @escaping (Result<Double, Error>) -> Void) {
         let value: Double = 4
-        let distance = model.initialLocation.distance(model: model.destinationLocation, isRound: false)
-        let total = distance * value
+        let distance = model.initialLocation.distance(model: model.destinationLocation)
+        let distanceKM = distance / 1000
+        let total = distanceKM * value
         let raceValueModel = RaceValueModel(value: total, status: .finish)
         
         guard let data = raceValueModel.toData() else { return completion(.failure(DomainError.unexpected))}
