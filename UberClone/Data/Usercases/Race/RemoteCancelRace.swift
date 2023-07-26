@@ -17,9 +17,8 @@ public class RemoteCancelRace: CancelRace {
         self.deleteClient = deleteClient
     }
     
-    public func cancel(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let currentUser = self.getAuthUser.get() else { return }
-        let query = DatabaseQuery(path: "requests", condition: .init(field: "email", value: currentUser.email))
+    public func cancel(raceId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let query = DatabaseQuery(path: "requests", condition: .init(field: "id", value: raceId))
         self.deleteClient.delete(query: query, completion: completion)
     }
 }

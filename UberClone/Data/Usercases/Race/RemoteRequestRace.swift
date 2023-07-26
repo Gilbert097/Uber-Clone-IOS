@@ -17,11 +17,12 @@ public class RemoteRequestRace: RequestRace {
         self.databaseSetValueClient = databaseSetValueClient
     }
     
-    public func request(request: RequestRaceRequest, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func request(request: RequestRaceRequest, completion: @escaping (Result<String, Error>) -> Void) {
         self.getCurrentUser.getUser { [weak self] result in
             switch result {
             case .success(let user):
-                let model = RequestRaceModel(id: UUID().uuidString.lowercased(),
+                let id = UUID().uuidString.lowercased()
+                let model = RequestRaceModel(id: id,
                                              email: user.email,
                                              name: user.name,
                                              latitude: request.latitude,
@@ -30,7 +31,14 @@ public class RemoteRequestRace: RequestRace {
                                              longitudeDestination: request.addressModel.location.longitude)
                 guard let data = model.toData() else { return completion(.failure(DomainError.unexpected))}
                 let query = DatabaseQuery(path: "requests", data: .init(key: model.id, value: data))
-                self?.databaseSetValueClient.setValue(query: query, completion: completion)
+                self?.databaseSetValueClient.setValue(query: query, completion: { setValueResult in
+                    switch setValueResult {
+                    case .success:
+                        completion(.success(id))
+                    case .failure:
+                        completion(.failure(DomainError.unexpected))
+                    }
+                })
             case .failure:
                 completion(.failure(DomainError.unexpected))
             }

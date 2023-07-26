@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol RequestRace {
-    func request(request: RequestRaceRequest, completion: @escaping (Swift.Result<Void, Error>) -> Void)
+    func request(request: RequestRaceRequest, completion: @escaping (Swift.Result<String, Error>) -> Void)
 }
 
 public class RequestRaceModel: Model {

@@ -22,7 +22,7 @@ public final class MainQueueDispatchDecorator<T> {
 }
 
 extension MainQueueDispatchDecorator: RequestRace where T: RequestRace {
-    public func request(request: RequestRaceRequest, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func request(request: RequestRaceRequest, completion: @escaping (Result<String, Error>) -> Void) {
         self.instance.request(request: request) { [weak self] result in
             self?.dispatch { completion(result) }
         }
@@ -30,8 +30,8 @@ extension MainQueueDispatchDecorator: RequestRace where T: RequestRace {
 }
 
 extension MainQueueDispatchDecorator: CancelRace where T: CancelRace {
-    public func cancel(completion: @escaping (Result<Void, Error>) -> Void) {
-        self.instance.cancel() { [weak self] result in
+    public func cancel(raceId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        self.instance.cancel(raceId: raceId) { [weak self] result in
             self?.dispatch { completion(result) }
         }
     }

@@ -33,6 +33,7 @@ public final class PassengerMapPresenter {
     private var isCalledRace = false
     private var isAcceptedRace = false
     private var lastLocation: LocationModel?
+    private var currentRaceId: String?
     var dismiss: (() -> Void)!
     
     public init(useCases: PassengerMapPresenter.UseCases,
@@ -60,6 +61,7 @@ public final class PassengerMapPresenter {
     }
     
     private func processRaceStatus(race: RaceModel) {
+        self.currentRaceId = race.id
         if let status = race.status {
             switch status {
             case .finish:
@@ -179,7 +181,8 @@ public final class PassengerMapPresenter {
         self.useCases.callRace.request(request: request) { [weak self] result in
             self?.view.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
-            case .success:
+            case .success(let raceId):
+                self?.currentRaceId = raceId
                 self?.isCalledRace = true
                 self?.view.requestButtonStateview.change(state: .cancel)
             case .failure:
@@ -189,8 +192,9 @@ public final class PassengerMapPresenter {
     }
     
     private func requestCancelRace() {
+        guard let currentRaceId = self.currentRaceId else { return }
         self.view.loadingView.display(viewModel: .init(isLoading: true))
-        self.useCases.cancelRace.cancel() { [weak self] cancelResult in
+        self.useCases.cancelRace.cancel(raceId: currentRaceId) { [weak self] cancelResult in
             self?.view.loadingView.display(viewModel: .init(isLoading: false))
             switch cancelResult {
             case .success:
