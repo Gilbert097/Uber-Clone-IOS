@@ -52,9 +52,9 @@ public final class PassengerMapPresenter {
     }
     
     private func confirmFinish() {
-        guard let authUser = self.useCases.authGet.get() else { return }
+        guard let currentRaceId = self.currentRaceId else { return }
         self.view.loadingView.display(viewModel: .init(isLoading: true))
-        self.useCases.updateStatus.update(model: .init(email: authUser.email, status: .confirmFinish)) { [weak self] result in
+        self.useCases.updateStatus.update(model: .init(raceId: currentRaceId, status: .confirmFinish)) { [weak self] result in
             self?.view.loadingView.display(viewModel: .init(isLoading: false))
             if case .failure = result {
                 self?.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar confirmar corrida finalizada.", buttons: [.init(title: "ok")]))
@@ -218,6 +218,8 @@ extension PassengerMapPresenter {
                     changeFinishState(race: currentRace)
                 case .pickUpPassenger, .startRace:
                     changePickUpPassengerState(race: currentRace)
+                case .onRun:
+                    changeOnRunState(race: currentRace)
                 default:
                     break
                 }
@@ -226,6 +228,10 @@ extension PassengerMapPresenter {
                 self.view.requestButtonStateview.change(state: .cancel)
             }
         }
+    }
+    
+    private func changeOnRunState(race: RaceModel) {
+        self.view.requestButtonStateview.change(state: .onRun)
     }
     
     private func changePickUpPassengerState(race: RaceModel) {
@@ -240,8 +246,7 @@ extension PassengerMapPresenter {
     
     private func changeFinishState(race: RaceModel) {
         guard let passengerLocation = self.lastLocation else { return }
-        self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: 200, longitudinalMeters: 200)
-        self.view.mapView.showPointAnnotation(point: .init(title: "Seu Local", location: passengerLocation))
+        setupInitialPassengerPoint(passengerLocation)
         let value = (race.value ?? .init()).format()
         let buttonModel = AlertButtonModel(title: "ok") { [weak self] in self?.confirmFinish() }
         self.view.alertView.showMessage(viewModel: .init(title: "Viagem", message: "Sua viagem anterior foi finalizada - R$ \(value)", buttons: [buttonModel]))

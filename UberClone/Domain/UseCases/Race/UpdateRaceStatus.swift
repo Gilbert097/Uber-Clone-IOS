@@ -13,16 +13,16 @@ public protocol UpdateRaceStatus {
 
 public class UpdateRaceStatusModel: Model {
     
-    public let email: String
+    public let raceId: String
     public let status: RaceStatus
     
-    public init(email: String, status: RaceStatus) {
-        self.email = email
+    public init(raceId: String, status: RaceStatus) {
+        self.raceId = raceId
         self.status = status
     }
     
     public static func == (lhs: UpdateRaceStatusModel, rhs: UpdateRaceStatusModel) -> Bool {
-        lhs.email == rhs.email &&
+        lhs.raceId == rhs.raceId &&
         lhs.status == rhs.status
     }
 }

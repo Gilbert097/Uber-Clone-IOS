@@ -92,7 +92,7 @@ extension ConfirmRacePresenter {
     
     private func startRace() {
         self.view.loadingView.display(viewModel: .init(isLoading: true))
-        let model = UpdateRaceStatusModel(email: self.parameter.email, status: .onRun)
+        let model = UpdateRaceStatusModel(raceId: self.parameter.id, status: .onRun)
         self.useCases.updateRaceStatus.update(model: model) { [weak self] result in
             guard let self = self else { return }
             self.view.loadingView.display(viewModel: .init(isLoading: false))
@@ -189,7 +189,7 @@ extension ConfirmRacePresenter {
         let distanceKM = driverLocation.distance(model: passengerLocation) / 1000
         
         if distanceKM <= 0.5 {
-            self.useCases.updateRaceStatus.update(model: .init(email: self.parameter.email, status: .startRace), completion: nil)
+            self.useCases.updateRaceStatus.update(model: .init(raceId: self.parameter.id, status: .startRace), completion: nil)
             changeState(state: .startRace)
         }
     }
