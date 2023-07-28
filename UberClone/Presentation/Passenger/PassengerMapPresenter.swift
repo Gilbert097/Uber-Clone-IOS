@@ -174,6 +174,18 @@ extension PassengerMapPresenter {
         showPassengerPointAnnotation(passengerLocation: passengerLocation)
     }
     
+    private func showDriverAndDestinationOnMapView(driverLocation: LocationModel, destinationLocation: LocationModel) {
+        showDriverAndDestinationRegion(driverLocation: driverLocation, destinationLocation: destinationLocation)
+        showDriverPointAnnotation(driverLocation: driverLocation)
+        showDestinationPointAnnotation(destinationLocation: destinationLocation)
+    }
+    
+    private func showDriverAndDestinationRegion(driverLocation: LocationModel, destinationLocation: LocationModel) {
+        let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: destinationLocation)
+        self.view.mapView.setRegion(center: driverLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
+    }
+    
+    
     private func showDriverAndPassengerRegion(driverLocation: LocationModel, passengerLocation: LocationModel) {
         let (latDif, longDif) = driverLocation.calculateRegionLocation(locationRef: passengerLocation)
         self.view.mapView.setRegion(center: passengerLocation, latitudinalMeters: latDif, longitudinalMeters: longDif)
@@ -187,6 +199,9 @@ extension PassengerMapPresenter {
         self.view.mapView.showPointAnnotation(point: .init(title: "Passageiro", location: passengerLocation))
     }
     
+    private func showDestinationPointAnnotation(destinationLocation: LocationModel) {
+        self.view.mapView.showPointAnnotation(point: .init(title: "Destino", location: destinationLocation))
+    }
     
     private func setupInitialPassengerPoint(_ location: LocationModel) {
         self.view.mapView.setRegion(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
@@ -231,7 +246,10 @@ extension PassengerMapPresenter {
     }
     
     private func changeOnRunState(race: RaceModel) {
-        self.view.requestButtonStateview.change(state: .onRun)
+        if let destinationLocation = race.getDestinationLocation(), let driverLocation = race.getDriverLocation() {
+            self.view.requestButtonStateview.change(state: .onRun)
+            self.showDriverAndDestinationOnMapView(driverLocation: driverLocation, destinationLocation: destinationLocation)
+        }
     }
     
     private func changePickUpPassengerState(race: RaceModel) {

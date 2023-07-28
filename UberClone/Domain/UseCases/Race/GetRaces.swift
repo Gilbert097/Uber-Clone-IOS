@@ -76,6 +76,11 @@ public class RaceModel: Model {
         return LocationModel(latitude: driverLatitude, longitude: driverLongitude)
     }
     
+    public func getDestinationLocation() -> LocationModel? {
+        guard let latitudeDestination = self.latitudeDestination, let longitudeDestination = longitudeDestination else { return nil }
+        return LocationModel(latitude: latitudeDestination, longitude: longitudeDestination)
+    }
+    
     public func getDistanceText(distance: Double) -> String {
         let distanceKM = distance / 1000
         if distanceKM > 1 {
