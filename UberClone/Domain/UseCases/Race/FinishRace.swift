@@ -13,18 +13,18 @@ public protocol FinishRace {
 
 public class FinishRaceModel: Model {
     
-    public let email: String
+    public let raceId: String
     public let initialLocation: LocationModel
     public let destinationLocation: LocationModel
     
-    public init(email: String, initialLocation: LocationModel, destinationLocation: LocationModel) {
-        self.email = email
+    public init(raceId: String, initialLocation: LocationModel, destinationLocation: LocationModel) {
+        self.raceId = raceId
         self.initialLocation = initialLocation
         self.destinationLocation = destinationLocation
     }
     
     public static func == (lhs: FinishRaceModel, rhs: FinishRaceModel) -> Bool {
-        lhs.email == rhs.email &&
+        lhs.raceId == rhs.raceId &&
         lhs.initialLocation == rhs.initialLocation &&
         lhs.destinationLocation == rhs.destinationLocation
     }

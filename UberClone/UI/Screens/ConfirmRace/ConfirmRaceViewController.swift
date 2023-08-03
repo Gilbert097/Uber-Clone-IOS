@@ -123,8 +123,10 @@ extension ConfirmRaceViewController: ConfirmRaceButtonStateView {
             self.button.isUserInteractionEnabled = false
         case .startRace:
             self.button.update(text: "Iniciar viagem", color: Color.primary)
+            self.button.isUserInteractionEnabled = true
         case .onRun:
             self.button.update(text: "Finalizar viagem", color: Color.primary)
+            self.button.isUserInteractionEnabled = true
         case .finish(value: let value):
             self.button.update(text: "Viagem finalizada - R$ \(value)", color: .lightGray)
             self.button.isUserInteractionEnabled = false

@@ -13,20 +13,20 @@ public protocol UpdateDriverLocation {
 
 public class UpdateDriverModel: Model {
    
-    public let email: String
+    public let raceId: String
     public let driverLatitude: Double
     public let driverLongitude: Double
     
-    public init(email: String,
+    public init(raceId: String,
                 driverLatitude: Double,
                 driverLongitude: Double) {
-        self.email = email
+        self.raceId = raceId
         self.driverLatitude = driverLatitude
         self.driverLongitude = driverLongitude
     }
     
     public static func == (lhs: UpdateDriverModel, rhs: UpdateDriverModel) -> Bool {
-        lhs.email == rhs.email &&
+        lhs.raceId == rhs.raceId &&
         lhs.driverLatitude == rhs.driverLatitude &&
         lhs.driverLongitude == rhs.driverLongitude 
     }

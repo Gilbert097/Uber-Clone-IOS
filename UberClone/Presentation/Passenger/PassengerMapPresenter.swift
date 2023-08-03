@@ -56,7 +56,11 @@ public final class PassengerMapPresenter {
         self.view.loadingView.display(viewModel: .init(isLoading: true))
         self.useCases.updateStatus.update(model: .init(raceId: currentRaceId, status: .confirmFinish)) { [weak self] result in
             self?.view.loadingView.display(viewModel: .init(isLoading: false))
-            if case .failure = result {
+            
+            switch result {
+            case .success:
+                self?.view.requestButtonStateview.change(state: .call)
+            case .failure:
                 self?.view.alertView.showMessage(viewModel: .init(title: "Erro", message: "Erro ao tentar confirmar corrida finalizada.", buttons: [.init(title: "ok")]))
             }
         }
@@ -229,6 +233,8 @@ extension PassengerMapPresenter {
             self.currentRaceId = currentRace.id
             if let status = currentRace.status {
                 switch status {
+                case .confirmFinish:
+                    changeConfirmFinishState()
                 case .finish:
                     changeFinishState(race: currentRace)
                 case .pickUpPassenger, .startRace:
@@ -270,4 +276,8 @@ extension PassengerMapPresenter {
         self.view.alertView.showMessage(viewModel: .init(title: "Viagem", message: "Sua viagem anterior foi finalizada - R$ \(value)", buttons: [buttonModel]))
     }
     
+    private func changeConfirmFinishState() {
+        guard let passengerLocation = self.lastLocation else { return }
+        setupInitialPassengerPoint(passengerLocation)
+    }
 }

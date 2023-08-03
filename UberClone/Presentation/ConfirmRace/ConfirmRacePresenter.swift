@@ -108,7 +108,7 @@ extension ConfirmRacePresenter {
     private func finishRace() {
         guard let destinationLocation = self.parameter.getLocationDestination() else { return }
         self.view.loadingView.display(viewModel: .init(isLoading: true))
-        let model = FinishRaceModel(email: self.parameter.email, initialLocation: self.parameter.getLocation(), destinationLocation: destinationLocation)
+        let model = FinishRaceModel(raceId: self.parameter.id, initialLocation: self.parameter.getLocation(), destinationLocation: destinationLocation)
         self.useCases.finishRace.finish(model: model) { [weak self] result in
             guard let self = self else { return }
             self.view.loadingView.display(viewModel: .init(isLoading: false))
@@ -144,7 +144,7 @@ extension ConfirmRacePresenter {
     
     private func updateDriverLocation(_ lasLocation: LocationModel) {
         self.lasLocation = lasLocation
-        let model = UpdateDriverModel(email: self.parameter.email, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
+        let model = UpdateDriverModel(raceId: self.parameter.id, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
         self.useCases.updateLocation.update(model: model)
     }
 }
