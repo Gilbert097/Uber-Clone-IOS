@@ -8,10 +8,14 @@
 import Foundation
 
 public protocol DatabaseOberveValueClient {
-    func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void)
+    func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) -> UInt
 }
 
 
 public protocol DatabaseOberveValuesClient {
-    func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<[Data], Error>) -> Void)
+    func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<[Data], Error>) -> Void) -> UInt
+}
+
+public protocol DatabaseRemoveOberveClient {
+    func removeObserver(query: DatabaseQuery, handle: UInt)
 }

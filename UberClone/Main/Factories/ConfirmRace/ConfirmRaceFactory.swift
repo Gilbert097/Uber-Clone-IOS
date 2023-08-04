@@ -20,10 +20,12 @@ public final class ConfirmRaceFactory {
             alertView: viewController,
             mapView: viewController,
             buttonState: viewController,
-            locationManager: AppLocationManager(),
-            geocodeLocation: AppGeocodeLocationManager())
+            locationManager: AppLocationManager.shared,
+            geocodeLocation: AppGeocodeLocationManager.shared)
         viewController.buttonAction = presenter.buttonAction
         viewController.load = presenter.load
+        viewController.start = presenter.start
+        viewController.stop = presenter.stop
         return viewController
     }
     
@@ -32,7 +34,7 @@ public final class ConfirmRaceFactory {
         let useCases = ConfirmRacePresenter.UseCases(
             getAuthUser: RemoteGetAuthUser(client: FirebaseAuthAdapter()),
             confirmRace: MainQueueDispatchDecorator(RemoteConfirmRace(updateClient: database)),
-            raceChanged: RemoteRaceChanged(observeValueClient: database),
+            raceChanged: RemoteRaceChanged(observeValueClient: database, removeObserverClient: database),
             updateLocation: RemoteUpdateDriverLocation(updateClient: database),
             updateRaceStatus: RemoteUpdateRaceStatus(updateClient: database),
             finishRace: RemoteFinishRace(updateClient: database)

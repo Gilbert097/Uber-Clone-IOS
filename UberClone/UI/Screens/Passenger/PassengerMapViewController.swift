@@ -33,6 +33,8 @@ public final class PassengerMapViewController: UIViewController {
     private let requestButton = PrimaryButton(title: "Chamar Uber", fontSize: 20, weight: .semibold)
     
     public var load: (() -> Void)?
+    public var start: (() -> Void)?
+    public var stop: (() -> Void)?
     public var logout: (() -> Void)?
     public var callRace: ((String) -> Void)?
     
@@ -41,6 +43,20 @@ public final class PassengerMapViewController: UIViewController {
         setupView()
         load?()
         configure()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.start?()
+    }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.stop?()
+    }
+    
+    deinit {
+        self.stop?()
     }
     
     private func configure() {

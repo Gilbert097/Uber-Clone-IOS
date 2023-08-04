@@ -11,27 +11,29 @@ import MapKit
 public class AppLocationManager: NSObject {
     
     private let locationManager = CLLocationManager()
-    private var updateLocationListeners: [UpdateLocationListener] = []
+    private var updateLocationListener: UpdateLocationListener?
     
-    override init() {
+    static var shared: AppLocationManager = AppLocationManager()
+    
+    public var lasLocation: LocationModel?
+
+    private override init() {
         super.init()
         locationManager.delegate = self
     }
     
     private func handleUpdateLocationResult(_ result: Result<LocationModel, LocationError>) {
-        for listener in updateLocationListeners {
-            listener(result)
-        }
-//        while updateLocationListeners.count > 0 {
-//            let request = updateLocationListeners.removeFirst()
-//            request(result)
-//        }
+        updateLocationListener?(result)
+        //        while updateLocationListeners.count > 0 {
+        //            let request = updateLocationListeners.removeFirst()
+        //            request(result)
+        //        }
     }
 }
 
 // MARK: - LocationManager
 extension AppLocationManager: LocationManager {
-
+    
     public func start() {
         print("----> START LOCATION MANAGER <----")
         locationManager.requestWhenInUseAuthorization()
@@ -45,7 +47,11 @@ extension AppLocationManager: LocationManager {
     }
     
     public func register(listener: @escaping UpdateLocationListener) {
-        self.updateLocationListeners.append(listener)
+        self.updateLocationListener = listener
+    }
+    
+    public func remove() {
+        self.updateLocationListener = nil
     }
 }
 
@@ -60,27 +66,29 @@ extension AppLocationManager: CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            handleUpdateLocationResult(.success(.init(location: location)))
+            let locationModel = LocationModel(location: location)
+            self.lasLocation = locationModel
+            handleUpdateLocationResult(.success(locationModel))
         }
     }
     
     /*public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        
-        switch locationManager.authorizationStatus {
-            
-        case .notDetermined:
-            break
-        case .restricted:
-            break
-        case .denied:
-            break
-        case .authorizedAlways:
-            break
-        case .authorizedWhenInUse:
-            break
-        @unknown default:
-            break
-        }
-    }*/
+     
+     switch locationManager.authorizationStatus {
+     
+     case .notDetermined:
+     break
+     case .restricted:
+     break
+     case .denied:
+     break
+     case .authorizedAlways:
+     break
+     case .authorizedWhenInUse:
+     break
+     @unknown default:
+     break
+     }
+     }*/
     
 }

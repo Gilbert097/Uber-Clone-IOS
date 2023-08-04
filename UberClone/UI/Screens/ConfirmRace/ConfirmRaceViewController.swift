@@ -23,12 +23,28 @@ public class ConfirmRaceViewController: UIViewController {
 
     public var buttonAction: (() -> Void)?
     public var load: (() -> Void)?
+    public var stop: (() -> Void)?
+    public var start: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         configure()
         load?()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.start?()
+    }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.stop?()
+    }
+    
+    deinit {
+        self.stop?()
     }
     
     private func configure() {

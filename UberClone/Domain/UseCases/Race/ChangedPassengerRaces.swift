@@ -9,5 +9,6 @@ import Foundation
 
 public protocol ChangedPassengerRaces {
     func observe(email: String, completion: @escaping (Swift.Result<[RaceModel], DomainError>) -> Void)
+    func removeObserver(email: String)
 }
 

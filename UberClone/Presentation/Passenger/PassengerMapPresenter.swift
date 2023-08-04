@@ -127,7 +127,15 @@ extension PassengerMapPresenter {
     public func load() {
         configureLocationManager()
         checkExistingRaceRequest()
+    }
+    
+    public func start() {
         registerObserveRaceChanged()
+    }
+    
+    public func stop() {
+        guard let authUser = self.useCases.authGet.get() else { return }
+        self.useCases.raceChanged.removeObserver(email: authUser.email)
     }
     
     public func logout() {
@@ -234,8 +242,10 @@ extension PassengerMapPresenter {
             if let status = currentRace.status {
                 switch status {
                 case .confirmFinish:
+                    self.isCalledRace = false
                     changeConfirmFinishState()
                 case .finish:
+                    self.isCalledRace = false
                     changeFinishState(race: currentRace)
                 case .pickUpPassenger, .startRace:
                     changePickUpPassengerState(race: currentRace)

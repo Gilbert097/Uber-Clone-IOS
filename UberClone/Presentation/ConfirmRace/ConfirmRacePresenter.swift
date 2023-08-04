@@ -30,9 +30,13 @@ public class ConfirmRacePresenter {
     private let parameter: ConfirmRaceParameter
     private let locationManager: LocationManager
     private let geocodeLocation: GeocodeLocationManager
-    private var lasLocation: LocationModel?
+    
     private var currentRace: RaceModel?
     private var currentStatus: RaceStatus = .onRequest
+    
+    private var lasLocation: LocationModel? {
+        self.locationManager.lasLocation
+    }
     
     public init(view: ConfirmRacePresenter.View,
                 useCases: ConfirmRacePresenter.UseCases,
@@ -57,7 +61,14 @@ extension ConfirmRacePresenter {
     public func load() {
         setupInitalState()
         configureLocationManager()
+    }
+    
+    public func start() {
         registerObserveRaceChanged()
+    }
+    
+    public func stop() {
+        self.useCases.raceChanged.removeObserve(raceId: self.parameter.raceId)
     }
     
     public func buttonAction() {
@@ -92,7 +103,7 @@ extension ConfirmRacePresenter {
     
     private func startRace() {
         self.view.loadingView.display(viewModel: .init(isLoading: true))
-        let model = UpdateRaceStatusModel(raceId: self.parameter.id, status: .onRun)
+        let model = UpdateRaceStatusModel(raceId: self.parameter.raceId, status: .onRun)
         self.useCases.updateRaceStatus.update(model: model) { [weak self] result in
             guard let self = self else { return }
             self.view.loadingView.display(viewModel: .init(isLoading: false))
@@ -108,7 +119,7 @@ extension ConfirmRacePresenter {
     private func finishRace() {
         guard let destinationLocation = self.parameter.getLocationDestination() else { return }
         self.view.loadingView.display(viewModel: .init(isLoading: true))
-        let model = FinishRaceModel(raceId: self.parameter.id, initialLocation: self.parameter.getLocation(), destinationLocation: destinationLocation)
+        let model = FinishRaceModel(raceId: self.parameter.raceId, initialLocation: self.parameter.getLocation(), destinationLocation: destinationLocation)
         self.useCases.finishRace.finish(model: model) { [weak self] result in
             guard let self = self else { return }
             self.view.loadingView.display(viewModel: .init(isLoading: false))
@@ -134,8 +145,6 @@ extension ConfirmRacePresenter {
     private func handleUpdateLocationResult(_ result: Result<LocationModel, LocationError>) {
         switch result {
         case .success(let location):
-            guard let lasLocation = self.lasLocation else { return updateDriverLocation(location)}
-            guard lasLocation != location else { return }
             updateDriverLocation(location)
         case .failure:
             self.locationManager.stop()
@@ -143,8 +152,7 @@ extension ConfirmRacePresenter {
     }
     
     private func updateDriverLocation(_ lasLocation: LocationModel) {
-        self.lasLocation = lasLocation
-        let model = UpdateDriverModel(raceId: self.parameter.id, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
+        let model = UpdateDriverModel(raceId: self.parameter.raceId, driverLatitude: lasLocation.latitude, driverLongitude: lasLocation.longitude)
         self.useCases.updateLocation.update(model: model)
     }
 }
@@ -153,7 +161,7 @@ extension ConfirmRacePresenter {
 extension ConfirmRacePresenter {
     
     private func registerObserveRaceChanged() {
-        self.useCases.raceChanged.observe(raceId: self.parameter.id) { [weak self] result in
+        self.useCases.raceChanged.observe(raceId: self.parameter.raceId) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let race):
@@ -189,7 +197,7 @@ extension ConfirmRacePresenter {
         let distanceKM = driverLocation.distance(model: passengerLocation) / 1000
         
         if distanceKM <= 0.5 {
-            self.useCases.updateRaceStatus.update(model: .init(raceId: self.parameter.id, status: .startRace), completion: nil)
+            self.useCases.updateRaceStatus.update(model: .init(raceId: self.parameter.raceId, status: .startRace), completion: nil)
             changeState(state: .startRace)
         }
     }
@@ -217,7 +225,6 @@ extension ConfirmRacePresenter {
     
     private func setupInitalState() {
         if let status = self.parameter.status {
-            self.lasLocation = parameter.getDriverLocation()
             processRaceStatus(status: status)
         } else {
             setupInitialPassengerPoint()
@@ -279,7 +286,7 @@ extension ConfirmRacePresenter {
 private extension ConfirmRaceModel {
     
     convenience init(parameter: ConfirmRaceParameter, driverEmail: String, driverLocation: LocationModel) {
-        self.init(id: parameter.id,
+        self.init(id: parameter.raceId,
                   email: parameter.email,
                   name: parameter.name,
                   latitude: parameter.latitude,

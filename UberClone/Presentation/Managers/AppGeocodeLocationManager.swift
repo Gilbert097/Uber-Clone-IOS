@@ -13,7 +13,11 @@ public enum GeocodeAddressError: Error {
 }
 
 public class AppGeocodeLocationManager: GeocodeLocationManager {
+    
+    static var shared: AppGeocodeLocationManager = AppGeocodeLocationManager()
     private var lastPoint: PointAnnotationModel?
+    
+    private init() {}
     
     public func openInMaps(point: PointAnnotationModel) {
         self.lastPoint = point

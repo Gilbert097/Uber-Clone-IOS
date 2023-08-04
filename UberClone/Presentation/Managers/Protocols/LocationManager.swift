@@ -15,10 +15,11 @@ public enum LocationError: Error {
 
 public protocol LocationManager {
     typealias UpdateLocationListener = (Result<LocationModel, LocationError>) -> Void
-    
+    var lasLocation: LocationModel? { get }
     func start()
     func stop()
     func register(listener: @escaping UpdateLocationListener)
+    func remove()
 }
 
 public class LocationModel: Model {

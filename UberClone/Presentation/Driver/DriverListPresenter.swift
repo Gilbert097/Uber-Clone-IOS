@@ -78,7 +78,7 @@ public class DriverListPresenter {
             switch result {
             case .success(let raceModel):
                 for (index, race) in self.races.enumerated() {
-                    if race.email == raceModel.email {
+                    if race.id == raceModel.id {
                         self.races.remove(at: index)
                     }
                 }
@@ -109,9 +109,19 @@ public class DriverListPresenter {
 extension DriverListPresenter {
     
     public func load() {
+        print("----> DriverListPresenter: load executed")
         configureLocationManager()
+    }
+    
+    public func start() {
+        print("----> DriverListPresenter: start executed")
         registerGetRacesObserver()
         registerRaceCanceledObserver()
+    }
+    
+    public func stop() {
+        print("----> DriverListPresenter: stop executed")
+        self.getRaces.removeObserver()
     }
     
     public func logout() {

@@ -10,13 +10,17 @@ import Foundation
 public class RemoteRaceCanceled: RaceCanceled {
     
     private let observeClient: DatabaseOberveValueClient
+    private let removeObserverClient: DatabaseRemoveOberveClient
+    private var handleObserver: UInt = 0
     
-    public init(observeClient: DatabaseOberveValueClient) {
+    public init(observeClient: DatabaseOberveValueClient,
+                removeObserverClient: DatabaseRemoveOberveClient) {
         self.observeClient = observeClient
+        self.removeObserverClient = removeObserverClient
     }
     
     public func observe(completion: @escaping (Result<RaceModel, DomainError>) -> Void) {
-        self.observeClient.observe(query: .init(path: "requests", event: .removed)) { result in
+        self.handleObserver = self.observeClient.observe(query: makeDatabaseQuery()) { result in
             switch result {
             case .success(let data):
                 if let race: RaceModel = data.toModel() {
@@ -28,5 +32,13 @@ public class RemoteRaceCanceled: RaceCanceled {
                 completion(.failure(.unexpected))
             }
         }
+    }
+    
+    public func removeObserver() {
+        self.removeObserverClient.removeObserver(query: makeDatabaseQuery(), handle: handleObserver)
+    }
+    
+    private func makeDatabaseQuery() -> DatabaseQuery {
+        .init(path: "requests", event: .removed)
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 public protocol GetRaces {
     func execute(completion: @escaping (Swift.Result<[RaceModel], DomainError>) -> Void)
+    func removeObserver()
 }
 
 public class RaceModel: Model {

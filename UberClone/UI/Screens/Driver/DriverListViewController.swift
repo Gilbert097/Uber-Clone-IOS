@@ -29,6 +29,8 @@ public class DriverListViewController: UIViewController {
     
     private var list: [RaceViewModel]?
     public var load: (() -> Void)?
+    public var start: (() -> Void)?
+    public var stop: (() -> Void)?
     public var logout: (() -> Void)?
     public var didRaceSelected: ((RaceViewModel) -> Void)?
     
@@ -36,6 +38,20 @@ public class DriverListViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         self.load?()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.start?()
+    }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.stop?()
+    }
+    
+    deinit {
+        self.stop?()
     }
     
     @objc private func logoutButtonTapped() {

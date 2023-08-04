@@ -155,13 +155,13 @@ extension FirebaseDatabaseAdapter: DatabaseGetValuesClient {
 // MARK: - DatabaseOberveAddValueClient
 extension FirebaseDatabaseAdapter: DatabaseOberveValueClient {
     
-    public func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
+    public func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<Data, Error>) -> Void) -> UInt {
         let childPath = Database
             .database()
             .reference()
             .child(query.path)
         
-        _ = childPath
+        let handle = childPath
             .observe(query.event.type) { snapshot in
                 if let dictionary = snapshot.value as? NSDictionary {
                     print(dictionary)
@@ -169,20 +169,33 @@ extension FirebaseDatabaseAdapter: DatabaseOberveValueClient {
                 guard let data = snapshot.data else { return completion(.failure(FirebaseDatabaseError.valueNotFound))}
                 completion(.success(data))
             }
-        //childPath.removeObserver(withHandle: observe)
+        
+        return handle
+    }
+}
+
+// MARK: - DatabaseRemoveOberveClient
+extension FirebaseDatabaseAdapter: DatabaseRemoveOberveClient {
+    
+    public func removeObserver(query: DatabaseQuery, handle: UInt) {
+        let childPath = Database
+            .database()
+            .reference()
+            .child(query.path)
+        childPath.removeObserver(withHandle: handle)
     }
 }
 
 // MARK: - DatabaseOberveValuesClient
 extension FirebaseDatabaseAdapter: DatabaseOberveValuesClient {
     
-    public func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<[Data], Error>) -> Void) {
+    public func observe(query: DatabaseQuery, completion: @escaping (Swift.Result<[Data], Error>) -> Void) -> UInt {
         let childPath = Database
             .database()
             .reference()
             .child(query.path)
         
-        _ = childPath
+        let handle =  childPath
             .observe(query.event.type) { snapshot in
                 if snapshot.childrenCount > 0 {
                     
@@ -198,7 +211,7 @@ extension FirebaseDatabaseAdapter: DatabaseOberveValuesClient {
                     completion(.failure(FirebaseDatabaseError.valueNotFound))
                 }
             }
-        //childPath.removeObserver(withHandle: observe)
+        return handle
     }
 }
 

@@ -13,12 +13,14 @@ public final class PassengerMapFactory {
         let viewController = PassengerMapViewController()
         let presenter = PassengerMapPresenter(useCases: makeUseCases(),
                                               view: makeView(viewController: viewController),
-                                              locationManager: AppLocationManager(),
-                                              geocodeLocation: AppGeocodeLocationManager())
+                                              locationManager: AppLocationManager.shared,
+                                              geocodeLocation: AppGeocodeLocationManager.shared)
         
         let router = PassengerRouter(nav: nav)
         presenter.dismiss = router.dismiss
         viewController.load = presenter.load
+        viewController.start = presenter.start
+        viewController.stop = presenter.stop
         viewController.logout = presenter.logout
         viewController.callRace = presenter.didCallRace
         return viewController
@@ -33,7 +35,7 @@ public final class PassengerMapFactory {
         let callRace = MainQueueDispatchDecorator(RemoteRequestRace(getCurrentUser: getCurrentUser, databaseSetValueClient: databaseAdapter))
         let cancelRace = MainQueueDispatchDecorator(RemoteCancelRace(getAuthUser: getUser, deleteClient: databaseAdapter))
         let getRaces = RemoteGetPassengerRaces(getValuesClient: databaseAdapter)
-        let raceChanged = RemoteChangedPassengerRaces(observeValuesClient: databaseAdapter)
+        let raceChanged = RemoteChangedPassengerRaces(observeValuesClient: databaseAdapter, removeObserverClient: databaseAdapter)
         let logoutAuth = RemoteLogoutAuth(authLogoutClient: authAdapter)
         let updateStatus = RemoteUpdateRaceStatus(updateClient: databaseAdapter)
         
