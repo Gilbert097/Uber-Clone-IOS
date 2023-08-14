@@ -127,7 +127,6 @@
 		D484826C2A16904400DEFCDC /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484826B2A16904400DEFCDC /* MapView.swift */; };
 		D48482702A16962300DEFCDC /* RemoteCheckRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */; };
 		D48482722A16963500DEFCDC /* CheckRequestRace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48482712A16963500DEFCDC /* CheckRequestRace.swift */; };
-		D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */; };
 		D49201442A280C1C00D9B587 /* DatabaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201432A280C1C00D9B587 /* DatabaseQuery.swift */; };
 		D49201462A28139F00D9B587 /* RemoteRaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */; };
 		D49201482A29442100D9B587 /* RaceAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49201472A29442100D9B587 /* RaceAccepted.swift */; };
@@ -280,7 +279,6 @@
 		D484826B2A16904400DEFCDC /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D484826F2A16962300DEFCDC /* RemoteCheckRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCheckRequestRace.swift; sourceTree = "<group>"; };
 		D48482712A16963500DEFCDC /* CheckRequestRace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRequestRace.swift; sourceTree = "<group>"; };
-		D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D49201432A280C1C00D9B587 /* DatabaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseQuery.swift; sourceTree = "<group>"; };
 		D49201452A28139F00D9B587 /* RemoteRaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRaceAccepted.swift; sourceTree = "<group>"; };
 		D49201472A29442100D9B587 /* RaceAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceAccepted.swift; sourceTree = "<group>"; };
@@ -958,7 +956,6 @@
 				D415F9A429DF6D9B000689FF /* Assets.xcassets */,
 				D415F9A629DF6D9B000689FF /* LaunchScreen.storyboard */,
 				D415F9A929DF6D9B000689FF /* Info.plist */,
-				D48ADF9629EF652C00986A89 /* GoogleService-Info.plist */,
 			);
 			path = UberClone;
 			sourceTree = "<group>";
@@ -1117,7 +1114,6 @@
 			files = (
 				D415F9A829DF6D9B000689FF /* LaunchScreen.storyboard in Resources */,
 				D415F9A529DF6D9B000689FF /* Assets.xcassets in Resources */,
-				D48ADF9729EF652C00986A89 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
